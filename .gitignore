@@ -1,0 +1,11 @@
+# Exclude, except for jem-constants in csv files
+*.xlsx
+*.jpg
+*.jpeg
+*.png
+*.pdf
+*.tiff
+*.pkl
+*.csv
+!ps_user_info.csv
+!roi_info.csv

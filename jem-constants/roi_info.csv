@@ -1,0 +1,39 @@
+name,jem_roi,roi_major,roi_minor,acronym
+"FCx, layer 1","('FCx', 'layer 1')",FCx,layer 1,FCx1
+"FCx, layer 2","('FCx', 'layer 2')",FCx,layer 2,FCx2
+"FCx, layer 3","('FCx', 'layer 3')",FCx,layer 3,FCx3
+"FCx, layer 4","('FCx', 'layer 4')",FCx,layer 4,FCx4
+"FCx, layer 5","('FCx', 'layer 5')",FCx,layer 5,FCx5
+"FCx, layer 6","('FCx', 'layer 6')",FCx,layer 6,FCx6
+FCx1,"('FCx', 'layer 1')",FCx,layer 1,FCx1
+FCx2,"('FCx', 'layer 2')",FCx,layer 2,FCx2
+FCx3,"('FCx', 'layer 3')",FCx,layer 3,FCx3
+FCx4,"('FCx', 'layer 4')",FCx,layer 4,FCx4
+FCx5,"('FCx', 'layer 5')",FCx,layer 5,FCx5
+FCx6,"('FCx', 'layer 6')",FCx,layer 6,FCx6
+"LGd, core","('LGd', 'core')",LGd,core,LGdcore
+"LGd, shell","('LGd', 'shell')",LGd,shell,LGdshell
+"TCx, layer 1","('TCx', 'layer 1')",TCx,layer 1,TCx1
+"TCx, layer 2","('TCx', 'layer 2')",TCx,layer 2,TCx2
+"TCx, layer 3","('TCx', 'layer 3')",TCx,layer 3,TCx3
+"TCx, layer 4","('TCx', 'layer 4')",TCx,layer 4,TCx4
+"TCx, layer 5","('TCx', 'layer 5')",TCx,layer 5,TCx5
+"TCx, layer 6","('TCx', 'layer 6')",TCx,layer 6,TCx6
+TCx1,"('TCx', 'layer 1')",TCx,layer 1,TCx1
+TCx2,"('TCx', 'layer 2')",TCx,layer 2,TCx2
+TCx3,"('TCx', 'layer 3')",TCx,layer 3,TCx3
+TCx4,"('TCx', 'layer 4')",TCx,layer 4,TCx4
+TCx5,"('TCx', 'layer 5')",TCx,layer 5,TCx5
+TCx6,"('TCx', 'layer 6')",TCx,layer 6,TCx6
+"VISp, layer 1","('VISp', 'layer 1')",VISp,layer 1,VISp1
+"VISp, layer 2/3","('VISp', 'layer 2/3')",VISp,layer 2/3,VISp2/3
+"VISp, layer 4","('VISp', 'layer 4')",VISp,layer 4,VISp4
+"VISp, layer 5","('VISp', 'layer 5')",VISp,layer 5,VISp5
+"VISp, layer 6a","('VISp', 'layer 6a')",VISp,layer 6a,VISp6a
+"VISp, layer 6b","('VISp', 'layer 6b')",VISp,layer 6b,VISp6b
+VISp1,"('VISp', 'layer 1')",VISp,layer 1,VISp1
+VISp2/3,"('VISp', 'layer 2/3')",VISp,layer 2/3,VISp2/3
+VISp4,"('VISp', 'layer 4')",VISp,layer 4,VISp4
+VISp5,"('VISp', 'layer 5')",VISp,layer 5,VISp5
+VISp6a,"('VISp', 'layer 6a')",VISp,layer 6a,VISp6a
+VISp6b,"('VISp', 'layer 6b')",VISp,layer 6b,VISp6b
