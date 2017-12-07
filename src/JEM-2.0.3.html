@@ -443,8 +443,7 @@
                                     "type":"date",
                                     "fieldClass": "col-md-3",
                                     "picker": {
-                                        "format": "MM/DD/YYYY HH:mm",
-                                        //"format":"YYYY-MM-DD HH:mm:ss Z",
+                                        "format":"YYYY-MM-DD HH:mm:ss Z",
                                         "stepping":1,
                                         "showTodayButton": true,
                                         "showClose":true,
@@ -529,7 +528,7 @@
                                     "type":"date",
                                     "fieldClass":"col-md-2",
                                     "picker": {
-                                        "format":"MM/DD/YYYY",
+                                        "format":"YYYY-MM-DD",
                                         "showClose": true,
                                         "inline": false,
                                         "tooltips": {
@@ -546,7 +545,7 @@
                                     "type":"date",
                                     "fieldClass":"col-md-2",
                                     "picker": {
-                                        "format":"MM/DD/YYYY",
+                                        "format":"YYYY-MM-DD",
                                         "showClose":true,
                                         "inline":false,
                                         "tooltips": {
@@ -563,7 +562,7 @@
                                     "type":"date",
                                     "fieldClass":"col-md-2",
                                     "picker": {
-                                        "format":"MM/DD/YYYY",
+                                        "format":"YYYY-MM-DD",
                                         "showClose":true,
                                         "inline":false,
                                         "tooltips": {
@@ -769,13 +768,13 @@
                                                  	"timeStart": {
                                                  		"fieldClass": "form-group col-md-2",
                                                    		"type":"date",
-                                                   		"dateFormat":"HH:mm:ss",
+                                                   		"dateFormat":"HH:mm:ss Z",
                                                    		"picker": {
                                                    			"showClose":true,
                                                    			"showTodayButton":true,
                                                    			"collapse":true,
                                                    			"stepping":1,
-                                                   			"format":"HH:mm:ss",
+                                                   			"format":"HH:mm:ss Z",
                                                    			"focusOnShow":false,
                                                    			"keepOpen":false,
                                                    			"inline":false,
@@ -807,7 +806,7 @@
                                                             }
                                                         },
                                                			"manualEntry":false,
-                                               			"helper":"(HH:MM:SS)"
+                                               			"helper":"(HH:mm:ss -UTC)"
                                            			},
                                            			"pipetteR":{
                                                        	"type":"number",
@@ -848,7 +847,7 @@
                                                             "showTodayButton":true,
                                                             "collapse":true,
                                                             "stepping":1,
-                                                            "format":"HH:mm:ss",
+                                                            "format":"HH:mm:ss Z",
                                                             "focusOnShow":false,
                                                             "keepOpen":false,
                                                             "inline":false,
@@ -879,7 +878,7 @@
                                                                 };            
                                                             }
                                                         },
-                                                        "helper":"(HH:MM:SS)"
+                                                        "helper":"(HH:mm:ss -UTC)"
                                                     },
                                                     "humanCellTypePrediction":{
                                                 		"type": "select",
@@ -1012,7 +1011,7 @@
                                                             "showTodayButton":true,
                                                             "collapse":true,
                                                             "stepping":1,
-                                                            "format":"HH:mm:ss",
+                                                            "format":"HH:mm:ss Z",
                                                             "focusOnShow":false,
                                                             "keepOpen":false,
                                                             "inline":false,
@@ -1041,7 +1040,7 @@
                                                                 };            
                                                             }
                                                         },
-                                                        "helper":"(HH:MM:SS)",
+                                                        "helper":"(HH:mm:ss -UTC)",
                                                         "fieldClass": "col-md-2"
                                                     },
                                                     "timeExtractionEnd": {
@@ -1051,7 +1050,7 @@
                                                             "showTodayButton":true,
                                                             "collapse":true,
                                                             "stepping":1,
-                                                            "format":"HH:mm:ss",
+                                                            "format":"HH:mm:ss Z",
                                                             "focusOnShow":false,
                                                             "keepOpen":false,
                                                             "inline":false,
@@ -1080,7 +1079,7 @@
                                                                 };            
                                                             }
                                                         },
-                                                        "helper": "(HH:MM:SS)",
+                                                        "helper": "(HH:mm:ss -UTC)",
                                                         "fieldClass": "col-md-2"
                                                     },
                                                     "timeRetractionEnd": {
@@ -1090,7 +1089,7 @@
                                                             "showTodayButton":true,
                                                             "collapse":true,
                                                             "stepping":1,
-                                                            "format":"HH:mm:ss",
+                                                            "format":"HH:mm:ss Z",
                                                             "focusOnShow":false,
                                                             "keepOpen":false,
                                                             "inline":false,
@@ -1119,7 +1118,7 @@
                                                                 };            
                                                             }
                                                         },
-                                                        "helper": "(HH:MM:SS)",
+                                                        "helper": "(HH:mm:ss -UTC)",
                                                         "fieldClass": "col-md-2"
                                                     },
                                                     "postPatch":{
