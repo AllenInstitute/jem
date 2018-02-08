@@ -1,0 +1,1694 @@
+<html>
+        <head>
+        
+            <!-- jquery -->
+            <script
+              src="https://code.jquery.com/jquery-3.2.1.min.js"
+              integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+              crossorigin="anonymous"></script>
+
+     		<!-- jquery ui -->
+			<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+            <!-- bootstrap -->
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+            <!-- Optional theme -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+     
+            <!-- handlebars -->
+            <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+     
+            <!-- alpaca -->
+            <link type="text/css" href="http://code.cloudcms.com/alpaca/1.5.23/bootstrap/alpaca.min.css" rel="stylesheet"/>
+            <script type="text/javascript" src="http://code.cloudcms.com/alpaca/1.5.23/bootstrap/alpaca.min.js"></script>
+
+            <!-- fileSaver -->
+            <script type="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
+            <script type="https://cdnjs.cloudflare.com/ajax/libs/blob-util/1.3.0/blob-util.min.js"></script>
+
+            <!-- datetimepicker -->
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"/>
+
+
+
+            <!-- Disable potential reset of form with button press -->
+            <script type="text/javascript">
+            function stopRKey(evt) {
+                var evt = (evt) ? evt : ((event) ? event : null);
+                var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+                    if ((evt.keyCode == 13) && (node.type=="text"))  {return false;}
+            }
+            document.onkeypress = stopRKey;
+            </script> 
+        
+        <head>
+        <body>
+            <div id="form"></div>
+            <script src = "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js" async = ""></script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#form").alpaca({
+                        "schema": {
+                            "type": "object",
+                            "title":"JSON Electrophysiology Metadata (JEM)",
+                            "properties": {
+                                "formVersion": {
+                                	"type":"string",
+                                	"title":"Version",
+                                	"readonly":true
+                                },
+                                "rigOperator": {
+                                    "type": "string",
+                                    "title": "Researcher",
+                                    "enum":["nataliag", "rene", "djai", "christina", "ayoub", "aarono", "briank", "brianle", "dijonh", "gasparo", "huibm", "jonathant", "kristenh", "lindsayn", "lisak", "ramr", "rustym", "davidre"],
+                                    "required":true
+                                },
+                                "rigNumber": {
+                                    "type":"string",
+                                    "title":"Rig #",
+                                    "enum":["1","2","3","4","5","6","7","8", "BRL", "HCT1", "HCT2", "HCT3"],
+                                    "required":true
+                                },
+                                "date":{
+                                    "format":"date",
+                                    "title":"Slice on Rig Date/Time",
+                                    "required":true
+                                },
+                                "limsSpecName": {
+                                    "type": "string",
+                                    "title":"Slice ID",
+                                    "required":true
+                                },
+                                "acsfProductionDate":{
+                                    "format":"date",
+                                    "title":"ACSF Date",
+                                    "required":true
+                                },
+                                "blankFillDate":{
+                                    "format":"date",
+                                    "title":"Blank Fill Date",
+                                    "required":true
+                                },
+                                "internalFillDate":{
+                                    "format":"date",
+                                    "title":"Internal Fill Date",
+                                    "required":true
+                                },
+                                "flipped": {
+                                    "type":"string",
+                                    "title":"Is slice flipped?",
+                                    "enum":["Yes","No"],
+                                    "required":true
+                                },
+                                "sliceQuality":{
+                                    "type":"string",
+                                    "enum": ["Good", "Damaged", "Uneven Thickness", "'Wave of Death'"],
+                                    "default":[],
+                                    "required":true
+                                },
+                                "sliceNotes":{
+                                    "type":"string",
+                                    "format":"string",
+                                    "title":"Extra Slice Notes",
+                                    "required":false
+                                },
+                                "pipettes":{
+                                	"type":"array",
+                                    "items":{
+                                        "title":"Patch-Seq Pipette",
+                                        "type":"object",
+                                        "properties":{
+                                        	"approach": {
+                                        		"type":"object",
+                                        		"title": "Approach Info",
+                                        		"properties": {
+                                        			"sliceHealth":{
+                                                		"type":"string",
+                                                		"title": "Slice Health",
+                                                		"enum":["1","2","3","4","5"],
+                                                		"required":true
+                                            		},
+                                            		"cellHealth":{
+                                                		"type":"string",
+                                                		"title": "Cell Health",
+                                                		"enum":["1","2","3","4","5"],
+                                                		"required":true
+                                            		},
+                                            		"creCell": {
+                                                		"type":"string",
+                                                		"title":"Cre Status",
+                                                		"enum":["Cre+","Cre-","None"],
+                                                        "required":true
+                                            		},
+                                                	"pilotName":{
+                                                        "type":"string",
+                                                        "title":"Pilot Name",
+                                                        "default": "None",
+                                                        "enum": ["None", "Tissue_Touch", "Electroporation", "Non_Human_Primate_LGN", "Nucleated Patch - Retraction Pressure"],
+                                                        "required":true
+                                                    },
+                                                    "pilotTest01":{
+                                                        "type":"string",
+                                                        "title":"Pilot Details",
+                                                        "enum":["Standard (~80 mbar)", "Mid-Range (~65 mbar)", "Low (~50 mbar)", "Minimal (~25 mbar)"],
+                                                        "default":"",
+                                                        "dependencies":"pilotName",
+                                                        "required":false
+                                                    },
+                                                     "pilotTest04":{
+                                                       "type":"string",
+                                                        "title":"Pilot Details",
+                                                        "dependencies":"pilotName",
+                                                        "required":false
+                                                    }
+                                                }
+                                            },
+/*                                            "pipetteSpecName": {
+                                    					"type": "string",
+                                    					"title":"Pipette Specimen ID",
+                                    					"required":true
+                                			},*/
+                                            "recording":{
+                                                "type":"object",
+                                                "title":"Recording Info",
+                                                "properties": {
+                                                	"timeStart": {
+                                                    	"format":"time",
+                                                		"title":"Approach Start",
+                                                		"required":true
+                                            		},
+                                            		"pipetteR":{
+                                                        "format":"number",
+                                                        "minimum":0,
+                                                        "title":"Pipette R",
+                                                		"required":true
+                                                    },
+                                                    "timeWholeCellStart":{
+                                                        "format":"time",
+                                                        "title":"Whole Cell Start",
+                                                		"required":true
+                                                    },
+                                            		"humanCellTypePrediction":{
+                                                		"type":"string",
+                                                		"title":"Cell Type Prediction (for Human Neurons)",
+                                                		"enum":["Unknown", "Pyramidal", "FS Interneuron", "Spindle Shaped", "Unknown Interneuron"],
+                                                		"required":false
+                                            		}
+                                                }
+                                            },
+                                            "status":{
+                                                "type":"string",
+                                                "title":"Was recording successful?",
+                                                "enum":["SUCCESS", "FAILURE"],
+                                                "default":[],
+                                                "required":true
+                                            },
+                                            "failureNotes":{
+                                                "type":"string",
+                                                "enum":["Seal Failed","Unstable Seal","Breakin Failed","Access Resistance Out of Range","Vrest Out of Range", "'Wave of Death'", "Other"],
+                                                "default":[],
+                                                "dependencies":"status",
+                                                "required":true
+                                            },
+                                            "freeFailureNotes":{
+                                                "type":"string",
+                                                "title":"Extra Failure Notes",
+                                                "default":[],
+                                                "dependencies":"status",
+                                                "required":false
+                                            },
+                                            "successNotes":{
+                                                "type":"string",
+                                                "enum": ["Patch/Cell Unstable", "Patch Became Leaky", "Access Resistance Increased", "Cell Depolarized", "Cell Hyperpolarized", "Blowout Voltage Out of Range", "Rheobase Changed", "Ended After C1", "'Wave of Death'", "Training/Practice", "Rig/Software Problems"],
+                                                "default":[],
+                                                "dependencies":"status",
+                                                "required":false
+                                            },
+                                            "qcNotes":{
+                                                "type":"string",
+                                                "title":"QC Notes",
+                                                "dependencies":"status",
+                                                "required":false
+                                            },
+                                            "badSweeps":{
+                                            	"type":"string",
+                                            	"title":"Bad Sweeps",
+                                                "dependencies":"status",
+                                            	"required":false
+                                            },
+                                            "extraction":{
+                                            	"type":"object",
+                                                "title":"Extraction Info",
+                                                "dependencies":"status",
+                                                "properties":{
+                                                    "pressureApplied":{
+                                                        "type":"number",
+                                                        "title":"Extraction Pressure",
+                                                        "maximum":0,
+                                                        "required":true
+                                                    },
+                                                    "retractionPressureApplied":{
+                                                        "type":"number",
+                                                        "title":"Retraction Pressure",
+                                                        "maximum":0,
+                                                        "required":true
+                                                    },
+                                                    "timeExtractionStart":{
+                                                        "format":"time",
+                                                        "title":"Extraction Start",
+                                                        "required":true
+                                                    },
+                                                    "timeExtractionEnd":{
+                                                        "format":"time",
+                                                        "title":"Extraction End",
+                                                        "required":true
+                                                    },
+                                                    "timeRetractionEnd":{
+                                                        "format":"time",
+                                                        "title":"Retraction End",
+                                                        "required":true
+                                                    },
+                                                    "postPatch":{
+                                                        "type":"string",
+                                                        "title":"Post Patch State",
+                                                        "enum":["nucleus_present", "nucleus_absent", "entire_cell"],
+                                                        "default":[],
+                                                        "required":true
+                                                    },
+                                                    "endPipetteR":{
+                                                        "format":"number",
+                                                        "minimum":0,
+                                                        "title":"Post Patch Pipette R",
+                                                        "required":true
+                                                    },
+                                                    "nucleus": {
+                                                        "type":"string",
+                                                        "title":"Nucleus sucked in?",
+                                                        "enum":["intentionally", "not_intentionally", "no"],
+                                                        "default":[],
+                                                        "required":false
+                                                    },
+                                                    "tubeID":{
+                                                        "type":"string",
+                                                        "title":"Patched Cell Container",
+                                                        "required":true
+                                                    },
+                                                    "extractionNotes": {
+                                                        "type": "string",
+                                                        "title": "Extra Extraction Notes"
+                                                    },
+                                                    "extractionObservations":{
+                                                        "type":"string",
+                                                        "title": "Cell Assessment",
+                                                        "enum": ["Fluorescence in Pipette", "Cell Dimmed", "Cell Swelled", "Cell Shrunk", "Too Deep","Cell Disappeared"],
+                                                        "default": [],
+                                                        "required":false
+                                                    },
+                                                    "sampleObservations":{
+                                                        "type":"string",
+                                                        "title":"Sample Assessment",
+                                                        "enum":["No Bubbles", "Small Bubbles", "Medium Bubbles", "Large Bubbles", "Solution in Pipette Shank"],
+                                                        "default":[],
+                                                        "required":false
+                                                    }
+                                                }
+                                            },
+                                            "depth": {
+                                                "format":"number",
+                                                "title":"Cell Depth",
+                                                "required":true
+                                            },
+                                            "autoRoi":{
+                                                "type":"string",
+                                                "title": "ROI (Pinning Tool)",
+                                                "required":false,
+                                                "default":"None"
+                                            },
+                                            "manualRoi":{
+                                                "type":"string",
+                                                "title": "ROI (Manual Entry)",
+                                                "required":true,
+                                                "dependencies":"autoRoi"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "dependencies": {
+                                "manualRoi":["autoRoi"],
+                                "pilotTest01":["pilotName"],
+                                "pilotTest04":["pilotName"],
+                                "failureNotes":["status"],
+                                "freeFailureNotes":["status"],
+                                "successNotes":["status"],
+                                "qcNotes":["status"],
+                                "badSweeps":["status"],
+                                "extraction":["status"]
+                                }
+                        },
+                        "options": {
+                            "fields": {
+                                "formVersion": {
+                                    "type":"text",
+                                	"readonly":true,
+                                	"fieldClass": "col-md-1",
+                                	"data":"/jem-data/jemVersion.json",
+                                	"view":"bootstrap-display"
+                                	//"type":"hidden"
+                                },
+                                "rigOperator" : {
+                                	"type": "select",
+                                    "fieldClass": "dropdown-content col-md-2",
+                                    "helper": [],
+                                    "hideNone":false,
+                                    "noneLabel":'',
+                                    "validate":true,
+                                    "showMessages":false,
+                                    "hideInitValidationError":true,
+                                    "events":{
+                                        "ready": function(field){
+                                            var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                            var self = this;
+                                            jemdatasocket.onopen  = function() {
+                                                jemdatasocket.send(JSON.stringify(9191));
+                                            };
+
+                                            jemdatasocket.onmessage = function(msg) {
+                                                var incomingDat = JSON.parse(msg.data);
+
+                                                if ('factor' in incomingDat){
+                                                    if (incomingDat['factor'] == 'rigOperator'){
+                                                        self.setValue(incomingDat['value']);
+                                                        self.refresh();
+                                                    }                                                  
+                                                }
+                                            };                                            
+                                        },
+                                        "validator": function(callback) {
+                                            var value = this.getValue();
+                                            if (value == null) {
+                                                callback({
+                                                    "status":false,
+                                                    "message": "Please Enter Researcher Name"
+                                                });
+                                            } else {
+                                                callback({
+                                                    "status":true
+                                                });
+                                            }
+                                        },
+                                    }
+                                },
+                                "rigNumber": {
+                                    "type": "select",
+                                    "fieldClass":"dropdown-content col-md-1",
+                                    "helper":[],
+                                    "hideNone":false,
+                                    "noneLabel":'',
+                                    "validate":true,
+                                    "showMessages":false,
+                                    "hideInitValidationError":true,
+                                    "events":{
+                                        "ready": function(field){
+                                            var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                            var self = this;
+                                            jemdatasocket.onopen  = function() {
+                                                jemdatasocket.send(JSON.stringify(9191));
+                                            };
+
+                                            jemdatasocket.onmessage = function(msg) {
+                                                var incomingDat = JSON.parse(msg.data);
+
+                                                if ('factor' in incomingDat){
+                                                    if (incomingDat['factor'] == 'rigNumber'){
+                                                        self.setValue(incomingDat['value']);
+                                                        self.refresh();
+                                                    }                                                  
+                                                }
+                                            };
+                                        }
+                                    }
+                                },
+                                "date": {
+                                    "type":"date",
+                                    "fieldClass": "col-md-3",
+                                    "picker": {
+                                        "format":"YYYY-MM-DD HH:mm:ss Z",
+                                        "stepping":1,
+                                        "showTodayButton": true,
+                                        "showClose":true,
+                                        "inline": false,
+                                        "tooltips": {
+                                            today: 'Go to today'
+                                        },
+                                        "useCurrent":true
+                                    },
+                                    "events":{
+                                        "ready": function(field){
+                                            var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                            var self = this;
+                                            jemdatasocket.onopen  = function() {
+                                                jemdatasocket.send(JSON.stringify(9191));
+                                            };
+
+                                            jemdatasocket.onmessage = function(msg) {
+                                                var incomingDat = JSON.parse(msg.data);
+
+                                                if ('factor' in incomingDat){
+                                                    if (incomingDat['factor'] == 'onRigTimeStamp'){
+                                                        self.setValue(incomingDat['value']);
+                                                        self.refresh();
+                                                    }                                                  
+                                                }
+                                            };
+                                        }
+                                    },
+                                    "manualEntry":false,
+                                    "validate":true,
+                                    "showMessages": false,
+                                    "hideInitValidationError":true
+                                },
+                                "limsSpecName": {
+                                    "type": "text",
+                                    "fieldClass": "col-md-4",
+                                    "helper":[],
+                                    "placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02",
+                                    "validate":true,
+                                    "showMessages": false,
+                                    "hideInitValidationError":true,
+                                    "disallowEmptySpaces":true,
+                                    "events":{
+                                        "ready": function(field){
+                                            var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                            var self = this;
+                                            jemdatasocket.onopen  = function() {
+                                                jemdatasocket.send(JSON.stringify(9191));
+                                            };
+
+                                            jemdatasocket.onmessage = function(msg) {
+                                                var incomingDat = JSON.parse(msg.data);
+
+                                                if ('factor' in incomingDat){
+                                                    if (incomingDat['factor'] == 'limsSpecName'){
+                                                        self.setValue(incomingDat['value']);
+                                                        self.refresh();
+                                                    }                                                  
+                                                }
+                                            };
+                                        }
+                                    },
+                                    "validator": function(callback) {
+                                        var value = this.getValue();
+                                        var chars = value.split(' ');
+                                        if (chars.length > 1) {
+                                            callback({
+                                                "status":false,
+                                                "message": "Space(s) found in Slice ID"
+                                            });
+                                        } else {
+                                            callback({
+                                                "status":true
+                                            });
+                                        }
+                                    }
+                                },
+                                "acsfProductionDate": {
+                                    "type":"date",
+                                    "fieldClass":"col-md-2",
+                                    "picker": {
+                                        "format":"YYYY-MM-DD",
+                                        "showClose": true,
+                                        "inline": false,
+                                        "tooltips": {
+                                            today: "Go to today"
+                                        },
+                                        "useCurrent":true
+                                    },
+                                    "manualEntry":false,
+                                    "validate":true,
+                                    "showMessages": false,
+                                    "hideInitValidationError":true
+                                },  
+                                "blankFillDate": {
+                                    "type":"date",
+                                    "fieldClass":"col-md-2",
+                                    "picker": {
+                                        "format":"YYYY-MM-DD",
+                                        "showClose":true,
+                                        "inline":false,
+                                        "tooltips": {
+                                            today: "Go to today"
+                                        },
+                                        "useCurrent":true
+                                    },
+                                    "manualEntry":false,
+                                    "validate":true,
+                                    "showMessages":false,
+                                    "hideInitValidationError":true
+                                },
+                                "internalFillDate": {
+                                    "type":"date",
+                                    "fieldClass":"col-md-2",
+                                    "picker": {
+                                        "format":"YYYY-MM-DD",
+                                        "showClose":true,
+                                        "inline":false,
+                                        "tooltips": {
+                                            today: "Go to today"
+                                        },
+                                        "useCurrent":true
+                                    },
+                                    "manualEntry":false,
+                                    "validate":true,
+                                    "showMessages":false,
+                                    "hideInitValidationError":true
+                                },
+                                "flipped":{
+                                    "type":"radio",
+                                    "fieldClass": "col-md-2",
+                                    "validate":true,
+                                    "showMessages":false,
+                                    "hideInitValidationError":true,
+                                    "events":{
+                                        "ready": function(field){
+                                            var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                            var self = this;
+                                            jemdatasocket.onopen  = function() {
+                                                jemdatasocket.send(JSON.stringify(9191));
+                                            };
+
+                                            jemdatasocket.onmessage = function(msg) {
+                                                var incomingDat = JSON.parse(msg.data);
+
+                                                if ('factor' in incomingDat){
+                                                    if (incomingDat['factor'] == 'sliceFlipped'){
+                                                        if (incomingDat['value'] == 'y'){
+                                                            self.setValue("Yes")
+                                                            self.refresh();
+                                                        } else {
+                                                            self.setValue("No");
+                                                            self.refresh();
+                                                        }
+                                                        
+                                                    }                                                  
+                                                }
+                                            };
+                                        }
+                                    }
+                                },
+                                "sliceQuality": {
+                                    "type": "checkbox",
+                                    "fieldClass": "col-md-2",
+                                    "label": "Slice Quality",
+                                    "sort":false,
+                                    "vertical":false,
+                                    "showMessages":false,
+                                    "hideInitValidationError":true
+                                },
+                                "sliceNotes": {
+                                    "type":"textarea",
+                                    "fieldClass": "col-md-2",
+                                    "rows":4,
+                                    "allowOptionalEmpty":true
+                                },
+                                "pipettes": {
+                                	"fieldClass": "form-group col-md-12 no-border",
+                                    "toolbar": {
+                                        "showLabels":true,
+                                        "actions": [{
+                                            "label": "Add A Patch-Seq Pipette",
+                                            "action":"add"
+                                        }]
+                                    },
+                                    "toolbarStyle": "button",
+                                    "toolbarSticky": true,
+                                    "hideToolbarWithChildren":true,
+                                    "actionbar": {
+                                        "showLabels":true,
+                                        "actions": [{
+                                            "label": "Add Another Patch-Seq Pipette",
+                                            "action": "add",
+                                            "click": function(key, action, itemIndex) {
+                                                document.indexSetter();
+                                                var itemIndexPlusOne = itemIndex + 1;
+                                                this.handleActionBarAddItemClick(itemIndex);
+                                            }
+                                        }, 
+                                        {
+                                            "label": "Remove Above Patch-Seq Pipette",
+                                            "action": "remove",
+                                            "click": function(key, action, itemIndex) {
+                                                var itemIndexPlusOne = itemIndex + 1;
+                                                var msg = "Are you sure you want to delete pipette #" + itemIndexPlusOne + "?";
+                                                if(confirm(msg))
+                                                    this.handleActionBarRemoveItemClick(itemIndex);
+                                            }
+                                        }, 
+                                        {
+                                            "action":"up",
+                                            "enabled":false
+                                        }, 
+                                        {
+                                            "action":"down",
+                                            "enabled":false
+                                        }]
+                                    },
+                                    "actionbarStyle":"bottom",
+                                    "animate":true,
+                                    "collapsed":true,
+                                    "lazyLoading":false,
+                                    "showMessages":true,
+                                    "focus":true,
+                                    "items": {
+                                    	"fields": {
+                                    		"approach": {
+                                    			"fieldClass": "form-group col-md-12 no-border bg-success",
+                                                "fields": {
+                                                	"sliceHealth": {
+                                                		"type": "radio",
+                                                		"fieldClass": "form-group col-md-5",
+                                                		"vertical":false,
+                                                		"hideNone":true,
+                                                		"showMessages":false
+                                            		},
+                                            		"cellHealth": {
+                                                		"type": "radio",
+                                                		"fieldClass": "form-group col-md-5",
+                                                		"vertical":false,
+                                                		"hideNone":true,
+                                                		"showMessages":false
+                                            		},
+                                            		"creCell": {
+                                                		"type": "radio",
+                                                		"fieldClass": "form-group col-md-5",
+                                                		"size":1,
+                                                		"vertical":false,
+                                                		"hideNone":true,
+                                                		"showMessages":false,
+                                                        "hideInitValidationError":true
+                                            		},
+                                                	"pilotName": {
+                                                        "type":"select",
+                                                        "fieldClass": "form-group col-md-5",
+                                                        "helper": [],
+                                                        "sort":false,
+                                                        "hideNone":true,
+                                                        "noneLabel":"None",
+                                                        "hidden":false
+                                                    },
+                                                    "pilotTest01": {
+                                                        "type":"select",
+                                                        "fieldClass": "form-group col-md-6",
+                                                        "helper":[],
+                                                        "sort":false,
+                                                        "hideNone":false,
+                                                        "noneLabel":"",
+                                                        "dependencies": {
+                                                            "pilotName":"Nucleated Patch - Retraction Pressure"
+                                                        }
+                                                    },
+                                                    "pilotTest04": {
+                                                        "type":"text",
+                                                        "fieldClass": "form-group col-md-6",
+                                                        "helper":[],
+                                                        "dependencies": {
+                                                            "pilotName":"Electroporation"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "pipetteSpecName": {
+                                    					"type": "text",
+                                   						"fieldClass": "form-group col-md-8 no-border",
+                                    					"helper":[],
+                                    					"placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02.01",
+                                    					"showMessages": false,
+                                    					"hideInitValidationError":true,
+                                    					"disallowEmptySpaces":true,
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.pipetteSpecNameSetter(self);                       
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'pipetteSpecName'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.pipetteSpecNameGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }                                                  
+                                                                    }
+                                                                };            
+                                                            }
+                                                        }
+                                    		},
+                                            "recording":{
+                                            	"fieldClass": "form-group col-md-12 no-border bg-info",
+                                                "fields": {
+                                                 	"timeStart": {
+                                                 		"fieldClass": "form-group col-md-2",
+                                                   		"type":"date",
+                                                   		"dateFormat":"HH:mm:ss Z",
+                                                   		"picker": {
+                                                   			"showClose":true,
+                                                   			"showTodayButton":true,
+                                                   			"collapse":true,
+                                                   			"stepping":1,
+                                                   			"format":"HH:mm:ss Z",
+                                                   			"focusOnShow":false,
+                                                   			"keepOpen":false,
+                                                   			"inline":false,
+                                                   			"useCurrent":true
+                                               			},
+                                               			"showMessages":false,
+                                                        "hideInitValidationError":true,
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.approachStartSetter(self);                       
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'timeApproachStart'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.approachStartGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }                                                  
+                                                                    }
+                                                                };            
+                                                            }
+                                                        },
+                                               			"manualEntry":false,
+                                               			"helper":"(HH:mm:ss -UTC)"
+                                           			},
+                                           			"pipetteR":{
+                                                       	"type":"number",
+                                                       	"fieldClass": "form-group col-md-2",
+                                                        "helper": "(MOhm)",
+                                                        "validate":true,
+                                                        "showMessages":true,
+                                                        "hideInitValidationError":true,
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.pipetteRSetter(self);                       
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'pipetteR'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.pipetteRGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }                                                  
+                                                                    }
+                                                                };            
+                                                            }
+                                                        }
+                                                    },
+                                                    "timeWholeCellStart":{
+                                                    	"type":"date",
+                                                    	"fieldClass": "form-group col-md-2",
+                                                        "picker": {
+                                                            "showClose":true,
+                                                            "showTodayButton":true,
+                                                            "collapse":true,
+                                                            "stepping":1,
+                                                            "format":"HH:mm:ss Z",
+                                                            "focusOnShow":false,
+                                                            "keepOpen":false,
+                                                            "inline":false,
+                                                            "useCurrent":true,
+                                                        },
+                                                        "showMessages":false,
+                                                        "hideInitValidationError":true,
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.wholeCellStartSetter(self);                       
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'timeWholeCellStart'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.wholeCellStartGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }                                                  
+                                                                    }
+                                                                };            
+                                                            }
+                                                        },
+                                                        "helper":"(HH:mm:ss -UTC)"
+                                                    },
+                                                    "humanCellTypePrediction":{
+                                                		"type": "select",
+                                                		"fieldClass": "dropdown-content col-md-4"
+                                                	}
+                                                }
+                                            },
+                                            "status": {
+                                                "type":"radio",
+                                                "fieldClass": "col-md-12 bg-primary",
+                                                "vertical":false,
+                                                "hideNone":true,
+                                                "helper": []
+                                            },
+                                            "successNotes": {
+                                                "type": "checkbox",
+                                                "fieldClass": "col-md-4",
+                                                "dependencies": {
+                                                    "status":["SUCCESS"]
+                                                    },
+                                                "label": "Recording Observations",
+                                                "sort":false
+                                            },
+                                            "failureNotes": {
+                                                "type": "checkbox",
+                                                "showMessages": false,
+                                    			"hideInitValidationError":true,
+                                                "fieldClass": "col-md-4",
+                                                "dependencies": {
+                                                    "status":["FAILURE"]
+                                                    },
+                                                "label": "Cause(s) of failure",
+                                                "sort":false
+                                            },
+                                            "freeFailureNotes": {
+                                                "type":"textarea",
+                                                "fieldClass": "col-md-8",
+                                                "dependencies": {
+                                                    "status":["FAILURE"]
+                                                },
+                                                "rows":8
+                                            },
+                                            "qcNotes": {
+                                                "type":"textarea",
+                                                "fieldClass": "col-md-4",
+                                                "dependencies": {
+                                                    "status":["SUCCESS"]
+                                                },
+                                                "rows":4
+                                            },
+                                            "badSweeps": {
+                                            	"type":"textarea",
+                                            	"fieldClass":"col-md-4",
+                                            	"size":2,
+                                            	"dependencies":{
+                                            	    "status":["SUCCESS"]
+                                            	},
+                                            	"rows":4
+                                            },
+                                            "extraction": {
+                                            	"fieldClass": "form-group col-md-12 no-border bg-danger",
+                                                "dependencies": {
+                                                    "status":["SUCCESS"]
+                                                },
+                                                "fields": {
+                                                    "pressureApplied":{
+                                                        "type":"number",
+                                                        "helper":"(mbar)",
+                                                        "fieldClass":"col-md-3",
+                                                        "validate":true,
+                                                        "showMessages":true,
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.pressureAppliedSetter(self);                       
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'pressureApplied'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.pressureAppliedGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }                                                  
+                                                                    }
+                                                                };            
+                                                            }
+                                                        }
+                                                    },
+                                                    "retractionPressureApplied":{
+                                                    	"type":"number",
+                                                        "helper":"(mbar)",
+                                                        "fieldClass": "col-md-3",
+                                                        "validate":true,
+                                                        "showMessages":true,
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.retractionPressureAppliedSetter(self);                       
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'retractionPressureApplied'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.retractionPressureAppliedGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }                                                  
+                                                                    }
+                                                                };            
+                                                            }
+                                                        },
+                                                    },
+                                                    "timeExtractionStart": {
+                                                        "type":"time",
+                                                        "picker": {
+                                                            "showClose":true,
+                                                            "showTodayButton":true,
+                                                            "collapse":true,
+                                                            "stepping":1,
+                                                            "format":"HH:mm:ss Z",
+                                                            "focusOnShow":false,
+                                                            "keepOpen":false,
+                                                            "inline":false,
+                                                            "useCurrent":true
+                                                        },
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.timeExtractionStartSetter(self);                       
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'timeExtractionStart'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.timeExtractionStartGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }                                                  
+                                                                    }
+                                                                };            
+                                                            }
+                                                        },
+                                                        "helper":"(HH:mm:ss -UTC)",
+                                                        "fieldClass": "col-md-2"
+                                                    },
+                                                    "timeExtractionEnd": {
+                                                        "type":"time",
+                                                        "picker": {
+                                                            "showClose":true,
+                                                            "showTodayButton":true,
+                                                            "collapse":true,
+                                                            "stepping":1,
+                                                            "format":"HH:mm:ss Z",
+                                                            "focusOnShow":false,
+                                                            "keepOpen":false,
+                                                            "inline":false,
+                                                            "useCurrent":true
+                                                        },
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.timeExtractionEndSetter(self);                       
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'timeExtractionEnd'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.timeExtractionEndGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }                                                  
+                                                                    }
+                                                                };            
+                                                            }
+                                                        },
+                                                        "helper": "(HH:mm:ss -UTC)",
+                                                        "fieldClass": "col-md-2"
+                                                    },
+                                                    "timeRetractionEnd": {
+                                                        "type":"time",
+                                                        "picker": {
+                                                            "showClose":true,
+                                                            "showTodayButton":true,
+                                                            "collapse":true,
+                                                            "stepping":1,
+                                                            "format":"HH:mm:ss Z",
+                                                            "focusOnShow":false,
+                                                            "keepOpen":false,
+                                                            "inline":false,
+                                                            "useCurrent":true
+                                                        },
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.timeRetractionEndSetter(self);                       
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'timeRetractionEnd'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.timeRetractionEndGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }                                                  
+                                                                    }
+                                                                };            
+                                                            }
+                                                        },
+                                                        "helper": "(HH:mm:ss -UTC)",
+                                                        "fieldClass": "col-md-2"
+                                                    },
+                                                    "postPatch":{
+                                                        "type": "select",
+                                    					"fieldClass":"dropdown-content col-md-3",
+                                                        "size":1.5,
+                                                        "sort":false,
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "hideInitValidationError":true,
+                                                        "hideNone":true
+                                                    },
+                                                    "endPipetteR":{
+                                                       	"type":"number",
+                                                       	"fieldClass": "form-group col-md-3",
+                                                       	"helper": "(MOhm)",
+                                                       	"validate":true,
+                                                       	"showMessages":true,
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.endPipetteRSetter(self);                       
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'endPipetteR'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.endPipetteRGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }                                                  
+                                                                    }
+                                                                };            
+                                                            }
+                                                        }
+                                                    },
+                                                    "nucleus":{
+                                                        "type":"select",
+                                                        "fieldClass": "dropdown-content col-md-2",
+                                                        "size":1.5,
+                                                        "sort":false,
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "hideInitValidationError":true,
+                                                        "hideNone":true
+                                                    },
+                                                    "tubeID": {
+                                                        "type":"text",
+                                                        "fieldClass": "col-md-4",
+                                                        "placeholder":"ex: P9S4_171006_401_A01",
+                                                        "helper":"(PX for development)",
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.tubeIDSetter(self);                       
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'tubeID'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.tubeIDGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }                                                  
+                                                                    }
+                                                                };            
+                                                            }
+                                                        }
+                                                    },
+                                                    "extractionNotes": {
+                                                        "type":"textarea",
+                                                        "fieldClass": "col-md-5",
+                                                        "rows":4
+                                                    },
+                                                    "extractionObservations":{
+                                                        "type":"checkbox",
+                                                        "fieldClass": "col-md-3",
+                                                        "sort":false
+                                                    },
+                                                    "sampleObservations":{
+                                                        "type":"checkbox",
+                                                        "fieldClass":"col-md-3",
+                                                        "sort":false
+                                                    }
+                                                 }
+                                            },
+                                            "depth": {
+                                                "type":"number",
+                                                "fieldClass": "form-group col-md-2",
+                                                "validate":true,
+                                                "showMessages":true,
+                                                "hideInitValidationError":true,
+                                                "events":{
+                                                    "ready": function(field){
+                                                        var self = this;
+                                                        var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                        jemdatasocket.onopen = function(){
+                                                            jemdatasocket.send(JSON.stringify(9191));
+                                                            document.cellDepthSetter(self);                       
+                                                        };
+
+                                                        jemdatasocket.onmessage = function(msg){                           
+                                                            var incomingDat = JSON.parse(msg.data);
+                                                            if ('factor' in incomingDat){
+                                                                if (incomingDat['factor'] == 'depth'){
+                                                                    var pipetteIndex = incomingDat['index'];
+                                                                    var element = document.cellDepthGetter(pipetteIndex);
+                                                                    element.setValue(incomingDat['value']);
+                                                                    element.refresh();
+                                                                }                                                  
+                                                            }
+                                                        };            
+                                                    }
+                                                },
+                                                "helper": "(um)"
+                                            },
+                                            "autoRoi":{
+                                                "type":"text",
+                                                "fieldClass":"form-group col-md-3",
+                                                "showMessages":false,
+                                                "hideInitValidationError":true
+                                            },
+                                            "manualRoi":{
+                                                "type":"optiontree",
+                                                "fieldClass":"form-group col-md-6",
+                                                "dependencies": {
+                                                    "autoRoi":["None",""]
+                                                },
+                                                "showMessages":false,
+                                                "hideInitValidationError":true,
+                                                "tree": {
+                                                    "selectors":{
+                                                         "roiMajor":{
+                                                             "schema":{
+                                                                 "type":"string"
+                                                             },
+                                                             "options":{
+                                                                 "type":"select",
+                                                                 "noneLabel": "Pick an ROI major...",
+                                                                 "sort":false
+                                                             }
+                                                         },
+                                                         "roiMinor":{
+                                                             "schema":{
+                                                                 "type":"string"
+                                                             },
+                                                             "options":{
+                                                                 "type":"select",
+                                                                 "noneLabel": "Pick an ROI minor..."
+                                                             }
+                                                         }
+                                                    },
+                                                    "order":["roiMajor", "roiMinor"],
+                                                    "data": [{
+                                                         "value": "VISp1",
+                                                         "attributes": {
+                                                             "roiMajor": "VISp",
+                                                             "roiMinor": "layer 1"
+                                                             }
+                                                         }, {
+                                                         "value": "VISp2/3",
+                                                         "attributes": {
+                                                             "roiMajor": "VISp",
+                                                             "roiMinor": "layer 2/3"
+                                                             }
+                                                         }, {
+                                                         "value": "VISp4",
+                                                         "attributes": {
+                                                             "roiMajor": "VISp",
+                                                             "roiMinor": "layer 4"
+                                                             }
+                                                         }, {
+                                                         "value": "VISp5",
+                                                         "attributes": {
+                                                             "roiMajor": "VISp",
+                                                             "roiMinor": "layer 5"
+                                                             }
+                                                         }, {
+                                                         "value": "VISp6a",
+                                                         "attributes": {
+                                                             "roiMajor": "VISp",
+                                                             "roiMinor": "layer 6a"
+                                                             }
+                                                         }, {
+                                                         "value": "VISp6b",
+                                                         "attributes": {
+                                                             "roiMajor": "VISp",
+                                                             "roiMinor": "layer 6b"
+                                                             }
+                                                         }, {
+                                                         "value": "FCx1",
+                                                         "attributes": {
+                                                             "roiMajor": "FCx",
+                                                             "roiMinor": "layer 1"
+                                                             }
+                                                         }, {
+                                                         "value": "FCx2",
+                                                         "attributes": {
+                                                             "roiMajor": "FCx",
+                                                             "roiMinor": "layer 2"
+                                                             }
+                                                         }, {
+                                                         "value": "FCx3",
+                                                         "attributes": {
+                                                             "roiMajor": "FCx",
+                                                             "roiMinor": "layer 3"
+                                                             }
+                                                         }, {
+                                                         "value": "FCx4",
+                                                         "attributes": {
+                                                             "roiMajor": "FCx",
+                                                             "roiMinor": "layer 4"
+                                                             }
+                                                         }, {
+                                                         "value": "FCx5",
+                                                         "attributes": {
+                                                             "roiMajor": "FCx",
+                                                             "roiMinor": "layer 5"
+                                                             }
+                                                         }, {
+                                                         "value": "FCx6",
+                                                         "attributes": {
+                                                             "roiMajor": "FCx",
+                                                             "roiMinor": "layer 6"
+                                                             }
+                                                         }, {
+                                                         "value": "TCx1",
+                                                         "attributes": {
+                                                             "roiMajor": "TCx",
+                                                             "roiMinor": "layer 1"
+                                                             }
+                                                         }, {
+                                                         "value": "TCx2",
+                                                         "attributes": {
+                                                             "roiMajor": "TCx",
+                                                             "roiMinor": "layer 2"
+                                                             }
+                                                         }, {
+                                                         "value": "TCx3",
+                                                         "attributes": {
+                                                             "roiMajor": "TCx",
+                                                             "roiMinor": "layer 3"
+                                                             }
+                                                         }, {
+                                                         "value": "TCx4",
+                                                         "attributes": {
+                                                             "roiMajor": "TCx",
+                                                             "roiMinor": "layer 4"
+                                                             }
+                                                         }, {
+                                                         "value": "TCx5",
+                                                         "attributes": {
+                                                             "roiMajor": "TCx",
+                                                             "roiMinor": "layer 5"
+                                                             }
+                                                         }, {
+                                                         "value": "TCx6",
+                                                         "attributes": {
+                                                             "roiMajor": "TCx",
+                                                             "roiMinor": "layer 6"
+                                                             }
+                                                         }, {
+                                                         "value": "TEa1",
+                                                         "attributes": {
+                                                             "roiMajor": "TEa",
+                                                             "roiMinor": "layer 1"
+                                                             }
+                                                         }, {
+                                                         "value": "TEa2/3",
+                                                         "attributes": {
+                                                             "roiMajor": "TEa",
+                                                             "roiMinor": "layer 2/3"
+                                                             }
+                                                         }, {
+                                                         "value": "TEa4",
+                                                         "attributes": {
+                                                             "roiMajor": "TEa",
+                                                             "roiMinor": "layer 4"
+                                                             }
+                                                         }, {
+                                                         "value": "TEa5",
+                                                         "attributes": {
+                                                             "roiMajor": "TEa",
+                                                             "roiMinor": "layer 5"
+                                                             }
+                                                         }, {
+                                                         "value": "TEa6a",
+                                                         "attributes": {
+                                                             "roiMajor": "TEa",
+                                                             "roiMinor": "layer 6a"
+                                                             }
+                                                         }, {
+                                                         "value": "TEa6b",
+                                                         "attributes": {
+                                                             "roiMajor": "TEa",
+                                                             "roiMinor": "layer 6b"
+                                                             }
+                                                         }, {
+                                                         "value": "dLGNMagnocellular",
+                                                         "attributes": {
+                                                             "roiMajor": "dLGN",
+                                                             "roiMinor": "Magnocellular"
+                                                             }
+                                                         }, {
+                                                         "value": "dLGNParvocellular",
+                                                         "attributes": {
+                                                             "roiMajor": "dLGN",
+                                                             "roiMinor": "Parvocellular"
+                                                             }
+                                                         }, {
+                                                         "value": "dLGNCore",
+                                                         "attributes": {
+                                                             "roiMajor": "dLGN",
+                                                             "roiMinor": "Core"
+                                                             }
+                                                         }, {
+                                                         "value": "dLGNShell",
+                                                         "attributes": {
+                                                             "roiMajor": "dLGN",
+                                                             "roiMinor": "Shell"
+                                                             }
+                                                         }
+                                                     ],
+                                                     "horizontal":true
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "form":{
+                                "buttons":{
+                                    "localSave":{
+                                        "title": "Save JSON",
+                                        "fieldClass":"form-group btn-lg glyphicon-cloud-downloaded",
+                                        "click": function() {
+                                            var val = this.getValue();
+                                            if (this.isValid(true)) {
+                                                var myjson = JSON.stringify(val, null, "  ");
+                                                alert("Metadata Values: " + myjson);
+                                                var blob = new Blob([myjson], {type: "application/json"});
+                                                if (window.saveAs) {
+                                                    specFileName = val.limsSpecName + ".PS.json";
+                                                    window.saveAs(blob, specFileName);
+                                                }else{
+                                                    alert("saveAs not supported");
+                                                }
+                                            }else{
+                                                alert("Invalid - check that starred fields are not empty!");
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "views":"bootstrap-create"
+                        },
+                        "data": {
+                        	"formVersion": "2.0.3"
+                        }
+                    });
+                });
+            </script>
+            <div class="col-md-12" id="wsedata" >            
+                <h3 id='wseConn' align="left">WSE Connectivity</h3>
+                <h6 id='updateTS' align="left"></h6>
+                <h6 id='updateData' align="left"></h6>                
+            </div>
+            <script type="text/JavaScript">
+            "use strict";
+                $(document).ready(function(){
+                    console.log("Opening General Jemdatasocket");
+                    var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                    var self = this;
+                    jemdatasocket.onopen  = function() {
+                        jemdatasocket.send(JSON.stringify(9191));
+                    };
+
+                    jemdatasocket.onmessage = function(msg) {
+                        var incomingDat = JSON.parse(msg.data);
+
+                        if ('ts' in incomingDat){
+                            var updateTimeStamp = incomingDat['ts']
+                            document.getElementById('updateTS').innerHTML = updateTimeStamp;
+                        }
+
+                        if (('factor' in incomingDat) && ('value' in incomingDat)) {
+                            var factorString = incomingDat['factor'];
+                            var valueString = incomingDat['value'];
+                            var jemUpdateTimeString = "> WSE->> JEM update Factor:" + factorString + " Value:" + valueString
+                            document.getElementById('updateData').innerHTML = jemUpdateTimeString;
+                        }
+                    };
+                });
+            </script>
+            <script type="text/javascript">
+                "use strict"; 
+                $(document).ready(function () {
+                    this.indexSetter = indexSetter;
+                    this.indexGetter = indexGetter;
+                    this.pipetteRSetter = pipetteRSetter;
+                    this.pipetteRGetter = pipetteRGetter;
+                    this.endPipetteRSetter = endPipetteRSetter;
+                    this.endPipetteRGetter = endPipetteRGetter;
+                    this.wholeCellStartSetter = wholeCellStartSetter;
+                    this.wholeCellStartGetter = wholeCellStartGetter;
+                    this.pressureAppliedSetter = pressureAppliedSetter;
+                    this.pressureAppliedGetter = pressureAppliedGetter;
+                    this.retractionPressureAppliedSetter = retractionPressureAppliedSetter;
+                    this.retractionPressureAppliedGetter = retractionPressureAppliedGetter;
+                    this.approachStartSetter = approachStartSetter;
+                    this.approachStartGetter = approachStartGetter;
+                    this.timeExtractionStartSetter = timeExtractionStartSetter;
+                    this.timeExtractionStartGetter = timeExtractionStartGetter;
+                    this.timeExtractionEndSetter = timeExtractionEndSetter;
+                    this.timeExtractionEndGetter = timeExtractionEndGetter;
+                    this.timeRetractionEndSetter = timeRetractionEndSetter;
+                    this.timeRetractionEndGetter = timeRetractionEndGetter;
+                    this.pipetteSpecNameGetter = pipetteSpecNameGetter;
+                    this.pipetteSpecNameSetter = pipetteSpecNameSetter;
+                    this.tubeIDSetter = tubeIDSetter;
+                    this.tubeIDGetter = tubeIDGetter;
+                    this.cellDepthSetter = cellDepthSetter;
+                    this.cellDepthGetter = cellDepthGetter;
+
+                    var pipetteRList = [];
+                    var endPipetteRList = [];
+                    var wholeCellStartList = [];
+                    var approachStartList = [];
+                    var timeExtractionStartList = [];
+                    var timeExtractionEndList = [];
+                    var timeRetractionEndList = [];
+                    var pressureAppliedList = [];
+                    var retractionPressureAppliedList = [];
+                    var pipetteSpecNameList = [];
+                    var tubeIDList = [];
+                    var cellDepthList = [];
+
+                    var pipetteindex = 0;
+
+                    function indexSetter(){                        
+                        pipetteindex = pipetteindex + 1;
+                    }
+
+                    function indexGetter(){
+                        return pipetteindex;
+                    }
+
+                    function pipetteRSetter(incomingElement){
+                        pipetteRList[pipetteindex] = incomingElement;
+                    }
+
+                    function pipetteRGetter(getterindex){
+                        console.log('getting pipette R element at pipetteIndex:' + getterindex);
+                        return pipetteRList[getterindex]
+                    }
+
+                    function endPipetteRSetter(incomingElement){
+                        endPipetteRList[pipetteindex] = incomingElement;
+                    }
+
+                    function endPipetteRGetter(getterindex){
+                        console.log('getting end pipette R element at pipetteIndex:' + getterindex);
+                        return endPipetteRList[getterindex]
+                    }
+
+                    function wholeCellStartSetter(incomingElement){
+                        wholeCellStartList[pipetteindex] = incomingElement;
+                    }
+
+                    function wholeCellStartGetter(getterindex){
+                        console.log('getting whole cell start time element at pipetteIndex:' + getterindex);
+                        return wholeCellStartList[getterindex]
+                    }
+
+                    function approachStartSetter(incomingElement){
+                        approachStartList[pipetteindex] = incomingElement;
+                    }
+
+                    function approachStartGetter(getterindex){
+                        console.log('getting approach start time element at pipetteIndex:' + getterindex);
+                        return approachStartList[getterindex]
+                    }
+
+                    function timeExtractionStartSetter(incomingElement){
+                        timeExtractionStartList[pipetteindex] = incomingElement;
+                    }
+
+                    function timeExtractionStartGetter(getterindex){
+                        console.log('getting time extraction start time element at pipetteIndex:' + getterindex);
+                        return timeExtractionStartList[getterindex]
+                    }
+
+                    function timeExtractionEndSetter(incomingElement){
+                        timeExtractionEndList[pipetteindex] = incomingElement;
+                    }
+
+                    function timeExtractionEndGetter(getterindex){
+                        console.log('getting time extraction end time element at pipetteIndex:' + getterindex);
+                        return timeExtractionEndList[getterindex]
+                    }
+
+                    function timeRetractionEndSetter(incomingElement){
+                        timeRetractionEndList[pipetteindex] = incomingElement;
+                    }
+
+                    function timeRetractionEndGetter(getterindex){
+                        console.log('getting time retraction end time element at pipetteIndex:' + getterindex);
+                        return timeRetractionEndList[getterindex]
+                    }
+
+                    function pressureAppliedSetter(incomingElement){
+                        pressureAppliedList[pipetteindex] = incomingElement;
+                    }
+
+                    function pressureAppliedGetter(getterindex){
+                        console.log('getting pressure applied element at pipetteIndex:' + getterindex);
+                        return pressureAppliedList[getterindex]
+                    }
+
+                    function retractionPressureAppliedSetter(incomingElement){
+                        retractionPressureAppliedList[pipetteindex] = incomingElement;
+                    }
+
+                    function retractionPressureAppliedGetter(getterindex){
+                        console.log('getting retraction pressure applied element at pipetteIndex:' + getterindex);
+                        return retractionPressureAppliedList[getterindex]
+                    }
+
+                    function pipetteSpecNameSetter(incomingElement){
+                        pipetteSpecNameList[pipetteindex] = incomingElement;
+                    }
+
+                    function pipetteSpecNameGetter(getterindex){
+                        console.log('getting pipetteSpecName element at pipetteIndex:' + getterindex);
+                        return pipetteSpecNameList[getterindex]
+                    }
+
+                    function tubeIDSetter(incomingElement){
+                        tubeIDList[pipetteindex] = incomingElement;
+                    }
+
+                    function tubeIDGetter(getterindex){
+                        console.log('getting tube ID element at pipetteIndex:' + getterindex);
+                        return tubeIDList[getterindex]
+                    }
+
+                    function cellDepthSetter(incomingElement){
+                        cellDepthList[pipetteindex] = incomingElement;
+                    }
+
+                    function cellDepthGetter(getterindex){
+                        console.log('getting cell Depth element at pipetteIndex:' + getterindex);
+                        return cellDepthList[getterindex]
+                    }
+
+                });
+            </script>
+        </body>
+    </html>
