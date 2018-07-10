@@ -656,10 +656,12 @@
                                             "label": "Remove Above Patch-Seq Pipette",
                                             "action": "remove",
                                             "click": function(key, action, itemIndex) {
-                                                var itemIndexPlusOne = itemIndex + 1;
-                                                var msg = "Are you sure you want to delete pipette #" + itemIndexPlusOne + "?";
+                                                var currentPipetteIndexPlusOne = itemIndex + 1;
+                                                var msg = "Are you sure you want to delete pipette #" + currentPipetteIndexPlusOne + "?";
                                                 if(confirm(msg))
                                                     this.handleActionBarRemoveItemClick(itemIndex);
+                                                var lastPipetteIndex = window.lastPipetteIndex - 1
+                                                window.lastPipetteIndex = lastPipetteIndex;
                                             }
                                         }, 
                                         {
