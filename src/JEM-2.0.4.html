@@ -646,9 +646,10 @@
                                             "label": "Add Another Patch-Seq Pipette",
                                             "action": "add",
                                             "click": function(key, action, itemIndex) {
-                                                document.indexSetter();
-                                                var itemIndexPlusOne = itemIndex + 1;
-                                                this.handleActionBarAddItemClick(itemIndex);
+                                                var lastPipetteIndex = window.lastPipetteIndex
+                                                this.handleActionBarAddItemClick(lastPipetteIndex);
+                                                lastPipetteIndex += 1
+                                                window.lastPipetteIndex = lastPipetteIndex;
                                             }
                                         }, 
                                         {
