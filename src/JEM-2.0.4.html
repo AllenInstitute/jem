@@ -630,7 +630,11 @@
                                         "showLabels":true,
                                         "actions": [{
                                             "label": "Add A Patch-Seq Pipette",
-                                            "action":"add"
+                                            "action":"add",
+                                            "click": function(e){
+                                                this.handleToolBarAddItemClick();
+                                                window.lastPipetteIndex = 0;
+                                            }
                                         }]
                                     },
                                     "toolbarStyle": "button",
