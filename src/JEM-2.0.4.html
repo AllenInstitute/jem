@@ -171,11 +171,11 @@
                                                     }
                                                 }
                                             },
-/*                                            "pipetteSpecName": {
+                                            "pipetteSpecName": {
                                     					"type": "string",
                                     					"title":"Pipette Specimen ID",
                                     					"required":true
-                                			},*/
+                                			},
                                             "recording":{
                                                 "type":"object",
                                                 "title":"Recording Info",
@@ -507,6 +507,9 @@
                                                     }                                                  
                                                 }
                                             };
+                                        },
+                                        "change": function() {
+                                            window.specName = this.getValue()
                                         }
                                     },
                                     "validator": function(callback) {
@@ -748,24 +751,34 @@
                                                         "events":{
                                                             "ready": function(field){
                                                                 var self = this;
+                                                                console.log("WSE state: " + window.wseState)
                                                                 var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
 
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.pipetteSpecNameSetter(self);                       
-                                                                };
+                                                                if (window.wseState){
+                                                                    jemdatasocket.onopen = function(){
+                                                                        jemdatasocket.send(JSON.stringify(9191));
+                                                                        document.pipetteSpecNameSetter(self);                       
+                                                                    };
 
-                                                                jemdatasocket.onmessage = function(msg){                           
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'pipetteSpecName'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.pipetteSpecNameGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }                                                  
+                                                                    jemdatasocket.onmessage = function(msg){
+                                                                        var incomingDat = JSON.parse(msg.data);
+                                                                        if ('factor' in incomingDat){
+                                                                            if (incomingDat['factor'] == 'pipetteSpecName'){
+                                                                                var pipetteIndex = incomingDat['index'];
+                                                                                var element = document.pipetteSpecNameGetter(pipetteIndex);
+                                                                                element.setValue(incomingDat['value']);
+                                                                                element.refresh();
+                                                                            }                                                  
+                                                                        }
                                                                     }
-                                                                };            
+                                                                } else {
+                                                                    var lastPipetteIndex = window.lastPipetteIndex;
+                                                                    if (typeof window.specName !== 'undefined') {
+                                                                        var sliceSpecimen = window.specName;
+                                                                        var pipetteSpecName = document.pipetteSpecNamer(sliceSpecimen, lastPipetteIndex);
+                                                                        self.setValue(pipetteSpecName);
+                                                                    }
+                                                                };                                                                
                                                             }
                                                         }
                                     		},
@@ -1545,12 +1558,15 @@
             <script type="text/JavaScript">
             "use strict";
                 $(document).ready(function(){
+
+                    window.wseState = false;
                     console.log("Opening General Jemdatasocket");
                     var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
 
                     var self = this;
                     jemdatasocket.onopen  = function() {
                         jemdatasocket.send(JSON.stringify(9191));
+                        window.wseState = true;
                     };
 
                     jemdatasocket.onmessage = function(msg) {
@@ -1599,6 +1615,7 @@
                     this.tubeIDGetter = tubeIDGetter;
                     this.cellDepthSetter = cellDepthSetter;
                     this.cellDepthGetter = cellDepthGetter;
+                    this.pipetteSpecNamer = pipetteSpecNamer;
 
                     var pipetteRList = [];
                     var endPipetteRList = [];
@@ -1729,6 +1746,19 @@
                     function cellDepthGetter(getterindex){
                         console.log('getting cell Depth element at pipetteIndex:' + getterindex);
                         return cellDepthList[getterindex]
+                    }
+
+                    function pipetteSpecNamer(sliceSpecimen, pipetteIndex){
+
+                        var pipetteNumber = pipetteIndex + 1;
+                        var pipetteName;
+                        if (pipetteNumber < 10){
+                            pipetteName = sliceSpecimen + '.0' + pipetteNumber
+                        } else {
+                            pipetteName = sliceSpecimen + '.' + pipetteNumber
+                        }
+                        console.log('naming pipette specimen ' + pipetteName)
+                        return pipetteName
                     }
 
                 });
