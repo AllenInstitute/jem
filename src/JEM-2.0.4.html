@@ -444,7 +444,7 @@
                                     "type":"date",
                                     "fieldClass": "col-md-3",
                                     "picker": {
-                                        "format":"YYYY-MM-DD HH:mm:ss Z",
+                                        "format":"YYYY-MM-DDTHH:mm:ssZ",
                                         "stepping":1,
                                         "showTodayButton": true,
                                         "showClose":true,
@@ -486,7 +486,7 @@
                                     "helper":[],
                                     "placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02",
                                     "validate":true,
-                                    //"showMessages": false,
+                                    "showMessages": true,
                                     "hideInitValidationError":true,
                                     //"disallowEmptySpaces":true,
                                     "events":{
@@ -789,13 +789,12 @@
                                                  	"timeStart": {
                                                  		"fieldClass": "form-group col-md-2",
                                                    		"type":"date",
-                                                   		"dateFormat":"HH:mm:ss Z",
+                                                   		"dateFormat":"HH:mm:ssZ",
                                                    		"picker": {
                                                    			"showClose":true,
                                                    			"showTodayButton":true,
                                                    			"collapse":true,
                                                    			"stepping":1,
-                                                   			"format":"HH:mm:ss Z",
                                                    			"focusOnShow":false,
                                                    			"keepOpen":false,
                                                    			"inline":false,
@@ -827,14 +826,14 @@
                                                             }
                                                         },
                                                			"manualEntry":false,
-                                               			"helper":"(HH:mm:ss -UTC)"
+                                               			"helper":"(HH:mm:ss-UTC)"
                                            			},
                                            			"pipetteR":{
                                                        	"type":"number",
                                                        	"fieldClass": "form-group col-md-2",
                                                         "helper": "(MOhm)",
                                                         "validate":true,
-                                                        "showMessages":true,
+                                                        "showMessages":false,
                                                         "hideInitValidationError":true,
                                                         "events":{
                                                             "ready": function(field){
@@ -863,12 +862,12 @@
                                                     "timeWholeCellStart":{
                                                     	"type":"date",
                                                     	"fieldClass": "form-group col-md-2",
+                                                        "dateFormat":"HH:mm:ssZ",
                                                         "picker": {
                                                             "showClose":true,
                                                             "showTodayButton":true,
                                                             "collapse":true,
                                                             "stepping":1,
-                                                            "format":"HH:mm:ss Z",
                                                             "focusOnShow":false,
                                                             "keepOpen":false,
                                                             "inline":false,
@@ -899,7 +898,7 @@
                                                                 };            
                                                             }
                                                         },
-                                                        "helper":"(HH:mm:ss -UTC)"
+                                                        "helper":"(HH:mm:ss-UTC)"
                                                     },
                                                     "humanCellTypePrediction":{
                                                 		"type": "select",
@@ -970,7 +969,7 @@
                                                         "helper":"(mbar)",
                                                         "fieldClass":"col-md-3",
                                                         "validate":true,
-                                                        "showMessages":true,
+                                                        "showMessages":false,
                                                         "events":{
                                                             "ready": function(field){
                                                                 var self = this;
@@ -1000,7 +999,7 @@
                                                         "helper":"(mbar)",
                                                         "fieldClass": "col-md-3",
                                                         "validate":true,
-                                                        "showMessages":true,
+                                                        "showMessages":false,
                                                         "events":{
                                                             "ready": function(field){
                                                                 var self = this;
@@ -1027,12 +1026,12 @@
                                                     },
                                                     "timeExtractionStart": {
                                                         "type":"time",
+                                                        "dateFormat":"HH:mm:ssZ",
                                                         "picker": {
                                                             "showClose":true,
                                                             "showTodayButton":true,
                                                             "collapse":true,
                                                             "stepping":1,
-                                                            "format":"HH:mm:ss Z",
                                                             "focusOnShow":false,
                                                             "keepOpen":false,
                                                             "inline":false,
@@ -1061,17 +1060,17 @@
                                                                 };            
                                                             }
                                                         },
-                                                        "helper":"(HH:mm:ss -UTC)",
+                                                        "helper":"(HH:mm:ss-UTC)",
                                                         "fieldClass": "col-md-2"
                                                     },
                                                     "timeExtractionEnd": {
                                                         "type":"time",
+                                                        "dateFormat":"HH:mm:ssZ",
                                                         "picker": {
                                                             "showClose":true,
                                                             "showTodayButton":true,
                                                             "collapse":true,
                                                             "stepping":1,
-                                                            "format":"HH:mm:ss Z",
                                                             "focusOnShow":false,
                                                             "keepOpen":false,
                                                             "inline":false,
@@ -1100,17 +1099,17 @@
                                                                 };            
                                                             }
                                                         },
-                                                        "helper": "(HH:mm:ss -UTC)",
+                                                        "helper": "(HH:mm:ss-UTC)",
                                                         "fieldClass": "col-md-2"
                                                     },
                                                     "timeRetractionEnd": {
                                                         "type":"time",
+                                                        "dateFormat":"HH:mm:ssZ",
                                                         "picker": {
                                                             "showClose":true,
                                                             "showTodayButton":true,
                                                             "collapse":true,
                                                             "stepping":1,
-                                                            "format":"HH:mm:ss Z",
                                                             "focusOnShow":false,
                                                             "keepOpen":false,
                                                             "inline":false,
@@ -1139,7 +1138,7 @@
                                                                 };            
                                                             }
                                                         },
-                                                        "helper": "(HH:mm:ss -UTC)",
+                                                        "helper": "(HH:mm:ss-UTC)",
                                                         "fieldClass": "col-md-2"
                                                     },
                                                     "postPatch":{
@@ -1157,7 +1156,7 @@
                                                        	"fieldClass": "form-group col-md-3",
                                                        	"helper": "(MOhm)",
                                                        	"validate":true,
-                                                       	"showMessages":true,
+                                                       	"showMessages":false,
                                                         "events":{
                                                             "ready": function(field){
                                                                 var self = this;
