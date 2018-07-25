@@ -1294,17 +1294,17 @@
                                                 },
                                                 //"showMessages":false,
                                                 "hideInitValidationError":true,
-                                                "validator": function(callback) {
-                                                    var value = this.getValue();
-                                                    var roiRegex = /^([A-Za-z]{3,}[0-9/]{,}[A-Za-z]{,})$/;
-                                                    if (roiRegex.test(value)) {
-                                                        callback({"status": true});
-                                                    } else {
-                                                        callback({
-                                                            "status": false,
-                                                            "message": "Enter valid ROI format (ex. VISp2/3 or TCx5)"});
-                                                    }
-                                                },
+                                                // "validator": function(callback) {
+                                                //     var value = this.getValue();
+                                                //     var roiRegex = /^([A-Za-z]{3,}[0-9/]{,}[A-Za-z]{,})$/;
+                                                //     if (roiRegex.test(value)) {
+                                                //         callback({"status": true});
+                                                //     } else {
+                                                //         callback({
+                                                //             "status": false,
+                                                //             "message": "Enter valid ROI format (ex. VISp2/3 or TCx5)"});
+                                                //     }
+                                                // },
                                                 "tree": {
                                                     "selectors":{
                                                          "roiMajor":{
