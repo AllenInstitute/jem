@@ -7,8 +7,8 @@
               integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
               crossorigin="anonymous"></script>
 
-     		<!-- jquery ui -->
-			<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
+            <!-- jquery ui -->
+            <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
             <!-- bootstrap -->
@@ -61,9 +61,9 @@
                             "title":"JSON Electrophysiology Metadata (JEM)",
                             "properties": {
                                 "formVersion": {
-                                	"type":"string",
-                                	"title":"Version",
-                                	"readonly":true
+                                    "type":"string",
+                                    "title":"Version",
+                                    "readonly":true
                                 },
                                 "rigOperator": {
                                     "type": "string",
@@ -121,34 +121,34 @@
                                     "required":false
                                 },
                                 "pipettes":{
-                                	"type":"array",
+                                    "type":"array",
                                     "items":{
                                         "title":"Patch-Seq Pipette",
                                         "type":"object",
                                         "properties":{
-                                        	"approach": {
-                                        		"type":"object",
-                                        		"title": "Approach Info",
-                                        		"properties": {
-                                        			"sliceHealth":{
-                                                		"type":"string",
-                                                		"title": "Slice Health",
-                                                		"enum":["1","2","3","4","5"],
-                                                		"required":true
-                                            		},
-                                            		"cellHealth":{
-                                                		"type":"string",
-                                                		"title": "Cell Health",
-                                                		"enum":["1","2","3","4","5"],
-                                                		"required":true
-                                            		},
-                                            		"creCell": {
-                                                		"type":"string",
-                                                		"title":"Cre Status",
-                                                		"enum":["Cre+","Cre-","None"],
+                                            "approach": {
+                                                "type":"object",
+                                                "title": "Approach Info",
+                                                "properties": {
+                                                    "sliceHealth":{
+                                                        "type":"string",
+                                                        "title": "Slice Health",
+                                                        "enum":["1","2","3","4","5"],
                                                         "required":true
-                                            		},
-                                                	"pilotName":{
+                                                    },
+                                                    "cellHealth":{
+                                                        "type":"string",
+                                                        "title": "Cell Health",
+                                                        "enum":["1","2","3","4","5"],
+                                                        "required":true
+                                                    },
+                                                    "creCell": {
+                                                        "type":"string",
+                                                        "title":"Cre Status",
+                                                        "enum":["Cre+","Cre-","None"],
+                                                        "required":true
+                                                    },
+                                                    "pilotName":{
                                                         "type":"string",
                                                         "title":"Pilot Name",
                                                         "default": "None",
@@ -172,36 +172,36 @@
                                                 }
                                             },
 /*                                            "pipetteSpecName": {
-                                    					"type": "string",
-                                    					"title":"Pipette Specimen ID",
-                                    					"required":true
-                                			},*/
+                                                        "type": "string",
+                                                        "title":"Pipette Specimen ID",
+                                                        "required":true
+                                            },*/
                                             "recording":{
                                                 "type":"object",
                                                 "title":"Recording Info",
                                                 "properties": {
-                                                	"timeStart": {
-                                                    	"format":"time",
-                                                		"title":"Approach Start",
-                                                		"required":true
-                                            		},
-                                            		"pipetteR":{
+                                                    "timeStart": {
+                                                        "format":"time",
+                                                        "title":"Approach Start",
+                                                        "required":true
+                                                    },
+                                                    "pipetteR":{
                                                         "format":"number",
                                                         "minimum":0,
                                                         "title":"Pipette R",
-                                                		"required":true
+                                                        "required":true
                                                     },
                                                     "timeWholeCellStart":{
                                                         "format":"time",
                                                         "title":"Whole Cell Start",
-                                                		"required":true
+                                                        "required":true
                                                     },
-                                            		"humanCellTypePrediction":{
-                                                		"type":"string",
-                                                		"title":"Cell Type Prediction (for Human Neurons)",
-                                                		"enum":["Unknown", "Pyramidal", "FS Interneuron", "Spindle Shaped", "Unknown Interneuron"],
-                                                		"required":false
-                                            		}
+                                                    "humanCellTypePrediction":{
+                                                        "type":"string",
+                                                        "title":"Cell Type Prediction (for Human Neurons)",
+                                                        "enum":["Unknown", "Pyramidal", "FS Interneuron", "Spindle Shaped", "Unknown Interneuron"],
+                                                        "required":false
+                                                    }
                                                 }
                                             },
                                             "status":{
@@ -239,13 +239,13 @@
                                                 "required":false
                                             },
                                             "badSweeps":{
-                                            	"type":"string",
-                                            	"title":"Bad Sweeps",
+                                                "type":"string",
+                                                "title":"Bad Sweeps",
                                                 "dependencies":"status",
-                                            	"required":false
+                                                "required":false
                                             },
                                             "extraction":{
-                                            	"type":"object",
+                                                "type":"object",
                                                 "title":"Extraction Info",
                                                 "dependencies":"status",
                                                 "properties":{
@@ -358,14 +358,14 @@
                             "fields": {
                                 "formVersion": {
                                     "type":"text",
-                                	"readonly":true,
-                                	"fieldClass": "col-md-1",
-                                	"data":"/jem-data/jemVersion.json",
-                                	"view":"bootstrap-display"
-                                	//"type":"hidden"
+                                    "readonly":true,
+                                    "fieldClass": "col-md-1",
+                                    "data":"/jem-data/jemVersion.json",
+                                    "view":"bootstrap-display"
+                                    //"type":"hidden"
                                 },
                                 "rigOperator" : {
-                                	"type": "select",
+                                    "type": "select",
                                     "fieldClass": "dropdown-content col-md-2",
                                     "helper": [],
                                     "hideNone":false,
@@ -625,7 +625,7 @@
                                     "allowOptionalEmpty":true
                                 },
                                 "pipettes": {
-                                	"fieldClass": "form-group col-md-12 no-border",
+                                    "fieldClass": "form-group col-md-12 no-border",
                                     "toolbar": {
                                         "showLabels":true,
                                         "actions": [{
@@ -673,34 +673,34 @@
                                     "showMessages":true,
                                     "focus":true,
                                     "items": {
-                                    	"fields": {
-                                    		"approach": {
-                                    			"fieldClass": "form-group col-md-12 no-border bg-success",
+                                        "fields": {
+                                            "approach": {
+                                                "fieldClass": "form-group col-md-12 no-border bg-success",
                                                 "fields": {
-                                                	"sliceHealth": {
-                                                		"type": "radio",
-                                                		"fieldClass": "form-group col-md-5",
-                                                		"vertical":false,
-                                                		"hideNone":true,
-                                                		"showMessages":false
-                                            		},
-                                            		"cellHealth": {
-                                                		"type": "radio",
-                                                		"fieldClass": "form-group col-md-5",
-                                                		"vertical":false,
-                                                		"hideNone":true,
-                                                		"showMessages":false
-                                            		},
-                                            		"creCell": {
-                                                		"type": "radio",
-                                                		"fieldClass": "form-group col-md-5",
-                                                		"size":1,
-                                                		"vertical":false,
-                                                		"hideNone":true,
-                                                		"showMessages":false,
+                                                    "sliceHealth": {
+                                                        "type": "radio",
+                                                        "fieldClass": "form-group col-md-5",
+                                                        "vertical":false,
+                                                        "hideNone":true,
+                                                        "showMessages":false
+                                                    },
+                                                    "cellHealth": {
+                                                        "type": "radio",
+                                                        "fieldClass": "form-group col-md-5",
+                                                        "vertical":false,
+                                                        "hideNone":true,
+                                                        "showMessages":false
+                                                    },
+                                                    "creCell": {
+                                                        "type": "radio",
+                                                        "fieldClass": "form-group col-md-5",
+                                                        "size":1,
+                                                        "vertical":false,
+                                                        "hideNone":true,
+                                                        "showMessages":false,
                                                         "hideInitValidationError":true
-                                            		},
-                                                	"pilotName": {
+                                                    },
+                                                    "pilotName": {
                                                         "type":"select",
                                                         "fieldClass": "form-group col-md-5",
                                                         "helper": [],
@@ -731,13 +731,13 @@
                                                 }
                                             },
                                             "pipetteSpecName": {
-                                    					"type": "text",
-                                   						"fieldClass": "form-group col-md-8 no-border",
-                                    					"helper":[],
-                                    					"placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02.01",
-                                    					"showMessages": false,
-                                    					"hideInitValidationError":true,
-                                    					"disallowEmptySpaces":true,
+                                                        "type": "text",
+                                                        "fieldClass": "form-group col-md-8 no-border",
+                                                        "helper":[],
+                                                        "placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02.01",
+                                                        "showMessages": false,
+                                                        "hideInitValidationError":true,
+                                                        "disallowEmptySpaces":true,
                                                         "events":{
                                                             "ready": function(field){
                                                                 var self = this;
@@ -761,26 +761,26 @@
                                                                 };            
                                                             }
                                                         }
-                                    		},
+                                            },
                                             "recording":{
-                                            	"fieldClass": "form-group col-md-12 no-border bg-info",
+                                                "fieldClass": "form-group col-md-12 no-border bg-info",
                                                 "fields": {
-                                                 	"timeStart": {
-                                                 		"fieldClass": "form-group col-md-2",
-                                                   		"type":"date",
-                                                   		"dateFormat":"HH:mm:ss Z",
-                                                   		"picker": {
-                                                   			"showClose":true,
-                                                   			"showTodayButton":true,
-                                                   			"collapse":true,
-                                                   			"stepping":1,
-                                                   			"format":"HH:mm:ss Z",
-                                                   			"focusOnShow":false,
-                                                   			"keepOpen":false,
-                                                   			"inline":false,
-                                                   			"useCurrent":true
-                                               			},
-                                               			"showMessages":false,
+                                                    "timeStart": {
+                                                        "fieldClass": "form-group col-md-2",
+                                                        "type":"date",
+                                                        "dateFormat":"HH:mm:ss Z",
+                                                        "picker": {
+                                                            "showClose":true,
+                                                            "showTodayButton":true,
+                                                            "collapse":true,
+                                                            "stepping":1,
+                                                            "format":"HH:mm:ss Z",
+                                                            "focusOnShow":false,
+                                                            "keepOpen":false,
+                                                            "inline":false,
+                                                            "useCurrent":true
+                                                        },
+                                                        "showMessages":false,
                                                         "hideInitValidationError":true,
                                                         "events":{
                                                             "ready": function(field){
@@ -805,12 +805,12 @@
                                                                 };            
                                                             }
                                                         },
-                                               			"manualEntry":false,
-                                               			"helper":"(HH:mm:ss -UTC)"
-                                           			},
-                                           			"pipetteR":{
-                                                       	"type":"number",
-                                                       	"fieldClass": "form-group col-md-2",
+                                                        "manualEntry":false,
+                                                        "helper":"(HH:mm:ss -UTC)"
+                                                    },
+                                                    "pipetteR":{
+                                                        "type":"number",
+                                                        "fieldClass": "form-group col-md-2",
                                                         "helper": "(MOhm)",
                                                         "validate":true,
                                                         "showMessages":true,
@@ -840,8 +840,8 @@
                                                         }
                                                     },
                                                     "timeWholeCellStart":{
-                                                    	"type":"date",
-                                                    	"fieldClass": "form-group col-md-2",
+                                                        "type":"date",
+                                                        "fieldClass": "form-group col-md-2",
                                                         "picker": {
                                                             "showClose":true,
                                                             "showTodayButton":true,
@@ -881,9 +881,9 @@
                                                         "helper":"(HH:mm:ss -UTC)"
                                                     },
                                                     "humanCellTypePrediction":{
-                                                		"type": "select",
-                                                		"fieldClass": "dropdown-content col-md-4"
-                                                	}
+                                                        "type": "select",
+                                                        "fieldClass": "dropdown-content col-md-4"
+                                                    }
                                                 }
                                             },
                                             "status": {
@@ -905,7 +905,7 @@
                                             "failureNotes": {
                                                 "type": "checkbox",
                                                 "showMessages": false,
-                                    			"hideInitValidationError":true,
+                                                "hideInitValidationError":true,
                                                 "fieldClass": "col-md-4",
                                                 "dependencies": {
                                                     "status":["FAILURE"]
@@ -930,16 +930,16 @@
                                                 "rows":4
                                             },
                                             "badSweeps": {
-                                            	"type":"textarea",
-                                            	"fieldClass":"col-md-4",
-                                            	"size":2,
-                                            	"dependencies":{
-                                            	    "status":["SUCCESS"]
-                                            	},
-                                            	"rows":4
+                                                "type":"textarea",
+                                                "fieldClass":"col-md-4",
+                                                "size":2,
+                                                "dependencies":{
+                                                    "status":["SUCCESS"]
+                                                },
+                                                "rows":4
                                             },
                                             "extraction": {
-                                            	"fieldClass": "form-group col-md-12 no-border bg-danger",
+                                                "fieldClass": "form-group col-md-12 no-border bg-danger",
                                                 "dependencies": {
                                                     "status":["SUCCESS"]
                                                 },
@@ -975,7 +975,7 @@
                                                         }
                                                     },
                                                     "retractionPressureApplied":{
-                                                    	"type":"number",
+                                                        "type":"number",
                                                         "helper":"(mbar)",
                                                         "fieldClass": "col-md-3",
                                                         "validate":true,
@@ -1123,7 +1123,7 @@
                                                     },
                                                     "postPatch":{
                                                         "type": "select",
-                                    					"fieldClass":"dropdown-content col-md-3",
+                                                        "fieldClass":"dropdown-content col-md-3",
                                                         "size":1.5,
                                                         "sort":false,
                                                         "validate":true,
@@ -1132,11 +1132,11 @@
                                                         "hideNone":true
                                                     },
                                                     "endPipetteR":{
-                                                       	"type":"number",
-                                                       	"fieldClass": "form-group col-md-3",
-                                                       	"helper": "(MOhm)",
-                                                       	"validate":true,
-                                                       	"showMessages":true,
+                                                        "type":"number",
+                                                        "fieldClass": "form-group col-md-3",
+                                                        "helper": "(MOhm)",
+                                                        "validate":true,
+                                                        "showMessages":true,
                                                         "events":{
                                                             "ready": function(field){
                                                                 var self = this;
@@ -1489,7 +1489,7 @@
                             "views":"bootstrap-create"
                         },
                         "data": {
-                        	"formVersion": "2.0.3"
+                            "formVersion": "2.0.3"
                         }
                     });
                 });
