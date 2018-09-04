@@ -68,7 +68,7 @@
                                 "rigOperator": {
                                     "type": "string",
                                     "title": "Researcher",
-                                    "enum":["nataliag", "rene", "djai", "christina", "ayoub", "aarono", "briank", "brianle", "dijonh", "gasparo", "huibm", "jonathant", "kristenh", "lindsayn", "lisak", "ramr", "rustym", "davidre"],
+                                    "enum":["nataliag", "rene", "djai", "christina", "ayoub", "aarono", "briank", "brianle", "dijonh", "gasparo", "huibm", "jonathant", "jessicat", "katherineb", "kristenh", "lindsayn", "lisak", "ramr", "rustym", "davidre"],
                                     "required":true
                                 },
                                 "rigNumber": {
@@ -171,11 +171,11 @@
                                                     }
                                                 }
                                             },
-/*                                            "pipetteSpecName": {
-                                    					"type": "string",
-                                    					"title":"Pipette Specimen ID",
-                                    					"required":true
-                                			},*/
+                                   //          "pipetteSpecName": {
+                                   //  					"type": "string",
+                                   //  					"title":"Pipette Specimen ID",
+                                   //  					"required":true
+                                			// },
                                             "recording":{
                                                 "type":"object",
                                                 "title":"Recording Info",
@@ -300,6 +300,7 @@
                                                         "type":"string",
                                                         "title":"Patched Cell Container",
                                                         "required":true
+                                                        //"pattern": "^(P[A-Z0-9]S4_([0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))_[0-9]{3}_A01)|(NA)$"
                                                     },
                                                     "extractionNotes": {
                                                         "type": "string",
@@ -443,7 +444,7 @@
                                     "type":"date",
                                     "fieldClass": "col-md-3",
                                     "picker": {
-                                        "format":"YYYY-MM-DD HH:mm:ss Z",
+                                        "format":"YYYY-MM-DDTHH:mm:ssZ",
                                         "stepping":1,
                                         "showTodayButton": true,
                                         "showClose":true,
@@ -485,9 +486,9 @@
                                     "helper":[],
                                     "placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02",
                                     "validate":true,
-                                    "showMessages": false,
+                                    "showMessages": true,
                                     "hideInitValidationError":true,
-                                    "disallowEmptySpaces":true,
+                                    //"disallowEmptySpaces":true,
                                     "events":{
                                         "ready": function(field){
                                             var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -507,6 +508,9 @@
                                                     }                                                  
                                                 }
                                             };
+                                        },
+                                        "change": function() {
+                                            window.specName = this.getValue()
                                         }
                                     },
                                     "validator": function(callback) {
@@ -630,7 +634,11 @@
                                         "showLabels":true,
                                         "actions": [{
                                             "label": "Add A Patch-Seq Pipette",
-                                            "action":"add"
+                                            "action":"add",
+                                            "click": function(e){
+                                                this.handleToolBarAddItemClick();
+                                                window.lastPipetteIndex = 0;
+                                            }
                                         }]
                                     },
                                     "toolbarStyle": "button",
@@ -642,19 +650,22 @@
                                             "label": "Add Another Patch-Seq Pipette",
                                             "action": "add",
                                             "click": function(key, action, itemIndex) {
-                                                document.indexSetter();
-                                                var itemIndexPlusOne = itemIndex + 1;
-                                                this.handleActionBarAddItemClick(itemIndex);
+                                                var lastPipetteIndex = window.lastPipetteIndex
+                                                this.handleActionBarAddItemClick(lastPipetteIndex);
+                                                lastPipetteIndex += 1
+                                                window.lastPipetteIndex = lastPipetteIndex;
                                             }
                                         }, 
                                         {
                                             "label": "Remove Above Patch-Seq Pipette",
                                             "action": "remove",
                                             "click": function(key, action, itemIndex) {
-                                                var itemIndexPlusOne = itemIndex + 1;
-                                                var msg = "Are you sure you want to delete pipette #" + itemIndexPlusOne + "?";
+                                                var currentPipetteIndexPlusOne = itemIndex + 1;
+                                                var msg = "Are you sure you want to delete pipette #" + currentPipetteIndexPlusOne + "?";
                                                 if(confirm(msg))
                                                     this.handleActionBarRemoveItemClick(itemIndex);
+                                                var lastPipetteIndex = window.lastPipetteIndex - 1
+                                                window.lastPipetteIndex = lastPipetteIndex;
                                             }
                                         }, 
                                         {
@@ -730,51 +741,60 @@
                                                     }
                                                 }
                                             },
-                                            "pipetteSpecName": {
-                                    					"type": "text",
-                                   						"fieldClass": "form-group col-md-8 no-border",
-                                    					"helper":[],
-                                    					"placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02.01",
-                                    					"showMessages": false,
-                                    					"hideInitValidationError":true,
-                                    					"disallowEmptySpaces":true,
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+                                      //       "pipetteSpecName": {
+                                    		// 			"type": "text",
+                                   			// 			"fieldClass": "form-group col-md-8 no-border",
+                                    		// 			"helper":[],
+                                    		// 			"placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02.01",
+                                    		// 			"showMessages": false,
+                                    		// 			"hideInitValidationError":true,
+                                    		// 			"disallowEmptySpaces":true,
+                                      //                   "events":{
+                                      //                       "ready": function(field){
+                                      //                           var self = this;
+                                      //                           console.log("WSE state: " + window.wseState)
+                                      //                           var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
 
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.pipetteSpecNameSetter(self);                       
-                                                                };
+                                      //                           if (window.wseState){
+                                      //                               jemdatasocket.onopen = function(){
+                                      //                                   jemdatasocket.send(JSON.stringify(9191));
+                                      //                                   document.pipetteSpecNameSetter(self);                       
+                                      //                               };
 
-                                                                jemdatasocket.onmessage = function(msg){                           
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'pipetteSpecName'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.pipetteSpecNameGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }                                                  
-                                                                    }
-                                                                };            
-                                                            }
-                                                        }
-                                    		},
+                                      //                               jemdatasocket.onmessage = function(msg){
+                                      //                                   var incomingDat = JSON.parse(msg.data);
+                                      //                                   if ('factor' in incomingDat){
+                                      //                                       if (incomingDat['factor'] == 'pipetteSpecName'){
+                                      //                                           var pipetteIndex = incomingDat['index'];
+                                      //                                           var element = document.pipetteSpecNameGetter(pipetteIndex);
+                                      //                                           element.setValue(incomingDat['value']);
+                                      //                                           element.refresh();
+                                      //                                       }                                                  
+                                      //                                   }
+                                      //                               }
+                                      //                           } else {
+                                      //                               var lastPipetteIndex = window.lastPipetteIndex;
+                                      //                               if (typeof window.specName !== 'undefined') {
+                                      //                                   var sliceSpecimen = window.specName;
+                                      //                                   var pipetteSpecName = document.pipetteSpecNamer(sliceSpecimen, lastPipetteIndex);
+                                      //                                   self.setValue(pipetteSpecName);
+                                      //                               }
+                                      //                           };                                                                
+                                      //                       }
+                                      //                   }
+                                    		// },
                                             "recording":{
                                             	"fieldClass": "form-group col-md-12 no-border bg-info",
                                                 "fields": {
                                                  	"timeStart": {
                                                  		"fieldClass": "form-group col-md-2",
                                                    		"type":"date",
-                                                   		"dateFormat":"HH:mm:ss Z",
+                                                   		"dateFormat":"HH:mm:ssZ",
                                                    		"picker": {
                                                    			"showClose":true,
                                                    			"showTodayButton":true,
                                                    			"collapse":true,
                                                    			"stepping":1,
-                                                   			"format":"HH:mm:ss Z",
                                                    			"focusOnShow":false,
                                                    			"keepOpen":false,
                                                    			"inline":false,
@@ -806,14 +826,14 @@
                                                             }
                                                         },
                                                			"manualEntry":false,
-                                               			"helper":"(HH:mm:ss -UTC)"
+                                               			"helper":"(HH:mm:ss-UTC)"
                                            			},
                                            			"pipetteR":{
                                                        	"type":"number",
                                                        	"fieldClass": "form-group col-md-2",
                                                         "helper": "(MOhm)",
                                                         "validate":true,
-                                                        "showMessages":true,
+                                                        "showMessages":false,
                                                         "hideInitValidationError":true,
                                                         "events":{
                                                             "ready": function(field){
@@ -842,12 +862,12 @@
                                                     "timeWholeCellStart":{
                                                     	"type":"date",
                                                     	"fieldClass": "form-group col-md-2",
+                                                        "dateFormat":"HH:mm:ssZ",
                                                         "picker": {
                                                             "showClose":true,
                                                             "showTodayButton":true,
                                                             "collapse":true,
                                                             "stepping":1,
-                                                            "format":"HH:mm:ss Z",
                                                             "focusOnShow":false,
                                                             "keepOpen":false,
                                                             "inline":false,
@@ -878,7 +898,7 @@
                                                                 };            
                                                             }
                                                         },
-                                                        "helper":"(HH:mm:ss -UTC)"
+                                                        "helper":"(HH:mm:ss-UTC)"
                                                     },
                                                     "humanCellTypePrediction":{
                                                 		"type": "select",
@@ -949,7 +969,7 @@
                                                         "helper":"(mbar)",
                                                         "fieldClass":"col-md-3",
                                                         "validate":true,
-                                                        "showMessages":true,
+                                                        "showMessages":false,
                                                         "events":{
                                                             "ready": function(field){
                                                                 var self = this;
@@ -979,7 +999,7 @@
                                                         "helper":"(mbar)",
                                                         "fieldClass": "col-md-3",
                                                         "validate":true,
-                                                        "showMessages":true,
+                                                        "showMessages":false,
                                                         "events":{
                                                             "ready": function(field){
                                                                 var self = this;
@@ -1006,12 +1026,12 @@
                                                     },
                                                     "timeExtractionStart": {
                                                         "type":"time",
+                                                        "dateFormat":"HH:mm:ssZ",
                                                         "picker": {
                                                             "showClose":true,
                                                             "showTodayButton":true,
                                                             "collapse":true,
                                                             "stepping":1,
-                                                            "format":"HH:mm:ss Z",
                                                             "focusOnShow":false,
                                                             "keepOpen":false,
                                                             "inline":false,
@@ -1040,17 +1060,17 @@
                                                                 };            
                                                             }
                                                         },
-                                                        "helper":"(HH:mm:ss -UTC)",
+                                                        "helper":"(HH:mm:ss-UTC)",
                                                         "fieldClass": "col-md-2"
                                                     },
                                                     "timeExtractionEnd": {
                                                         "type":"time",
+                                                        "dateFormat":"HH:mm:ssZ",
                                                         "picker": {
                                                             "showClose":true,
                                                             "showTodayButton":true,
                                                             "collapse":true,
                                                             "stepping":1,
-                                                            "format":"HH:mm:ss Z",
                                                             "focusOnShow":false,
                                                             "keepOpen":false,
                                                             "inline":false,
@@ -1079,17 +1099,17 @@
                                                                 };            
                                                             }
                                                         },
-                                                        "helper": "(HH:mm:ss -UTC)",
+                                                        "helper": "(HH:mm:ss-UTC)",
                                                         "fieldClass": "col-md-2"
                                                     },
                                                     "timeRetractionEnd": {
                                                         "type":"time",
+                                                        "dateFormat":"HH:mm:ssZ",
                                                         "picker": {
                                                             "showClose":true,
                                                             "showTodayButton":true,
                                                             "collapse":true,
                                                             "stepping":1,
-                                                            "format":"HH:mm:ss Z",
                                                             "focusOnShow":false,
                                                             "keepOpen":false,
                                                             "inline":false,
@@ -1118,7 +1138,7 @@
                                                                 };            
                                                             }
                                                         },
-                                                        "helper": "(HH:mm:ss -UTC)",
+                                                        "helper": "(HH:mm:ss-UTC)",
                                                         "fieldClass": "col-md-2"
                                                     },
                                                     "postPatch":{
@@ -1136,7 +1156,7 @@
                                                        	"fieldClass": "form-group col-md-3",
                                                        	"helper": "(MOhm)",
                                                        	"validate":true,
-                                                       	"showMessages":true,
+                                                       	"showMessages":false,
                                                         "events":{
                                                             "ready": function(field){
                                                                 var self = this;
@@ -1174,8 +1194,8 @@
                                                     "tubeID": {
                                                         "type":"text",
                                                         "fieldClass": "col-md-4",
-                                                        "placeholder":"ex: P9S4_171006_401_A01",
-                                                        "helper":"(PX for development)",
+                                                        "placeholder":"ex: P9S4_180522_406_A01",
+                                                        //"helper":"(PX for development)",
                                                         "events":{
                                                             "ready": function(field){
                                                                 var self = this;
@@ -1198,7 +1218,19 @@
                                                                     }
                                                                 };            
                                                             }
+                                                        },
+                                                        "validator": function(callback) {
+                                                            var value = this.getValue();
+                                                            var containerRegex = /^(P[A-Z0-9]S4_([0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))_[0-9]{3}_A01)|(NA)$/;
+                                                            if (containerRegex.test(value)) {
+                                                                callback({"status": true});
+                                                            } else {
+                                                                callback({
+                                                                    "status": false,
+                                                                    "message": "Enter valid container (ex. P9S4_180522_406_A01) or NA"});
+                                                            }
                                                         }
+
                                                     },
                                                     "extractionNotes": {
                                                         "type":"textarea",
@@ -1260,7 +1292,6 @@
                                                 "dependencies": {
                                                     "autoRoi":["None",""]
                                                 },
-                                                "showMessages":false,
                                                 "hideInitValidationError":true,
                                                 "tree": {
                                                     "selectors":{
@@ -1538,12 +1569,15 @@
             <script type="text/JavaScript">
             "use strict";
                 $(document).ready(function(){
+
+                    window.wseState = false;
                     console.log("Opening General Jemdatasocket");
                     var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
 
                     var self = this;
                     jemdatasocket.onopen  = function() {
                         jemdatasocket.send(JSON.stringify(9191));
+                        window.wseState = true;
                     };
 
                     jemdatasocket.onmessage = function(msg) {
@@ -1592,6 +1626,7 @@
                     this.tubeIDGetter = tubeIDGetter;
                     this.cellDepthSetter = cellDepthSetter;
                     this.cellDepthGetter = cellDepthGetter;
+                    this.pipetteSpecNamer = pipetteSpecNamer;
 
                     var pipetteRList = [];
                     var endPipetteRList = [];
@@ -1722,6 +1757,19 @@
                     function cellDepthGetter(getterindex){
                         console.log('getting cell Depth element at pipetteIndex:' + getterindex);
                         return cellDepthList[getterindex]
+                    }
+
+                    function pipetteSpecNamer(sliceSpecimen, pipetteIndex){
+
+                        var pipetteNumber = pipetteIndex + 1;
+                        var pipetteName;
+                        if (pipetteNumber < 10){
+                            pipetteName = sliceSpecimen + '.0' + pipetteNumber
+                        } else {
+                            pipetteName = sliceSpecimen + '.' + pipetteNumber
+                        }
+                        console.log('naming pipette specimen ' + pipetteName)
+                        return pipetteName
                     }
 
                 });
