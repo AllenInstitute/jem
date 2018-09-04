@@ -22,11 +22,11 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
             <!-- handlebars -->
-            <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
 
             <!-- alpaca -->
-            <link type="text/css" href="http://code.cloudcms.com/alpaca/1.5.23/bootstrap/alpaca.min.css" rel="stylesheet"/>
-            <script type="text/javascript" src="http://code.cloudcms.com/alpaca/1.5.23/bootstrap/alpaca.min.js"></script>
+            <link type="text/css" href="https://code.cloudcms.com/alpaca/1.5.23/bootstrap/alpaca.min.css" rel="stylesheet"/>
+            <script type="text/javascript" src="https://code.cloudcms.com/alpaca/1.5.23/bootstrap/alpaca.min.js"></script>
 
             <!-- fileSaver -->
             <script type="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
@@ -48,12 +48,275 @@
             }
             document.onkeypress = stopRKey;
             </script>
+            
+            <style>
+                .menu-container {
+                    position: fixed;
+                    top: 5px;
+                    right: 10px;
+                    z-index: 1;
+                    height: 50px;
+                }
+                .menu-container button {
+                    margin: 0px 5px 0px 5px;
+                    width: 150px;
+                    height: 50px;
+                }
+                
+                /* Hide the load file input and reset buttons that we access programmatically */
+                input[type=file], button[type=reset] {
+                    display: none;
+                }
+                
+                .invisible {
+                    display: none;
+                }
+                
+                #saveJsonButton {
+                    float: left;
+                }
+                
+                #loadJsonButton {
+                    float: right;
+                }
+            </style>
 
-        <head>
+        </head>
         <body>
+            <form>
+                <div class="menu-container">
+                    <button id="saveJsonButton" class="btn-lg btn-success" type="button" onclick="saveJsonClick()">
+                        <div id="saveJsonText">Save JSON</div>
+                        <div id="saveJsonLoading" class="invisible">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="8" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="16" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                            </svg>
+                        </div>
+                    </button>
+                    <button id="loadJsonButton" class="btn-lg btn-info" type="button" onclick="loadJsonClick()">
+                        <div id="loadJsonText">Load JSON</div>
+                        <div id="loadJsonLoading" class="invisible">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="8" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="16" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                            </svg>
+                        </div>
+                    </button>
+                    <input id="loadJsonInputHidden" type="file" accept=".json" onchange="loadJsonFile(event)"/>
+                </div>
+            </form>
             <div id="form"></div>
             <script src = "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js" async = ""></script>
             <script type="text/javascript">
+                // Called when the user clicks the "Load JSON" button.
+                // We hide the unattractive default file input type and access it programmatically.
+                function loadJsonClick() {
+                    $("#loadJsonInputHidden").click();
+                }
+                
+                // Called when the user selects a file to load.
+                function loadJsonFile(selectFileEvent) {
+                    var button = selectFileEvent.target;
+                    if (button && button.files && button.files.length > 0) {
+                        var file = button.files[0];
+                        var fileName = file.name;
+                        var reader = new FileReader();
+                        reader.onload = function(loadFinishEvent) {
+                            var jsonData = JSON.parse(loadFinishEvent.target.result);
+                            var formElement = $("#form");
+                            var form = formElement.alpaca("get");
+                            
+                            setLoadButtonState(true);
+                            
+                            // Blank out the form, try to load the data, and if it's invalid, blank it again.
+                            resetForm(function() {
+                                // Alpaca does not provide a callback for when it finishes filling in/creating fields.
+                                // So we check every 1.0 seconds to see if there's been more elements added to the form.
+                                var childCount = 0;
+                                form.setValue(jsonData);
+                                
+                                var childChecker = setInterval(function() {
+                                    var newCount = formElement.find("*").length;
+                                    
+                                    if (childCount != newCount) {
+                                        childCount = newCount;
+                                    } else {
+                                        clearInterval(childChecker);
+                                        
+                                        form.top().refreshValidationState(true, function() {
+                                            if (!form.isValid(true)) {
+                                                var invalidFieldInfo = findInvalidFields();
+                                                if (invalidFieldInfo.fieldNames) {
+                                                    alert(fileName + " is not a valid Json file.\n"
+                                                            + "The following fields are invalid:\n"
+                                                            + "-----\n"
+                                                            + invalidFieldInfo.fieldNames.join("\n"));
+                                                }
+                                                
+                                                if (invalidFieldInfo.focusInput) {
+                                                    invalidFieldInfo.focusInput.focus();
+                                                }
+                                            }
+                                            
+                                            setLoadButtonState(false);
+                                        });
+                                    }
+                                }, 1000);
+                            });
+                        }
+                        
+                        reader.readAsText(file);
+                    }
+                }
+                
+                // Called when user clicks the "Save JSON" button.
+                function saveJsonClick() {
+                    var form = $("#form").alpaca('get');
+                    
+                    setSaveButtonState(true);
+                    
+                    form.top().refreshValidationState(true, function() {
+                        if (form.isValid(true)) {
+                            var val = form.getValue();
+                            var myjson = JSON.stringify(val, null, "  ");
+                            var blob = new Blob([myjson], {type: "application/json"});
+                            if (window.saveAs) {
+                                specFileName = val.limsSpecName + ".PS.json";
+                                window.saveAs(blob, specFileName);
+                                alert("Successfully saved " + specFileName + "\n" 
+                                        + "Metadata Values: " + myjson);
+                            }else{
+                                alert("The saveAs feature is not supported by your browser.");
+                            }
+                        } else {
+                            var invalidFieldInfo = findInvalidFields();
+                            if (invalidFieldInfo.fieldNames) {
+                                alert("Cannot save form.\n"
+                                        + "The following fields are invalid:\n"
+                                        + "-----\n"
+                                        + invalidFieldInfo.fieldNames.join("\n"));
+                            }
+                            
+                            if (invalidFieldInfo.focusInput) {
+                                invalidFieldInfo.focusInput.focus();
+                            }
+                        }
+                        
+                        setSaveButtonState(false);
+                    });
+                }
+                
+                // Collect all lowest-level invalid elements, return their labels and the first input (for focus)
+                // Returns an object like {"fieldNames": [...], "focusElement": domObj}
+                function findInvalidFields() {                    
+                    var allInvalidNames = [];
+                    var focusElement = null;
+                    var allInvalidElements = $(".alpaca-invalid");
+                    allInvalidElements.each(function(index, invalidElement) {
+                        if (!$(invalidElement).find(".alpaca-invalid").length) {
+                            allInvalidNames.push($(invalidElement).find("label").eq(0).text());
+                            
+                            if (!focusElement) {
+                                focusElement = $(invalidElement).find(":input").eq(0);
+                            }
+                        }
+                        
+                        return true;
+                    });
+                    
+                    return {"fieldNames": allInvalidNames, "focusInput": focusElement};
+                }
+                
+                // Help Alpaca reset the form more cleanly.
+                function resetForm(finishCallback) {
+                    var form = $("#form").alpaca("get");
+                    
+                    // Empty the pipette array.
+                    var pipettes = form.top().getControlByPath("pipettes");
+                    var pipettesRemaining = pipettes.getSize();
+                    removePipettes(pipettes, pipettesRemaining, function() {
+                        // Reset the rest of the data.
+                        $("button[type='reset']").click();
+                        if (finishCallback) {
+                            finishCallback();
+                        }
+                    });
+                }
+                
+                // A function that uses recursive callbacks to remove pipettes one at a time.
+                function removePipettes(pipettes, pipettesRemaining, finishCallback) {
+                    if (pipettesRemaining > 0) {
+                        pipettes.handleActionBarRemoveItemClick(0, function() {
+                            removePipettes(pipettes, pipettesRemaining - 1, finishCallback);
+                        });
+                    } else if (finishCallback) {
+                        finishCallback();
+                    }
+                }
+                
+                // Finds a text field inside the given alpaca field and makes it read-only.
+                // Use by calling makeTextFieldReadOnly(this) in a field's "ready" function.
+                function makeTextFieldReadOnly(alpacaField) {
+                    var textField = $(alpacaField.field).find("[type='text']");
+                    if (textField && textField.length) {
+                        textField.prop("readonly", "readonly");
+                    }
+                }
+                
+                // Sets the "Save JSON" button into and out of its "loading mode"
+                function setSaveButtonState(isLoading) {
+                    setButtonState("#saveJsonButton", "#loadJsonButton", "#saveJsonText", "#saveJsonLoading", "btn-success", isLoading);
+                }
+                
+                // Sets the "Load JSON" button into and out of its "loading mode"
+                function setLoadButtonState(isLoading) {
+                    setButtonState("#loadJsonButton", "#saveJsonButton", "#loadJsonText", "#loadJsonLoading", "btn-info", isLoading);
+                }
+                
+                // Helper function for set****ButonState functions.
+                function setButtonState(buttonId, otherButtonId, buttonTextId, buttonLoadingId, successClass, isLoading) {
+                    if (isLoading) {
+                        $(buttonId).attr("disabled", "disabled").removeClass(successClass).addClass("btn-warning");
+                        $(otherButtonId).attr("disabled", "disabled");
+                        $(buttonTextId).addClass("invisible");
+                        $(buttonLoadingId).removeClass("invisible");
+                    } else {
+                        $(buttonId).removeAttr("disabled").removeClass("btn-warning").addClass(successClass);
+                        $(otherButtonId).removeAttr("disabled");
+                        $(buttonTextId).removeClass("invisible");
+                        $(buttonLoadingId).addClass("invisible");
+                    }
+                }
+                
                 $(document).ready(function() {
                     $("#form").alpaca({
                         "schema": {
@@ -95,6 +358,7 @@
                                 "blankFillDate":{
                                     "format":"date",
                                     "title":"Blank Fill Date",
+                                    "enum":["2018-07-10"],
                                     "required":true
                                 },
                                 "internalFillDate":{
@@ -546,21 +810,18 @@
                                     "hideInitValidationError":true
                                 },
                                 "blankFillDate": {
-                                    "type":"date",
-                                    "fieldClass":"col-md-2",
-                                    "picker": {
-                                        "format":"YYYY-MM-DD",
-                                        "showClose":true,
-                                        "inline":false,
-                                        "tooltips": {
-                                            today: "Go to today"
-                                        },
-                                        "useCurrent":true
-                                    },
-                                    "manualEntry":false,
+                                    "type":"select",
+                                    "fieldClass":"dropdown-content col-md-2",
+                                    "helper":[],
+                                    "hideNone":false,
+                                    "noneLabel":"",
                                     "validate":true,
                                     "showMessages":false,
-                                    "hideInitValidationError":true
+                                    "hideInitValidationError":true,
+                                    "sort":function(first, second) {
+                                        // Sort the dates in reverse so that the newest ones will be at the top.
+                                        return second.text.localeCompare(first.text);
+                                    }
                                 },
                                 "internalFillDate": {
                                     "type":"date",
@@ -1523,6 +1784,11 @@
                                                          }
                                                      ],
                                                      "horizontal":true
+                                                },
+                                                "events": {
+                                                    "ready" : function(field) {
+                                                        makeTextFieldReadOnly(this);                                                        
+                                                    }
                                                 }
                                             }
                                         }
@@ -1531,32 +1797,13 @@
                             },
                             "form":{
                                 "buttons":{
-                                    "localSave":{
-                                        "title": "Save JSON",
-                                        "fieldClass":"form-group btn-lg glyphicon-cloud-downloaded",
-                                        "click": function() {
-                                            var val = this.getValue();
-                                            if (this.isValid(true)) {
-                                                var myjson = JSON.stringify(val, null, "  ");
-                                                alert("Metadata Values: " + myjson);
-                                                var blob = new Blob([myjson], {type: "application/json"});
-                                                if (window.saveAs) {
-                                                    specFileName = val.limsSpecName + ".PS.json";
-                                                    window.saveAs(blob, specFileName);
-                                                }else{
-                                                    alert("saveAs not supported");
-                                                }
-                                            }else{
-                                                alert("Invalid - check that starred fields are not empty!");
-                                            }
-                                        }
-                                    }
+                                    "reset":{}
                                 }
                             },
                             "views":"bootstrap-create"
                         },
                         "data": {
-                            "formVersion": "2.0.3"
+                            "formVersion": "2.0.5"
                         }
                     });
                 });
