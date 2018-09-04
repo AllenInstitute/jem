@@ -171,11 +171,11 @@
                                                     }
                                                 }
                                             },
-                                            "pipetteSpecName": {
-                                    					"type": "string",
-                                    					"title":"Pipette Specimen ID",
-                                    					"required":true
-                                			},
+                                   //          "pipetteSpecName": {
+                                   //  					"type": "string",
+                                   //  					"title":"Pipette Specimen ID",
+                                   //  					"required":true
+                                			// },
                                             "recording":{
                                                 "type":"object",
                                                 "title":"Recording Info",
@@ -741,48 +741,48 @@
                                                     }
                                                 }
                                             },
-                                            "pipetteSpecName": {
-                                    					"type": "text",
-                                   						"fieldClass": "form-group col-md-8 no-border",
-                                    					"helper":[],
-                                    					"placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02.01",
-                                    					"showMessages": false,
-                                    					"hideInitValidationError":true,
-                                    					"disallowEmptySpaces":true,
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                console.log("WSE state: " + window.wseState)
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+                                      //       "pipetteSpecName": {
+                                    		// 			"type": "text",
+                                   			// 			"fieldClass": "form-group col-md-8 no-border",
+                                    		// 			"helper":[],
+                                    		// 			"placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02.01",
+                                    		// 			"showMessages": false,
+                                    		// 			"hideInitValidationError":true,
+                                    		// 			"disallowEmptySpaces":true,
+                                      //                   "events":{
+                                      //                       "ready": function(field){
+                                      //                           var self = this;
+                                      //                           console.log("WSE state: " + window.wseState)
+                                      //                           var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
 
-                                                                if (window.wseState){
-                                                                    jemdatasocket.onopen = function(){
-                                                                        jemdatasocket.send(JSON.stringify(9191));
-                                                                        document.pipetteSpecNameSetter(self);                       
-                                                                    };
+                                      //                           if (window.wseState){
+                                      //                               jemdatasocket.onopen = function(){
+                                      //                                   jemdatasocket.send(JSON.stringify(9191));
+                                      //                                   document.pipetteSpecNameSetter(self);                       
+                                      //                               };
 
-                                                                    jemdatasocket.onmessage = function(msg){
-                                                                        var incomingDat = JSON.parse(msg.data);
-                                                                        if ('factor' in incomingDat){
-                                                                            if (incomingDat['factor'] == 'pipetteSpecName'){
-                                                                                var pipetteIndex = incomingDat['index'];
-                                                                                var element = document.pipetteSpecNameGetter(pipetteIndex);
-                                                                                element.setValue(incomingDat['value']);
-                                                                                element.refresh();
-                                                                            }                                                  
-                                                                        }
-                                                                    }
-                                                                } else {
-                                                                    var lastPipetteIndex = window.lastPipetteIndex;
-                                                                    if (typeof window.specName !== 'undefined') {
-                                                                        var sliceSpecimen = window.specName;
-                                                                        var pipetteSpecName = document.pipetteSpecNamer(sliceSpecimen, lastPipetteIndex);
-                                                                        self.setValue(pipetteSpecName);
-                                                                    }
-                                                                };                                                                
-                                                            }
-                                                        }
-                                    		},
+                                      //                               jemdatasocket.onmessage = function(msg){
+                                      //                                   var incomingDat = JSON.parse(msg.data);
+                                      //                                   if ('factor' in incomingDat){
+                                      //                                       if (incomingDat['factor'] == 'pipetteSpecName'){
+                                      //                                           var pipetteIndex = incomingDat['index'];
+                                      //                                           var element = document.pipetteSpecNameGetter(pipetteIndex);
+                                      //                                           element.setValue(incomingDat['value']);
+                                      //                                           element.refresh();
+                                      //                                       }                                                  
+                                      //                                   }
+                                      //                               }
+                                      //                           } else {
+                                      //                               var lastPipetteIndex = window.lastPipetteIndex;
+                                      //                               if (typeof window.specName !== 'undefined') {
+                                      //                                   var sliceSpecimen = window.specName;
+                                      //                                   var pipetteSpecName = document.pipetteSpecNamer(sliceSpecimen, lastPipetteIndex);
+                                      //                                   self.setValue(pipetteSpecName);
+                                      //                               }
+                                      //                           };                                                                
+                                      //                       }
+                                      //                   }
+                                    		// },
                                             "recording":{
                                             	"fieldClass": "form-group col-md-12 no-border bg-info",
                                                 "fields": {
@@ -1292,19 +1292,7 @@
                                                 "dependencies": {
                                                     "autoRoi":["None",""]
                                                 },
-                                                //"showMessages":false,
                                                 "hideInitValidationError":true,
-                                                // "validator": function(callback) {
-                                                //     var value = this.getValue();
-                                                //     var roiRegex = /^([A-Za-z]{3,}[0-9/]{,}[A-Za-z]{,})$/;
-                                                //     if (roiRegex.test(value)) {
-                                                //         callback({"status": true});
-                                                //     } else {
-                                                //         callback({
-                                                //             "status": false,
-                                                //             "message": "Enter valid ROI format (ex. VISp2/3 or TCx5)"});
-                                                //     }
-                                                // },
                                                 "tree": {
                                                     "selectors":{
                                                          "roiMajor":{
