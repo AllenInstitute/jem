@@ -1,14 +1,14 @@
 <html>
         <head>
-        
+
             <!-- jquery -->
             <script
               src="https://code.jquery.com/jquery-3.2.1.min.js"
               integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
               crossorigin="anonymous"></script>
 
-     		<!-- jquery ui -->
-			<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
+            <!-- jquery ui -->
+            <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
             <!-- bootstrap -->
@@ -20,13 +20,13 @@
 
             <!-- Latest compiled and minified JavaScript -->
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-     
+
             <!-- handlebars -->
-            <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
-     
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+
             <!-- alpaca -->
-            <link type="text/css" href="http://code.cloudcms.com/alpaca/1.5.23/bootstrap/alpaca.min.css" rel="stylesheet"/>
-            <script type="text/javascript" src="http://code.cloudcms.com/alpaca/1.5.23/bootstrap/alpaca.min.js"></script>
+            <link type="text/css" href="https://code.cloudcms.com/alpaca/1.5.23/bootstrap/alpaca.min.css" rel="stylesheet"/>
+            <script type="text/javascript" src="https://code.cloudcms.com/alpaca/1.5.23/bootstrap/alpaca.min.js"></script>
 
             <!-- fileSaver -->
             <script type="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
@@ -47,13 +47,276 @@
                     if ((evt.keyCode == 13) && (node.type=="text"))  {return false;}
             }
             document.onkeypress = stopRKey;
-            </script> 
-        
-        <head>
+            </script>
+            
+            <style>
+                .menu-container {
+                    position: fixed;
+                    top: 5px;
+                    right: 10px;
+                    z-index: 1;
+                    height: 50px;
+                }
+                .menu-container button {
+                    margin: 0px 5px 0px 5px;
+                    width: 150px;
+                    height: 50px;
+                }
+                
+                /* Hide the load file input and reset buttons that we access programmatically */
+                input[type=file], button[type=reset] {
+                    display: none;
+                }
+                
+                .invisible {
+                    display: none;
+                }
+                
+                #saveJsonButton {
+                    float: left;
+                }
+                
+                #loadJsonButton {
+                    float: right;
+                }
+            </style>
+
+        </head>
         <body>
+            <form>
+                <div class="menu-container">
+                    <button id="saveJsonButton" class="btn-lg btn-success" type="button" onclick="saveJsonClick()">
+                        <div id="saveJsonText">Save JSON</div>
+                        <div id="saveJsonLoading" class="invisible">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="8" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="16" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                            </svg>
+                        </div>
+                    </button>
+                    <button id="loadJsonButton" class="btn-lg btn-info" type="button" onclick="loadJsonClick()">
+                        <div id="loadJsonText">Load JSON</div>
+                        <div id="loadJsonLoading" class="invisible">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="8" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="16" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                            </svg>
+                        </div>
+                    </button>
+                    <input id="loadJsonInputHidden" type="file" accept=".json" onchange="loadJsonFile(event)"/>
+                </div>
+            </form>
             <div id="form"></div>
             <script src = "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js" async = ""></script>
             <script type="text/javascript">
+                // Called when the user clicks the "Load JSON" button.
+                // We hide the unattractive default file input type and access it programmatically.
+                function loadJsonClick() {
+                    $("#loadJsonInputHidden").click();
+                }
+                
+                // Called when the user selects a file to load.
+                function loadJsonFile(selectFileEvent) {
+                    var button = selectFileEvent.target;
+                    if (button && button.files && button.files.length > 0) {
+                        var file = button.files[0];
+                        var fileName = file.name;
+                        var reader = new FileReader();
+                        reader.onload = function(loadFinishEvent) {
+                            var jsonData = JSON.parse(loadFinishEvent.target.result);
+                            var formElement = $("#form");
+                            var form = formElement.alpaca("get");
+                            
+                            setLoadButtonState(true);
+                            
+                            // Blank out the form, try to load the data, and if it's invalid, blank it again.
+                            resetForm(function() {
+                                // Alpaca does not provide a callback for when it finishes filling in/creating fields.
+                                // So we check every 1.0 seconds to see if there's been more elements added to the form.
+                                var childCount = 0;
+                                form.setValue(jsonData);
+                                
+                                var childChecker = setInterval(function() {
+                                    var newCount = formElement.find("*").length;
+                                    
+                                    if (childCount != newCount) {
+                                        childCount = newCount;
+                                    } else {
+                                        clearInterval(childChecker);
+                                        
+                                        form.top().refreshValidationState(true, function() {
+                                            if (!form.isValid(true)) {
+                                                var invalidFieldInfo = findInvalidFields();
+                                                if (invalidFieldInfo.fieldNames) {
+                                                    alert(fileName + " is not a valid Json file.\n"
+                                                            + "The following fields are invalid:\n"
+                                                            + "-----\n"
+                                                            + invalidFieldInfo.fieldNames.join("\n"));
+                                                }
+                                                
+                                                if (invalidFieldInfo.focusInput) {
+                                                    invalidFieldInfo.focusInput.focus();
+                                                }
+                                            }
+                                            
+                                            setLoadButtonState(false);
+                                        });
+                                    }
+                                }, 1000);
+                            });
+                        }
+                        
+                        reader.readAsText(file);
+                    }
+                }
+                
+                // Called when user clicks the "Save JSON" button.
+                function saveJsonClick() {
+                    var form = $("#form").alpaca('get');
+                    
+                    setSaveButtonState(true);
+                    
+                    form.top().refreshValidationState(true, function() {
+                        if (form.isValid(true)) {
+                            var val = form.getValue();
+                            var myjson = JSON.stringify(val, null, "  ");
+                            var blob = new Blob([myjson], {type: "application/json"});
+                            if (window.saveAs) {
+                                specFileName = val.limsSpecName + ".PS.json";
+                                window.saveAs(blob, specFileName);
+                                alert("Successfully saved " + specFileName + "\n" 
+                                        + "Metadata Values: " + myjson);
+                            }else{
+                                alert("The saveAs feature is not supported by your browser.");
+                            }
+                        } else {
+                            var invalidFieldInfo = findInvalidFields();
+                            if (invalidFieldInfo.fieldNames) {
+                                alert("Cannot save form.\n"
+                                        + "The following fields are invalid:\n"
+                                        + "-----\n"
+                                        + invalidFieldInfo.fieldNames.join("\n"));
+                            }
+                            
+                            if (invalidFieldInfo.focusInput) {
+                                invalidFieldInfo.focusInput.focus();
+                            }
+                        }
+                        
+                        setSaveButtonState(false);
+                    });
+                }
+                
+                // Collect all lowest-level invalid elements, return their labels and the first input (for focus)
+                // Returns an object like {"fieldNames": [...], "focusElement": domObj}
+                function findInvalidFields() {                    
+                    var allInvalidNames = [];
+                    var focusElement = null;
+                    var allInvalidElements = $(".alpaca-invalid");
+                    allInvalidElements.each(function(index, invalidElement) {
+                        if (!$(invalidElement).find(".alpaca-invalid").length) {
+                            allInvalidNames.push($(invalidElement).find("label").eq(0).text());
+                            
+                            if (!focusElement) {
+                                focusElement = $(invalidElement).find(":input").eq(0);
+                            }
+                        }
+                        
+                        return true;
+                    });
+                    
+                    return {"fieldNames": allInvalidNames, "focusInput": focusElement};
+                }
+                
+                // Help Alpaca reset the form more cleanly.
+                function resetForm(finishCallback) {
+                    var form = $("#form").alpaca("get");
+                    
+                    // Empty the pipette array.
+                    var pipettes = form.top().getControlByPath("pipettes");
+                    var pipettesRemaining = pipettes.getSize();
+                    removePipettes(pipettes, pipettesRemaining, function() {
+                        // Reset the rest of the data.
+                        $("button[type='reset']").click();
+                        if (finishCallback) {
+                            finishCallback();
+                        }
+                    });
+                }
+                
+                // A function that uses recursive callbacks to remove pipettes one at a time.
+                function removePipettes(pipettes, pipettesRemaining, finishCallback) {
+                    if (pipettesRemaining > 0) {
+                        pipettes.handleActionBarRemoveItemClick(0, function() {
+                            removePipettes(pipettes, pipettesRemaining - 1, finishCallback);
+                        });
+                    } else if (finishCallback) {
+                        finishCallback();
+                    }
+                }
+                
+                // Finds a text field inside the given alpaca field and makes it read-only.
+                // Use by calling makeTextFieldReadOnly(this) in a field's "ready" function.
+                function makeTextFieldReadOnly(alpacaField) {
+                    var textField = $(alpacaField.field).find("[type='text']");
+                    if (textField && textField.length) {
+                        textField.prop("readonly", "readonly");
+                    }
+                }
+                
+                // Sets the "Save JSON" button into and out of its "loading mode"
+                function setSaveButtonState(isLoading) {
+                    setButtonState("#saveJsonButton", "#loadJsonButton", "#saveJsonText", "#saveJsonLoading", "btn-success", isLoading);
+                }
+                
+                // Sets the "Load JSON" button into and out of its "loading mode"
+                function setLoadButtonState(isLoading) {
+                    setButtonState("#loadJsonButton", "#saveJsonButton", "#loadJsonText", "#loadJsonLoading", "btn-info", isLoading);
+                }
+                
+                // Helper function for set****ButonState functions.
+                function setButtonState(buttonId, otherButtonId, buttonTextId, buttonLoadingId, successClass, isLoading) {
+                    if (isLoading) {
+                        $(buttonId).attr("disabled", "disabled").removeClass(successClass).addClass("btn-warning");
+                        $(otherButtonId).attr("disabled", "disabled");
+                        $(buttonTextId).addClass("invisible");
+                        $(buttonLoadingId).removeClass("invisible");
+                    } else {
+                        $(buttonId).removeAttr("disabled").removeClass("btn-warning").addClass(successClass);
+                        $(otherButtonId).removeAttr("disabled");
+                        $(buttonTextId).removeClass("invisible");
+                        $(buttonLoadingId).addClass("invisible");
+                    }
+                }
+                
                 $(document).ready(function() {
                     $("#form").alpaca({
                         "schema": {
@@ -61,9 +324,9 @@
                             "title":"JSON Electrophysiology Metadata (JEM)",
                             "properties": {
                                 "formVersion": {
-                                	"type":"string",
-                                	"title":"Version",
-                                	"readonly":true
+                                    "type":"string",
+                                    "title":"Version",
+                                    "readonly":true
                                 },
                                 "rigOperator": {
                                     "type": "string",
@@ -95,6 +358,7 @@
                                 "blankFillDate":{
                                     "format":"date",
                                     "title":"Blank Fill Date",
+                                    "enum":["2018-07-10"],
                                     "required":true
                                 },
                                 "internalFillDate":{
@@ -121,34 +385,34 @@
                                     "required":false
                                 },
                                 "pipettes":{
-                                	"type":"array",
+                                    "type":"array",
                                     "items":{
                                         "title":"Patch-Seq Pipette",
                                         "type":"object",
                                         "properties":{
-                                        	"approach": {
-                                        		"type":"object",
-                                        		"title": "Approach Info",
-                                        		"properties": {
-                                        			"sliceHealth":{
-                                                		"type":"string",
-                                                		"title": "Slice Health",
-                                                		"enum":["1","2","3","4","5"],
-                                                		"required":true
-                                            		},
-                                            		"cellHealth":{
-                                                		"type":"string",
-                                                		"title": "Cell Health",
-                                                		"enum":["1","2","3","4","5"],
-                                                		"required":true
-                                            		},
-                                            		"creCell": {
-                                                		"type":"string",
-                                                		"title":"Cre Status",
-                                                		"enum":["Cre+","Cre-","None"],
+                                            "approach": {
+                                                "type":"object",
+                                                "title": "Approach Info",
+                                                "properties": {
+                                                    "sliceHealth":{
+                                                        "type":"string",
+                                                        "title": "Slice Health",
+                                                        "enum":["1","2","3","4","5"],
                                                         "required":true
-                                            		},
-                                                	"pilotName":{
+                                                    },
+                                                    "cellHealth":{
+                                                        "type":"string",
+                                                        "title": "Cell Health",
+                                                        "enum":["1","2","3","4","5"],
+                                                        "required":true
+                                                    },
+                                                    "creCell": {
+                                                        "type":"string",
+                                                        "title":"Cre Status",
+                                                        "enum":["Cre+","Cre-","None"],
+                                                        "required":true
+                                                    },
+                                                    "pilotName":{
                                                         "type":"string",
                                                         "title":"Pilot Name",
                                                         "default": "None",
@@ -172,36 +436,36 @@
                                                 }
                                             },
                                    //          "pipetteSpecName": {
-                                   //  					"type": "string",
-                                   //  					"title":"Pipette Specimen ID",
-                                   //  					"required":true
-                                			// },
+                                   //                   "type": "string",
+                                   //                   "title":"Pipette Specimen ID",
+                                   //                   "required":true
+                                            // },
                                             "recording":{
                                                 "type":"object",
                                                 "title":"Recording Info",
                                                 "properties": {
-                                                	"timeStart": {
-                                                    	"format":"time",
-                                                		"title":"Approach Start",
-                                                		"required":true
-                                            		},
-                                            		"pipetteR":{
+                                                    "timeStart": {
+                                                        "format":"time",
+                                                        "title":"Approach Start",
+                                                        "required":true
+                                                    },
+                                                    "pipetteR":{
                                                         "format":"number",
                                                         "minimum":0,
                                                         "title":"Pipette R",
-                                                		"required":true
+                                                        "required":true
                                                     },
                                                     "timeWholeCellStart":{
                                                         "format":"time",
                                                         "title":"Whole Cell Start",
-                                                		"required":true
+                                                        "required":true
                                                     },
-                                            		"humanCellTypePrediction":{
-                                                		"type":"string",
-                                                		"title":"Cell Type Prediction (for Human Neurons)",
-                                                		"enum":["Unknown", "Pyramidal", "FS Interneuron", "Spindle Shaped", "Unknown Interneuron"],
-                                                		"required":false
-                                            		}
+                                                    "humanCellTypePrediction":{
+                                                        "type":"string",
+                                                        "title":"Cell Type Prediction (for Human Neurons)",
+                                                        "enum":["Unknown", "Pyramidal", "FS Interneuron", "Spindle Shaped", "Unknown Interneuron"],
+                                                        "required":false
+                                                    }
                                                 }
                                             },
                                             "status":{
@@ -239,13 +503,13 @@
                                                 "required":false
                                             },
                                             "badSweeps":{
-                                            	"type":"string",
-                                            	"title":"Bad Sweeps",
+                                                "type":"string",
+                                                "title":"Bad Sweeps",
                                                 "dependencies":"status",
-                                            	"required":false
+                                                "required":false
                                             },
                                             "extraction":{
-                                            	"type":"object",
+                                                "type":"object",
                                                 "title":"Extraction Info",
                                                 "dependencies":"status",
                                                 "properties":{
@@ -359,14 +623,14 @@
                             "fields": {
                                 "formVersion": {
                                     "type":"text",
-                                	"readonly":true,
-                                	"fieldClass": "col-md-1",
-                                	"data":"/jem-data/jemVersion.json",
-                                	"view":"bootstrap-display"
-                                	//"type":"hidden"
+                                    "readonly":true,
+                                    "fieldClass": "col-md-1",
+                                    "data":"/jem-data/jemVersion.json",
+                                    "view":"bootstrap-display"
+                                    //"type":"hidden"
                                 },
                                 "rigOperator" : {
-                                	"type": "select",
+                                    "type": "select",
                                     "fieldClass": "dropdown-content col-md-2",
                                     "helper": [],
                                     "hideNone":false,
@@ -390,9 +654,9 @@
                                                     if (incomingDat['factor'] == 'rigOperator'){
                                                         self.setValue(incomingDat['value']);
                                                         self.refresh();
-                                                    }                                                  
+                                                    }
                                                 }
-                                            };                                            
+                                            };
                                         },
                                         "validator": function(callback) {
                                             var value = this.getValue();
@@ -434,7 +698,7 @@
                                                     if (incomingDat['factor'] == 'rigNumber'){
                                                         self.setValue(incomingDat['value']);
                                                         self.refresh();
-                                                    }                                                  
+                                                    }
                                                 }
                                             };
                                         }
@@ -470,7 +734,7 @@
                                                     if (incomingDat['factor'] == 'onRigTimeStamp'){
                                                         self.setValue(incomingDat['value']);
                                                         self.refresh();
-                                                    }                                                  
+                                                    }
                                                 }
                                             };
                                         }
@@ -505,7 +769,7 @@
                                                     if (incomingDat['factor'] == 'limsSpecName'){
                                                         self.setValue(incomingDat['value']);
                                                         self.refresh();
-                                                    }                                                  
+                                                    }
                                                 }
                                             };
                                         },
@@ -544,23 +808,20 @@
                                     "validate":true,
                                     "showMessages": false,
                                     "hideInitValidationError":true
-                                },  
+                                },
                                 "blankFillDate": {
-                                    "type":"date",
-                                    "fieldClass":"col-md-2",
-                                    "picker": {
-                                        "format":"YYYY-MM-DD",
-                                        "showClose":true,
-                                        "inline":false,
-                                        "tooltips": {
-                                            today: "Go to today"
-                                        },
-                                        "useCurrent":true
-                                    },
-                                    "manualEntry":false,
+                                    "type":"select",
+                                    "fieldClass":"dropdown-content col-md-2",
+                                    "helper":[],
+                                    "hideNone":false,
+                                    "noneLabel":"",
                                     "validate":true,
                                     "showMessages":false,
-                                    "hideInitValidationError":true
+                                    "hideInitValidationError":true,
+                                    "sort":function(first, second) {
+                                        // Sort the dates in reverse so that the newest ones will be at the top.
+                                        return second.text.localeCompare(first.text);
+                                    }
                                 },
                                 "internalFillDate": {
                                     "type":"date",
@@ -606,8 +867,8 @@
                                                             self.setValue("No");
                                                             self.refresh();
                                                         }
-                                                        
-                                                    }                                                  
+
+                                                    }
                                                 }
                                             };
                                         }
@@ -629,7 +890,7 @@
                                     "allowOptionalEmpty":true
                                 },
                                 "pipettes": {
-                                	"fieldClass": "form-group col-md-12 no-border",
+                                    "fieldClass": "form-group col-md-12 no-border",
                                     "toolbar": {
                                         "showLabels":true,
                                         "actions": [{
@@ -655,7 +916,7 @@
                                                 lastPipetteIndex += 1
                                                 window.lastPipetteIndex = lastPipetteIndex;
                                             }
-                                        }, 
+                                        },
                                         {
                                             "label": "Remove Above Patch-Seq Pipette",
                                             "action": "remove",
@@ -667,11 +928,11 @@
                                                 var lastPipetteIndex = window.lastPipetteIndex - 1
                                                 window.lastPipetteIndex = lastPipetteIndex;
                                             }
-                                        }, 
+                                        },
                                         {
                                             "action":"up",
                                             "enabled":false
-                                        }, 
+                                        },
                                         {
                                             "action":"down",
                                             "enabled":false
@@ -684,34 +945,34 @@
                                     "showMessages":true,
                                     "focus":true,
                                     "items": {
-                                    	"fields": {
-                                    		"approach": {
-                                    			"fieldClass": "form-group col-md-12 no-border bg-success",
+                                        "fields": {
+                                            "approach": {
+                                                "fieldClass": "form-group col-md-12 no-border bg-success",
                                                 "fields": {
-                                                	"sliceHealth": {
-                                                		"type": "radio",
-                                                		"fieldClass": "form-group col-md-5",
-                                                		"vertical":false,
-                                                		"hideNone":true,
-                                                		"showMessages":false
-                                            		},
-                                            		"cellHealth": {
-                                                		"type": "radio",
-                                                		"fieldClass": "form-group col-md-5",
-                                                		"vertical":false,
-                                                		"hideNone":true,
-                                                		"showMessages":false
-                                            		},
-                                            		"creCell": {
-                                                		"type": "radio",
-                                                		"fieldClass": "form-group col-md-5",
-                                                		"size":1,
-                                                		"vertical":false,
-                                                		"hideNone":true,
-                                                		"showMessages":false,
+                                                    "sliceHealth": {
+                                                        "type": "radio",
+                                                        "fieldClass": "form-group col-md-5",
+                                                        "vertical":false,
+                                                        "hideNone":true,
+                                                        "showMessages":false
+                                                    },
+                                                    "cellHealth": {
+                                                        "type": "radio",
+                                                        "fieldClass": "form-group col-md-5",
+                                                        "vertical":false,
+                                                        "hideNone":true,
+                                                        "showMessages":false
+                                                    },
+                                                    "creCell": {
+                                                        "type": "radio",
+                                                        "fieldClass": "form-group col-md-5",
+                                                        "size":1,
+                                                        "vertical":false,
+                                                        "hideNone":true,
+                                                        "showMessages":false,
                                                         "hideInitValidationError":true
-                                            		},
-                                                	"pilotName": {
+                                                    },
+                                                    "pilotName": {
                                                         "type":"select",
                                                         "fieldClass": "form-group col-md-5",
                                                         "helper": [],
@@ -742,13 +1003,13 @@
                                                 }
                                             },
                                       //       "pipetteSpecName": {
-                                    		// 			"type": "text",
-                                   			// 			"fieldClass": "form-group col-md-8 no-border",
-                                    		// 			"helper":[],
-                                    		// 			"placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02.01",
-                                    		// 			"showMessages": false,
-                                    		// 			"hideInitValidationError":true,
-                                    		// 			"disallowEmptySpaces":true,
+                                            //          "type": "text",
+                                            //          "fieldClass": "form-group col-md-8 no-border",
+                                            //          "helper":[],
+                                            //          "placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02.01",
+                                            //          "showMessages": false,
+                                            //          "hideInitValidationError":true,
+                                            //          "disallowEmptySpaces":true,
                                       //                   "events":{
                                       //                       "ready": function(field){
                                       //                           var self = this;
@@ -758,7 +1019,7 @@
                                       //                           if (window.wseState){
                                       //                               jemdatasocket.onopen = function(){
                                       //                                   jemdatasocket.send(JSON.stringify(9191));
-                                      //                                   document.pipetteSpecNameSetter(self);                       
+                                      //                                   document.pipetteSpecNameSetter(self);
                                       //                               };
 
                                       //                               jemdatasocket.onmessage = function(msg){
@@ -769,7 +1030,7 @@
                                       //                                           var element = document.pipetteSpecNameGetter(pipetteIndex);
                                       //                                           element.setValue(incomingDat['value']);
                                       //                                           element.refresh();
-                                      //                                       }                                                  
+                                      //                                       }
                                       //                                   }
                                       //                               }
                                       //                           } else {
@@ -779,28 +1040,28 @@
                                       //                                   var pipetteSpecName = document.pipetteSpecNamer(sliceSpecimen, lastPipetteIndex);
                                       //                                   self.setValue(pipetteSpecName);
                                       //                               }
-                                      //                           };                                                                
+                                      //                           };
                                       //                       }
                                       //                   }
-                                    		// },
+                                            // },
                                             "recording":{
-                                            	"fieldClass": "form-group col-md-12 no-border bg-info",
+                                                "fieldClass": "form-group col-md-12 no-border bg-info",
                                                 "fields": {
-                                                 	"timeStart": {
-                                                 		"fieldClass": "form-group col-md-2",
-                                                   		"type":"date",
-                                                   		"dateFormat":"HH:mm:ssZ",
-                                                   		"picker": {
-                                                   			"showClose":true,
-                                                   			"showTodayButton":true,
-                                                   			"collapse":true,
-                                                   			"stepping":1,
-                                                   			"focusOnShow":false,
-                                                   			"keepOpen":false,
-                                                   			"inline":false,
-                                                   			"useCurrent":true
-                                               			},
-                                               			"showMessages":false,
+                                                    "timeStart": {
+                                                        "fieldClass": "form-group col-md-2",
+                                                        "type":"date",
+                                                        "dateFormat":"HH:mm:ssZ",
+                                                        "picker": {
+                                                            "showClose":true,
+                                                            "showTodayButton":true,
+                                                            "collapse":true,
+                                                            "stepping":1,
+                                                            "focusOnShow":false,
+                                                            "keepOpen":false,
+                                                            "inline":false,
+                                                            "useCurrent":true
+                                                        },
+                                                        "showMessages":false,
                                                         "hideInitValidationError":true,
                                                         "events":{
                                                             "ready": function(field){
@@ -809,10 +1070,10 @@
 
                                                                 jemdatasocket.onopen = function(){
                                                                     jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.approachStartSetter(self);                       
+                                                                    document.approachStartSetter(self);
                                                                 };
 
-                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                jemdatasocket.onmessage = function(msg){
                                                                     var incomingDat = JSON.parse(msg.data);
                                                                     if ('factor' in incomingDat){
                                                                         if (incomingDat['factor'] == 'timeApproachStart'){
@@ -820,17 +1081,17 @@
                                                                             var element = document.approachStartGetter(pipetteIndex);
                                                                             element.setValue(incomingDat['value']);
                                                                             element.refresh();
-                                                                        }                                                  
+                                                                        }
                                                                     }
-                                                                };            
+                                                                };
                                                             }
                                                         },
-                                               			"manualEntry":false,
-                                               			"helper":"(HH:mm:ss-UTC)"
-                                           			},
-                                           			"pipetteR":{
-                                                       	"type":"number",
-                                                       	"fieldClass": "form-group col-md-2",
+                                                        "manualEntry":false,
+                                                        "helper":"(HH:mm:ss-UTC)"
+                                                    },
+                                                    "pipetteR":{
+                                                        "type":"number",
+                                                        "fieldClass": "form-group col-md-2",
                                                         "helper": "(MOhm)",
                                                         "validate":true,
                                                         "showMessages":false,
@@ -842,10 +1103,10 @@
 
                                                                 jemdatasocket.onopen = function(){
                                                                     jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.pipetteRSetter(self);                       
+                                                                    document.pipetteRSetter(self);
                                                                 };
 
-                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                jemdatasocket.onmessage = function(msg){
                                                                     var incomingDat = JSON.parse(msg.data);
                                                                     if ('factor' in incomingDat){
                                                                         if (incomingDat['factor'] == 'pipetteR'){
@@ -853,15 +1114,15 @@
                                                                             var element = document.pipetteRGetter(pipetteIndex);
                                                                             element.setValue(incomingDat['value']);
                                                                             element.refresh();
-                                                                        }                                                  
+                                                                        }
                                                                     }
-                                                                };            
+                                                                };
                                                             }
                                                         }
                                                     },
                                                     "timeWholeCellStart":{
-                                                    	"type":"date",
-                                                    	"fieldClass": "form-group col-md-2",
+                                                        "type":"date",
+                                                        "fieldClass": "form-group col-md-2",
                                                         "dateFormat":"HH:mm:ssZ",
                                                         "picker": {
                                                             "showClose":true,
@@ -882,10 +1143,10 @@
 
                                                                 jemdatasocket.onopen = function(){
                                                                     jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.wholeCellStartSetter(self);                       
+                                                                    document.wholeCellStartSetter(self);
                                                                 };
 
-                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                jemdatasocket.onmessage = function(msg){
                                                                     var incomingDat = JSON.parse(msg.data);
                                                                     if ('factor' in incomingDat){
                                                                         if (incomingDat['factor'] == 'timeWholeCellStart'){
@@ -893,17 +1154,17 @@
                                                                             var element = document.wholeCellStartGetter(pipetteIndex);
                                                                             element.setValue(incomingDat['value']);
                                                                             element.refresh();
-                                                                        }                                                  
+                                                                        }
                                                                     }
-                                                                };            
+                                                                };
                                                             }
                                                         },
                                                         "helper":"(HH:mm:ss-UTC)"
                                                     },
                                                     "humanCellTypePrediction":{
-                                                		"type": "select",
-                                                		"fieldClass": "dropdown-content col-md-4"
-                                                	}
+                                                        "type": "select",
+                                                        "fieldClass": "dropdown-content col-md-4"
+                                                    }
                                                 }
                                             },
                                             "status": {
@@ -925,7 +1186,7 @@
                                             "failureNotes": {
                                                 "type": "checkbox",
                                                 "showMessages": false,
-                                    			"hideInitValidationError":true,
+                                                "hideInitValidationError":true,
                                                 "fieldClass": "col-md-4",
                                                 "dependencies": {
                                                     "status":["FAILURE"]
@@ -950,16 +1211,16 @@
                                                 "rows":4
                                             },
                                             "badSweeps": {
-                                            	"type":"textarea",
-                                            	"fieldClass":"col-md-4",
-                                            	"size":2,
-                                            	"dependencies":{
-                                            	    "status":["SUCCESS"]
-                                            	},
-                                            	"rows":4
+                                                "type":"textarea",
+                                                "fieldClass":"col-md-4",
+                                                "size":2,
+                                                "dependencies":{
+                                                    "status":["SUCCESS"]
+                                                },
+                                                "rows":4
                                             },
                                             "extraction": {
-                                            	"fieldClass": "form-group col-md-12 no-border bg-danger",
+                                                "fieldClass": "form-group col-md-12 no-border bg-danger",
                                                 "dependencies": {
                                                     "status":["SUCCESS"]
                                                 },
@@ -977,10 +1238,10 @@
 
                                                                 jemdatasocket.onopen = function(){
                                                                     jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.pressureAppliedSetter(self);                       
+                                                                    document.pressureAppliedSetter(self);
                                                                 };
 
-                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                jemdatasocket.onmessage = function(msg){
                                                                     var incomingDat = JSON.parse(msg.data);
                                                                     if ('factor' in incomingDat){
                                                                         if (incomingDat['factor'] == 'pressureApplied'){
@@ -988,14 +1249,14 @@
                                                                             var element = document.pressureAppliedGetter(pipetteIndex);
                                                                             element.setValue(incomingDat['value']);
                                                                             element.refresh();
-                                                                        }                                                  
+                                                                        }
                                                                     }
-                                                                };            
+                                                                };
                                                             }
                                                         }
                                                     },
                                                     "retractionPressureApplied":{
-                                                    	"type":"number",
+                                                        "type":"number",
                                                         "helper":"(mbar)",
                                                         "fieldClass": "col-md-3",
                                                         "validate":true,
@@ -1007,10 +1268,10 @@
 
                                                                 jemdatasocket.onopen = function(){
                                                                     jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.retractionPressureAppliedSetter(self);                       
+                                                                    document.retractionPressureAppliedSetter(self);
                                                                 };
 
-                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                jemdatasocket.onmessage = function(msg){
                                                                     var incomingDat = JSON.parse(msg.data);
                                                                     if ('factor' in incomingDat){
                                                                         if (incomingDat['factor'] == 'retractionPressureApplied'){
@@ -1018,9 +1279,9 @@
                                                                             var element = document.retractionPressureAppliedGetter(pipetteIndex);
                                                                             element.setValue(incomingDat['value']);
                                                                             element.refresh();
-                                                                        }                                                  
+                                                                        }
                                                                     }
-                                                                };            
+                                                                };
                                                             }
                                                         },
                                                     },
@@ -1044,10 +1305,10 @@
 
                                                                 jemdatasocket.onopen = function(){
                                                                     jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.timeExtractionStartSetter(self);                       
+                                                                    document.timeExtractionStartSetter(self);
                                                                 };
 
-                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                jemdatasocket.onmessage = function(msg){
                                                                     var incomingDat = JSON.parse(msg.data);
                                                                     if ('factor' in incomingDat){
                                                                         if (incomingDat['factor'] == 'timeExtractionStart'){
@@ -1055,9 +1316,9 @@
                                                                             var element = document.timeExtractionStartGetter(pipetteIndex);
                                                                             element.setValue(incomingDat['value']);
                                                                             element.refresh();
-                                                                        }                                                  
+                                                                        }
                                                                     }
-                                                                };            
+                                                                };
                                                             }
                                                         },
                                                         "helper":"(HH:mm:ss-UTC)",
@@ -1083,10 +1344,10 @@
 
                                                                 jemdatasocket.onopen = function(){
                                                                     jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.timeExtractionEndSetter(self);                       
+                                                                    document.timeExtractionEndSetter(self);
                                                                 };
 
-                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                jemdatasocket.onmessage = function(msg){
                                                                     var incomingDat = JSON.parse(msg.data);
                                                                     if ('factor' in incomingDat){
                                                                         if (incomingDat['factor'] == 'timeExtractionEnd'){
@@ -1094,9 +1355,9 @@
                                                                             var element = document.timeExtractionEndGetter(pipetteIndex);
                                                                             element.setValue(incomingDat['value']);
                                                                             element.refresh();
-                                                                        }                                                  
+                                                                        }
                                                                     }
-                                                                };            
+                                                                };
                                                             }
                                                         },
                                                         "helper": "(HH:mm:ss-UTC)",
@@ -1122,10 +1383,10 @@
 
                                                                 jemdatasocket.onopen = function(){
                                                                     jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.timeRetractionEndSetter(self);                       
+                                                                    document.timeRetractionEndSetter(self);
                                                                 };
 
-                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                jemdatasocket.onmessage = function(msg){
                                                                     var incomingDat = JSON.parse(msg.data);
                                                                     if ('factor' in incomingDat){
                                                                         if (incomingDat['factor'] == 'timeRetractionEnd'){
@@ -1133,9 +1394,9 @@
                                                                             var element = document.timeRetractionEndGetter(pipetteIndex);
                                                                             element.setValue(incomingDat['value']);
                                                                             element.refresh();
-                                                                        }                                                  
+                                                                        }
                                                                     }
-                                                                };            
+                                                                };
                                                             }
                                                         },
                                                         "helper": "(HH:mm:ss-UTC)",
@@ -1143,7 +1404,7 @@
                                                     },
                                                     "postPatch":{
                                                         "type": "select",
-                                    					"fieldClass":"dropdown-content col-md-3",
+                                                        "fieldClass":"dropdown-content col-md-3",
                                                         "size":1.5,
                                                         "sort":false,
                                                         "validate":true,
@@ -1152,11 +1413,11 @@
                                                         "hideNone":true
                                                     },
                                                     "endPipetteR":{
-                                                       	"type":"number",
-                                                       	"fieldClass": "form-group col-md-3",
-                                                       	"helper": "(MOhm)",
-                                                       	"validate":true,
-                                                       	"showMessages":false,
+                                                        "type":"number",
+                                                        "fieldClass": "form-group col-md-3",
+                                                        "helper": "(MOhm)",
+                                                        "validate":true,
+                                                        "showMessages":false,
                                                         "events":{
                                                             "ready": function(field){
                                                                 var self = this;
@@ -1164,10 +1425,10 @@
 
                                                                 jemdatasocket.onopen = function(){
                                                                     jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.endPipetteRSetter(self);                       
+                                                                    document.endPipetteRSetter(self);
                                                                 };
 
-                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                jemdatasocket.onmessage = function(msg){
                                                                     var incomingDat = JSON.parse(msg.data);
                                                                     if ('factor' in incomingDat){
                                                                         if (incomingDat['factor'] == 'endPipetteR'){
@@ -1175,9 +1436,9 @@
                                                                             var element = document.endPipetteRGetter(pipetteIndex);
                                                                             element.setValue(incomingDat['value']);
                                                                             element.refresh();
-                                                                        }                                                  
+                                                                        }
                                                                     }
-                                                                };            
+                                                                };
                                                             }
                                                         }
                                                     },
@@ -1203,10 +1464,10 @@
 
                                                                 jemdatasocket.onopen = function(){
                                                                     jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.tubeIDSetter(self);                       
+                                                                    document.tubeIDSetter(self);
                                                                 };
 
-                                                                jemdatasocket.onmessage = function(msg){                           
+                                                                jemdatasocket.onmessage = function(msg){
                                                                     var incomingDat = JSON.parse(msg.data);
                                                                     if ('factor' in incomingDat){
                                                                         if (incomingDat['factor'] == 'tubeID'){
@@ -1214,9 +1475,9 @@
                                                                             var element = document.tubeIDGetter(pipetteIndex);
                                                                             element.setValue(incomingDat['value']);
                                                                             element.refresh();
-                                                                        }                                                  
+                                                                        }
                                                                     }
-                                                                };            
+                                                                };
                                                             }
                                                         },
                                                         "validator": function(callback) {
@@ -1262,10 +1523,10 @@
 
                                                         jemdatasocket.onopen = function(){
                                                             jemdatasocket.send(JSON.stringify(9191));
-                                                            document.cellDepthSetter(self);                       
+                                                            document.cellDepthSetter(self);
                                                         };
 
-                                                        jemdatasocket.onmessage = function(msg){                           
+                                                        jemdatasocket.onmessage = function(msg){
                                                             var incomingDat = JSON.parse(msg.data);
                                                             if ('factor' in incomingDat){
                                                                 if (incomingDat['factor'] == 'depth'){
@@ -1273,9 +1534,9 @@
                                                                     var element = document.cellDepthGetter(pipetteIndex);
                                                                     element.setValue(incomingDat['value']);
                                                                     element.refresh();
-                                                                }                                                  
+                                                                }
                                                             }
-                                                        };            
+                                                        };
                                                     }
                                                 },
                                                 "helper": "(um)"
@@ -1523,6 +1784,11 @@
                                                          }
                                                      ],
                                                      "horizontal":true
+                                                },
+                                                "events": {
+                                                    "ready" : function(field) {
+                                                        makeTextFieldReadOnly(this);                                                        
+                                                    }
                                                 }
                                             }
                                         }
@@ -1531,40 +1797,21 @@
                             },
                             "form":{
                                 "buttons":{
-                                    "localSave":{
-                                        "title": "Save JSON",
-                                        "fieldClass":"form-group btn-lg glyphicon-cloud-downloaded",
-                                        "click": function() {
-                                            var val = this.getValue();
-                                            if (this.isValid(true)) {
-                                                var myjson = JSON.stringify(val, null, "  ");
-                                                alert("Metadata Values: " + myjson);
-                                                var blob = new Blob([myjson], {type: "application/json"});
-                                                if (window.saveAs) {
-                                                    specFileName = val.limsSpecName + ".PS.json";
-                                                    window.saveAs(blob, specFileName);
-                                                }else{
-                                                    alert("saveAs not supported");
-                                                }
-                                            }else{
-                                                alert("Invalid - check that starred fields are not empty!");
-                                            }
-                                        }
-                                    }
+                                    "reset":{}
                                 }
                             },
                             "views":"bootstrap-create"
                         },
                         "data": {
-                        	"formVersion": "2.0.3"
+                            "formVersion": "2.0.5"
                         }
                     });
                 });
             </script>
-            <div class="col-md-12" id="wsedata" >            
+            <div class="col-md-12" id="wsedata" >
                 <h3 id='wseConn' align="left">WSE Connectivity</h3>
                 <h6 id='updateTS' align="left"></h6>
-                <h6 id='updateData' align="left"></h6>                
+                <h6 id='updateData' align="left"></h6>
             </div>
             <script type="text/JavaScript">
             "use strict";
@@ -1598,7 +1845,7 @@
                 });
             </script>
             <script type="text/javascript">
-                "use strict"; 
+                "use strict";
                 $(document).ready(function () {
                     this.indexSetter = indexSetter;
                     this.indexGetter = indexGetter;
@@ -1643,7 +1890,7 @@
 
                     var pipetteindex = 0;
 
-                    function indexSetter(){                        
+                    function indexSetter(){
                         pipetteindex = pipetteindex + 1;
                     }
 
