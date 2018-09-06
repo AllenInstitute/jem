@@ -10,7 +10,7 @@
         "rigOperator": {
             "type": "string",
             "title": "Researcher",
-            "enum":["nataliag", "rene", "djai", "christina", "ayoub", "aarono", "briank", "brianle", "dijonh", "gasparo", "huibm", "jonathant", "jessicat", "katherineb", "kristenh", "lindsayn", "lisak", "ramr", "rustym", "davidre"],
+            "enum":["nataliag", "rene", "djai", "christina", "ayoub", "aarono", "briank", "brianle", "dijonh", "gasparo", "huibm", "jonathant", "jessicat", "katherineb", "kristenh", "lindsayn", "lisak", "martonr", "norbertm", "ramr", "rustym", "szabinaf"],
             "required":true
         },
         "rigNumber": {
@@ -37,7 +37,7 @@
         "blankFillDate":{
             "format":"date",
             "title":"Blank Fill Date",
-            "enum":["2018-07-10"],
+            "enum":["2018-09-04","2018-07-10", "2018-06-14", "2018-05-24", "2018-05-11", "2018-04-26", "2018-03-22", "2018-02-13", "2018-02-07", "2018-01-26", "2017-12-08", "2017-11-21", "2017-10-26", "2017-10-12", "2017-09-25", "2017-08-31"],
             "required":true
         },
         "internalFillDate":{
@@ -195,13 +195,13 @@
                             "pressureApplied":{
                                 "type":"number",
                                 "title":"Extraction Pressure",
-                                "maximum":0,
+                                //"maximum":0,
                                 "required":true
                             },
                             "retractionPressureApplied":{
                                 "type":"number",
                                 "title":"Retraction Pressure",
-                                "maximum":0,
+                                //"maximum":0,
                                 "required":true
                             },
                             "timeExtractionStart":{
