@@ -5,6 +5,8 @@ This repository contains JEM (JSON Electrophysiology Metadata form), a web-form 
 
 We are planning on occasionally updating this tool, but with no fixed schedule and with limited support.  The community is welcome to submit issues, but you should not expect an active response.
 
+This software was developed with support from the National Institute Of Mental Health of the National Institutes of Health and National Institute on Aging under Award Number U01MH114812. The content is solely the responsibility of the authors and does not necessarily represent the official views of the National Institutes of Health.
+
 Project Organization
 ------------
 
