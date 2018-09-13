@@ -364,6 +364,7 @@
                                 "internalFillDate":{
                                     "format":"date",
                                     "title":"Internal Fill Date",
+                                    "enum":["2018-08-14", "2018-07-09", "2018-06-27", "2018-05-21", "2018-04-30", "2018-04-09", "2018-04-08", "2018-03-29", "2018-03-28", "2018-03-14", "2018-03-13", "2018-02-14", "2018-02-13", "2018-02-12", "2018-01-12", "2017-12-04", "2017-10-05", "2017-09-29"],
                                     "required":true
                                 },
                                 "flipped": {
@@ -824,21 +825,18 @@
                                     }
                                 },
                                 "internalFillDate": {
-                                    "type":"date",
-                                    "fieldClass":"col-md-2",
-                                    "picker": {
-                                        "format":"YYYY-MM-DD",
-                                        "showClose":true,
-                                        "inline":false,
-                                        "tooltips": {
-                                            today: "Go to today"
-                                        },
-                                        "useCurrent":true
-                                    },
-                                    "manualEntry":false,
+                                    "type":"select",
+                                    "fieldClass":"dropdown-content col-md-2",
+                                    "helper":[],
+                                    "hideNone":false,
+                                    "noneLabel":"",
                                     "validate":true,
                                     "showMessages":false,
-                                    "hideInitValidationError":true
+                                    "hideInitValidationError":true,
+                                    "sort":function(first, second) {
+                                        // Sort the dates in reverse so that the newest ones will be at the top.
+                                        return second.text.localeCompare(first.text);
+                                    }
                                 },
                                 "flipped":{
                                     "type":"radio",
