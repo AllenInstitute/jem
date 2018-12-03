@@ -596,7 +596,6 @@
                                             "action":"add",
                                             "click": function(e){
                                                 this.handleToolBarAddItemClick();
-                                                window.lastPipetteIndex = 0;
                                             }
                                         }]
                                     },
@@ -609,10 +608,11 @@
                                             "label": "Add Another Patch-Seq Pipette",
                                             "action": "add",
                                             "click": function(key, action, itemIndex) {
-                                                var lastPipetteIndex = window.lastPipetteIndex
-                                                this.handleActionBarAddItemClick(lastPipetteIndex);
-                                                lastPipetteIndex += 1
-                                                window.lastPipetteIndex = lastPipetteIndex;
+                                                //Only add pipettes at the end of the array
+                                                var form = $("#form").alpaca("get");
+                                                var pipettes = form.top().getControlByPath("pipettes");
+                                                var arrayEndIndex = pipettes.getSize() - 1;
+                                                this.handleActionBarAddItemClick(arrayEndIndex);
                                             }
                                         },
                                         {
@@ -623,8 +623,6 @@
                                                 var msg = "Are you sure you want to delete pipette #" + currentPipetteIndexPlusOne + "?";
                                                 if(confirm(msg))
                                                     this.handleActionBarRemoveItemClick(itemIndex);
-                                                var lastPipetteIndex = window.lastPipetteIndex - 1
-                                                window.lastPipetteIndex = lastPipetteIndex;
                                             }
                                         },
                                         {
@@ -1512,7 +1510,7 @@
                             "views":"bootstrap-create"
                         },
                         "data": {
-                            "formVersion": "2.0.5"
+                            "formVersion": "2.0.6"
                         }
                     });
                 });
