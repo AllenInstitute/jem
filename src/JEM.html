@@ -272,6 +272,42 @@
                     });
                 }
                 
+
+                // A function that goes through all pipette array elements, and sets sets the pipette specimen name incrementally if there is a valid patch seq container available (ie the pipette attempt resulted in a successful experiment)
+                function setALLPipetteSpecimenNames(activeContainer, activePipetteIndex) {
+                    var containerRegex = /^(P[A-Z0-9]S4_([0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))_[0-9]{3}_A01)|(NA)$/;
+                    var form = $("#form").alpaca("get");
+                    var sliceSpecimen = form.top().getControlByPath("limsSpecName").data;
+                    var pipettes = form.top().getControlByPath("pipettes");
+                    var pipettesRemaining = pipettes.getSize();
+                    var arrayIndex = 0
+
+                    while (pipettesRemaining > 0) {
+                        if (arrayIndex == activePipetteIndex) {
+                            var container = activeContainer;
+                        } else {
+                            var container = form.top().getControlByPath("pipettes["+arrayIndex+"]/extraction/tubeID").data;
+                        }
+
+                        var pipNameField = form.top().getControlByPath("pipettes["+arrayIndex+"]/pipetteSpecName");
+                        if (containerRegex.test(container)) {
+                            if (typeof tubeIndex !== 'undefined') {
+                                // tubeIndex has been defined
+                                tubeIndex++;
+                            } else {
+                                var tubeIndex = 0;
+                            }
+                            var pipName = document.pipetteSpecNamer(sliceSpecimen, tubeIndex);
+                        } else {
+                            var pipName = null
+                        }
+
+                        pipNameField.setValue(pipName);
+                        arrayIndex++;
+                        pipettesRemaining--;
+                    }
+                }
+
                 // A function that uses recursive callbacks to remove pipettes one at a time.
                 function removePipettes(pipettes, pipettesRemaining, finishCallback) {
                     if (pipettesRemaining > 0) {
@@ -619,11 +655,15 @@
                                             "label": "Remove Above Patch-Seq Pipette",
                                             "action": "remove",
                                             "click": function(key, action, itemIndex) {
+
                                                 var currentPipetteIndexPlusOne = itemIndex + 1;
                                                 var msg = "Are you sure you want to delete pipette #" + currentPipetteIndexPlusOne + "?";
+
                                                 if(confirm(msg))
                                                     this.handleActionBarRemoveItemClick(itemIndex);
-                                            }
+                                                    // Update Pipette Specimen Names
+                                                    setALLPipetteSpecimenNames()
+                                                }
                                         },
                                         {
                                             "action":"up",
@@ -709,48 +749,6 @@
                                                     }
                                                 }
                                             },
-                                      //       "pipetteSpecName": {
-                                            //          "type": "text",
-                                            //          "fieldClass": "form-group col-md-8 no-border",
-                                            //          "helper":[],
-                                            //          "placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02.01",
-                                            //          "showMessages": false,
-                                            //          "hideInitValidationError":true,
-                                            //          "disallowEmptySpaces":true,
-                                      //                   "events":{
-                                      //                       "ready": function(field){
-                                      //                           var self = this;
-                                      //                           console.log("WSE state: " + window.wseState)
-                                      //                           var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                      //                           if (window.wseState){
-                                      //                               jemdatasocket.onopen = function(){
-                                      //                                   jemdatasocket.send(JSON.stringify(9191));
-                                      //                                   document.pipetteSpecNameSetter(self);
-                                      //                               };
-
-                                      //                               jemdatasocket.onmessage = function(msg){
-                                      //                                   var incomingDat = JSON.parse(msg.data);
-                                      //                                   if ('factor' in incomingDat){
-                                      //                                       if (incomingDat['factor'] == 'pipetteSpecName'){
-                                      //                                           var pipetteIndex = incomingDat['index'];
-                                      //                                           var element = document.pipetteSpecNameGetter(pipetteIndex);
-                                      //                                           element.setValue(incomingDat['value']);
-                                      //                                           element.refresh();
-                                      //                                       }
-                                      //                                   }
-                                      //                               }
-                                      //                           } else {
-                                      //                               var lastPipetteIndex = window.lastPipetteIndex;
-                                      //                               if (typeof window.specName !== 'undefined') {
-                                      //                                   var sliceSpecimen = window.specName;
-                                      //                                   var pipetteSpecName = document.pipetteSpecNamer(sliceSpecimen, lastPipetteIndex);
-                                      //                                   self.setValue(pipetteSpecName);
-                                      //                               }
-                                      //                           };
-                                      //                       }
-                                      //                   }
-                                            // },
                                             "recording":{
                                                 "fieldClass": "form-group col-md-12 no-border bg-info",
                                                 "fields": {
@@ -880,6 +878,22 @@
                                                 "vertical":false,
                                                 "hideNone":true,
                                                 "helper": []
+                                            },
+                                            "pipetteSpecName": {
+                                                "type": "text",
+                                                "readonly":true,
+                                                "fieldClass": "form-group col-md-8 no-border",
+                                                "helper":[],
+                                                "placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02.01",
+                                                "showMessages": false,
+                                                "hideInitValidationError":true,
+                                                "disallowEmptySpaces":true,
+                                                "events":{
+                                                    "ready": function(field){
+                                                        var self = this;
+                                                        var form = $("#form").alpaca("get");
+                                                    }
+                                                }
                                             },
                                             "successNotes": {
                                                 "type": "checkbox",
@@ -1185,6 +1199,16 @@
                                                                         }
                                                                     }
                                                                 };
+                                                            },
+                                                            "change": function(field){
+                                                                var container = this.getValue();
+                                                                var str = this.name;
+                                                                var pipetteNumRegex = /\d+/g;
+                                                                var currentIndexStr = str.match(pipetteNumRegex);
+                                                                var currentIndex = parseInt(currentIndexStr);
+
+                                                                // Update Pipette Specimen Names
+                                                                setALLPipetteSpecimenNames(container, currentIndex);
                                                             }
                                                         },
                                                         "validator": function(callback) {
@@ -1794,7 +1818,7 @@
                         } else {
                             pipetteName = sliceSpecimen + '.' + pipetteNumber
                         }
-                        console.log('naming pipette specimen ' + pipetteName)
+                        //console.log('naming pipette specimen ' + pipetteName)
                         return pipetteName
                     }
 
