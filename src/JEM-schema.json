@@ -157,6 +157,11 @@
                         "default":[],
                         "required":true
                     },
+                    "pipetteSpecName": {
+                        "type": "string",
+                        "title":"Pipette Specimen ID",
+                        "required":false
+                    },
                     "failureNotes":{
                         "type":"string",
                         "enum":["Seal Failed","Unstable Seal","Breakin Failed","Access Resistance Out of Range","Vrest Out of Range", "'Wave of Death'", "Other"],
