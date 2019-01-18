@@ -96,7 +96,7 @@
                                 "type":"string",
                                 "title":"Pilot Name",
                                 "default": "None",
-                                "enum": ["None", "Tissue_Touch", "Vortexing", "Electroporation", "Channel_Recording", "Non_Human_Primate_LGN", "Nucleated Patch - Retraction Pressure"],
+                                "enum": ["None", "Tissue_Touch", "Slice_Culture", "Vortexing", "Electroporation", "Channel_Recording", "Non_Human_Primate_LGN", "Nucleated Patch - Retraction Pressure"],
                                 "required":true
                             },
                             "pilotTest01":{
