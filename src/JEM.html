@@ -511,7 +511,9 @@
                                             };
                                         },
                                         "change": function() {
-                                            window.specName = this.getValue()
+                                            window.specName = this.getValue(),
+                                            // Update Pipette Specimen Names
+                                            setALLPipetteSpecimenNames();
                                         }
                                     },
                                     "validator": function(callback) {
@@ -676,10 +678,10 @@
                                     },
                                     "actionbarStyle":"bottom",
                                     "animate":true,
-                                    "collapsed":true,
-                                    "lazyLoading":false,
+                                    "collapsible":true,
+                                    "lazyLoading":true,
                                     "showMessages":true,
-                                    "focus":true,
+                                    "focus":"pipettes/sliceHealth",
                                     "items": {
                                         "fields": {
                                             "approach": {
