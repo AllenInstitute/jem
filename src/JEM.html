@@ -278,6 +278,7 @@
                     var containerRegex = /^(P[A-Z0-9]S4_([0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))_[0-9]{3}_A01)|(NA)$/;
                     var form = $("#form").alpaca("get");
                     var sliceSpecimen = form.top().getControlByPath("limsSpecName").data;
+
                     var pipettes = form.top().getControlByPath("pipettes");
                     var pipettesRemaining = pipettes.getSize();
                     var arrayIndex = 0
@@ -1812,12 +1813,13 @@
 
                     function pipetteSpecNamer(sliceSpecimen, pipetteIndex){
 
+                        var sliceSpecimenNoWhitespace = sliceSpecimen.replace(/\s+/g, '');
                         var pipetteNumber = pipetteIndex + 1;
                         var pipetteName;
                         if (pipetteNumber < 10){
-                            pipetteName = sliceSpecimen + '.0' + pipetteNumber
+                            pipetteName = sliceSpecimenNoWhitespace + '.0' + pipetteNumber
                         } else {
-                            pipetteName = sliceSpecimen + '.' + pipetteNumber
+                            pipetteName = sliceSpecimenNoWhitespace + '.' + pipetteNumber
                         }
                         //console.log('naming pipette specimen ' + pipetteName)
                         return pipetteName
