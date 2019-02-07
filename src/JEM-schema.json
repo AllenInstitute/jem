@@ -121,7 +121,7 @@
                                 "required":false
                             },
                              "pilotTest05":{
-                               "type":"string",
+                               "type":"array",
                                 "title":"Pilot Details",
                                 "enum":["Total","Prepulse","Sustained","Inactivation","Tail Currents"],
                                 "dependencies":"pilotName",
