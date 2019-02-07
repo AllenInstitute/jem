@@ -119,6 +119,13 @@
                                 "enum":["Yes", "No"],
                                 "dependencies":"pilotName",
                                 "required":false
+                            },
+                             "pilotTest05":{
+                               "type":"string",
+                                "title":"Pilot Details",
+                                "enum":["Total","Prepulse","Sustained","Inactivation","Tail Currents"],
+                                "dependencies":"pilotName",
+                                "required":false
                             }
                         }
                     },
@@ -296,6 +303,7 @@
         "pilotTest01":["pilotName"],
         "pilotTest04":["pilotName"],
         "pilotTestYN":["pilotName"],
+        "pilotTest05":["pilotName"],
         "failureNotes":["status"],
         "freeFailureNotes":["status"],
         "successNotes":["status"],
