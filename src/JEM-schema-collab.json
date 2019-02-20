@@ -242,7 +242,7 @@
                                 "type":"string",
                                 "title":"Nucleus sucked in?",
                                 "enum":["intentionally", "not_intentionally", "no", "NA"],
-                                "default":[],
+                                "default":["NA"],
                                 "required":false
                             },
                             "tubeID":{
