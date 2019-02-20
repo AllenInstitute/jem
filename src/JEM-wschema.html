@@ -649,16 +649,16 @@
                                             },
                                             "manualRoi":{
                                                 "type":"string",
-                                                "title": "ROI (Manual Entry)",
-                                                "required":true,
-                                                "dependencies":"autoRoi"
+                                                "title": "ROI",
+                                                "required":true
+                                                //,"dependencies":"autoRoi"
                                             }
                                         }
                                     }
                                 }
                             },
                             "dependencies": {
-                                "manualRoi":["autoRoi"],
+                                //"manualRoi":["autoRoi"],
                                 "pilotTest01":["pilotName"],
                                 "pilotTest04":["pilotName"],
                                 "pilotTestYN":["pilotName"],
@@ -1604,14 +1604,15 @@
                                                 "type":"text",
                                                 "fieldClass":"form-group col-md-3",
                                                 "showMessages":false,
-                                                "hideInitValidationError":true
+                                                "hideInitValidationError":true,
+                                                "hidden":true
                                             },
                                             "manualRoi":{
                                                 "type":"optiontree",
                                                 "fieldClass":"form-group col-md-6",
-                                                "dependencies": {
-                                                    "autoRoi":["None",""]
-                                                },
+                                                //"dependencies": {
+                                                //    "autoRoi":["None",""]
+                                                //},
                                                 "hideInitValidationError":true,
                                                 "tree": {
                                                     "selectors":{
