@@ -415,11 +415,10 @@
                                     "type": "select",
                                     "fieldClass":"dropdown-content col-md-1",
                                     "helper":[],
-                                    "hideNone":false,
-                                    "noneLabel":'',
                                     "validate":true,
                                     "showMessages":false,
                                     "hideInitValidationError":true,
+                                    "hidden":true,
                                     "events":{
                                         "ready": function(field){
                                             var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1620,7 +1619,8 @@
                             "views":"bootstrap-create"
                         },
                         "data": {
-                            "formVersion": "2.0.7"
+                            "formVersion": "2.0.7",
+                            "rigNumber": "NA"
                         }
                     });
                 });
