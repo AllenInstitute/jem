@@ -570,12 +570,14 @@
                                                     "pressureApplied":{
                                                         "type":"number",
                                                         "title":"Extraction Pressure",
-                                                        "required":true
+                                                        "required":true,
+                                                        "default":0
                                                     },
                                                     "retractionPressureApplied":{
                                                         "type":"number",
                                                         "title":"Retraction Pressure",
-                                                        "required":true
+                                                        "required":true,
+                                                        "default":0
                                                     },
                                                     "timeExtractionStart":{
                                                         "format":"time",
@@ -1309,7 +1311,8 @@
                                                                     }
                                                                 };
                                                             }
-                                                        }
+                                                        },
+                                                        "hidden":true
                                                     },
                                                     "retractionPressureApplied":{
                                                         "type":"number",
@@ -1340,6 +1343,7 @@
                                                                 };
                                                             }
                                                         },
+                                                        "hidden":true
                                                     },
                                                     "timeExtractionStart": {
                                                         "type":"time",
