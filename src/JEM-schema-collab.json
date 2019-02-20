@@ -161,7 +161,7 @@
                         "type":"string",
                         "title":"Was recording successful?",
                         "enum":["SUCCESS", "FAILURE"],
-                        "default":[],
+                        "default":["SUCCESS"],
                         "required":true
                     },
                     "pipetteSpecName": {
