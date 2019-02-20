@@ -290,16 +290,14 @@
                     },
                     "manualRoi":{
                         "type":"string",
-                        "title": "ROI (Manual Entry)",
-                        "required":true,
-                        "dependencies":"autoRoi"
-                    }
+                        "title": "ROI",
+                        "required":true
+                     }
                 }
             }
         }
     },
     "dependencies": {
-        "manualRoi":["autoRoi"],
         "pilotTest01":["pilotName"],
         "pilotTest04":["pilotName"],
         "pilotTestYN":["pilotName"],
