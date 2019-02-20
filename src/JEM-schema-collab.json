@@ -236,7 +236,8 @@
                                 "format":"number",
                                 "minimum":0,
                                 "title":"Post Patch Pipette R",
-                                "required":true
+                                "required":true,
+                                "default":0
                             },
                             "nucleus": {
                                 "type":"string",
