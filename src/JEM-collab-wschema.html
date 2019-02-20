@@ -680,7 +680,7 @@
                                 "formVersion": {
                                     "type":"text",
                                     "readonly":true,
-                                    "fieldClass": "col-md-1",
+                                    "fieldClass": "col-md-12",
                                     "data":"/jem-data/jemVersion.json",
                                     "view":"bootstrap-display"
                                     //"type":"hidden"
@@ -801,13 +801,13 @@
                                 },
                                 "limsSpecName": {
                                     "type": "text",
-                                    "fieldClass": "col-md-4",
-                                    "helper":[],
-                                    "placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02",
+                                    "fieldClass": "col-md-3",
+                                    //"helper":[],
+                                    "placeholder":"ex: H19.29.138.11.52",
                                     "validate":true,
-                                    "showMessages": true,
+                                    "showMessages":true,
                                     "hideInitValidationError":true,
-                                    //"disallowEmptySpaces":true,
+                                    "disallowEmptySpaces":true,
                                     "events":{
                                         "ready": function(field){
                                             var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -932,7 +932,7 @@
                                 },
                                 "sliceQuality": {
                                     "type": "checkbox",
-                                    "fieldClass": "col-md-2",
+                                    "fieldClass": "col-md-10",
                                     "label": "Slice Quality",
                                     "sort":false,
                                     "vertical":false,
@@ -1963,11 +1963,11 @@
                     });
                 });
             </script>
-            <div class="col-md-12" id="wsedata" >
+            <!-- <div class="col-md-12" id="wsedata" >
                 <h3 id='wseConn' align="left">WSE Connectivity</h3>
                 <h6 id='updateTS' align="left"></h6>
                 <h6 id='updateData' align="left"></h6>
-            </div>
+            </div> -->
             <script type="text/JavaScript">
             "use strict";
                 $(document).ready(function(){
