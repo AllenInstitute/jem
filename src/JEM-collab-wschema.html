@@ -659,11 +659,11 @@
                             },
                             "dependencies": {
                                 //"manualRoi":["autoRoi"],
-                                "pilotTest01":["pilotName"],
-                                "pilotTest04":["pilotName"],
-                                "pilotTestYN":["pilotName"],
-                                 "pilotTest05":["pilotName"]
-                                // ,"failureNotes":["status"],
+                                //"pilotTest01":["pilotName"],
+                                //"pilotTest04":["pilotName"],
+                                //"pilotTestYN":["pilotName"],
+                                // "pilotTest05":["pilotName"],
+                                // "failureNotes":["status"],
                                 // "freeFailureNotes":["status"],
                                 // "successNotes":["status"],
                                 // "qcNotes":["status"],
@@ -1033,7 +1033,7 @@
                                                         "sort":false,
                                                         "hideNone":true,
                                                         "noneLabel":"None",
-                                                        "hidden":false
+                                                        "hidden":true
                                                     },
                                                     "pilotTest01": {
                                                         "type":"select",
@@ -1042,17 +1042,19 @@
                                                         "sort":false,
                                                         "hideNone":false,
                                                         "noneLabel":"",
-                                                        "dependencies": {
-                                                            "pilotName":"Nucleated Patch - Retraction Pressure"
-                                                        }
+                                                        "hidden":true
+                                                        //"dependencies": {
+                                                        //    "pilotName":"Nucleated Patch - Retraction Pressure"
+                                                        //}
                                                     },
                                                     "pilotTest04": {
                                                         "type":"text",
                                                         "fieldClass": "form-group col-md-3",
                                                         "helper":[],
-                                                        "dependencies": {
-                                                            "pilotName":"Electroporation"
-                                                        }
+                                                        "hidden":true
+                                                        //"dependencies": {
+                                                        //    "pilotName":"Electroporation"
+                                                        //}
                                                     },
                                                     "pilotTestYN": {
                                                         "type":"select",
@@ -1061,17 +1063,19 @@
                                                         "sort":false,
                                                         "hideNone":false,
                                                         "noneLabel":"",
-                                                        "dependencies": {
-                                                            "pilotName":"Vortexing"
-                                                        }
+                                                        "hidden":true
+                                                        //"dependencies": {
+                                                        //    "pilotName":"Vortexing"
+                                                        //}
                                                     },
                                                     "pilotTest05": {
                                                         "type":"checkbox",
                                                         "fieldClass": "form-group col-md-3",
                                                         "helper":[],
-                                                        "dependencies": {
-                                                            "pilotName":"Channel_Recording"
-                                                        }
+                                                        "hidden":true
+                                                        //"dependencies": {
+                                                        //    "pilotName":"Channel_Recording"
+                                                        //}
                                                     }
                                                 }
                                             },
