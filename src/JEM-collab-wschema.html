@@ -531,7 +531,7 @@
                                             "failureNotes":{
                                                 "type":"string",
                                                 "enum":["Seal Failed","Unstable Seal","Breakin Failed","Access Resistance Out of Range","Vrest Out of Range", "'Wave of Death'", "Other", "NA"],
-                                                "default":[],
+                                                "default":["NA"],
                                                 "dependencies":"status",
                                                 "required":true
                                             },
@@ -1232,6 +1232,7 @@
                                                 "type": "checkbox",
                                                 "showMessages": false,
                                                 "hideInitValidationError":true,
+                                                "hidden":true,
                                                 "fieldClass": "col-md-4",
                                                 "dependencies": {
                                                     "status":["FAILURE"]
@@ -1245,7 +1246,8 @@
                                                 "dependencies": {
                                                     "status":["FAILURE"]
                                                 },
-                                                "rows":8
+                                                "rows":8,
+                                                "hidden":true
                                             },
                                             "qcNotes": {
                                                 "type":"textarea",
