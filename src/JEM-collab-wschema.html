@@ -520,7 +520,7 @@
                                                 "type":"string",
                                                 "title":"Was recording successful?",
                                                 "enum":["SUCCESS", "FAILURE"],
-                                                "default":[],
+                                                "default":["SUCCESS"],
                                                 "required":true
                                             },
                                             "pipetteSpecName": {
@@ -532,39 +532,39 @@
                                                 "type":"string",
                                                 "enum":["Seal Failed","Unstable Seal","Breakin Failed","Access Resistance Out of Range","Vrest Out of Range", "'Wave of Death'", "Other", "NA"],
                                                 "default":["NA"],
-                                                "dependencies":"status",
+                                                //"dependencies":"status",
                                                 "required":true
                                             },
                                             "freeFailureNotes":{
                                                 "type":"string",
                                                 "title":"Extra Failure Notes",
                                                 "default":[],
-                                                "dependencies":"status",
+                                                //"dependencies":"status",
                                                 "required":false
                                             },
                                             "successNotes":{
                                                 "type":"string",
                                                 "enum": ["Patch/Cell Unstable", "Patch Became Leaky", "Access Resistance Increased", "Cell Depolarized", "Cell Hyperpolarized", "Blowout Voltage Out of Range", "Rheobase Changed", "Ended After C1", "'Wave of Death'", "Training/Practice", "Rig/Software Problems"],
                                                 "default":[],
-                                                "dependencies":"status",
+                                                //"dependencies":"status",
                                                 "required":false
                                             },
                                             "qcNotes":{
                                                 "type":"string",
                                                 "title":"QC Notes",
-                                                "dependencies":"status",
+                                                //"dependencies":"status",
                                                 "required":false
                                             },
                                             "badSweeps":{
                                                 "type":"string",
                                                 "title":"Bad Sweeps",
-                                                "dependencies":"status",
+                                                //"dependencies":"status",
                                                 "required":false
                                             },
                                             "extraction":{
                                                 "type":"object",
                                                 "title":"Extraction Info",
-                                                "dependencies":"status",
+                                                //"dependencies":"status",
                                                 "properties":{
                                                     "pressureApplied":{
                                                         "type":"number",
@@ -662,13 +662,13 @@
                                 "pilotTest01":["pilotName"],
                                 "pilotTest04":["pilotName"],
                                 "pilotTestYN":["pilotName"],
-                                "pilotTest05":["pilotName"],
-                                "failureNotes":["status"],
-                                "freeFailureNotes":["status"],
-                                "successNotes":["status"],
-                                "qcNotes":["status"],
-                                "badSweeps":["status"],
-                                "extraction":["status"]
+                                 "pilotTest05":["pilotName"]
+                                // ,"failureNotes":["status"],
+                                // "freeFailureNotes":["status"],
+                                // "successNotes":["status"],
+                                // "qcNotes":["status"],
+                                // "badSweeps":["status"],
+                                // "extraction":["status"]
                                 }
                         },
                         "options": {
@@ -1202,7 +1202,8 @@
                                                 "fieldClass": "col-md-12 bg-primary",
                                                 "vertical":false,
                                                 "hideNone":true,
-                                                "helper": []
+                                                "helper": [],
+                                                "hidden":true
                                             },
                                             "pipetteSpecName": {
                                                 "type": "text",
@@ -1222,9 +1223,9 @@
                                             "successNotes": {
                                                 "type": "checkbox",
                                                 "fieldClass": "col-md-4",
-                                                "dependencies": {
-                                                    "status":["SUCCESS"]
-                                                    },
+                                                // "dependencies": {
+                                                //     "status":["SUCCESS"]
+                                                //     },
                                                 "label": "Recording Observations",
                                                 "sort":false
                                             },
@@ -1234,43 +1235,43 @@
                                                 "hideInitValidationError":true,
                                                 "hidden":true,
                                                 "fieldClass": "col-md-4",
-                                                "dependencies": {
-                                                    "status":["FAILURE"]
-                                                    },
+                                                // "dependencies": {
+                                                //     "status":["FAILURE"]
+                                                //     },
                                                 "label": "Cause(s) of failure",
                                                 "sort":false
                                             },
                                             "freeFailureNotes": {
                                                 "type":"textarea",
                                                 "fieldClass": "col-md-8",
-                                                "dependencies": {
-                                                    "status":["FAILURE"]
-                                                },
+                                                // "dependencies": {
+                                                //     "status":["FAILURE"]
+                                                // },
                                                 "rows":8,
                                                 "hidden":true
                                             },
                                             "qcNotes": {
                                                 "type":"textarea",
                                                 "fieldClass": "col-md-4",
-                                                "dependencies": {
-                                                    "status":["SUCCESS"]
-                                                },
+                                                // "dependencies": {
+                                                //     "status":["SUCCESS"]
+                                                // },
                                                 "rows":4
                                             },
                                             "badSweeps": {
                                                 "type":"textarea",
                                                 "fieldClass":"col-md-4",
                                                 "size":2,
-                                                "dependencies":{
-                                                    "status":["SUCCESS"]
-                                                },
+                                                // "dependencies":{
+                                                //     "status":["SUCCESS"]
+                                                // },
                                                 "rows":4
                                             },
                                             "extraction": {
                                                 "fieldClass": "form-group col-md-12 no-border bg-danger",
-                                                "dependencies": {
-                                                    "status":["SUCCESS"]
-                                                },
+                                                // "dependencies": {
+                                                //     "status":["SUCCESS"]
+                                                // },
                                                 "fields": {
                                                     "pressureApplied":{
                                                         "type":"number",
