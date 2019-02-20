@@ -201,12 +201,14 @@
                             "pressureApplied":{
                                 "type":"number",
                                 "title":"Extraction Pressure",
-                                "required":true
+                                "required":true,
+                                "default":0
                             },
                             "retractionPressureApplied":{
                                 "type":"number",
                                 "title":"Retraction Pressure",
-                                "required":true
+                                "required":true,
+                                "default":0
                             },
                             "timeExtractionStart":{
                                 "format":"time",
