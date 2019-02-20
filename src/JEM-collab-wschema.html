@@ -449,7 +449,8 @@
                                                         "type":"string",
                                                         "title":"Cre Status",
                                                         "enum":["Cre+","Cre-","None"],
-                                                        "required":true
+                                                        "required":true,
+                                                        "default":"None",
                                                     },
                                                     "pilotName":{
                                                         "type":"string",
@@ -463,27 +464,27 @@
                                                         "title":"Pilot Details",
                                                         "enum":["Standard (~80 mbar)", "Mid-Range (~65 mbar)", "Low (~50 mbar)", "Minimal (~25 mbar)"],
                                                         "default":"",
-                                                        "dependencies":"pilotName",
+                                                        //"dependencies":"pilotName",
                                                         "required":false
                                                     },
                                                      "pilotTest04":{
                                                        "type":"string",
                                                         "title":"Pilot Details",
-                                                        "dependencies":"pilotName",
+                                                        //"dependencies":"pilotName",
                                                         "required":false
                                                     },
                                                     "pilotTestYN":{
                                                        "type":"string",
                                                         "title":"Pilot Details",
                                                         "enum":["Yes", "No"],
-                                                        "dependencies":"pilotName",
+                                                        //"dependencies":"pilotName",
                                                         "required":false
                                                     },
                                                      "pilotTest05":{
                                                        "type":"array",
                                                         "title":"Pilot Details",
                                                         "enum":["Total","Prepulse","Sustained","Inactivation","Tail Currents"],
-                                                        "dependencies":"pilotName",
+                                                        //"dependencies":"pilotName",
                                                         "required":false
                                                     }
                                                 }
@@ -1024,7 +1025,8 @@
                                                         "vertical":false,
                                                         "hideNone":true,
                                                         "showMessages":false,
-                                                        "hideInitValidationError":true
+                                                        "hideInitValidationError":true,
+                                                        "hidden":true
                                                     },
                                                     "pilotName": {
                                                         "type":"select",

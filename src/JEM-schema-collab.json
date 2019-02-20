@@ -90,7 +90,8 @@
                                 "type":"string",
                                 "title":"Cre Status",
                                 "enum":["Cre+","Cre-","None"],
-                                "required":true
+                                "required":true,
+                                "default":"None"
                             },
                             "pilotName":{
                                 "type":"string",
