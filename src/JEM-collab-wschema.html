@@ -413,7 +413,7 @@
                                 },
                                 "sliceQuality":{
                                     "type":"string",
-                                    "enum": ["Good", "Damaged", "Uneven Thickness", "'Wave of Death'"],
+                                    "enum": ["Good", "Damaged", "Uneven Thickness"],
                                     "default":[],
                                     "required":true
                                 },
@@ -931,8 +931,8 @@
                                     }
                                 },
                                 "sliceQuality": {
-                                    "type": "checkbox",
-                                    "fieldClass": "col-md-10",
+                                    "type": "select",
+                                    "fieldClass": "dropdown-content col-md-2",
                                     "label": "Slice Quality",
                                     "sort":false,
                                     "vertical":false,
