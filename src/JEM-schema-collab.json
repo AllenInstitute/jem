@@ -104,27 +104,23 @@
                                 "title":"Pilot Details",
                                 "enum":["Standard (~80 mbar)", "Mid-Range (~65 mbar)", "Low (~50 mbar)", "Minimal (~25 mbar)"],
                                 "default":"",
-                                "dependencies":"pilotName",
                                 "required":false
                             },
                              "pilotTest04":{
                                "type":"string",
                                 "title":"Pilot Details",
-                                "dependencies":"pilotName",
                                 "required":false
                             },
                             "pilotTestYN":{
                                "type":"string",
                                 "title":"Pilot Details",
                                 "enum":["Yes", "No"],
-                                "dependencies":"pilotName",
                                 "required":false
                             },
                              "pilotTest05":{
                                "type":"array",
                                 "title":"Pilot Details",
                                 "enum":["Total","Prepulse","Sustained","Inactivation","Tail Currents"],
-                                "dependencies":"pilotName",
                                 "required":false
                             }
                         }
@@ -173,39 +169,33 @@
                         "type":"string",
                         "enum":["Seal Failed","Unstable Seal","Breakin Failed","Access Resistance Out of Range","Vrest Out of Range", "'Wave of Death'", "Other", "NA"],
                         "default":[],
-                        "dependencies":"status",
                         "required":true
                     },
                     "freeFailureNotes":{
                         "type":"string",
                         "title":"Extra Failure Notes",
                         "default":[],
-                        "dependencies":"status",
                         "required":false
                     },
                     "successNotes":{
                         "type":"string",
                         "enum": ["Patch/Cell Unstable", "Patch Became Leaky", "Access Resistance Increased", "Cell Depolarized", "Cell Hyperpolarized", "Blowout Voltage Out of Range", "Rheobase Changed", "Ended After C1", "'Wave of Death'", "Training/Practice", "Rig/Software Problems"],
                         "default":[],
-                        "dependencies":"status",
                         "required":false
                     },
                     "qcNotes":{
                         "type":"string",
                         "title":"QC Notes",
-                        "dependencies":"status",
                         "required":false
                     },
                     "badSweeps":{
                         "type":"string",
                         "title":"Bad Sweeps",
-                        "dependencies":"status",
                         "required":false
                     },
                     "extraction":{
                         "type":"object",
                         "title":"Extraction Info",
-                        "dependencies":"status",
                         "properties":{
                             "pressureApplied":{
                                 "type":"number",
@@ -298,15 +288,6 @@
         }
     },
     "dependencies": {
-        "pilotTest01":["pilotName"],
-        "pilotTest04":["pilotName"],
-        "pilotTestYN":["pilotName"],
-        "pilotTest05":["pilotName"],
-        "failureNotes":["status"],
-        "freeFailureNotes":["status"],
-        "successNotes":["status"],
-        "qcNotes":["status"],
-        "badSweeps":["status"],
-        "extraction":["status"]
-        }
+
+    }
 }
