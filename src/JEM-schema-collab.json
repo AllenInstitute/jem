@@ -148,7 +148,7 @@
                             },
                             "humanCellTypePrediction":{
                                 "type":"string",
-                                "title":"Cell Type Prediction (for Human Neurons)",
+                                "title":"Cell Type Prediction",
                                 "enum":["Unknown", "Pyramidal", "FS Interneuron", "Spindle Shaped", "Unknown Interneuron"],
                                 "required":false
                             }
