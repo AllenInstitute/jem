@@ -900,7 +900,7 @@
                                             "pipetteSpecName": {
                                                 "type": "text",
                                                 "readonly":true,
-                                                "fieldClass": "form-group col-md-8 no-border",
+                                                "fieldClass": "form-group col-md-9 no-border",
                                                 "helper":[],
                                                 "showMessages": false,
                                                 "hideInitValidationError":true,
@@ -915,9 +915,9 @@
                                             "successNotes": {
                                                 "type": "checkbox",
                                                 "fieldClass": "col-md-4",
-                                                "dependencies": {
-                                                    "status":["SUCCESS"]
-                                                    },
+                                                // "dependencies": {
+                                                //     "status":["SUCCESS"]
+                                                //     },
                                                 "label": "Recording Observations",
                                                 "sort":false
                                             },
@@ -927,44 +927,44 @@
                                                 "hideInitValidationError":true,
                                                 "hidden":true,
                                                 "fieldClass": "col-md-4",
-                                                "dependencies": {
-                                                    "status":["FAILURE"]
-                                                    },
+                                                // "dependencies": {
+                                                //     "status":["FAILURE"]
+                                                //     },
                                                 "label": "Cause(s) of failure",
                                                 "sort":false
                                             },
                                             "freeFailureNotes": {
                                                 "type":"textarea",
                                                 "fieldClass": "col-md-8",
-                                                "dependencies": {
-                                                    "status":["FAILURE"]
-                                                },
+                                                // "dependencies": {
+                                                //     "status":["FAILURE"]
+                                                // },
                                                 "rows":8,
                                                 "hidden":true
                                             },
                                             "qcNotes": {
                                                 "type":"textarea",
                                                 "fieldClass": "col-md-4",
-                                                "dependencies": {
-                                                    "status":["SUCCESS"]
-                                                },
-                                                "rows":4
+                                                // "dependencies": {
+                                                //     "status":["SUCCESS"]
+                                                // },
+                                                "rows":6
                                             },
                                             "badSweeps": {
                                                 "type":"textarea",
                                                 "fieldClass":"col-md-4",
                                                 "size":2,
-                                                "dependencies":{
-                                                    "status":["SUCCESS"]
-                                                },
+                                                //"dependencies":{
+                                                //    "status":["SUCCESS"]
+                                                //},
                                                 "rows":4,
                                                 "hidden":true
                                             },
                                             "extraction": {
                                                 "fieldClass": "form-group col-md-12 no-border bg-danger",
-                                                "dependencies": {
-                                                    "status":["SUCCESS"]
-                                                },
+                                                //"dependencies": {
+                                                //    "status":["SUCCESS"]
+                                                //},
                                                 "fields": {
                                                     "pressureApplied":{
                                                         "type":"number",
