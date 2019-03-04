@@ -7,5 +7,3 @@
 *.tiff
 *.pkl
 *.csv
-!ps_user_info.csv
-!roi_info.csv
