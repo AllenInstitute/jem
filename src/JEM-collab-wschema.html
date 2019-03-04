@@ -709,7 +709,6 @@
                                     "fieldClass": "col-md-12",
                                     "data":"/jem-data/jemVersion.json",
                                     "view":"bootstrap-display"
-                                    //"type":"hidden"
                                 },
                                 "rigOperator" : {
                                     "type": "select",
@@ -720,39 +719,19 @@
                                     "validate":true,
                                     "showMessages":false,
                                     "hideInitValidationError":true,
-                                    "events":{
-                                        "ready": function(field){
-                                            var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                            var self = this;
-                                            jemdatasocket.onopen  = function() {
-                                                jemdatasocket.send(JSON.stringify(9191));
-                                            };
-
-                                            jemdatasocket.onmessage = function(msg) {
-                                                var incomingDat = JSON.parse(msg.data);
-
-                                                if ('factor' in incomingDat){
-                                                    if (incomingDat['factor'] == 'rigOperator'){
-                                                        self.setValue(incomingDat['value']);
-                                                        self.refresh();
-                                                    }
-                                                }
-                                            };
-                                        },
-                                        "validator": function(callback) {
-                                            var value = this.getValue();
-                                            if (value == null) {
-                                                callback({
-                                                    "status":false,
-                                                    "message": "Please Enter Researcher Name"
-                                                });
-                                            } else {
-                                                callback({
-                                                    "status":true
-                                                });
-                                            }
-                                        },
+                                    "events":{},
+                                    "validator": function(callback) {
+                                        var value = this.getValue();
+                                        if (value == null) {
+                                            callback({
+                                                "status":false,
+                                                "message": "Please Enter Researcher Name"
+                                            });
+                                        } else {
+                                            callback({
+                                                "status":true
+                                            });
+                                        }
                                     }
                                 },
                                 "rigNumber": {
@@ -763,27 +742,7 @@
                                     "showMessages":false,
                                     "hideInitValidationError":true,
                                     "hidden":true,
-                                    "events":{
-                                        "ready": function(field){
-                                            var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                            var self = this;
-                                            jemdatasocket.onopen  = function() {
-                                                jemdatasocket.send(JSON.stringify(9191));
-                                            };
-
-                                            jemdatasocket.onmessage = function(msg) {
-                                                var incomingDat = JSON.parse(msg.data);
-
-                                                if ('factor' in incomingDat){
-                                                    if (incomingDat['factor'] == 'rigNumber'){
-                                                        self.setValue(incomingDat['value']);
-                                                        self.refresh();
-                                                    }
-                                                }
-                                            };
-                                        }
-                                    }
+                                    "events":{}
                                 },
                                 "date": {
                                     "type":"date",
@@ -800,25 +759,6 @@
                                         "useCurrent":true
                                     },
                                     "events":{
-                                        "ready": function(field){
-                                            var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                            var self = this;
-                                            jemdatasocket.onopen  = function() {
-                                                jemdatasocket.send(JSON.stringify(9191));
-                                            };
-
-                                            jemdatasocket.onmessage = function(msg) {
-                                                var incomingDat = JSON.parse(msg.data);
-
-                                                if ('factor' in incomingDat){
-                                                    if (incomingDat['factor'] == 'onRigTimeStamp'){
-                                                        self.setValue(incomingDat['value']);
-                                                        self.refresh();
-                                                    }
-                                                }
-                                            };
-                                        },
                                         "change": function(field){
                                             // Update Default Timestamps
                                             setDefaultTimestamps();
@@ -852,32 +792,12 @@
                                 "limsSpecName": {
                                     "type": "text",
                                     "fieldClass": "col-md-3",
-                                    //"helper":[],
                                     "placeholder":"ex: H19.29.138.11.52",
                                     "validate":true,
                                     "showMessages":false,
                                     "hideInitValidationError":true,
                                     "disallowEmptySpaces":true,
                                     "events":{
-                                        "ready": function(field){
-                                            var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                            var self = this;
-                                            jemdatasocket.onopen  = function() {
-                                                jemdatasocket.send(JSON.stringify(9191));
-                                            };
-
-                                            jemdatasocket.onmessage = function(msg) {
-                                                var incomingDat = JSON.parse(msg.data);
-
-                                                if ('factor' in incomingDat){
-                                                    if (incomingDat['factor'] == 'limsSpecName'){
-                                                        self.setValue(incomingDat['value']);
-                                                        self.refresh();
-                                                    }
-                                                }
-                                            };
-                                        },
                                         "change": function() {
                                             window.specName = this.getValue();
                                             // Update Pipette Specimen Names
@@ -952,33 +872,7 @@
                                     "showMessages":false,
                                     "hideInitValidationError":true,
                                     "hidden":true,
-                                    "events":{
-                                        "ready": function(field){
-                                            var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                            var self = this;
-                                            jemdatasocket.onopen  = function() {
-                                                jemdatasocket.send(JSON.stringify(9191));
-                                            };
-
-                                            jemdatasocket.onmessage = function(msg) {
-                                                var incomingDat = JSON.parse(msg.data);
-
-                                                if ('factor' in incomingDat){
-                                                    if (incomingDat['factor'] == 'sliceFlipped'){
-                                                        if (incomingDat['value'] == 'y'){
-                                                            self.setValue("Yes")
-                                                            self.refresh();
-                                                        } else {
-                                                            self.setValue("No");
-                                                            self.refresh();
-                                                        }
-
-                                                    }
-                                                }
-                                            };
-                                        }
-                                    }
+                                    "events":{}
                                 },
                                 "sliceQuality": {
                                     "type": "select",
@@ -1166,6 +1060,7 @@
                                                     "timeStart": {
                                                         "fieldClass": "form-group col-md-3",
                                                         "type":"date",
+                                                        "hidden":true,
                                                         "dateFormat":"HH:mm:ssZ",
                                                         "picker": {
                                                             "showClose":true,
@@ -1179,29 +1074,7 @@
                                                         },
                                                         "showMessages":false,
                                                         "hideInitValidationError":true,
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.approachStartSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'timeApproachStart'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.approachStartGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        },
+                                                        "events":{},
                                                         "manualEntry":false,
                                                         "helper":"(HH:mm:ss-UTC)"
                                                     },
@@ -1212,34 +1085,13 @@
                                                         "validate":true,
                                                         "showMessages":false,
                                                         "hideInitValidationError":true,
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.pipetteRSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'pipetteR'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.pipetteRGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        },
+                                                        "events":{},
                                                         "hidden":true
                                                     },
                                                     "timeWholeCellStart":{
                                                         "type":"date",
                                                         "fieldClass": "form-group col-md-3",
+                                                        "hidden":true,
                                                         "dateFormat":"HH:mm:ssZ",
                                                         "picker": {
                                                             "showClose":true,
@@ -1253,29 +1105,7 @@
                                                         },
                                                         "showMessages":false,
                                                         "hideInitValidationError":true,
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.wholeCellStartSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'timeWholeCellStart'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.wholeCellStartGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        },
+                                                        "events":{},
                                                         "helper":"(HH:mm:ss-UTC)"
                                                     },
                                                     "humanCellTypePrediction":{
@@ -1367,29 +1197,7 @@
                                                         "fieldClass":"col-md-3",
                                                         "validate":true,
                                                         "showMessages":false,
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.pressureAppliedSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'pressureApplied'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.pressureAppliedGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        },
+                                                        "events":{},
                                                         "hidden":true
                                                     },
                                                     "retractionPressureApplied":{
@@ -1398,34 +1206,13 @@
                                                         "fieldClass": "col-md-3",
                                                         "validate":true,
                                                         "showMessages":false,
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.retractionPressureAppliedSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'retractionPressureApplied'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.retractionPressureAppliedGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        },
+                                                        "events":{},
                                                         "hidden":true
                                                     },
                                                     "timeExtractionStart": {
                                                         "type":"time",
                                                         "fieldClass": "col-md-3",
+                                                        "hidden":true,
                                                         "dateFormat":"HH:mm:ssZ",
                                                         "picker": {
                                                             "showClose":true,
@@ -1437,34 +1224,13 @@
                                                             "inline":false,
                                                             "useCurrent":true
                                                         },
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.timeExtractionStartSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'timeExtractionStart'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.timeExtractionStartGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        },
+                                                        "events":{},
                                                         "helper":"(HH:mm:ss-UTC)"
                                                     },
                                                     "timeExtractionEnd": {
                                                         "type":"time",
                                                         "fieldClass": "col-md-3",
+                                                        "hidden":true,
                                                         "dateFormat":"HH:mm:ssZ",
                                                         "picker": {
                                                             "showClose":true,
@@ -1476,34 +1242,13 @@
                                                             "inline":false,
                                                             "useCurrent":true
                                                         },
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.timeExtractionEndSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'timeExtractionEnd'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.timeExtractionEndGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        },
+                                                        "events":{},
                                                         "helper": "(HH:mm:ss-UTC)"
                                                     },
                                                     "timeRetractionEnd": {
                                                         "type":"time",
                                                         "fieldClass": "col-md-3",
+                                                        "hidden":true,
                                                         "dateFormat":"HH:mm:ssZ",
                                                         "picker": {
                                                             "showClose":true,
@@ -1515,29 +1260,7 @@
                                                             "inline":false,
                                                             "useCurrent":true
                                                         },
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.timeRetractionEndSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'timeRetractionEnd'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.timeRetractionEndGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        },
+                                                        "events":{},
                                                         "helper": "(HH:mm:ss-UTC)",
                                                         "fieldClass": "col-md-3"
                                                     },
@@ -1557,29 +1280,7 @@
                                                         "helper": "(MOhm)",
                                                         "validate":true,
                                                         "showMessages":false,
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.endPipetteRSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'endPipetteR'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.endPipetteRGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        },
+                                                        "events":{},
                                                         "hidden":true
                                                     },
                                                     "nucleus":{
@@ -1595,31 +1296,9 @@
                                                     },
                                                     "tubeID": {
                                                         "type":"text",
-                                                        "fieldClass": "col-md-4",
+                                                        "fieldClass": "col-md-3",
                                                         "placeholder":"ex: P9S4_180522_406_A01",
-                                                        //"helper":"(PX for development)",
                                                         "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.tubeIDSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'tubeID'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.tubeIDGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            },
                                                             "change": function(field){
                                                                 var container = this.getValue();
                                                                 var str = this.name;
@@ -1646,7 +1325,7 @@
                                                     },
                                                     "extractionNotes": {
                                                         "type":"textarea",
-                                                        "fieldClass": "col-md-5",
+                                                        "fieldClass": "col-md-3",
                                                         "rows":4
                                                     },
                                                     "extractionObservations":{
@@ -1672,29 +1351,7 @@
                                                 "validate":true,
                                                 "showMessages":true,
                                                 "hideInitValidationError":true,
-                                                "events":{
-                                                    "ready": function(field){
-                                                        var self = this;
-                                                        var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                        jemdatasocket.onopen = function(){
-                                                            jemdatasocket.send(JSON.stringify(9191));
-                                                            document.cellDepthSetter(self);
-                                                        };
-
-                                                        jemdatasocket.onmessage = function(msg){
-                                                            var incomingDat = JSON.parse(msg.data);
-                                                            if ('factor' in incomingDat){
-                                                                if (incomingDat['factor'] == 'depth'){
-                                                                    var pipetteIndex = incomingDat['index'];
-                                                                    var element = document.cellDepthGetter(pipetteIndex);
-                                                                    element.setValue(incomingDat['value']);
-                                                                    element.refresh();
-                                                                }
-                                                            }
-                                                        };
-                                                    }
-                                                },
+                                                "events":{},
                                                 "helper": "(um)"
                                             },
                                             "autoRoi":{
@@ -1987,203 +1644,11 @@
                     });
                 });
             </script>
-            <!-- <div class="col-md-12" id="wsedata" >
-                <h3 id='wseConn' align="left">WSE Connectivity</h3>
-                <h6 id='updateTS' align="left"></h6>
-                <h6 id='updateData' align="left"></h6>
-            </div> -->
-            <script type="text/JavaScript">
-            "use strict";
-                $(document).ready(function(){
 
-                    window.wseState = false;
-                    console.log("Opening General Jemdatasocket");
-                    var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                    var self = this;
-                    jemdatasocket.onopen  = function() {
-                        jemdatasocket.send(JSON.stringify(9191));
-                        window.wseState = true;
-                    };
-
-                    jemdatasocket.onmessage = function(msg) {
-                        var incomingDat = JSON.parse(msg.data);
-
-                        if ('ts' in incomingDat){
-                            var updateTimeStamp = incomingDat['ts']
-                            document.getElementById('updateTS').innerHTML = updateTimeStamp;
-                        }
-
-                        if (('factor' in incomingDat) && ('value' in incomingDat)) {
-                            var factorString = incomingDat['factor'];
-                            var valueString = incomingDat['value'];
-                            var jemUpdateTimeString = "> WSE->> JEM update Factor:" + factorString + " Value:" + valueString
-                            document.getElementById('updateData').innerHTML = jemUpdateTimeString;
-                        }
-                    };
-                });
-            </script>
             <script type="text/javascript">
                 "use strict";
                 $(document).ready(function () {
-                    this.indexSetter = indexSetter;
-                    this.indexGetter = indexGetter;
-                    this.pipetteRSetter = pipetteRSetter;
-                    this.pipetteRGetter = pipetteRGetter;
-                    this.endPipetteRSetter = endPipetteRSetter;
-                    this.endPipetteRGetter = endPipetteRGetter;
-                    this.wholeCellStartSetter = wholeCellStartSetter;
-                    this.wholeCellStartGetter = wholeCellStartGetter;
-                    this.pressureAppliedSetter = pressureAppliedSetter;
-                    this.pressureAppliedGetter = pressureAppliedGetter;
-                    this.retractionPressureAppliedSetter = retractionPressureAppliedSetter;
-                    this.retractionPressureAppliedGetter = retractionPressureAppliedGetter;
-                    this.approachStartSetter = approachStartSetter;
-                    this.approachStartGetter = approachStartGetter;
-                    this.timeExtractionStartSetter = timeExtractionStartSetter;
-                    this.timeExtractionStartGetter = timeExtractionStartGetter;
-                    this.timeExtractionEndSetter = timeExtractionEndSetter;
-                    this.timeExtractionEndGetter = timeExtractionEndGetter;
-                    this.timeRetractionEndSetter = timeRetractionEndSetter;
-                    this.timeRetractionEndGetter = timeRetractionEndGetter;
-                    this.pipetteSpecNameGetter = pipetteSpecNameGetter;
-                    this.pipetteSpecNameSetter = pipetteSpecNameSetter;
-                    this.tubeIDSetter = tubeIDSetter;
-                    this.tubeIDGetter = tubeIDGetter;
-                    this.cellDepthSetter = cellDepthSetter;
-                    this.cellDepthGetter = cellDepthGetter;
                     this.pipetteSpecNamer = pipetteSpecNamer;
-
-                    var pipetteRList = [];
-                    var endPipetteRList = [];
-                    var wholeCellStartList = [];
-                    var approachStartList = [];
-                    var timeExtractionStartList = [];
-                    var timeExtractionEndList = [];
-                    var timeRetractionEndList = [];
-                    var pressureAppliedList = [];
-                    var retractionPressureAppliedList = [];
-                    var pipetteSpecNameList = [];
-                    var tubeIDList = [];
-                    var cellDepthList = [];
-
-                    var pipetteindex = 0;
-
-                    function indexSetter(){
-                        pipetteindex = pipetteindex + 1;
-                    }
-
-                    function indexGetter(){
-                        return pipetteindex;
-                    }
-
-                    function pipetteRSetter(incomingElement){
-                        pipetteRList[pipetteindex] = incomingElement;
-                    }
-
-                    function pipetteRGetter(getterindex){
-                        console.log('getting pipette R element at pipetteIndex:' + getterindex);
-                        return pipetteRList[getterindex]
-                    }
-
-                    function endPipetteRSetter(incomingElement){
-                        endPipetteRList[pipetteindex] = incomingElement;
-                    }
-
-                    function endPipetteRGetter(getterindex){
-                        console.log('getting end pipette R element at pipetteIndex:' + getterindex);
-                        return endPipetteRList[getterindex]
-                    }
-
-                    function wholeCellStartSetter(incomingElement){
-                        wholeCellStartList[pipetteindex] = incomingElement;
-                    }
-
-                    function wholeCellStartGetter(getterindex){
-                        console.log('getting whole cell start time element at pipetteIndex:' + getterindex);
-                        return wholeCellStartList[getterindex]
-                    }
-
-                    function approachStartSetter(incomingElement){
-                        approachStartList[pipetteindex] = incomingElement;
-                    }
-
-                    function approachStartGetter(getterindex){
-                        console.log('getting approach start time element at pipetteIndex:' + getterindex);
-                        return approachStartList[getterindex]
-                    }
-
-                    function timeExtractionStartSetter(incomingElement){
-                        timeExtractionStartList[pipetteindex] = incomingElement;
-                    }
-
-                    function timeExtractionStartGetter(getterindex){
-                        console.log('getting time extraction start time element at pipetteIndex:' + getterindex);
-                        return timeExtractionStartList[getterindex]
-                    }
-
-                    function timeExtractionEndSetter(incomingElement){
-                        timeExtractionEndList[pipetteindex] = incomingElement;
-                    }
-
-                    function timeExtractionEndGetter(getterindex){
-                        console.log('getting time extraction end time element at pipetteIndex:' + getterindex);
-                        return timeExtractionEndList[getterindex]
-                    }
-
-                    function timeRetractionEndSetter(incomingElement){
-                        timeRetractionEndList[pipetteindex] = incomingElement;
-                    }
-
-                    function timeRetractionEndGetter(getterindex){
-                        console.log('getting time retraction end time element at pipetteIndex:' + getterindex);
-                        return timeRetractionEndList[getterindex]
-                    }
-
-                    function pressureAppliedSetter(incomingElement){
-                        pressureAppliedList[pipetteindex] = incomingElement;
-                    }
-
-                    function pressureAppliedGetter(getterindex){
-                        console.log('getting pressure applied element at pipetteIndex:' + getterindex);
-                        return pressureAppliedList[getterindex]
-                    }
-
-                    function retractionPressureAppliedSetter(incomingElement){
-                        retractionPressureAppliedList[pipetteindex] = incomingElement;
-                    }
-
-                    function retractionPressureAppliedGetter(getterindex){
-                        console.log('getting retraction pressure applied element at pipetteIndex:' + getterindex);
-                        return retractionPressureAppliedList[getterindex]
-                    }
-
-                    function pipetteSpecNameSetter(incomingElement){
-                        pipetteSpecNameList[pipetteindex] = incomingElement;
-                    }
-
-                    function pipetteSpecNameGetter(getterindex){
-                        console.log('getting pipetteSpecName element at pipetteIndex:' + getterindex);
-                        return pipetteSpecNameList[getterindex]
-                    }
-
-                    function tubeIDSetter(incomingElement){
-                        tubeIDList[pipetteindex] = incomingElement;
-                    }
-
-                    function tubeIDGetter(getterindex){
-                        console.log('getting tube ID element at pipetteIndex:' + getterindex);
-                        return tubeIDList[getterindex]
-                    }
-
-                    function cellDepthSetter(incomingElement){
-                        cellDepthList[pipetteindex] = incomingElement;
-                    }
-
-                    function cellDepthGetter(getterindex){
-                        console.log('getting cell Depth element at pipetteIndex:' + getterindex);
-                        return cellDepthList[getterindex]
-                    }
 
                     function pipetteSpecNamer(sliceSpecimen, pipetteIndex){
 
