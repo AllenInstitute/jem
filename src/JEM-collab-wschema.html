@@ -308,6 +308,31 @@
                     }
                 }
 
+                // A function that goes through all pipette array elements, and sets sets the time stamps to a default value (the slice on rig time). For collab metadata use only.
+                function setDefaultTimestamps() {
+                    var form = $("#form").alpaca("get");
+                    var sliceDate = form.top().getControlByPath("date").data;
+                    var pipettes = form.top().getControlByPath("pipettes");
+                    var pipettesRemaining = pipettes.getSize();
+                    var arrayIndex = 0;
+                    defaultDate = moment(sliceDate).format('HH:mm:ssZ');
+
+                    while (pipettesRemaining > 0) {
+                        var field1 = form.top().getControlByPath("pipettes["+arrayIndex+"]/extraction/timeExtractionStart");
+                        var field2 = form.top().getControlByPath("pipettes["+arrayIndex+"]/extraction/timeExtractionEnd");
+                        var field3 = form.top().getControlByPath("pipettes["+arrayIndex+"]/extraction/timeRetractionEnd");
+                        var field4 = form.top().getControlByPath("pipettes["+arrayIndex+"]/recording/timeStart");
+                        var field5 = form.top().getControlByPath("pipettes["+arrayIndex+"]/recording/timeWholeCellStart");
+
+                        var timeFieldIndex;
+                        var t = [field1, field2, field3, field4, field5];
+                        for (timeFieldIndex = 0; timeFieldIndex < t.length; ++timeFieldIndex) {
+                            t[timeFieldIndex].setValue(defaultDate);
+                        }
+                        arrayIndex++;
+                        pipettesRemaining--;
+                    }
+                }
 
                 // A function that uses recursive callbacks to remove pipettes one at a time.
                 function removePipettes(pipettes, pipettesRemaining, finishCallback) {
@@ -450,7 +475,7 @@
                                                         "title":"Cre Status",
                                                         "enum":["Cre+","Cre-","None"],
                                                         "required":true,
-                                                        "default":"None",
+                                                        "default":"None"
                                                     },
                                                     "pilotName":{
                                                         "type":"string",
@@ -793,6 +818,30 @@
                                                     }
                                                 }
                                             };
+                                        },
+                                        "change": function(field){
+                                            // Update Default Timestamps
+                                            setDefaultTimestamps();
+                                        },
+                                        "click": function(field){
+                                            // Update Default Timestamps
+                                            setDefaultTimestamps();
+                                        },
+                                        "mouseover": function(field){
+                                            // Update Default Timestamps
+                                            setDefaultTimestamps();
+                                        },
+                                        "mouseout": function(field){
+                                            // Update Default Timestamps
+                                            setDefaultTimestamps();
+                                        },
+                                        "focus": function(field){
+                                            // Update Default Timestamps
+                                            setDefaultTimestamps();
+                                        },
+                                        "blur": function(field){
+                                            // Update Default Timestamps
+                                            setDefaultTimestamps();
                                         }
                                     },
                                     "manualEntry":false,
@@ -830,7 +879,7 @@
                                             };
                                         },
                                         "change": function() {
-                                            window.specName = this.getValue(),
+                                            window.specName = this.getValue();
                                             // Update Pipette Specimen Names
                                             setALLPipetteSpecimenNames();
                                         }
@@ -998,6 +1047,32 @@
                                         }]
                                     },
                                     "actionbarStyle":"bottom",
+                                    "events": {
+                                        "change": function(field){
+                                        // Update Default Timestamps
+                                        setDefaultTimestamps();
+                                        },
+                                        "click": function(field){
+                                        // Update Default Timestamps
+                                        setDefaultTimestamps();
+                                        },
+                                        "mouseover": function(field){
+                                        // Update Default Timestamps
+                                        setDefaultTimestamps();
+                                        },
+                                        "mouseout": function(field){
+                                        // Update Default Timestamps
+                                        setDefaultTimestamps();
+                                        },
+                                        "focus": function(field){
+                                        // Update Default Timestamps
+                                        setDefaultTimestamps();
+                                        },
+                                        "blur": function(field){
+                                        // Update Default Timestamps
+                                        setDefaultTimestamps();
+                                        }
+                                    },
                                     "animate":true,
                                     "collapsible":true,
                                     "lazyLoading":true,
