@@ -223,17 +223,17 @@
                             },
                             "timeExtractionStart":{
                                 "format":"time",
-                                "title":"Extraction Start",
+                                "title":"Extraction Start Time",
                                 "required":true
                             },
                             "timeExtractionEnd":{
                                 "format":"time",
-                                "title":"Extraction End",
+                                "title":"Extraction End Time",
                                 "required":true
                             },
                             "timeRetractionEnd":{
                                 "format":"time",
-                                "title":"Retraction End",
+                                "title":"Retraction End Time",
                                 "required":true
                             },
                             "timeChannelRecordingEnd":{
