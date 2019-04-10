@@ -308,6 +308,17 @@
                         pipettesRemaining--;
                     }
                 }
+                
+                // A function that gets the pilot name from the approach into the extraction. (This is a workaround as I couldn't figure out how to do a nested dependency within the array in Alpaca.)
+                function copyPilotName(activePipetteIndex, activePilotName, activeStatus) {
+                    var form = $("#form").alpaca("get");
+                    if (activeStatus !== null) {
+                        if (activeStatus == ["SUCCESS"]) {
+                            var dupPilotNameField = form.top().getControlByPath("pipettes["+activePipetteIndex+"]/extraction/pilotNameExtra");
+                            dupPilotNameField.setValue("Pilot: " + activePilotName);
+                        }
+                    }
+                }
 
                 // A function that uses recursive callbacks to remove pipettes one at a time.
                 function removePipettes(pipettes, pipettesRemaining, finishCallback) {
