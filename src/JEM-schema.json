@@ -207,14 +207,18 @@
                         "title":"Extraction Info",
                         "dependencies":"status",
                         "properties":{
+                            "pilotNameExtra": {
+                                "type":"string",
+                                "readonly":true
+                            },
                             "pressureApplied":{
                                 "type":"number",
-                                "title":"Extraction Pressure",
+                                "title":"Extraction Pressure (mbar)",
                                 "required":true
                             },
                             "retractionPressureApplied":{
                                 "type":"number",
-                                "title":"Retraction Pressure",
+                                "title":"Retraction Pressure (mbar)",
                                 "required":true
                             },
                             "timeExtractionStart":{
@@ -231,6 +235,12 @@
                                 "format":"time",
                                 "title":"Retraction End",
                                 "required":true
+                            },
+                            "timeChannelRecordingEnd":{
+                                "format":"time",
+                                "title":"Channel Rec End Time",
+                                "required":false,
+                                "dependencies":"pilotNameExtra"
                             },
                             "postPatch":{
                                 "type":"string",

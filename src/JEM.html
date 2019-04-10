@@ -718,7 +718,20 @@
                                                         "sort":false,
                                                         "hideNone":true,
                                                         "noneLabel":"None",
-                                                        "hidden":false
+                                                        "hidden":false,
+                                                        "events":{
+                                                            "change": function() {
+                                                                // Echo Pilot Name
+                                                                var str = this.name;
+                                                                var currentPilotName = this.getValue();
+                                                                var pipetteNumRegex = /\d+/g;
+                                                                var currentIndexStr = str.match(pipetteNumRegex);
+                                                                var currentIndex = parseInt(currentIndexStr);
+                                                                var form = $("#form").alpaca("get");
+                                                                var currentStatus = form.top().getControlByPath("pipettes["+currentIndex+"]/status").data;
+                                                                copyPilotName(currentIndex, currentPilotName, currentStatus);
+                                                            }
+                                                        }
                                                     },
                                                     "pilotTest01": {
                                                         "type":"select",
@@ -803,7 +816,7 @@
                                                             }
                                                         },
                                                         "manualEntry":false,
-                                                        "helper":"(HH:mm:ss-UTC)"
+                                                        //"helper":"(HH:mm:ss-UTC)"
                                                     },
                                                     "pipetteR":{
                                                         "type":"number",
@@ -875,7 +888,7 @@
                                                                 };
                                                             }
                                                         },
-                                                        "helper":"(HH:mm:ss-UTC)"
+                                                        //"helper":"(HH:mm:ss-UTC)"
                                                     },
                                                     "humanCellTypePrediction":{
                                                         "type": "select",
@@ -888,7 +901,30 @@
                                                 "fieldClass": "col-md-12 bg-primary",
                                                 "vertical":false,
                                                 "hideNone":true,
-                                                "helper": []
+                                                "helper": [],
+                                                "events":{
+                                                    "ready": function() {
+                                                        // Echo Pilot Name
+                                                        var str = this.name;
+                                                        var currentStatus = this.getValue();
+                                                        var pipetteNumRegex = /\d+/g;
+                                                        var currentIndexStr = str.match(pipetteNumRegex);
+                                                        var currentIndex = parseInt(currentIndexStr);
+                                                        var currentPilotName = form.top().getControlByPath("pipettes["+currentIndex+"]/approach/pilotName").data;
+                                                        copyPilotName(currentIndex, currentPilotName, currentStatus);
+                                                    },
+                                                    "focus": function() {
+                                                        // Echo Pilot Name
+                                                        var str = this.name;
+                                                        var currentStatus = this.getValue();
+                                                        var pipetteNumRegex = /\d+/g;
+                                                        var currentIndexStr = str.match(pipetteNumRegex);
+                                                        var currentIndex = parseInt(currentIndexStr);
+                                                        var form = $("#form").alpaca("get");
+                                                        var currentPilotName = form.top().getControlByPath("pipettes["+currentIndex+"]/approach/pilotName").data;
+                                                        copyPilotName(currentIndex, currentPilotName, currentStatus);
+                                                    },
+                                                }
                                             },
                                             "pipetteSpecName": {
                                                 "type": "text",
@@ -956,10 +992,16 @@
                                                     "status":["SUCCESS"]
                                                 },
                                                 "fields": {
+                                                    "pilotNameExtra": {
+                                                        "type":"text",
+                                                        "readonly":true,
+                                                        "fieldClass": "col-md-12",
+                                                        "hidden":false
+                                                    },
                                                     "pressureApplied":{
                                                         "type":"number",
-                                                        "helper":"(mbar)",
-                                                        "fieldClass":"col-md-3",
+                                                        //"helper":"(mbar)",
+                                                        "fieldClass":"col-md-2",
                                                         "validate":true,
                                                         "showMessages":false,
                                                         "events":{
@@ -988,8 +1030,8 @@
                                                     },
                                                     "retractionPressureApplied":{
                                                         "type":"number",
-                                                        "helper":"(mbar)",
-                                                        "fieldClass": "col-md-3",
+                                                        //"helper":"(mbar)",
+                                                        "fieldClass": "col-md-2",
                                                         "validate":true,
                                                         "showMessages":false,
                                                         "events":{
@@ -1052,7 +1094,7 @@
                                                                 };
                                                             }
                                                         },
-                                                        "helper":"(HH:mm:ss-UTC)",
+                                                        //"helper":"(HH:mm:ss-UTC)",
                                                         "fieldClass": "col-md-2"
                                                     },
                                                     "timeExtractionEnd": {
@@ -1091,7 +1133,7 @@
                                                                 };
                                                             }
                                                         },
-                                                        "helper": "(HH:mm:ss-UTC)",
+                                                        //"helper": "(HH:mm:ss-UTC)",
                                                         "fieldClass": "col-md-2"
                                                     },
                                                     "timeRetractionEnd": {
@@ -1130,9 +1172,28 @@
                                                                 };
                                                             }
                                                         },
-                                                        "helper": "(HH:mm:ss-UTC)",
+                                                        //"helper": "(HH:mm:ss-UTC)",
                                                         "fieldClass": "col-md-2"
                                                     },
+                                                    "timeChannelRecordingEnd": {
+                                                        "type":"time",
+                                                        "dateFormat":"HH:mm:ssZ",
+                                                        "picker": {
+                                                            "showClose":true,
+                                                            "showTodayButton":true,
+                                                            "collapse":true,
+                                                            "stepping":1,
+                                                            "focusOnShow":false,
+                                                            "keepOpen":false,
+                                                            "inline":false,
+                                                            "useCurrent":true
+                                                        },
+                                                        //"helper": "(HH:mm:ss-UTC)",
+                                                        "fieldClass": "col-md-2",
+                                                        "dependencies": {
+                                                            "pilotNameExtra":"Pilot: Channel_Recording"
+                                                        }
+                                                    }, 
                                                     "postPatch":{
                                                         "type": "select",
                                                         "fieldClass":"dropdown-content col-md-3",

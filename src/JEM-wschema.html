@@ -309,6 +309,17 @@
                 }
 
 
+                // A function that gets the pilot name from the approach into the extraction. (This is a workaround as I couldn't figure out how to do a nested dependency within the array in Alpaca.)
+                function copyPilotName(activePipetteIndex, activePilotName, activeStatus) {
+                    var form = $("#form").alpaca("get");
+                    if (activeStatus !== null) {
+                        if (activeStatus == ["SUCCESS"]) {
+                            var dupPilotNameField = form.top().getControlByPath("pipettes["+activePipetteIndex+"]/extraction/pilotNameExtra");
+                            dupPilotNameField.setValue("Pilot: " + activePilotName);
+                        }
+                    }
+                }
+
                 // A function that uses recursive callbacks to remove pipettes one at a time.
                 function removePipettes(pipettes, pipettesRemaining, finishCallback) {
                     if (pipettesRemaining > 0) {
@@ -566,30 +577,40 @@
                                                 "title":"Extraction Info",
                                                 "dependencies":"status",
                                                 "properties":{
+                                                    "pilotNameExtra": {
+                                                        "type":"string",
+                                                        "readonly":true
+                                                    },
                                                     "pressureApplied":{
                                                         "type":"number",
-                                                        "title":"Extraction Pressure",
+                                                        "title":"Extraction Pressure (mbar)",
                                                         "required":true
                                                     },
                                                     "retractionPressureApplied":{
                                                         "type":"number",
-                                                        "title":"Retraction Pressure",
+                                                        "title":"Retraction Pressure (mbar)",
                                                         "required":true
                                                     },
                                                     "timeExtractionStart":{
                                                         "format":"time",
-                                                        "title":"Extraction Start",
+                                                        "title":"Extraction Start Time",
                                                         "required":true
                                                     },
                                                     "timeExtractionEnd":{
                                                         "format":"time",
-                                                        "title":"Extraction End",
+                                                        "title":"Extraction End Time",
                                                         "required":true
                                                     },
                                                     "timeRetractionEnd":{
                                                         "format":"time",
-                                                        "title":"Retraction End",
+                                                        "title":"Retraction End Time",
                                                         "required":true
+                                                    },
+                                                    "timeChannelRecordingEnd":{
+                                                        "format":"time",
+                                                        "title":"Channel Rec End Time",
+                                                        "required":false,
+                                                        "dependencies":"pilotNameExtra"
                                                     },
                                                     "postPatch":{
                                                         "type":"string",
@@ -1032,7 +1053,20 @@
                                                         "sort":false,
                                                         "hideNone":true,
                                                         "noneLabel":"None",
-                                                        "hidden":false
+                                                        "hidden":false,
+                                                        "events":{
+                                                            "change": function() {
+                                                                // Echo Pilot Name
+                                                                var str = this.name;
+                                                                var currentPilotName = this.getValue();
+                                                                var pipetteNumRegex = /\d+/g;
+                                                                var currentIndexStr = str.match(pipetteNumRegex);
+                                                                var currentIndex = parseInt(currentIndexStr);
+                                                                var form = $("#form").alpaca("get");
+                                                                var currentStatus = form.top().getControlByPath("pipettes["+currentIndex+"]/status").data;
+                                                                copyPilotName(currentIndex, currentPilotName, currentStatus);
+                                                            }
+                                                        }
                                                     },
                                                     "pilotTest01": {
                                                         "type":"select",
@@ -1117,7 +1151,7 @@
                                                             }
                                                         },
                                                         "manualEntry":false,
-                                                        "helper":"(HH:mm:ss-UTC)"
+                                                        //"helper":"(HH:mm:ss-UTC)"
                                                     },
                                                     "pipetteR":{
                                                         "type":"number",
@@ -1189,7 +1223,7 @@
                                                                 };
                                                             }
                                                         },
-                                                        "helper":"(HH:mm:ss-UTC)"
+                                                        //"helper":"(HH:mm:ss-UTC)"
                                                     },
                                                     "humanCellTypePrediction":{
                                                         "type": "select",
@@ -1202,7 +1236,30 @@
                                                 "fieldClass": "col-md-12 bg-primary",
                                                 "vertical":false,
                                                 "hideNone":true,
-                                                "helper": []
+                                                "helper": [],
+                                                "events":{
+                                                    "ready": function() {
+                                                        // Echo Pilot Name
+                                                        var str = this.name;
+                                                        var currentStatus = this.getValue();
+                                                        var pipetteNumRegex = /\d+/g;
+                                                        var currentIndexStr = str.match(pipetteNumRegex);
+                                                        var currentIndex = parseInt(currentIndexStr);
+                                                        var currentPilotName = form.top().getControlByPath("pipettes["+currentIndex+"]/approach/pilotName").data;
+                                                        copyPilotName(currentIndex, currentPilotName, currentStatus);
+                                                    },
+                                                    "focus": function() {
+                                                        // Echo Pilot Name
+                                                        var str = this.name;
+                                                        var currentStatus = this.getValue();
+                                                        var pipetteNumRegex = /\d+/g;
+                                                        var currentIndexStr = str.match(pipetteNumRegex);
+                                                        var currentIndex = parseInt(currentIndexStr);
+                                                        var form = $("#form").alpaca("get");
+                                                        var currentPilotName = form.top().getControlByPath("pipettes["+currentIndex+"]/approach/pilotName").data;
+                                                        copyPilotName(currentIndex, currentPilotName, currentStatus);
+                                                    },
+                                                }
                                             },
                                             "pipetteSpecName": {
                                                 "type": "text",
@@ -1270,10 +1327,16 @@
                                                     "status":["SUCCESS"]
                                                 },
                                                 "fields": {
+                                                    "pilotNameExtra": {
+                                                        "type":"text",
+                                                        "readonly":true,
+                                                        "fieldClass": "col-md-12",
+                                                        "hidden":false
+                                                    },
                                                     "pressureApplied":{
                                                         "type":"number",
-                                                        "helper":"(mbar)",
-                                                        "fieldClass":"col-md-3",
+                                                        //"helper":"(mbar)",
+                                                        "fieldClass":"col-md-2",
                                                         "validate":true,
                                                         "showMessages":false,
                                                         "events":{
@@ -1302,8 +1365,8 @@
                                                     },
                                                     "retractionPressureApplied":{
                                                         "type":"number",
-                                                        "helper":"(mbar)",
-                                                        "fieldClass": "col-md-3",
+                                                        //"helper":"(mbar)",
+                                                        "fieldClass": "col-md-2",
                                                         "validate":true,
                                                         "showMessages":false,
                                                         "events":{
@@ -1366,7 +1429,7 @@
                                                                 };
                                                             }
                                                         },
-                                                        "helper":"(HH:mm:ss-UTC)",
+                                                        //"helper":"(HH:mm:ss-UTC)",
                                                         "fieldClass": "col-md-2"
                                                     },
                                                     "timeExtractionEnd": {
@@ -1405,7 +1468,7 @@
                                                                 };
                                                             }
                                                         },
-                                                        "helper": "(HH:mm:ss-UTC)",
+                                                        //"helper": "(HH:mm:ss-UTC)",
                                                         "fieldClass": "col-md-2"
                                                     },
                                                     "timeRetractionEnd": {
@@ -1444,9 +1507,28 @@
                                                                 };
                                                             }
                                                         },
-                                                        "helper": "(HH:mm:ss-UTC)",
+                                                        //"helper": "(HH:mm:ss-UTC)",
                                                         "fieldClass": "col-md-2"
                                                     },
+                                                    "timeChannelRecordingEnd": {
+                                                        "type":"time",
+                                                        "dateFormat":"HH:mm:ssZ",
+                                                        "picker": {
+                                                            "showClose":true,
+                                                            "showTodayButton":true,
+                                                            "collapse":true,
+                                                            "stepping":1,
+                                                            "focusOnShow":false,
+                                                            "keepOpen":false,
+                                                            "inline":false,
+                                                            "useCurrent":true
+                                                        },
+                                                        //"helper": "(HH:mm:ss-UTC)",
+                                                        "fieldClass": "col-md-2",
+                                                        "dependencies": {
+                                                            "pilotNameExtra":"Pilot: Channel_Recording"
+                                                        }
+                                                    },    
                                                     "postPatch":{
                                                         "type": "select",
                                                         "fieldClass":"dropdown-content col-md-3",
