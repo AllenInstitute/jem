@@ -1374,6 +1374,16 @@
                                                 "hideInitValidationError":true,
                                                 "tree": {
                                                     "selectors":{
+                                                         "roiSuper":{
+                                                             "schema":{
+                                                                 "type":"string"
+                                                             },
+                                                             "options":{
+                                                                 "type":"select",
+                                                                 "noneLabel": "Pick an ROI main...",
+                                                                 "sort":false
+                                                             }
+                                                         },
                                                          "roiMajor":{
                                                              "schema":{
                                                                  "type":"string"
@@ -1394,678 +1404,867 @@
                                                              }
                                                          }
                                                     },
-                                                    "order":["roiMajor", "roiMinor"],
+                                                    "order":["roiSuper", "roiMajor", "roiMinor"],
                                                     "data": [{
                                                          "value": "VISp1",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "VISp",
                                                              "roiMinor": "layer 1"
                                                              }
                                                          }, {
                                                          "value": "VISp2/3",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "VISp",
                                                              "roiMinor": "layer 2/3"
                                                              }
                                                          }, {
                                                          "value": "VISp4",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "VISp",
                                                              "roiMinor": "layer 4"
                                                              }
                                                          }, {
                                                          "value": "VISp5",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "VISp",
                                                              "roiMinor": "layer 5"
                                                              }
                                                          }, {
                                                          "value": "VISp6a",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "VISp",
                                                              "roiMinor": "layer 6a"
                                                              }
                                                          }, {
                                                          "value": "VISp6b",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "VISp",
                                                              "roiMinor": "layer 6b"
                                                              }
                                                          }, {
                                                          "value": "VISam1",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "VISam",
                                                              "roiMinor": "layer 1"
                                                              }
                                                          }, {
                                                          "value": "VISam2/3",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "VISam",
                                                              "roiMinor": "layer 2/3"
                                                              }
                                                          }, {
                                                          "value": "VISam4",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "VISam",
                                                              "roiMinor": "layer 4"
                                                              }
                                                          }, {
                                                          "value": "VISam5",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "VISam",
                                                              "roiMinor": "layer 5"
                                                              }
                                                          }, {
                                                          "value": "VISam6a",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "VISam",
                                                              "roiMinor": "layer 6a"
                                                              }
                                                          }, {
                                                          "value": "VISam6b",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "VISam",
                                                              "roiMinor": "layer 6b"
                                                              }
                                                          }, {
                                                          "value": "TEa1",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "TEa",
                                                              "roiMinor": "layer 1"
                                                              }
                                                          }, {
                                                          "value": "TEa2/3",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "TEa",
                                                              "roiMinor": "layer 2/3"
                                                              }
                                                          }, {
                                                          "value": "TEa4",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "TEa",
                                                              "roiMinor": "layer 4"
                                                              }
                                                          }, {
                                                          "value": "TEa5",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "TEa",
                                                              "roiMinor": "layer 5"
                                                              }
                                                          }, {
                                                          "value": "TEa6a",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "TEa",
                                                              "roiMinor": "layer 6a"
                                                              }
                                                          }, {
                                                          "value": "TEa6b",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "TEa",
                                                              "roiMinor": "layer 6b"
                                                              }
                                                          }, {
                                                          "value": "MOp1",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "MOp",
                                                              "roiMinor": "layer 1"
                                                              }
                                                          }, {
                                                          "value": "MOp2/3",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "MOp",
                                                              "roiMinor": "layer 2/3"
                                                              }
                                                          }, {
                                                          "value": "MOp5",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "MOp",
                                                              "roiMinor": "layer 5"
                                                              }
                                                          }, {
                                                          "value": "MOp6a",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "MOp",
                                                              "roiMinor": "layer 6a"
                                                              }
                                                          }, {
                                                          "value": "MOp6b",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "MOp",
                                                              "roiMinor": "layer 6b"
                                                              }
                                                          }, {
                                                          "value": "MOs1",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "MOs",
                                                              "roiMinor": "layer 1"
                                                              }
                                                          }, {
                                                          "value": "MOs2/3",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "MOs",
                                                              "roiMinor": "layer 2/3"
                                                              }
                                                          }, {
                                                          "value": "MOs5",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "MOs",
                                                              "roiMinor": "layer 5"
                                                              }
                                                          }, {
                                                          "value": "MOs6a",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "MOs",
                                                              "roiMinor": "layer 6a"
                                                              }
                                                          }, {
                                                          "value": "MOs6b",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "MOs",
                                                              "roiMinor": "layer 6b"
                                                              }
                                                          }, {
                                                          "value": "SSp1",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "SSp",
                                                              "roiMinor": "layer 1"
                                                              }
                                                          }, {
                                                          "value": "SSp2/3",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "SSp",
                                                              "roiMinor": "layer 2/3"
                                                              }
                                                          }, {
                                                         "value": "SSp4",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "SSp",
                                                              "roiMinor": "layer 4"
                                                              }
                                                          }, {
                                                          "value": "SSp5",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "SSp",
                                                              "roiMinor": "layer 5"
                                                              }
                                                          }, {
                                                          "value": "SSp6a",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "SSp",
                                                              "roiMinor": "layer 6a"
                                                              }
                                                          }, {
                                                          "value": "SSp6b",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "SSp",
                                                              "roiMinor": "layer 6b"
                                                              }
                                                          }, {
                                                          "value": "RSP1",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "RSP",
                                                              "roiMinor": "layer 1"
                                                              }
                                                          }, {
                                                          "value": "RSP2/3",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "RSP",
                                                              "roiMinor": "layer 2/3"
                                                              }
                                                          }, {
                                                          "value": "RSP5",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "RSP",
                                                              "roiMinor": "layer 5"
                                                              }
                                                          }, {
                                                          "value": "RSP6a",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "RSP",
                                                              "roiMinor": "layer 6a"
                                                              }
                                                          }, {
                                                          "value": "RSP6b",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "RSP",
                                                              "roiMinor": "layer 6b"
                                                              }
                                                          }, {
                                                          "value": "RSPd1",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "RSPd",
                                                              "roiMinor": "layer 1"
                                                              }
                                                          }, {
                                                          "value": "RSPd2/3",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "RSPd",
                                                              "roiMinor": "layer 2/3"
                                                              }
                                                          }, {
                                                          "value": "RSPd5",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "RSPd",
                                                              "roiMinor": "layer 5"
                                                              }
                                                          }, {
                                                          "value": "RSPd6a",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "RSPd",
                                                              "roiMinor": "layer 6a"
                                                              }
                                                          }, {
                                                          "value": "RSPd6b",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "RSPd",
                                                              "roiMinor": "layer 6b"
                                                              }
                                                          }, {
                                                          "value": "RSPv1",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "RSPv",
                                                              "roiMinor": "layer 1"
                                                              }
                                                          }, {
                                                          "value": "RSPv2/3",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "RSPv",
                                                              "roiMinor": "layer 2/3"
                                                              }
                                                          }, {
                                                          "value": "RSPv5",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "RSPv",
                                                              "roiMinor": "layer 5"
                                                              }
                                                          }, {
                                                          "value": "RSPv6a",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "RSPv",
                                                              "roiMinor": "layer 6a"
                                                              }
                                                          }, {
                                                          "value": "RSPv6b",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "RSPv",
                                                              "roiMinor": "layer 6b"
                                                              }
                                                          }, {
                                                          "value": "ORB1",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "ORB",
                                                              "roiMinor": "layer 1"
                                                              }
                                                          }, {
                                                          "value": "ORB2/3",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "ORB",
                                                              "roiMinor": "layer 2/3"
                                                              }
                                                          }, {
                                                          "value": "ORB5",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "ORB",
                                                              "roiMinor": "layer 5"
                                                              }
                                                          }, {
                                                          "value": "ORB6a",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "ORB",
                                                              "roiMinor": "layer 6a"
                                                              }
                                                          }, {
                                                          "value": "ORB6b",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "ORB",
                                                              "roiMinor": "layer 6b"
                                                              }
                                                          }, {
                                                          "value": "CTXspCLA",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "CTXsp",
                                                              "roiMinor": "CLA"
                                                              }
                                                          }, {
                                                          "value": "dLGNMagnocellular",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "dLGN",
                                                              "roiMinor": "Magnocellular"
                                                              }
                                                          }, {
                                                          "value": "dLGNParvocellular",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "dLGN",
                                                              "roiMinor": "Parvocellular"
                                                              }
                                                          }, {
                                                          "value": "dLGNCore",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "dLGN",
                                                              "roiMinor": "Core"
                                                              }
                                                          }, {
                                                          "value": "dLGNShell",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "dLGN",
                                                              "roiMinor": "Shell"
                                                              }
                                                          }, {
                                                          "value": "CB",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "CB",
                                                              "roiMinor": "NA"
                                                              }
                                                          }, {
                                                          "value": "STRdCa",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "STRd",
                                                              "roiMinor": "Ca"
                                                              }
                                                          }, {
                                                          "value": "STRdPu",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "STRd",
                                                              "roiMinor": "Pu"
                                                              }
                                                          }, {
                                                          "value": "STRvCore",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "STRv",
                                                              "roiMinor": "Core"
                                                              }
                                                          }, {
                                                          "value": "STRvShell",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "STRv",
                                                              "roiMinor": "Shell"
                                                              }
                                                          }, {
                                                          "value": "HIPDG-mo",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "HIP (Mouse)",
                                                              "roiMinor": "DG, molecular"
                                                              }
                                                          }, {
                                                          "value": "HIPDG-sg",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "HIP (Mouse)",
                                                              "roiMinor": "DG, granule"
                                                              }
                                                          }, {
                                                          "value": "HIPCA1",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "HIP (Mouse)",
                                                              "roiMinor": "CA1"
                                                              }
                                                          }, {
                                                          "value": "HIPCA2",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "HIP (Mouse)",
                                                              "roiMinor": "CA2"
                                                              }
                                                          }, {
                                                          "value": "HIPCA3",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "HIP (Mouse)",
                                                              "roiMinor": "CA3"
                                                              }
                                                         }, {
                                                          "value": "FCx1",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "FCx",
                                                              "roiMinor": "layer 1"
                                                              }
                                                          }, {
                                                          "value": "FCx2",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "FCx",
                                                              "roiMinor": "layer 2"
                                                              }
                                                          }, {
                                                          "value": "FCx3",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "FCx",
                                                              "roiMinor": "layer 3"
                                                              }
                                                          }, {
                                                          "value": "FCx3a",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "FCx",
                                                              "roiMinor": "layer 3a"
                                                              }
                                                          }, {
                                                          "value": "FCx3b",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "FCx",
                                                              "roiMinor": "layer 3b"
                                                              }
                                                          }, {
                                                          "value": "FCx3c",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "FCx",
                                                              "roiMinor": "layer 3c"
                                                              }
                                                          }, {
                                                          "value": "FCx4",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "FCx",
                                                              "roiMinor": "layer 4"
                                                              }
                                                          }, {
                                                          "value": "FCx5",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "FCx",
                                                              "roiMinor": "layer 5"
                                                              }
                                                          }, {
                                                          "value": "FCx6",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "FCx",
                                                              "roiMinor": "layer 6"
                                                              }
                                                          }, {
                                                          "value": "OCx1",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "OCx",
                                                              "roiMinor": "layer 1"
                                                              }
                                                          }, {
                                                          "value": "OCx2",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "OCx",
                                                              "roiMinor": "layer 2"
                                                              }
                                                          }, {
                                                          "value": "OCx3",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "OCx",
                                                              "roiMinor": "layer 3"
                                                              }
                                                          }, {
                                                          "value": "OCx3a",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "OCx",
                                                              "roiMinor": "layer 3a"
                                                              }
                                                          }, {
                                                          "value": "OCx3b",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "OCx",
                                                              "roiMinor": "layer 3b"
                                                              }
                                                          }, {
                                                          "value": "OCx3c",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "OCx",
                                                              "roiMinor": "layer 3c"
                                                              }
                                                          }, {
                                                          "value": "OCx4",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "OCx",
                                                              "roiMinor": "layer 4"
                                                              }
                                                          }, {
                                                          "value": "OCx5",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "OCx",
                                                              "roiMinor": "layer 5"
                                                              }
                                                          }, {
                                                          "value": "OCx6",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "OCx",
                                                              "roiMinor": "layer 6"
                                                              }
                                                          }, {
                                                          "value": "PCx1",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "PCx",
                                                              "roiMinor": "layer 1"
                                                              }
                                                          }, {
                                                          "value": "PCx2",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "PCx",
                                                              "roiMinor": "layer 2"
                                                              }
                                                          }, {
                                                          "value": "PCx3",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "PCx",
                                                              "roiMinor": "layer 3"
                                                              }
                                                          }, {
                                                          "value": "PCx3a",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "PCx",
                                                              "roiMinor": "layer 3a"
                                                              }
                                                          }, {
                                                          "value": "PCx3b",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "PCx",
                                                              "roiMinor": "layer 3b"
                                                              }
                                                          }, {
                                                          "value": "PCx3c",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "PCx",
                                                              "roiMinor": "layer 3c"
                                                              }
                                                          }, {
                                                          "value": "PCx4",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "PCx",
                                                              "roiMinor": "layer 4"
                                                              }
                                                          }, {
                                                          "value": "PCx5",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "PCx",
                                                              "roiMinor": "layer 5"
                                                              }
                                                          }, {
                                                          "value": "PCx6",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "PCx",
                                                              "roiMinor": "layer 6"
                                                              }
                                                          }, {
                                                          "value": "TCx1",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "TCx",
                                                              "roiMinor": "layer 1"
                                                              }
                                                          }, {
                                                          "value": "TCx2",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "TCx",
                                                              "roiMinor": "layer 2"
                                                              }
                                                          }, {
                                                          "value": "TCx3",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "TCx",
                                                              "roiMinor": "layer 3"
                                                              }
                                                          }, {
                                                         "value": "TCx3a",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "TCx",
                                                              "roiMinor": "layer 3a"
                                                              }
                                                          }, {
                                                         "value": "TCx3b",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "TCx",
                                                              "roiMinor": "layer 3b"
                                                              }
                                                          }, {
                                                         "value": "TCx3c",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "TCx",
                                                              "roiMinor": "layer 3c"
                                                              }
                                                          }, {
                                                          "value": "TCx4",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "TCx",
                                                              "roiMinor": "layer 4"
                                                              }
                                                          }, {
                                                          "value": "TCx5",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "TCx",
                                                              "roiMinor": "layer 5"
                                                              }
                                                          }, {
                                                          "value": "TCx6",
                                                          "attributes": {
+                                                             "roiSuper": "Cortical",
                                                              "roiMajor": "TCx",
                                                              "roiMinor": "layer 6"
                                                              }
                                                             }, {
                                                          "value": "HIPbDG",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "HIPb (Human)",
                                                              "roiMinor": "DG"
                                                              }
                                                          }, {
                                                          "value": "HIPbSB",
                                                          "attributes": {
+                                                            "roiSuper": "Subcortical",
                                                              "roiMajor": "HIPb (Human)",
                                                              "roiMinor": "SB"
                                                              }
                                                          }, {
                                                          "value": "HIPbCA1",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "HIPb (Human)",
                                                              "roiMinor": "CA1"
                                                              }
                                                          }, {
                                                          "value": "HIPbCA2",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "HIPb (Human)",
                                                              "roiMinor": "CA2"
                                                              }
                                                          }, {
                                                          "value": "HIPbCA3",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "HIPb (Human)",
                                                              "roiMinor": "CA3"
                                                              }
                                                          }, {
                                                          "value": "HIPbCA4",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "HIPb (Human)",
                                                              "roiMinor": "CA4"
                                                              }
                                                          }, {
                                                          "value": "HYVMH",
                                                          "attributes": {
+                                                             "roiSuper": "Subcortical",
                                                              "roiMajor": "HY",
                                                              "roiMinor": "VMH"
+                                                             }
+                                                         }, {
+                                                         "value": "PALGPi",
+                                                         "attributes": {
+                                                            "roiSuper": "Subcortical",
+                                                            "roiMajor": "PAL",
+                                                            "roiMinor": "GPi"
+                                                             }
+                                                         }, {
+                                                         "value": "PALGPe",
+                                                         "attributes": {
+                                                            "roiSuper": "Subcortical",
+                                                            "roiMajor": "PAL",
+                                                            "roiMinor": "GPe"
+                                                             }
+                                                         }, {
+                                                         "value": "HYSTN",
+                                                         "attributes": {
+                                                            "roiSuper": "Subcortical",
+                                                            "roiMajor": "HY",
+                                                            "roiMinor": "STN"
+                                                             }
+                                                         }, {
+                                                         "value": "EPIMH",
+                                                         "attributes": {
+                                                            "roiSuper": "Subcortical",
+                                                            "roiMajor": "EPI",
+                                                            "roiMinor": "MH"
+                                                             }
+                                                         }, {
+                                                         "value": "EPILH",
+                                                         "attributes": {
+                                                            "roiSuper": "Subcortical",
+                                                            "roiMajor": "EPI",
+                                                            "roiMinor": "LH"
+                                                             }
+                                                         }, {
+                                                         "value": "MBSNr",
+                                                         "attributes": {
+                                                            "roiSuper": "Subcortical",
+                                                            "roiMajor": "MB",
+                                                            "roiMinor": "SNr"
+                                                             }
+                                                         }, {
+                                                         "value": "MBSNc",
+                                                         "attributes": {
+                                                            "roiSuper": "Subcortical",
+                                                            "roiMajor": "MB",
+                                                            "roiMinor": "SNc"
+                                                             }
+                                                         }, {
+                                                         "value": "STRdCP",
+                                                         "attributes": {
+                                                            "roiSuper": "Subcortical",
+                                                            "roiMajor": "STRd",
+                                                            "roiMinor": "CP"
+                                                             }
+                                                         }, {
+                                                         "value": "STRvACB",
+                                                         "attributes": {
+                                                            "roiSuper": "Subcortical",
+                                                            "roiMajor": "STRv",
+                                                            "roiMinor": "ACB"
+                                                             }
+                                                         }, {
+                                                         "value": "THVAL",
+                                                         "attributes": {
+                                                            "roiSuper": "Subcortical",
+                                                            "roiMajor": "TH",
+                                                            "roiMinor": "VAL"
+                                                             }
+                                                         }, {
+                                                         "value": "THMD",
+                                                         "attributes": {
+                                                            "roiSuper": "Subcortical",
+                                                            "roiMajor": "TH",
+                                                            "roiMinor": "MD"
                                                              }
                                                          }
                                                      ],
