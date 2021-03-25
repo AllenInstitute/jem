@@ -171,7 +171,7 @@
                     },
                     "failureNotes":{
                         "type":"string",
-                        "enum":["Seal Failed","Unstable Seal","Breakin Failed","Access Resistance Out of Range","Vrest Out of Range", "'Wave of Death'", "Other", "NA"],
+                        "enum":["Seal Failed","Unstable Seal","Breakin Failed","Access Resistance Out of Range","Vrest Out of Range", "'Wave of Death'", "Other"],
                         "default":[],
                         "dependencies":"status",
                         "required":true
@@ -185,7 +185,7 @@
                     },
                     "successNotes":{
                         "type":"string",
-                        "enum": ["Patch/Cell Unstable", "Patch Became Leaky", "Access Resistance Increased", "Cell Depolarized", "Cell Hyperpolarized", "Blowout Voltage Out of Range", "Rheobase Changed", "Ended After C1", "'Wave of Death'", "Training/Practice", "Rig/Software Problems"],
+                        "enum": ["Patch/Cell Unstable", "Patch Became Leaky", "Access Resistance Increased", "Ended After C1"],
                         "default":[],
                         "dependencies":"status",
                         "required":false
