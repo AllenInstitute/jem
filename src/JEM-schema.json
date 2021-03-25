@@ -49,7 +49,7 @@
         "flipped": {
             "type":"string",
             "title":"Is slice flipped?",
-            "enum":["Yes","No","NA"],
+            "enum":["Yes","No","NA","Unknown"],
             "required":true
         },
         "sliceQuality":{
