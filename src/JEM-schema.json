@@ -77,19 +77,19 @@
                             "sliceHealth":{
                                 "type":"string",
                                 "title": "Slice Health",
-                                "enum":["1","2","3","4","5"],
+                                "enum":["1", "2", "3", "4", "5"],
                                 "required":true
                             },
                             "cellHealth":{
                                 "type":"string",
                                 "title": "Cell Health",
-                                "enum":["1","2","3","4","5"],
+                                "enum":["1", "2", "3", "4", "5"],
                                 "required":true
                             },
                             "creCell": {
                                 "type":"string",
                                 "title":"Cre Status",
-                                "enum":["Cre+","Cre-","None"],
+                                "enum":["Cre+", "Cre-", "NA"],
                                 "required":true
                             },
                             "pilotName":{
