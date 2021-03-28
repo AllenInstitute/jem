@@ -466,7 +466,7 @@
                                                         "type":"string",
                                                         "title":"Pilot Name",
                                                         "default": "None",
-                                                        "enum": ["None", "Tissue_Touch", "Slice_Culture", "Vortexing", "Electroporation", "Channel_Recording", "Non_Human_Primate_LGN", "Nucleated Patch - Retraction Pressure"],
+                                                        "enum": ["None", "U01 Pilot", "Tissue_Touch", "Slice_Culture", "Vortexing", "Electroporation", "Channel_Recording", "Non_Human_Primate_LGN", "Nucleated Patch - Retraction Pressure"],
                                                         "required":true
                                                     },
                                                     "pilotTest01":{
@@ -493,7 +493,7 @@
                                                      "pilotTest05":{
                                                        "type":"array",
                                                         "title":"Pilot Details",
-                                                        "enum":["Total","Prepulse","Sustained","Inactivation","Tail Currents"],
+                                                        "enum":["Total", "Prepulse", "Sustained", "Inactivation"],
                                                         "dependencies":"pilotName",
                                                         "required":false
                                                     }
@@ -510,7 +510,8 @@
                                                     },
                                                     "pipetteR":{
                                                         "format":"number",
-                                                        "minimum":0,
+                                                        "minimum": 0.0,
+                                                        "maximum": 10.0,
                                                         "title":"Pipette R",
                                                         "required":true
                                                     },
@@ -522,7 +523,7 @@
                                                     "humanCellTypePrediction":{
                                                         "type":"string",
                                                         "title":"Cell Type Prediction (for Human Neurons)",
-                                                        "enum":["Unknown", "Pyramidal", "FS Interneuron", "Spindle Shaped", "Unknown Interneuron",  "Striatal MSN", "Striatal ChAT", "Striatal FSI", "Striatal Unknown Interneuron"],
+                                                        "enum":[],
                                                         "required":false
                                                     }
                                                 }
