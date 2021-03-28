@@ -419,13 +419,13 @@
                                 "flipped": {
                                     "type":"string",
                                     "title":"Is slice flipped?",
-                                    "enum":["Yes","No","NA","Unknown"],
+                                    "enum":["Yes", "No", "Unknown", "NA"],
                                     "required":true
                                 },
                                 "sliceQuality":{
                                     "type":"string",
-                                    "enum": ["Good", "Damaged", "Uneven Thickness", "'Wave of Death'"],
-                                    "default":[],
+                                    "enum": ["Healthy", "Unhealthy", "Even Thickness", "Uneven Thickness", "Damaged", "Wave of Death (30 min)"],
+                                    "default":["Healthy", "Even Thickness"],
                                     "required":true
                                 },
                                 "sliceNotes":{
