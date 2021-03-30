@@ -282,7 +282,7 @@
                             "extractionObservations":{
                                 "type":"string",
                                 "title": "Cell Assessment",
-                                "enum": ["Fluorescence in Pipette", "Cell Dimmed", "Cell Swelled", "Cell Shrunk", "Too Deep","Cell Disappeared"],
+                                "enum": ["Cell Swelled", "Cell Shrunk"],
                                 "default": [],
                                 "required":false
                             },
