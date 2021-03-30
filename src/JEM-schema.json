@@ -172,7 +172,7 @@
                     },
                     "failureNotes":{
                         "type":"string",
-                        "enum":["Seal Failed","Unstable Seal","Breakin Failed","Access Resistance Out of Range","Vrest Out of Range", "'Wave of Death'", "Other"],
+                        "enum":["Failed Gigaohm Seal", "Failed Break-in", "Cell Died", "Access Resistance (>= 20 MOhms)", "Resting Membrane Potential (< -60 mV to -80 mV >)", "Unstable Baseline", "Unstable Holding Current (>= -100 pA)", "Other"],
                         "default":[],
                         "dependencies":"status",
                         "required":true
@@ -186,8 +186,8 @@
                     },
                     "successNotes":{
                         "type":"string",
-                        "enum": ["Patch/Cell Unstable", "Patch Became Leaky", "Access Resistance Increased", "Ended After C1"],
-                        "default":[],
+                        "enum": ["Completed Core 1", "Completed Core 2", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= -100 pA)"],
+                        "default":["Completed Core 1"],
                         "dependencies":"status",
                         "required":false
                     },
