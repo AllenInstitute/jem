@@ -16,7 +16,7 @@
         "rigNumber": {
             "type":"string",
             "title":"Rig #",
-            "enum":["1", "2", "3", "4", "5", "6", "7", "8", "BRL", "HCT1", "HCT2", "HCT3", "MP1", "MP2", "MP3", "MP4", "NA"],
+            "enum":["1", "2", "3", "4", "5", "6", "7", "8", "BRL", "HCT1", "HCT2", "HCT3", "MP1", "MP2", "MP3", "MP4"],
             "required":true
         },
         "date":{
@@ -49,12 +49,12 @@
         "flipped": {
             "type":"string",
             "title":"Is slice flipped?",
-            "enum":["Yes", "No", "Unknown", "NA"],
+            "enum":["Unknown", "Yes", "No", "NA"],
             "required":true
         },
         "sliceQuality":{
             "type":"string",
-            "enum": ["Healthy", "Unhealthy", "Even Thickness", "Uneven Thickness", "Damaged", "Wave of Death (30 min)"],
+            "enum": ["Healthy", "Unhealthy", "Even Thickness", "Uneven Thickness", "Damaged", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)"],
             "default":["Healthy", "Even Thickness"],
             "required":true
         },
@@ -96,7 +96,7 @@
                                 "type":"string",
                                 "title":"Pilot Name",
                                 "default": "None",
-                                "enum": ["None", "U01 Pilot", "Tissue_Touch", "Slice_Culture", "Vortexing", "Electroporation", "Channel_Recording", "Non_Human_Primate_LGN", "Nucleated Patch - Retraction Pressure"],
+                                "enum": ["None", "U01 Pilot", "Slice_Culture", "Channel_Recording", "Vortexing", "Electroporation", "Nucleated Patch - Retraction Pressure"],
                                 "required":true
                             },
                             "pilotTest01":{
@@ -246,21 +246,22 @@
                             "postPatch":{
                                 "type":"string",
                                 "title":"Post Patch State",
-                                "enum":["nucleus_present", "nucleus_absent", "entire_cell"],
+                                "enum":["nucleus_present", "nucleus_absent", "entire_cell", "unknown"],
                                 "default":[],
                                 "required":true
                             },
                             "endPipetteR":{
-                                "format":"number",
-                                "minimum":0,
-                                "title":"Post Patch Pipette R",
-                                "required":true
+                                "format": "number",
+                                "minimum": 0,
+                                "maximum": 10000,
+                                "title": "Post Patch Pipette R",
+                                "required": true
                             },
                             "nucleus": {
                                 "type":"string",
                                 "title":"Nucleus sucked in?",
-                                "enum":["intentionally", "not_intentionally", "no", "NA"],
-                                "default":[],
+                                "enum":["intentionally", "not_intentionally", "no", "unknown", "NA"],
+                                "default":["unknown"],
                                 "required":false
                             },
                             "fillquality": {
@@ -290,7 +291,7 @@
                                 "type":"string",
                                 "title":"Sample Assessment",
                                 "enum":["No Bubbles", "Small Bubbles", "Medium Bubbles", "Large Bubbles", "Solution in Pipette Shank"],
-                                "default":[],
+                                "default":["No Bubbles"],
                                 "required":false
                             }
                         }
