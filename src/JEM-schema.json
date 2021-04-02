@@ -49,12 +49,12 @@
         "flipped": {
             "type":"string",
             "title":"Is slice flipped?",
-            "enum":["Yes","No","NA"],
+            "enum":["Yes","No","NA", "Unknown"],
             "required":true
         },
         "sliceQuality":{
             "type":"string",
-            "enum": ["Good", "Damaged", "Uneven Thickness", "'Wave of Death'"],
+            "enum": ["Healthy", "Unhealthy", "Even Thickness", "Uneven Thickness", "Damaged", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)"],
             "default":[],
             "required":true
         },
