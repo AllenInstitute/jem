@@ -554,22 +554,16 @@
                                                 "dependencies":"status",
                                                 "required":false
                                             },
-                                            "successNotes":{
-                                                "type":"string",
-                                                "enum": ["Completed Core 1", "Completed Core 2", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= -100 pA)"],
-                                                "default":["Completed Core 1"],
-                                                "dependencies":"status",
-                                                "required":false
-                                            },
                                             "qcNotes":{
                                                 "type":"string",
                                                 "title":"QC Notes",
                                                 "dependencies":"status",
                                                 "required":false
                                             },
-                                            "badSweeps":{
+                                            "successNotes":{
                                                 "type":"string",
-                                                "title":"Bad Sweeps",
+                                                "enum": ["Completed Core 1", "Completed Core 2", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= -100 pA)"],
+                                                "default":["Completed Core 1"],
                                                 "dependencies":"status",
                                                 "required":false
                                             },
@@ -697,7 +691,6 @@
                                 "freeFailureNotes":["status"],
                                 "successNotes":["status"],
                                 "qcNotes":["status"],
-                                "badSweeps":["status"],
                                 "extraction":["status"]
                                 }
                         },
@@ -1275,7 +1268,7 @@
                                             "pipetteSpecName": {
                                                 "type": "text",
                                                 "readonly":true,
-                                                "fieldClass": "form-group col-lg-12 no-border",
+                                                "fieldClass": "form-group col-lg-6 no-border",
                                                 "helper":[],
                                                 "showMessages": false,
                                                 "hideInitValidationError":true,
@@ -1289,7 +1282,7 @@
                                             },
                                             "successNotes": {
                                                 "type": "checkbox",
-                                                "fieldClass": "col-lg-4",
+                                                "fieldClass": "col-lg-12",
                                                 "dependencies": {
                                                     "status":["SUCCESS"]
                                                     },
@@ -1317,17 +1310,8 @@
                                             },
                                             "qcNotes": {
                                                 "type":"textarea",
-                                                "fieldClass": "col-lg-8",
+                                                "fieldClass": "col-lg-6",
                                                 "dependencies": {
-                                                    "status":["SUCCESS"]
-                                                },
-                                                "rows":1
-                                            },
-                                            "badSweeps": {
-                                                "type":"textarea",
-                                                "fieldClass":"col-lg-8",
-                                                "size":2,
-                                                "dependencies":{
                                                     "status":["SUCCESS"]
                                                 },
                                                 "rows":1
