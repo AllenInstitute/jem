@@ -55,7 +55,7 @@
         "sliceQuality":{
             "type":"string",
             "enum": ["Healthy", "Unhealthy", "Even Thickness", "Uneven Thickness", "Damaged", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)"],
-            "default":[],
+            "default":["Healthy", "Even Thickness"],
             "required":true
         },
         "sliceNotes":{
