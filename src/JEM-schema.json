@@ -236,7 +236,7 @@
                                 "format": "number",
                                 "minimum": 0,
                                 "maximum": 10000,
-                                "title": "Post Patch Pipette R",
+                                "title": "Post Patch Pipette R (MOhm)",
                                 "required": true
                             },
                             "nucleus": {
