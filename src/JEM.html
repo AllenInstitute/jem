@@ -375,8 +375,8 @@
                                     "readonly":true,
                                     "fieldClass": "col-lg-1",
                                     "data":"/jem-data/jemVersion.json",
-                                    "view":"bootstrap-display"
-                                    //"type":"hidden"
+                                    "view":"bootstrap-display",
+                                    "type":"hidden"
                                 },
                                 "rigOperator" : {
                                     "type": "select",
@@ -424,7 +424,7 @@
                                 },
                                 "rigNumber": {
                                     "type": "select",
-                                    "fieldClass":"dropdown-content col-lg-1",
+                                    "fieldClass":"dropdown-content col-lg-2",
                                     "helper":[],
                                     "hideNone":false,
                                     "noneLabel":'',
@@ -700,23 +700,16 @@
                                             "approach": {
                                                 "fieldClass": "form-group col-lg-12 no-border bg-success",
                                                 "fields": {
-                                                    "sliceHealth": {
-                                                        "type": "radio",
-                                                        "fieldClass": "form-group col-lg-5",
-                                                        "vertical":false,
-                                                        "hideNone":true,
-                                                        "showMessages":false
-                                                    },
                                                     "cellHealth": {
                                                         "type": "radio",
-                                                        "fieldClass": "form-group col-lg-5",
+                                                        "fieldClass": "form-group col-lg-12",
                                                         "vertical":false,
                                                         "hideNone":true,
                                                         "showMessages":false
                                                     },
                                                     "creCell": {
                                                         "type": "radio",
-                                                        "fieldClass": "form-group col-lg-5",
+                                                        "fieldClass": "form-group col-lg-12",
                                                         "size":1,
                                                         "vertical":false,
                                                         "hideNone":true,
@@ -745,7 +738,7 @@
                                                             }
                                                         }
                                                     },
-                                                    "pilotTest01": {
+                                                    "pilot_nucleated_patch_retraction_pressure": {
                                                         "type":"select",
                                                         "fieldClass": "form-group col-lg-2",
                                                         "helper":[],
@@ -756,7 +749,7 @@
                                                             "pilotName":"Nucleated Patch - Retraction Pressure"
                                                         }
                                                     },
-                                                    "pilotTest04": {
+                                                    "pilot_electroporation": {
                                                         "type":"text",
                                                         "fieldClass": "form-group col-lg-2",
                                                         "helper":[],
@@ -764,7 +757,7 @@
                                                             "pilotName":"Electroporation"
                                                         }
                                                     },
-                                                    "pilotTestYN": {
+                                                    "pilot_vortexing": {
                                                         "type":"select",
                                                         "fieldClass": "form-group col-lg-2",
                                                         "helper":[],
@@ -775,7 +768,7 @@
                                                             "pilotName":"Vortexing"
                                                         }
                                                     },
-                                                    "pilotTest05": {
+                                                    "pilot_channel_recording": {
                                                         "type":"checkbox",
                                                         "fieldClass": "form-group col-lg-2",
                                                         "helper":[],
@@ -902,10 +895,6 @@
                                                             }
                                                         },
                                                         //"helper":"(HH:mm:ss-UTC)"
-                                                    },
-                                                    "humanCellTypePrediction":{
-                                                        "type": "select",
-                                                        "fieldClass": "dropdown-content col-lg-3"
                                                     }
                                                 }
                                             },
@@ -956,18 +945,26 @@
                                             },
                                             "successNotes": {
                                                 "type": "checkbox",
-                                                "fieldClass": "col-lg-4",
+                                                "fieldClass": "col-lg-12",
                                                 "dependencies": {
                                                     "status":["SUCCESS"]
                                                     },
                                                 "label": "Recording Observations",
                                                 "sort":false
                                             },
+                                            "qcNotes": {
+                                                "type":"textarea",
+                                                "fieldClass": "col-lg-12",
+                                                "dependencies": {
+                                                    "status":["SUCCESS"]
+                                                },
+                                                "rows":1
+                                            },
                                             "failureNotes": {
                                                 "type": "checkbox",
                                                 "showMessages": false,
                                                 "hideInitValidationError":true,
-                                                "fieldClass": "col-lg-4",
+                                                "fieldClass": "col-lg-12",
                                                 "dependencies": {
                                                     "status":["FAILURE"]
                                                     },
@@ -976,26 +973,9 @@
                                             },
                                             "freeFailureNotes": {
                                                 "type":"textarea",
-                                                "fieldClass": "col-lg-8",
+                                                "fieldClass": "col-lg-12",
                                                 "dependencies": {
                                                     "status":["FAILURE"]
-                                                },
-                                                "rows":1
-                                            },
-                                            "qcNotes": {
-                                                "type":"textarea",
-                                                "fieldClass": "col-lg-8",
-                                                "dependencies": {
-                                                    "status":["SUCCESS"]
-                                                },
-                                                "rows":1
-                                            },
-                                            "badSweeps": {
-                                                "type":"textarea",
-                                                "fieldClass":"col-lg-8",
-                                                "size":2,
-                                                "dependencies":{
-                                                    "status":["SUCCESS"]
                                                 },
                                                 "rows":1
                                             },
@@ -1220,7 +1200,7 @@
                                                     "endPipetteR":{
                                                         "type":"number",
                                                         "fieldClass": "form-group col-lg-2",
-                                                        "helper": "(MOhm)",
+                                                        //"helper": "(MOhm)",
                                                         "validate":true,
                                                         "showMessages":false,
                                                         "events":{
