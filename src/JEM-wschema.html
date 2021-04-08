@@ -444,22 +444,16 @@
                                                 "type":"object",
                                                 "title": "Approach Info",
                                                 "properties": {
-                                                    "sliceHealth":{
+                                                    "creCell": {
                                                         "type":"string",
-                                                        "title": "Slice Health",
-                                                        "enum":["1", "2", "3", "4", "5"],
+                                                        "title":"Cre Status",
+                                                        "enum":["Cre+", "Cre-", "NA"],
                                                         "required":true
                                                     },
                                                     "cellHealth":{
                                                         "type":"string",
                                                         "title": "Cell Health",
                                                         "enum":["1", "2", "3", "4", "5"],
-                                                        "required":true
-                                                    },
-                                                    "creCell": {
-                                                        "type":"string",
-                                                        "title":"Cre Status",
-                                                        "enum":["Cre+", "Cre-", "NA"],
                                                         "required":true
                                                     },
                                                     "pilotName":{
@@ -469,30 +463,30 @@
                                                         "enum": ["None", "U01 Pilot", "Slice_Culture", "Channel_Recording", "Vortexing", "Electroporation", "Nucleated Patch - Retraction Pressure"],
                                                         "required":true
                                                     },
-                                                    "pilotTest01":{
+                                                    "pilot_nucleated_patch_retraction_pressure":{
                                                         "type":"string",
-                                                        "title":"Pilot Details",
+                                                        "title":"Pilot Project Details",
                                                         "enum":["Standard (~80 mbar)", "Mid-Range (~65 mbar)", "Low (~50 mbar)", "Minimal (~25 mbar)"],
                                                         "default":"",
                                                         "dependencies":"pilotName",
                                                         "required":false
                                                     },
-                                                     "pilotTest04":{
+                                                     "pilot_electroporation":{
                                                        "type":"string",
-                                                        "title":"Pilot Details",
+                                                        "title":"Pilot Project Details",
                                                         "dependencies":"pilotName",
                                                         "required":false
                                                     },
-                                                    "pilotTestYN":{
+                                                    "pilot_vortexing":{
                                                        "type":"string",
-                                                        "title":"Pilot Details",
+                                                        "title":"Pilot Project Details",
                                                         "enum":["Yes", "No"],
                                                         "dependencies":"pilotName",
                                                         "required":false
                                                     },
-                                                     "pilotTest05":{
+                                                    "pilot_channel_recording":{
                                                        "type":"array",
-                                                        "title":"Pilot Details",
+                                                        "title":"Pilot Project Details",
                                                         "enum":["Total", "Prepulse", "Sustained", "Inactivation"],
                                                         "dependencies":"pilotName",
                                                         "required":false
@@ -554,16 +548,16 @@
                                                 "dependencies":"status",
                                                 "required":false
                                             },
-                                            "qcNotes":{
-                                                "type":"string",
-                                                "title":"QC Notes",
-                                                "dependencies":"status",
-                                                "required":false
-                                            },
                                             "successNotes":{
                                                 "type":"string",
                                                 "enum": ["Completed Core 1", "Completed Core 2", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= -100 pA)"],
                                                 "default":["Completed Core 1"],
+                                                "dependencies":"status",
+                                                "required":false
+                                            },
+                                            "qcNotes":{
+                                                "type":"string",
+                                                "title":"QC Notes",
                                                 "dependencies":"status",
                                                 "required":false
                                             },
@@ -683,10 +677,10 @@
                             },
                             "dependencies": {
                                 //"manualRoi":["autoRoi"],
-                                "pilotTest01":["pilotName"],
-                                "pilotTest04":["pilotName"],
-                                "pilotTestYN":["pilotName"],
-                                "pilotTest05":["pilotName"],
+                                "pilot_nucleated_patch_retraction_pressure":["pilotName"],
+                                "pilot_electroporation":["pilotName"],
+                                "pilot_vortexing":["pilotName"],
+                                "pilot_channel_recording": ["pilotName"],
                                 "failureNotes":["status"],
                                 "freeFailureNotes":["status"],
                                 "successNotes":["status"],
@@ -1020,29 +1014,22 @@
                                     "collapsible":true,
                                     "lazyLoading":true,
                                     "showMessages":true,
-                                    "focus":"pipettes/sliceHealth",
+                                    "focus":"pipettes",
                                     "items": {
                                         "fields": {
                                             "approach": {
                                                 "fieldClass": "form-group col-lg-12 no-border bg-success",
                                                 "fields": {
-                                                    "sliceHealth": {
-                                                        "type": "radio",
-                                                        "fieldClass": "form-group col-lg-5",
-                                                        "vertical":false,
-                                                        "hideNone":true,
-                                                        "showMessages":false
-                                                    },
                                                     "cellHealth": {
                                                         "type": "radio",
-                                                        "fieldClass": "form-group col-lg-5",
+                                                        "fieldClass": "form-group col-lg-12",
                                                         "vertical":false,
                                                         "hideNone":true,
                                                         "showMessages":false
                                                     },
                                                     "creCell": {
                                                         "type": "radio",
-                                                        "fieldClass": "form-group col-lg-5",
+                                                        "fieldClass": "form-group col-lg-12",
                                                         "size":1,
                                                         "vertical":false,
                                                         "hideNone":true,
@@ -1071,7 +1058,7 @@
                                                             }
                                                         }
                                                     },
-                                                    "pilotTest01": {
+                                                    "pilot_nucleated_patch_retraction_pressure": {
                                                         "type":"select",
                                                         "fieldClass": "form-group col-lg-2",
                                                         "helper":[],
@@ -1082,7 +1069,7 @@
                                                             "pilotName":"Nucleated Patch - Retraction Pressure"
                                                         }
                                                     },
-                                                    "pilotTest04": {
+                                                    "pilot_electroporation": {
                                                         "type":"text",
                                                         "fieldClass": "form-group col-lg-2",
                                                         "helper":[],
@@ -1090,7 +1077,7 @@
                                                             "pilotName":"Electroporation"
                                                         }
                                                     },
-                                                    "pilotTestYN": {
+                                                    "pilot_vortexing": {
                                                         "type":"select",
                                                         "fieldClass": "form-group col-lg-2",
                                                         "helper":[],
@@ -1101,13 +1088,13 @@
                                                             "pilotName":"Vortexing"
                                                         }
                                                     },
-                                                    "pilotTest05": {
-                                                        "type":"checkbox",
-                                                        "fieldClass": "form-group col-lg-2",
-                                                        "helper":[],
-                                                        "sort":false,
+                                                     "pilot_channel_recording": {
+                                                        "type": "checkbox", 
+                                                        "fieldClass": "form-group col-lg-2", 
+                                                        "helper": [], 
+                                                        "sort": false, 
                                                         "dependencies": {
-                                                            "pilotName":"Channel_Recording"
+                                                            "pilotName": "Channel_Recording"
                                                         }
                                                     }
                                                 }
@@ -1268,7 +1255,7 @@
                                             "pipetteSpecName": {
                                                 "type": "text",
                                                 "readonly":true,
-                                                "fieldClass": "form-group col-lg-6 no-border",
+                                                "fieldClass": "form-group col-lg-12 no-border",
                                                 "helper":[],
                                                 "showMessages": false,
                                                 "hideInitValidationError":true,
@@ -1289,11 +1276,19 @@
                                                 "label": "Recording Observations",
                                                 "sort":false
                                             },
+                                            "qcNotes": {
+                                                "type":"textarea",
+                                                "fieldClass": "col-lg-12",
+                                                "dependencies": {
+                                                    "status":["SUCCESS"]
+                                                },
+                                                "rows":1
+                                            },
                                             "failureNotes": {
                                                 "type": "checkbox",
                                                 "showMessages": false,
                                                 "hideInitValidationError":true,
-                                                "fieldClass": "col-lg-4",
+                                                "fieldClass": "col-lg-12",
                                                 "dependencies": {
                                                     "status":["FAILURE"]
                                                     },
@@ -1302,17 +1297,9 @@
                                             },
                                             "freeFailureNotes": {
                                                 "type":"textarea",
-                                                "fieldClass": "col-lg-8",
+                                                "fieldClass": "col-lg-12",
                                                 "dependencies": {
                                                     "status":["FAILURE"]
-                                                },
-                                                "rows":1
-                                            },
-                                            "qcNotes": {
-                                                "type":"textarea",
-                                                "fieldClass": "col-lg-6",
-                                                "dependencies": {
-                                                    "status":["SUCCESS"]
                                                 },
                                                 "rows":1
                                             },
