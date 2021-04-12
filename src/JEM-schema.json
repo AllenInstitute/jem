@@ -10,13 +10,13 @@
         "rigOperator": {
             "type": "string",
             "title": "Researcher",
-            "enum":["nataliag", "rene", "djai", "christina", "ayoub", "aarono", "briank", "brianle", "dijonh", "gasparo", "huibm", "jonathant", "jessicat", "josefs", "katherineb", "kristenh", "lindsayn", "lisak", "martonr", "norbertm", "ramr", "rustym", "szabinaf", "alexh", "cristinar", "stephanies", "sarahh", "sarav", "scotto", "visitor"],
+            "enum":["brianle", "kristenh", "rustym", "ramr", "sarav", "balreetp", "stephanies", "lisak", "jessicat", "jonathant", "briank", "cristinar", "lindsayn"],
             "required":true
         },
         "rigNumber": {
             "type":"string",
             "title":"Rig #",
-            "enum":["1","2","3","4","5","6","7","8", "BRL", "HCT1", "HCT2", "HCT3", "MP1", "MP2", "MP3", "MP4", "NA"],
+            "enum":["1", "2", "3", "4", "5", "6", "7", "8", "HCT1", "HCT2", "HCT3", "MP1", "MP2", "MP3", "MP4"],
             "required":true
         },
         "date":{
@@ -37,25 +37,25 @@
         "blankFillDate":{
             "format":"date",
             "title":"Blank Fill Date",
-            "enum":["2021-01-04", "2020-11-09", "2020-10-20", "2020-09-01", "2020-07-13", "2020-06-29", "2020-06-15", "2020-03-05", "2020-02-21", "2020-01-21", "2020-01-03", "2019-11-15", "2019-10-17","2019-09-25","2019-08-26","2019-07-30","2019-06-25", "2019-05-21", "2019-05-09", "2019-04-30","2019-04-04", "2019-03-05", "2019-02-05", "2019-01-25", "2018-11-13","2018-11-12","2018-10-19","2018-09-28","2018-09-18","2018-09-04", "2018-08-10", "2018-07-25", "2018-07-10", "2018-06-14", "2018-05-24", "2018-05-11", "2018-04-26", "2018-03-22", "2018-02-13", "2018-02-07", "2018-01-26", "2017-12-08", "2017-11-21", "2017-10-26", "2017-10-12", "2017-09-25", "2017-08-31"],
+            "enum":["2021-04-06", "2021-03-15", "2021-02-01", "2021-01-04"],
             "required":true
         },
         "internalFillDate":{
             "format":"date",
             "title":"Internal Fill Date",
-            "enum":["2020-12-10", "2020-10-21", "2020-10-20", "2020-09-08", "2020-06-15", "2020-05-04", "2020-02-25", "2020-01-13", "2019-10-28", "2019-09-16","2019-07-29","2019-06-24", "2019-05-06", "2019-03-28","2019-02-08","2018-12-05","2018-10-19","2018-10-01", "2018-08-14", "2018-07-09", "2018-06-27", "2018-05-21", "2018-04-30", "2018-04-09", "2018-04-08", "2018-03-29", "2018-03-28", "2018-03-14", "2018-03-13", "2018-02-14", "2018-02-13", "2018-02-12", "2018-01-12", "2017-12-04", "2017-10-05", "2017-09-29"],
+            "enum":["2021-03-08", "2021-01-25"],
             "required":true
         },
         "flipped": {
             "type":"string",
             "title":"Is slice flipped?",
-            "enum":["Yes","No","NA"],
+            "enum":["Unknown", "Yes", "No", "NA"],
             "required":true
         },
         "sliceQuality":{
             "type":"string",
-            "enum": ["Good", "Damaged", "Uneven Thickness", "'Wave of Death'"],
-            "default":[],
+            "enum": ["Healthy", "Unhealthy", "Even Thickness", "Uneven Thickness", "Damaged", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)"],
+            "default":["Healthy", "Even Thickness"],
             "required":true
         },
         "sliceNotes":{
@@ -74,32 +74,26 @@
                         "type":"object",
                         "title": "Approach Info",
                         "properties": {
-                            "sliceHealth":{
+                            "creCell": {
                                 "type":"string",
-                                "title": "Slice Health",
-                                "enum":["1","2","3","4","5"],
+                                "title":"Cre Status",
+                                "enum":["Cre+", "Cre-", "NA"],
                                 "required":true
                             },
                             "cellHealth":{
                                 "type":"string",
                                 "title": "Cell Health",
-                                "enum":["1","2","3","4","5"],
-                                "required":true
-                            },
-                            "creCell": {
-                                "type":"string",
-                                "title":"Cre Status",
-                                "enum":["Cre+","Cre-","None"],
+                                "enum":["1", "2", "3", "4", "5"],
                                 "required":true
                             },
                             "pilotName":{
                                 "type":"string",
                                 "title":"Pilot Name",
                                 "default": "None",
-                                "enum": ["None", "Tissue_Touch", "Slice_Culture", "Vortexing", "Electroporation", "Channel_Recording", "Non_Human_Primate_LGN", "Nucleated Patch - Retraction Pressure"],
+                                "enum": ["None", "Training", "U01 Pilot", "Slice_Culture", "Channel_Recording", "Vortexing", "Electroporation", "Nucleated Patch - Retraction Pressure"],
                                 "required":true
                             },
-                            "pilotTest01":{
+                            "pilot_nucleated_patch_retraction_pressure":{
                                 "type":"string",
                                 "title":"Pilot Details",
                                 "enum":["Standard (~80 mbar)", "Mid-Range (~65 mbar)", "Low (~50 mbar)", "Minimal (~25 mbar)"],
@@ -107,23 +101,23 @@
                                 "dependencies":"pilotName",
                                 "required":false
                             },
-                             "pilotTest04":{
+                             "pilot_electroporation":{
                                "type":"string",
                                 "title":"Pilot Details",
                                 "dependencies":"pilotName",
                                 "required":false
                             },
-                            "pilotTestYN":{
+                            "pilot_vortexing":{
                                "type":"string",
                                 "title":"Pilot Details",
                                 "enum":["Yes", "No"],
                                 "dependencies":"pilotName",
                                 "required":false
                             },
-                             "pilotTest05":{
+                             "pilot_channel_recording":{
                                "type":"array",
                                 "title":"Pilot Details",
-                                "enum":["Total","Prepulse","Sustained","Inactivation","Tail Currents"],
+                                "enum":["Total", "Prepulse", "Sustained", "Inactivation"],
                                 "dependencies":"pilotName",
                                 "required":false
                             }
@@ -140,7 +134,8 @@
                             },
                             "pipetteR":{
                                 "format":"number",
-                                "minimum":0,
+                                "minimum": 0.0,
+                                "maximum": 10.0, 
                                 "title":"Pipette R",
                                 "required":true
                             },
@@ -148,12 +143,6 @@
                                 "format":"time",
                                 "title":"Whole Cell Start",
                                 "required":true
-                            },
-                            "humanCellTypePrediction":{
-                                "type":"string",
-                                "title":"Cell Type Prediction (for Human Neurons)",
-                                "enum":["Unknown", "Pyramidal", "FS Interneuron", "Spindle Shaped", "Unknown Interneuron", "Striatal MSN", "Striatal ChAT", "Striatal FSI", "Striatal Unknown Interneuron"],
-                                "required":false
                             }
                         }
                     },
@@ -171,7 +160,7 @@
                     },
                     "failureNotes":{
                         "type":"string",
-                        "enum":["Seal Failed","Unstable Seal","Breakin Failed","Access Resistance Out of Range","Vrest Out of Range", "'Wave of Death'", "Other", "NA"],
+                        "enum":["Failed Gigaohm Seal", "Failed Break-in", "Cell Died", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= -100 pA)", "Other"],
                         "default":[],
                         "dependencies":"status",
                         "required":true
@@ -185,20 +174,14 @@
                     },
                     "successNotes":{
                         "type":"string",
-                        "enum": ["Patch/Cell Unstable", "Patch Became Leaky", "Access Resistance Increased", "Cell Depolarized", "Cell Hyperpolarized", "Blowout Voltage Out of Range", "Rheobase Changed", "Ended After C1", "'Wave of Death'", "Training/Practice", "Rig/Software Problems"],
-                        "default":[],
+                        "enum": ["Completed Core 1", "Completed Core 2", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= -100 pA)"],
+                        "default":["Completed Core 1"],
                         "dependencies":"status",
                         "required":false
                     },
                     "qcNotes":{
                         "type":"string",
                         "title":"QC Notes",
-                        "dependencies":"status",
-                        "required":false
-                    },
-                    "badSweeps":{
-                        "type":"string",
-                        "title":"Bad Sweeps",
                         "dependencies":"status",
                         "required":false
                     },
@@ -245,21 +228,22 @@
                             "postPatch":{
                                 "type":"string",
                                 "title":"Post Patch State",
-                                "enum":["nucleus_present", "nucleus_absent", "entire_cell"],
+                                "enum":["nucleus_present", "nucleus_absent", "entire_cell", "unknown"],
                                 "default":[],
                                 "required":true
                             },
                             "endPipetteR":{
-                                "format":"number",
-                                "minimum":0,
-                                "title":"Post Patch Pipette R",
-                                "required":true
+                                "format": "number",
+                                "minimum": 0,
+                                "maximum": 10000,
+                                "title": "Post Patch Pipette R (MOhm)",
+                                "required": true
                             },
                             "nucleus": {
                                 "type":"string",
                                 "title":"Nucleus sucked in?",
-                                "enum":["intentionally", "not_intentionally", "no", "NA"],
-                                "default":[],
+                                "enum":["intentionally", "not_intentionally", "no", "unknown", "NA"],
+                                "default":["unknown"],
                                 "required":false
                             },
                             "fillquality": {
@@ -281,7 +265,7 @@
                             "extractionObservations":{
                                 "type":"string",
                                 "title": "Cell Assessment",
-                                "enum": ["Fluorescence in Pipette", "Cell Dimmed", "Cell Swelled", "Cell Shrunk", "Too Deep","Cell Disappeared"],
+                                "enum": ["Cell Swelled", "Cell Shrunk"],
                                 "default": [],
                                 "required":false
                             },
@@ -289,7 +273,7 @@
                                 "type":"string",
                                 "title":"Sample Assessment",
                                 "enum":["No Bubbles", "Small Bubbles", "Medium Bubbles", "Large Bubbles", "Solution in Pipette Shank"],
-                                "default":[],
+                                "default":["No Bubbles"],
                                 "required":false
                             }
                         }
@@ -315,10 +299,10 @@
         }
     },
     "dependencies": {
-        "pilotTest01":["pilotName"],
-        "pilotTest04":["pilotName"],
-        "pilotTestYN":["pilotName"],
-        "pilotTest05":["pilotName"],
+        "pilot_nucleated_patch_retraction_pressure":["pilotName"],
+        "pilot_electroporation":["pilotName"],
+        "pilot_vortexing":["pilotName"],
+        "pilot_channel_recording": ["pilotName"],
         "failureNotes":["status"],
         "freeFailureNotes":["status"],
         "successNotes":["status"],
