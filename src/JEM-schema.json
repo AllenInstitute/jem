@@ -10,7 +10,7 @@
         "rigOperator": {
             "type": "string",
             "title": "Researcher",
-            "enum":["brianle", "kristenh", "rustym", "ramr", "sarav", "stephanies", "lisak", "jessicat", "jonathant", "briank", "cristinar", "lindsayn"],
+            "enum":["brianle", "kristenh", "rustym", "ramr", "sarav", "balreetp", "stephanies", "lisak", "jessicat", "jonathant", "briank", "cristinar", "lindsayn"],
             "required":true
         },
         "rigNumber": {
@@ -90,7 +90,7 @@
                                 "type":"string",
                                 "title":"Pilot Name",
                                 "default": "None",
-                                "enum": ["None", "U01 Pilot", "Slice_Culture", "Channel_Recording", "Vortexing", "Electroporation", "Nucleated Patch - Retraction Pressure"],
+                                "enum": ["None", "Training", "U01 Pilot", "Slice_Culture", "Channel_Recording", "Vortexing", "Electroporation", "Nucleated Patch - Retraction Pressure"],
                                 "required":true
                             },
                             "pilot_nucleated_patch_retraction_pressure":{
