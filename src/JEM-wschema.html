@@ -380,13 +380,13 @@
                                 "rigOperator": {
                                     "type": "string",
                                     "title": "Researcher",
-                                    "enum":["nataliag", "rene", "djai", "christina", "ayoub", "aarono", "briank", "brianle", "dijonh", "gasparo", "huibm", "jonathant", "jessicat", "josefs", "katherineb", "kristenh", "lindsayn", "lisak", "martonr", "norbertm", "ramr", "rustym", "szabinaf", "alexh", "cristinar", "stephanies", "sarahh", "sarav", "scotto", "visitor"],
+                                    "enum":["brianle", "kristenh", "rustym", "ramr", "sarav", "balreetp", "stephanies", "lisak", "jessicat", "jonathant", "briank", "cristinar", "lindsayn"],
                                     "required":true
                                 },
                                 "rigNumber": {
                                     "type":"string",
                                     "title":"Rig #",
-                                    "enum":["1","2","3","4","5","6","7","8", "BRL", "HCT1", "HCT2", "HCT3", "MP1", "MP2", "MP3", "MP4", "NA"],
+                                    "enum":["1", "2", "3", "4", "5", "6", "7", "8", "HCT1", "HCT2", "HCT3", "MP1", "MP2", "MP3", "MP4"],
                                     "required":true
                                 },
                                 "date":{
@@ -407,19 +407,19 @@
                                 "blankFillDate":{
                                     "format":"date",
                                     "title":"Blank Fill Date",
-                                    "enum":["2021-01-04", "2020-11-09", "2020-10-20", "2020-09-01", "2020-07-13", "2020-06-29", "2020-06-15","2020-03-05", "2020-02-21", "2020-01-21", "2020-01-03", "2019-11-15", "2019-10-17","2019-09-25","2019-08-26", "2019-07-30","2019-06-25", "2019-05-21", "2019-05-09", "2019-04-30","2019-04-04","2019-03-05", "2019-02-05", "2019-01-25", "2018-11-13", "2018-11-12", "2018-10-19","2018-09-28","2018-09-18","2018-09-04", "2018-08-10", "2018-07-25", "2018-07-10", "2018-06-14", "2018-05-24", "2018-05-11", "2018-04-26", "2018-03-22", "2018-02-13", "2018-02-07", "2018-01-26", "2017-12-08", "2017-11-21", "2017-10-26", "2017-10-12", "2017-09-25", "2017-08-31"],
+                                    "enum":["2021-04-06", "2021-03-15", "2021-02-01", "2021-01-04"],
                                     "required":true
                                 },
                                 "internalFillDate":{
                                     "format":"date",
                                     "title":"Internal Fill Date",
-                                    "enum":["2021-01-25", "2020-12-10", "2020-10-21", "2020-10-20", "2020-09-08", "2020-06-15", "2020-05-04", "2020-02-25", "2020-01-13", "2019-10-28", "2019-09-16","2019-07-29","2019-06-24", "2019-05-06", "2019-03-28", "2019-02-08", "2018-12-05", "2018-10-19","2018-10-01", "2018-08-14", "2018-07-09", "2018-06-27", "2018-05-21", "2018-04-30", "2018-04-09", "2018-04-08", "2018-03-29", "2018-03-28", "2018-03-14", "2018-03-13", "2018-02-14", "2018-02-13", "2018-02-12", "2018-01-12", "2017-12-04", "2017-10-05", "2017-09-29"],
+                                    "enum":["2021-03-08", "2021-01-25"],
                                     "required":true
                                 },
                                 "flipped": {
                                     "type":"string",
                                     "title":"Is slice flipped?",
-                                    "enum":["Yes","No","NA", "Unknown"],
+                                    "enum":["Unknown", "Yes", "No", "NA"],
                                     "required":true
                                 },
                                 "sliceQuality":{
@@ -444,56 +444,50 @@
                                                 "type":"object",
                                                 "title": "Approach Info",
                                                 "properties": {
-                                                    "sliceHealth":{
+                                                    "creCell": {
                                                         "type":"string",
-                                                        "title": "Slice Health",
-                                                        "enum":["1","2","3","4","5"],
+                                                        "title":"Cre Status",
+                                                        "enum":["Cre+", "Cre-", "NA"],
                                                         "required":true
                                                     },
                                                     "cellHealth":{
                                                         "type":"string",
                                                         "title": "Cell Health",
-                                                        "enum":["1","2","3","4","5"],
-                                                        "required":true
-                                                    },
-                                                    "creCell": {
-                                                        "type":"string",
-                                                        "title":"Cre Status",
-                                                        "enum":["Cre+","Cre-","None"],
+                                                        "enum":["1", "2", "3", "4", "5"],
                                                         "required":true
                                                     },
                                                     "pilotName":{
                                                         "type":"string",
                                                         "title":"Pilot Name",
                                                         "default": "None",
-                                                        "enum": ["None", "Tissue_Touch", "Slice_Culture", "Vortexing", "Electroporation", "Channel_Recording", "Non_Human_Primate_LGN", "Nucleated Patch - Retraction Pressure"],
+                                                        "enum": ["None", "Training", "U01 Pilot", "Slice_Culture", "Channel_Recording", "Vortexing", "Electroporation", "Nucleated Patch - Retraction Pressure"],
                                                         "required":true
                                                     },
-                                                    "pilotTest01":{
+                                                    "pilot_nucleated_patch_retraction_pressure":{
                                                         "type":"string",
-                                                        "title":"Pilot Details",
+                                                        "title":"Pilot Project Details",
                                                         "enum":["Standard (~80 mbar)", "Mid-Range (~65 mbar)", "Low (~50 mbar)", "Minimal (~25 mbar)"],
                                                         "default":"",
                                                         "dependencies":"pilotName",
                                                         "required":false
                                                     },
-                                                     "pilotTest04":{
+                                                     "pilot_electroporation":{
                                                        "type":"string",
-                                                        "title":"Pilot Details",
+                                                        "title":"Pilot Project Details",
                                                         "dependencies":"pilotName",
                                                         "required":false
                                                     },
-                                                    "pilotTestYN":{
+                                                    "pilot_vortexing":{
                                                        "type":"string",
-                                                        "title":"Pilot Details",
+                                                        "title":"Pilot Project Details",
                                                         "enum":["Yes", "No"],
                                                         "dependencies":"pilotName",
                                                         "required":false
                                                     },
-                                                     "pilotTest05":{
+                                                    "pilot_channel_recording":{
                                                        "type":"array",
-                                                        "title":"Pilot Details",
-                                                        "enum":["Total","Prepulse","Sustained","Inactivation","Tail Currents"],
+                                                        "title":"Pilot Project Details",
+                                                        "enum":["Total", "Prepulse", "Sustained", "Inactivation"],
                                                         "dependencies":"pilotName",
                                                         "required":false
                                                     }
@@ -510,7 +504,8 @@
                                                     },
                                                     "pipetteR":{
                                                         "format":"number",
-                                                        "minimum":0,
+                                                        "minimum": 0.0,
+                                                        "maximum": 10.0,
                                                         "title":"Pipette R",
                                                         "required":true
                                                     },
@@ -518,12 +513,6 @@
                                                         "format":"time",
                                                         "title":"Whole Cell Start",
                                                         "required":true
-                                                    },
-                                                    "humanCellTypePrediction":{
-                                                        "type":"string",
-                                                        "title":"Cell Type Prediction (for Human Neurons)",
-                                                        "enum":["Unknown", "Pyramidal", "FS Interneuron", "Spindle Shaped", "Unknown Interneuron",  "Striatal MSN", "Striatal ChAT", "Striatal FSI", "Striatal Unknown Interneuron"],
-                                                        "required":false
                                                     }
                                                 }
                                             },
@@ -541,7 +530,7 @@
                                             },
                                             "failureNotes":{
                                                 "type":"string",
-                                                "enum":["Seal Failed","Unstable Seal","Breakin Failed","Access Resistance Out of Range","Vrest Out of Range", "'Wave of Death'", "Other"],
+                                                "enum":["Failed Gigaohm Seal", "Failed Break-in", "Cell Died", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= -100 pA)", "Other"],
                                                 "default":[],
                                                 "dependencies":"status",
                                                 "required":true
@@ -555,20 +544,14 @@
                                             },
                                             "successNotes":{
                                                 "type":"string",
-                                                "enum": ["Patch/Cell Unstable", "Patch Became Leaky", "Access Resistance Increased", "Ended After C1"],
-                                                "default":[],
+                                                "enum": ["Completed Core 1", "Completed Core 2", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= -100 pA)"],
+                                                "default":["Completed Core 1"],
                                                 "dependencies":"status",
                                                 "required":false
                                             },
                                             "qcNotes":{
                                                 "type":"string",
                                                 "title":"QC Notes",
-                                                "dependencies":"status",
-                                                "required":false
-                                            },
-                                            "badSweeps":{
-                                                "type":"string",
-                                                "title":"Bad Sweeps",
                                                 "dependencies":"status",
                                                 "required":false
                                             },
@@ -615,21 +598,22 @@
                                                     "postPatch":{
                                                         "type":"string",
                                                         "title":"Post Patch State",
-                                                        "enum":["nucleus_present", "nucleus_absent", "entire_cell"],
+                                                        "enum":["nucleus_present", "nucleus_absent", "entire_cell", "unknown"],
                                                         "default":[],
                                                         "required":true
                                                     },
                                                     "endPipetteR":{
                                                         "format":"number",
-                                                        "minimum":0,
-                                                        "title":"Post Patch Pipette R",
+                                                        "minimum": 0,
+                                                        "maximum": 10000,
+                                                        "title":"Post Patch Pipette R (MOhm)",
                                                         "required":true
                                                     },
                                                     "nucleus": {
                                                         "type":"string",
                                                         "title":"Nucleus sucked in?",
-                                                        "enum":["intentionally", "not_intentionally", "no", "NA"],
-                                                        "default":[],
+                                                        "enum":["intentionally", "not_intentionally", "no", "unknown", "NA"],
+                                                        "default":["unknown"],
                                                         "required":false
                                                     },
                                                     "fillquality": {
@@ -651,16 +635,16 @@
                                                     "extractionObservations":{
                                                         "type":"string",
                                                         "title": "Cell Assessment",
-                                                        "enum": ["Fluorescence in Pipette", "Cell Dimmed", "Cell Swelled", "Cell Shrunk", "Too Deep","Cell Disappeared"],
+                                                        "enum": ["Cell Swelled", "Cell Shrunk"],
                                                         "default": [],
                                                         "required":false
                                                     },
                                                     "sampleObservations":{
-                                                        "type":"string",
-                                                        "title":"Sample Assessment",
-                                                        "enum":["No Bubbles", "Small Bubbles", "Medium Bubbles", "Large Bubbles", "Solution in Pipette Shank"],
-                                                        "default":[],
-                                                        "required":false
+                                                        "type": "string",
+                                                        "title": "Sample Assessment",
+                                                        "enum": ["No Bubbles", "Small Bubbles", "Medium Bubbles", "Large Bubbles", "Solution in Pipette Shank"],
+                                                        "default": ["No Bubbles"],
+                                                        "required": false
                                                     }
                                                 }
                                             },
@@ -687,15 +671,14 @@
                             },
                             "dependencies": {
                                 //"manualRoi":["autoRoi"],
-                                "pilotTest01":["pilotName"],
-                                "pilotTest04":["pilotName"],
-                                "pilotTestYN":["pilotName"],
-                                "pilotTest05":["pilotName"],
+                                "pilot_nucleated_patch_retraction_pressure":["pilotName"],
+                                "pilot_electroporation":["pilotName"],
+                                "pilot_vortexing":["pilotName"],
+                                "pilot_channel_recording": ["pilotName"],
                                 "failureNotes":["status"],
                                 "freeFailureNotes":["status"],
                                 "successNotes":["status"],
                                 "qcNotes":["status"],
-                                "badSweeps":["status"],
                                 "extraction":["status"]
                                 }
                         },
@@ -704,14 +687,14 @@
                                 "formVersion": {
                                     "type":"text",
                                     "readonly":true,
-                                    "fieldClass": "col-md-1",
+                                    "fieldClass": "col-lg-1",
                                     "data":"/jem-data/jemVersion.json",
-                                    "view":"bootstrap-display"
-                                    //"type":"hidden"
+                                    "view":"bootstrap-display",
+                                    "type":"hidden"
                                 },
                                 "rigOperator" : {
                                     "type": "select",
-                                    "fieldClass": "dropdown-content col-md-2",
+                                    "fieldClass": "dropdown-content col-lg-2",
                                     "helper": [],
                                     "hideNone":false,
                                     "noneLabel":'',
@@ -755,7 +738,7 @@
                                 },
                                 "rigNumber": {
                                     "type": "select",
-                                    "fieldClass":"dropdown-content col-md-1",
+                                    "fieldClass":"dropdown-content col-lg-2",
                                     "helper":[],
                                     "hideNone":false,
                                     "noneLabel":'',
@@ -786,7 +769,7 @@
                                 },
                                 "date": {
                                     "type":"date",
-                                    "fieldClass": "col-md-3",
+                                    "fieldClass": "col-lg-2",
                                     "picker": {
                                         "format":"YYYY-MM-DDTHH:mm:ssZ",
                                         "stepping":1,
@@ -826,7 +809,7 @@
                                 },
                                 "limsSpecName": {
                                     "type": "text",
-                                    "fieldClass": "col-md-4",
+                                    "fieldClass": "col-lg-6",
                                     "helper":[],
                                     "placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02",
                                     "validate":true,
@@ -876,7 +859,7 @@
                                 },
                                 "acsfProductionDate": {
                                     "type":"date",
-                                    "fieldClass":"col-md-2",
+                                    "fieldClass":"col-lg-2",
                                     "picker": {
                                         "format":"YYYY-MM-DD",
                                         "showClose": true,
@@ -893,8 +876,8 @@
                                 },
                                 "blankFillDate": {
                                     "type":"select",
-                                    "fieldClass":"dropdown-content col-md-2",
-                                    "helper":[],
+                                    "fieldClass":"dropdown-content col-lg-2",
+                                    "helper":["Current: 2021-03-15 (Black)"],
                                     "hideNone":false,
                                     "noneLabel":"",
                                     "validate":true,
@@ -907,7 +890,7 @@
                                 },
                                 "internalFillDate": {
                                     "type":"select",
-                                    "fieldClass":"dropdown-content col-md-2",
+                                    "fieldClass":"dropdown-content col-lg-2",
                                     "helper":[],
                                     "hideNone":false,
                                     "noneLabel":"",
@@ -921,7 +904,8 @@
                                 },
                                 "flipped":{
                                     "type":"radio",
-                                    "fieldClass": "col-md-2",
+                                    "fieldClass": "col-lg-2",
+                                    "sort": false,
                                     "validate":true,
                                     "showMessages":false,
                                     "hideInitValidationError":true,
@@ -955,7 +939,7 @@
                                 },
                                 "sliceQuality": {
                                     "type": "checkbox",
-                                    "fieldClass": "col-md-2",
+                                    "fieldClass": "col-lg-2",
                                     "label": "Slice Quality",
                                     "sort":false,
                                     "vertical":false,
@@ -964,12 +948,12 @@
                                 },
                                 "sliceNotes": {
                                     "type":"textarea",
-                                    "fieldClass": "col-md-2",
-                                    "rows":4,
+                                    "fieldClass": "col-lg-2",
+                                    "rows":2,
                                     "allowOptionalEmpty":true
                                 },
                                 "pipettes": {
-                                    "fieldClass": "form-group col-md-12 no-border",
+                                    "fieldClass": "form-group col-lg-12 no-border",
                                     "toolbar": {
                                         "showLabels":true,
                                         "actions": [{
@@ -1024,29 +1008,22 @@
                                     "collapsible":true,
                                     "lazyLoading":true,
                                     "showMessages":true,
-                                    "focus":"pipettes/sliceHealth",
+                                    "focus":"pipettes",
                                     "items": {
                                         "fields": {
                                             "approach": {
-                                                "fieldClass": "form-group col-md-12 no-border bg-success",
+                                                "fieldClass": "form-group col-lg-12 no-border bg-success",
                                                 "fields": {
-                                                    "sliceHealth": {
-                                                        "type": "radio",
-                                                        "fieldClass": "form-group col-md-5",
-                                                        "vertical":false,
-                                                        "hideNone":true,
-                                                        "showMessages":false
-                                                    },
                                                     "cellHealth": {
                                                         "type": "radio",
-                                                        "fieldClass": "form-group col-md-5",
+                                                        "fieldClass": "form-group col-lg-12",
                                                         "vertical":false,
                                                         "hideNone":true,
                                                         "showMessages":false
                                                     },
                                                     "creCell": {
                                                         "type": "radio",
-                                                        "fieldClass": "form-group col-md-5",
+                                                        "fieldClass": "form-group col-lg-12",
                                                         "size":1,
                                                         "vertical":false,
                                                         "hideNone":true,
@@ -1055,7 +1032,7 @@
                                                     },
                                                     "pilotName": {
                                                         "type":"select",
-                                                        "fieldClass": "form-group col-md-4",
+                                                        "fieldClass": "form-group col-lg-3",
                                                         "helper": [],
                                                         "sort":false,
                                                         "hideNone":true,
@@ -1075,9 +1052,9 @@
                                                             }
                                                         }
                                                     },
-                                                    "pilotTest01": {
+                                                    "pilot_nucleated_patch_retraction_pressure": {
                                                         "type":"select",
-                                                        "fieldClass": "form-group col-md-3",
+                                                        "fieldClass": "form-group col-lg-2",
                                                         "helper":[],
                                                         "sort":false,
                                                         "hideNone":false,
@@ -1086,17 +1063,17 @@
                                                             "pilotName":"Nucleated Patch - Retraction Pressure"
                                                         }
                                                     },
-                                                    "pilotTest04": {
+                                                    "pilot_electroporation": {
                                                         "type":"text",
-                                                        "fieldClass": "form-group col-md-3",
+                                                        "fieldClass": "form-group col-lg-2",
                                                         "helper":[],
                                                         "dependencies": {
                                                             "pilotName":"Electroporation"
                                                         }
                                                     },
-                                                    "pilotTestYN": {
+                                                    "pilot_vortexing": {
                                                         "type":"select",
-                                                        "fieldClass": "form-group col-md-3",
+                                                        "fieldClass": "form-group col-lg-2",
                                                         "helper":[],
                                                         "sort":false,
                                                         "hideNone":false,
@@ -1105,21 +1082,22 @@
                                                             "pilotName":"Vortexing"
                                                         }
                                                     },
-                                                    "pilotTest05": {
-                                                        "type":"checkbox",
-                                                        "fieldClass": "form-group col-md-3",
-                                                        "helper":[],
+                                                     "pilot_channel_recording": {
+                                                        "type": "checkbox", 
+                                                        "fieldClass": "form-group col-lg-2", 
+                                                        "helper": [], 
+                                                        "sort": false, 
                                                         "dependencies": {
-                                                            "pilotName":"Channel_Recording"
+                                                            "pilotName": "Channel_Recording"
                                                         }
                                                     }
                                                 }
                                             },
                                             "recording":{
-                                                "fieldClass": "form-group col-md-12 no-border bg-info",
+                                                "fieldClass": "form-group col-lg-12 no-border bg-info",
                                                 "fields": {
                                                     "timeStart": {
-                                                        "fieldClass": "form-group col-md-2",
+                                                        "fieldClass": "form-group col-lg-2",
                                                         "type":"date",
                                                         "dateFormat":"HH:mm:ssZ",
                                                         "picker": {
@@ -1162,8 +1140,8 @@
                                                     },
                                                     "pipetteR":{
                                                         "type":"number",
-                                                        "fieldClass": "form-group col-md-2",
-                                                        "helper": "(MOhm)",
+                                                        "fieldClass": "form-group col-lg-2",
+                                                        "helper": "(0-10 MOhms)",
                                                         "validate":true,
                                                         "showMessages":false,
                                                         "hideInitValidationError":true,
@@ -1193,7 +1171,7 @@
                                                     },
                                                     "timeWholeCellStart":{
                                                         "type":"date",
-                                                        "fieldClass": "form-group col-md-2",
+                                                        "fieldClass": "form-group col-lg-2",
                                                         "dateFormat":"HH:mm:ssZ",
                                                         "picker": {
                                                             "showClose":true,
@@ -1231,16 +1209,12 @@
                                                             }
                                                         },
                                                         //"helper":"(HH:mm:ss-UTC)"
-                                                    },
-                                                    "humanCellTypePrediction":{
-                                                        "type": "select",
-                                                        "fieldClass": "dropdown-content col-md-4"
                                                     }
                                                 }
                                             },
                                             "status": {
                                                 "type":"radio",
-                                                "fieldClass": "col-md-12 bg-primary",
+                                                "fieldClass": "col-lg-12 bg-primary",
                                                 "vertical":false,
                                                 "hideNone":true,
                                                 "helper": [],
@@ -1271,7 +1245,7 @@
                                             "pipetteSpecName": {
                                                 "type": "text",
                                                 "readonly":true,
-                                                "fieldClass": "form-group col-md-8 no-border",
+                                                "fieldClass": "form-group col-lg-12 no-border",
                                                 "helper":[],
                                                 "showMessages": false,
                                                 "hideInitValidationError":true,
@@ -1285,18 +1259,26 @@
                                             },
                                             "successNotes": {
                                                 "type": "checkbox",
-                                                "fieldClass": "col-md-4",
+                                                "fieldClass": "col-lg-12",
                                                 "dependencies": {
                                                     "status":["SUCCESS"]
                                                     },
                                                 "label": "Recording Observations",
                                                 "sort":false
                                             },
+                                            "qcNotes": {
+                                                "type":"textarea",
+                                                "fieldClass": "col-lg-12",
+                                                "dependencies": {
+                                                    "status":["SUCCESS"]
+                                                },
+                                                "rows":1
+                                            },
                                             "failureNotes": {
                                                 "type": "checkbox",
                                                 "showMessages": false,
                                                 "hideInitValidationError":true,
-                                                "fieldClass": "col-md-4",
+                                                "fieldClass": "col-lg-12",
                                                 "dependencies": {
                                                     "status":["FAILURE"]
                                                     },
@@ -1305,31 +1287,14 @@
                                             },
                                             "freeFailureNotes": {
                                                 "type":"textarea",
-                                                "fieldClass": "col-md-8",
+                                                "fieldClass": "col-lg-12",
                                                 "dependencies": {
                                                     "status":["FAILURE"]
                                                 },
-                                                "rows":8
-                                            },
-                                            "qcNotes": {
-                                                "type":"textarea",
-                                                "fieldClass": "col-md-4",
-                                                "dependencies": {
-                                                    "status":["SUCCESS"]
-                                                },
-                                                "rows":4
-                                            },
-                                            "badSweeps": {
-                                                "type":"textarea",
-                                                "fieldClass":"col-md-4",
-                                                "size":2,
-                                                "dependencies":{
-                                                    "status":["SUCCESS"]
-                                                },
-                                                "rows":4
+                                                "rows":1
                                             },
                                             "extraction": {
-                                                "fieldClass": "form-group col-md-12 no-border bg-danger",
+                                                "fieldClass": "form-group col-lg-12 no-border bg-danger",
                                                 "dependencies": {
                                                     "status":["SUCCESS"]
                                                 },
@@ -1337,13 +1302,13 @@
                                                     "pilotNameExtra": {
                                                         "type":"text",
                                                         "readonly":true,
-                                                        "fieldClass": "col-md-12",
+                                                        "fieldClass": "col-lg-12",
                                                         "hidden":false
                                                     },
                                                     "pressureApplied":{
                                                         "type":"number",
                                                         //"helper":"(mbar)",
-                                                        "fieldClass":"col-md-2",
+                                                        "fieldClass":"col-lg-2",
                                                         "validate":true,
                                                         "showMessages":false,
                                                         "events":{
@@ -1373,7 +1338,7 @@
                                                     "retractionPressureApplied":{
                                                         "type":"number",
                                                         //"helper":"(mbar)",
-                                                        "fieldClass": "col-md-2",
+                                                        "fieldClass": "col-lg-2",
                                                         "validate":true,
                                                         "showMessages":false,
                                                         "events":{
@@ -1437,7 +1402,7 @@
                                                             }
                                                         },
                                                         //"helper":"(HH:mm:ss-UTC)",
-                                                        "fieldClass": "col-md-2"
+                                                        "fieldClass": "col-lg-2"
                                                     },
                                                     "timeExtractionEnd": {
                                                         "type":"time",
@@ -1476,7 +1441,7 @@
                                                             }
                                                         },
                                                         //"helper": "(HH:mm:ss-UTC)",
-                                                        "fieldClass": "col-md-2"
+                                                        "fieldClass": "col-lg-2"
                                                     },
                                                     "timeRetractionEnd": {
                                                         "type":"time",
@@ -1515,7 +1480,7 @@
                                                             }
                                                         },
                                                         //"helper": "(HH:mm:ss-UTC)",
-                                                        "fieldClass": "col-md-2"
+                                                        "fieldClass": "col-lg-2"
                                                     },
                                                     "timeChannelRecordingEnd": {
                                                         "type":"time",
@@ -1531,14 +1496,14 @@
                                                             "useCurrent":true
                                                         },
                                                         //"helper": "(HH:mm:ss-UTC)",
-                                                        "fieldClass": "col-md-2",
+                                                        "fieldClass": "col-lg-2",
                                                         "dependencies": {
                                                             "pilotNameExtra":"Pilot: Channel_Recording"
                                                         }
                                                     },    
                                                     "postPatch":{
                                                         "type": "select",
-                                                        "fieldClass":"dropdown-content col-md-3",
+                                                        "fieldClass":"dropdown-content col-lg-3",
                                                         "size":1.5,
                                                         "sort":false,
                                                         "validate":true,
@@ -1548,8 +1513,8 @@
                                                     },
                                                     "endPipetteR":{
                                                         "type":"number",
-                                                        "fieldClass": "form-group col-md-3",
-                                                        "helper": "(MOhm)",
+                                                        "fieldClass": "form-group col-lg-2",
+                                                        //"helper": "(MOhm)",
                                                         "validate":true,
                                                         "showMessages":false,
                                                         "events":{
@@ -1578,7 +1543,7 @@
                                                     },
                                                     "nucleus":{
                                                         "type":"select",
-                                                        "fieldClass": "dropdown-content col-md-2",
+                                                        "fieldClass": "dropdown-content col-lg-2",
                                                         "size":1.5,
                                                         "sort":false,
                                                         "validate":true,
@@ -1588,7 +1553,7 @@
                                                     },
                                                     "fillquality":{
                                                         "type":"select",
-                                                        "fieldClass": "dropdown-content col-md-3",
+                                                        "fieldClass": "dropdown-content col-lg-5",
                                                         "size":1.5,
                                                         "sort":false,
                                                         "validate":true,
@@ -1598,8 +1563,8 @@
                                                     },
                                                     "tubeID": {
                                                         "type":"text",
-                                                        "fieldClass": "col-md-4",
-                                                        "placeholder":"ex: P9S4_180522_406_A01",
+                                                        "fieldClass": "col-lg-12",
+                                                        "placeholder":"ex: PAS4_210101_451_A01",
                                                         //"helper":"(PX for development)",
                                                         "events":{
                                                             "ready": function(field){
@@ -1642,26 +1607,26 @@
                                                             } else {
                                                                 callback({
                                                                     "status": false,
-                                                                    "message": "Enter valid container (ex. P9S4_180522_406_A01) or NA"});
+                                                                    "message": "Enter valid container (ex. PAS4_210101_451_A01) or NA"});
                                                             }
                                                         }
 
                                                     },
                                                     "extractionNotes": {
                                                         "type":"textarea",
-                                                        "fieldClass": "col-md-5",
-                                                        "rows":4
+                                                        "fieldClass": "col-lg-7",
+                                                        "rows":1
                                                     },
                                                     "extractionObservations":{
                                                         "type":"checkbox",
-                                                        "fieldClass": "col-md-3",
+                                                        "fieldClass": "col-lg-2",
                                                         "sort":false,
                                                         "noneLabel":"NA",
-                                                        "removeDefaultNone":false
+                                                        "removeDefaultNone":false,
                                                     },
                                                     "sampleObservations":{
                                                         "type":"checkbox",
-                                                        "fieldClass":"col-md-3",
+                                                        "fieldClass":"col-lg-3",
                                                         "sort":false,
                                                         "noneLabel":"NA",
                                                         "removeDefaultNone":false
@@ -1670,7 +1635,7 @@
                                             },
                                             "depth": {
                                                 "type":"number",
-                                                "fieldClass": "form-group col-md-2",
+                                                "fieldClass": "form-group col-lg-2",
                                                 "validate":true,
                                                 "showMessages":true,
                                                 "hideInitValidationError":true,
@@ -1701,14 +1666,14 @@
                                             },
                                             "autoRoi":{
                                                 "type":"text",
-                                                "fieldClass":"form-group col-md-3",
+                                                "fieldClass":"form-group col-lg-3",
                                                 "showMessages":false,
                                                 "hideInitValidationError":true,
                                                 "hidden":true
                                             },
                                             "manualRoi":{
                                                 "type":"optiontree",
-                                                "fieldClass":"form-group col-md-6",
+                                                "fieldClass":"form-group col-lg-6",
                                                 //"dependencies": {
                                                 //    "autoRoi":["None",""]
                                                 //},
@@ -2629,7 +2594,7 @@
                             "views":"bootstrap-create"
                         },
                         "data": {
-                            "formVersion": "2.0.8"
+                            "formVersion": "2.1.0"
                         }
                     });
                 });
