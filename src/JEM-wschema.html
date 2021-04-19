@@ -530,7 +530,7 @@
                                             },
                                             "failureNotes":{
                                                 "type":"string",
-                                                "enum":["Failed Gigaohm Seal", "Failed Break-in", "Cell Died", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= -100 pA)", "Other"],
+                                                "enum":["Failed Gigaohm Seal", "Failed Break-in", "Cell Died", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= 100 pA)", "Other"],
                                                 "default":[],
                                                 "dependencies":"status",
                                                 "required":true
@@ -544,7 +544,7 @@
                                             },
                                             "successNotes":{
                                                 "type":"string",
-                                                "enum": ["Completed Core 1", "Completed Core 2", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= -100 pA)"],
+                                                "enum": ["Completed Core 1", "Completed Core 2", "Difficult Gigaohm Seal (slow sealing)", "Difficult Break-in (re-sealing)", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= 100 pA)", "Other"],
                                                 "default":["Completed Core 1"],
                                                 "dependencies":"status",
                                                 "required":false
