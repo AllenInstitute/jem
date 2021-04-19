@@ -416,12 +416,6 @@
                                     "enum":["2021-03-08", "2021-01-25"],
                                     "required":true
                                 },
-                                "flipped": {
-                                    "type":"string",
-                                    "title":"Is slice flipped?",
-                                    "enum":["Unknown", "Yes", "No", "NA"],
-                                    "required":true
-                                },
                                 "sliceQuality":{
                                     "type":"string",
                                     "enum": ["Healthy", "Unhealthy", "Even Thickness", "Uneven Thickness", "Damaged", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)"],
@@ -631,13 +625,6 @@
                                                     "extractionNotes": {
                                                         "type": "string",
                                                         "title": "Extra Extraction Notes"
-                                                    },
-                                                    "extractionObservations":{
-                                                        "type":"string",
-                                                        "title": "Cell Assessment",
-                                                        "enum": ["Cell Swelled", "Cell Shrunk"],
-                                                        "default": [],
-                                                        "required":false
                                                     },
                                                     "sampleObservations":{
                                                         "type": "string",
@@ -900,41 +887,6 @@
                                     "sort":function(first, second) {
                                         // Sort the dates in reverse so that the newest ones will be at the top.
                                         return second.text.localeCompare(first.text);
-                                    }
-                                },
-                                "flipped":{
-                                    "type":"radio",
-                                    "fieldClass": "col-lg-2",
-                                    "sort": false,
-                                    "validate":true,
-                                    "showMessages":false,
-                                    "hideInitValidationError":true,
-                                    "events":{
-                                        "ready": function(field){
-                                            var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                            var self = this;
-                                            jemdatasocket.onopen  = function() {
-                                                jemdatasocket.send(JSON.stringify(9191));
-                                            };
-
-                                            jemdatasocket.onmessage = function(msg) {
-                                                var incomingDat = JSON.parse(msg.data);
-
-                                                if ('factor' in incomingDat){
-                                                    if (incomingDat['factor'] == 'sliceFlipped'){
-                                                        if (incomingDat['value'] == 'y'){
-                                                            self.setValue("Yes")
-                                                            self.refresh();
-                                                        } else {
-                                                            self.setValue("No");
-                                                            self.refresh();
-                                                        }
-
-                                                    }
-                                                }
-                                            };
-                                        }
                                     }
                                 },
                                 "sliceQuality": {
@@ -1615,19 +1567,12 @@
                                                     },
                                                     "extractionNotes": {
                                                         "type":"textarea",
-                                                        "fieldClass": "col-lg-7",
+                                                        "fieldClass": "col-lg-10",
                                                         "rows":1
-                                                    },
-                                                    "extractionObservations":{
-                                                        "type":"checkbox",
-                                                        "fieldClass": "col-lg-2",
-                                                        "sort":false,
-                                                        "noneLabel":"NA",
-                                                        "removeDefaultNone":false,
                                                     },
                                                     "sampleObservations":{
                                                         "type":"checkbox",
-                                                        "fieldClass":"col-lg-3",
+                                                        "fieldClass":"col-lg-2",
                                                         "sort":false,
                                                         "noneLabel":"NA",
                                                         "removeDefaultNone":false
