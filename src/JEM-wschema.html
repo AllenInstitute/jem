@@ -394,11 +394,11 @@
                                     "title":"Slice on Rig Date/Time",
                                     "required":true
                                 },
-                                "limsSpecName": {
-                                    "type": "string",
-                                    "title":"Slice ID",
-                                    "required":true
-                                },
+                                //"limsSpecName": {
+                                //    "type": "string",
+                                //    "title":"Slice ID",
+                                //    "required":true
+                                //},
                                 "acsfProductionDate":{
                                     "format":"date",
                                     "title":"ACSF Date",
@@ -416,10 +416,21 @@
                                     "enum":["2021-03-08", "2021-01-25"],
                                     "required":true
                                 },
+                                "limsSpecName": {
+                                    "type": "string",
+                                    "title":"Slice ID",
+                                    "required":true
+                                },
+                                "virus": {
+                                    "type": "string",
+                                    "title": "Virus/Enhancer",
+                                    "enum": ["CN1244", "CN1390", "CN1633", "CN1818", "CN1827", "CN1954", "CN1955", "CN2039", "CN2040", "CN2315", "CN2321", "EYFP+"],
+                                    "required": false
+                                },
                                 "sliceQuality":{
                                     "type":"string",
                                     "enum": ["Healthy", "Unhealthy", "Even Thickness", "Uneven Thickness", "Damaged", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)"],
-                                    "default":["Healthy", "Even Thickness"],
+                                    "default":[],
                                     "required":true
                                 },
                                 "sliceNotes":{
@@ -454,7 +465,7 @@
                                                         "type":"string",
                                                         "title":"Pilot Name",
                                                         "default": "None",
-                                                        "enum": ["None", "Training", "U01 Pilot", "Slice_Culture", "Channel_Recording", "Vortexing", "Electroporation", "Nucleated Patch - Retraction Pressure"],
+                                                        "enum": ["None", "Training", "Off-Pipeline Prep Pilot", "U01 Pilot", "Dravet Mouse Pilot", "Slice_Culture", "Channel_Recording", "Vortexing", "Electroporation", "Nucleated Patch - Retraction Pressure"],
                                                         "required":true
                                                     },
                                                     "pilot_nucleated_patch_retraction_pressure":{
@@ -637,6 +648,8 @@
                                             },
                                             "depth": {
                                                 "format":"number",
+                                                "minimum": 0.0,
+                                                "maximum": 150.0,
                                                 "title":"Cell Depth",
                                                 "required":true
                                             },
@@ -796,7 +809,7 @@
                                 },
                                 "limsSpecName": {
                                     "type": "text",
-                                    "fieldClass": "col-lg-6",
+                                    "fieldClass": "col-lg-4",
                                     "helper":[],
                                     "placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02",
                                     "validate":true,
@@ -843,6 +856,16 @@
                                             });
                                         }
                                     }
+                                },
+                                "virus":{
+                                    "type": "select",
+                                    "fieldClass": "dropdown-content col-lg-2",
+                                    "size": 1.5,
+                                    "sort": false,
+                                    "validate": true,
+                                    "showMessages": false,
+                                    "hideInitValidationError": true,
+                                    "hideNone": false
                                 },
                                 "acsfProductionDate": {
                                     "type":"date",
