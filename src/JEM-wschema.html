@@ -429,7 +429,13 @@
                                 },
                                 "sliceQuality":{
                                     "type":"string",
-                                    "enum": ["Healthy", "Unhealthy", "Even Thickness", "Uneven Thickness", "Damaged", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)"],
+                                    "enum": ["Healthy", "Unhealthy", "Even Thickness", "Uneven Thickness", "Damaged"],
+                                    "default":[],
+                                    "required":true
+                                },
+                                "sliceQualityFinal":{
+                                    "type":"string",
+                                    "enum": ["Healthy", "Unhealthy", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)"],
                                     "default":[],
                                     "required":true
                                 },
@@ -919,12 +925,22 @@
                                     "sort":false,
                                     "vertical":false,
                                     "showMessages":false,
-                                    "hideInitValidationError":true
+                                    "hideInitValidationError":true,
+                                },
+                                "sliceQualityFinal": {
+                                    "type": "checkbox",
+                                    "fieldClass": "col-lg-2",
+                                    "label": "Final Slice Assessment",
+                                    "multiple": true,
+                                    "sort":false,
+                                    "vertical":false,
+                                    "showMessages":false,
+                                    "hideInitValidationError":true,
                                 },
                                 "sliceNotes": {
                                     "type":"textarea",
                                     "fieldClass": "col-lg-2",
-                                    "rows":2,
+                                    "rows":5,
                                     "allowOptionalEmpty":true
                                 },
                                 "pipettes": {
