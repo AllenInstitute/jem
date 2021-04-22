@@ -608,6 +608,13 @@
                                                         "default":[],
                                                         "required":true
                                                     },
+                                                    "nucleus": {
+                                                        "type":"string",
+                                                        "title":"Nucleus sucked in?",
+                                                        "enum":["intentionally", "not_intentionally", "no", "unknown", "NA"],
+                                                        "default":[],
+                                                        "required":false
+                                                    },
                                                     "endPipetteR":{
                                                         "format":"number",
                                                         "minimum": 0,
@@ -615,12 +622,10 @@
                                                         "title":"Post Patch Pipette R (MOhm)",
                                                         "required":true
                                                     },
-                                                    "nucleus": {
+                                                    "tubeID":{
                                                         "type":"string",
-                                                        "title":"Nucleus sucked in?",
-                                                        "enum":["intentionally", "not_intentionally", "no", "unknown", "NA"],
-                                                        "default":["unknown"],
-                                                        "required":false
+                                                        "title":"Patched Cell Container",
+                                                        "required":true
                                                     },
                                                     "fillquality": {
                                                         "type":"string",
@@ -629,21 +634,16 @@
                                                         "default":[],
                                                         "required":true
                                                     },
-                                                    "tubeID":{
-                                                        "type":"string",
-                                                        "title":"Patched Cell Container",
-                                                        "required":true
-                                                    },
-                                                    "extractionNotes": {
-                                                        "type": "string",
-                                                        "title": "Extra Extraction Notes"
-                                                    },
                                                     "sampleObservations":{
                                                         "type": "string",
                                                         "title": "Sample Assessment",
                                                         "enum": ["No Bubbles", "Small Bubbles", "Medium Bubbles", "Large Bubbles", "Solution in Pipette Shank"],
-                                                        "default": ["No Bubbles"],
+                                                        "default": [],
                                                         "required": false
+                                                    },
+                                                    "extractionNotes": {
+                                                        "type": "string",
+                                                        "title": "Extra Extraction Notes"
                                                     }
                                                 }
                                             },
@@ -808,6 +808,51 @@
                                     "showMessages": false,
                                     "hideInitValidationError":true
                                 },
+                                "acsfProductionDate": {
+                                    "type":"date",
+                                    "fieldClass":"col-lg-2",
+                                    "picker": {
+                                        "format":"YYYY-MM-DD",
+                                        "showClose": true,
+                                        "inline": false,
+                                        "tooltips": {
+                                            today: "Go to today"
+                                        },
+                                        "useCurrent":true
+                                    },
+                                    "manualEntry":false,
+                                    "validate":true,
+                                    "showMessages": false,
+                                    "hideInitValidationError":true
+                                },
+                                "blankFillDate": {
+                                    "type":"select",
+                                    "fieldClass":"dropdown-content col-lg-2",
+                                    "helper":["Current: 2021-03-15 (Black)"],
+                                    "hideNone":false,
+                                    "noneLabel":"",
+                                    "validate":true,
+                                    "showMessages":false,
+                                    "hideInitValidationError":true,
+                                    "sort":function(first, second) {
+                                        // Sort the dates in reverse so that the newest ones will be at the top.
+                                        return second.text.localeCompare(first.text);
+                                    }
+                                },
+                                "internalFillDate": {
+                                    "type":"select",
+                                    "fieldClass":"dropdown-content col-lg-2",
+                                    "helper":[],
+                                    "hideNone":false,
+                                    "noneLabel":"",
+                                    "validate":true,
+                                    "showMessages":false,
+                                    "hideInitValidationError":true,
+                                    "sort":function(first, second) {
+                                        // Sort the dates in reverse so that the newest ones will be at the top.
+                                        return second.text.localeCompare(first.text);
+                                    }
+                                },
                                 "limsSpecName": {
                                     "type": "text",
                                     "fieldClass": "col-lg-4",
@@ -867,51 +912,6 @@
                                     "showMessages": false,
                                     "hideInitValidationError": true,
                                     "hideNone": false
-                                },
-                                "acsfProductionDate": {
-                                    "type":"date",
-                                    "fieldClass":"col-lg-2",
-                                    "picker": {
-                                        "format":"YYYY-MM-DD",
-                                        "showClose": true,
-                                        "inline": false,
-                                        "tooltips": {
-                                            today: "Go to today"
-                                        },
-                                        "useCurrent":true
-                                    },
-                                    "manualEntry":false,
-                                    "validate":true,
-                                    "showMessages": false,
-                                    "hideInitValidationError":true
-                                },
-                                "blankFillDate": {
-                                    "type":"select",
-                                    "fieldClass":"dropdown-content col-lg-2",
-                                    "helper":["Current: 2021-03-15 (Black)"],
-                                    "hideNone":false,
-                                    "noneLabel":"",
-                                    "validate":true,
-                                    "showMessages":false,
-                                    "hideInitValidationError":true,
-                                    "sort":function(first, second) {
-                                        // Sort the dates in reverse so that the newest ones will be at the top.
-                                        return second.text.localeCompare(first.text);
-                                    }
-                                },
-                                "internalFillDate": {
-                                    "type":"select",
-                                    "fieldClass":"dropdown-content col-lg-2",
-                                    "helper":[],
-                                    "hideNone":false,
-                                    "noneLabel":"",
-                                    "validate":true,
-                                    "showMessages":false,
-                                    "hideInitValidationError":true,
-                                    "sort":function(first, second) {
-                                        // Sort the dates in reverse so that the newest ones will be at the top.
-                                        return second.text.localeCompare(first.text);
-                                    }
                                 },
                                 "sliceQuality": {
                                     "type": "checkbox",
@@ -1498,6 +1498,16 @@
                                                         "hideInitValidationError":true,
                                                         "hideNone":true
                                                     },
+                                                    "nucleus":{
+                                                        "type":"select",
+                                                        "fieldClass": "dropdown-content col-lg-2",
+                                                        "size":1.5,
+                                                        "sort":false,
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "hideInitValidationError":true,
+                                                        "hideNone":true
+                                                    },
                                                     "endPipetteR":{
                                                         "type":"number",
                                                         "fieldClass": "form-group col-lg-2",
@@ -1528,29 +1538,9 @@
                                                             }
                                                         }
                                                     },
-                                                    "nucleus":{
-                                                        "type":"select",
-                                                        "fieldClass": "dropdown-content col-lg-2",
-                                                        "size":1.5,
-                                                        "sort":false,
-                                                        "validate":true,
-                                                        "showMessages":false,
-                                                        "hideInitValidationError":true,
-                                                        "hideNone":true
-                                                    },
-                                                    "fillquality":{
-                                                        "type":"select",
-                                                        "fieldClass": "dropdown-content col-lg-5",
-                                                        "size":1.5,
-                                                        "sort":false,
-                                                        "validate":true,
-                                                        "showMessages":false,
-                                                        "hideInitValidationError":true,
-                                                        "hideNone":true
-                                                    },
                                                     "tubeID": {
                                                         "type":"text",
-                                                        "fieldClass": "col-lg-12",
+                                                        "fieldClass": "col-lg-5",
                                                         "placeholder":"ex: PAS4_210101_451_A01",
                                                         //"helper":"(PX for development)",
                                                         "events":{
@@ -1604,12 +1594,27 @@
                                                         "fieldClass": "col-lg-10",
                                                         "rows":1
                                                     },
+                                                    "fillquality":{
+                                                        "type":"select",
+                                                        "fieldClass": "dropdown-content col-lg-5",
+                                                        "size":1.5,
+                                                        "sort":false,
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "hideInitValidationError":true,
+                                                        "hideNone":true
+                                                    },
                                                     "sampleObservations":{
-                                                        "type":"checkbox",
+                                                        "type":"select",
                                                         "fieldClass":"col-lg-2",
                                                         "sort":false,
                                                         "noneLabel":"NA",
-                                                        "removeDefaultNone":false
+                                                        "hideNone": true
+                                                    },
+                                                    "extractionNotes": {
+                                                        "type":"textarea",
+                                                        "fieldClass": "col-lg-5",
+                                                        "rows":1
                                                     }
                                                  }
                                             },
