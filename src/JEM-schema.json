@@ -43,7 +43,7 @@
         "internalFillDate":{
             "format":"date",
             "title":"Internal Fill Date",
-            "enum":["2021-03-08", "2021-01-25"],
+            "enum":["2021-04-19", "2021-03-08", "2021-01-25"],
             "required":true
         },
         "flipped": {
