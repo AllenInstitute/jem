@@ -54,13 +54,13 @@
         },
         "sliceQuality":{
             "type":"string",
-            "enum": ["Healthy", "Unhealthy", "Even Thickness", "Uneven Thickness", "Damaged"],
+            "enum": ["Healthy", "Unhealthy", "Even Thickness", "Uneven Thickness", "Damage (Tissue Processing)"],
             "default":[],
             "required":true
         },
         "sliceQualityFinal":{
             "type":"string",
-            "enum": ["Healthy", "Unhealthy", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)"],
+            "enum": ["Healthy", "Unhealthy", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)", "Damage (Researcher)"],
             "default":[],
             "required":true
                                 },
