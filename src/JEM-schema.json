@@ -282,7 +282,7 @@
                     "depth": {
                         "format":"number",
                         "minimum": 0.0,
-                        "maximum": 150.0,
+                        "maximum": 350.0,
                         "title":"Cell Depth",
                         "required":true
                     },
