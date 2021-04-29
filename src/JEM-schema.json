@@ -266,13 +266,6 @@
                                 "default":[],
                                 "required":true
                             },
-                            "sampleObservations":{
-                                "type":"string",
-                                "title":"Sample Assessment",
-                                "enum":["No Bubbles", "Small Bubbles", "Medium Bubbles", "Large Bubbles", "Solution in Pipette Shank"],
-                                "default":["No Bubbles"],
-                                "required":false
-                            },
                             "extractionNotes": {
                                 "type": "string",
                                 "title": "Extra Extraction Notes"
