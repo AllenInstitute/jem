@@ -83,7 +83,7 @@
                             "creCell": {
                                 "type":"string",
                                 "title":"Cre Status",
-                                "enum":["Cre+", "Cre-", "Postive", "Negative", "NA"],
+                                "enum":["Postive", "Negative", "NA"],
                                 "required":true
                             },
                             "cellHealth":{
