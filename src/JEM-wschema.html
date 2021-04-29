@@ -624,16 +624,16 @@
                                                         "title":"Post Patch Pipette R (MOhm)",
                                                         "required":true
                                                     },
-                                                    "tubeID":{
-                                                        "type":"string",
-                                                        "title":"Patched Cell Container",
-                                                        "required":true
-                                                    },
                                                     "fillquality": {
                                                         "type":"string",
                                                         "title":"Biocytin fill quality",
                                                         "enum":["0: No fill or plume", "1: low visibility of the fill (heavily truncated or fill leaking)", "2: medium visibility of the fill (some truncations with some intact dendrites)", "3: high visibility of the fill (no or very little truncations with intact dendrites)"],
                                                         "default":[],
+                                                        "required":true
+                                                    },
+                                                    "tubeID":{
+                                                        "type":"string",
+                                                        "title":"Patched Cell Container",
                                                         "required":true
                                                     },
                                                     "extractionNotes": {
@@ -1537,11 +1537,22 @@
                                                             }
                                                         }
                                                     },
+                                                    "fillquality":{
+                                                        "type":"select",
+                                                        "fieldClass": "dropdown-content col-lg-5",
+                                                        "size":1.5,
+                                                        "sort":false,
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "hideInitValidationError":true,
+                                                        "hideNone":true
+                                                    },
                                                     "tubeID": {
                                                         "type":"text",
-                                                        "fieldClass": "col-lg-5",
+                                                        "fieldClass": "col-lg-7",
                                                         "placeholder":"ex: PAS4_210101_451_A01",
-                                                        //"helper":"(PX for development)",
+                                                        "disallowEmptySpaces":true,
+                                                        "helper":"(PC - culture & PX - pilot)",
                                                         "events":{
                                                             "ready": function(field){
                                                                 var self = this;
@@ -1588,19 +1599,9 @@
                                                         }
 
                                                     },
-                                                    "fillquality":{
-                                                        "type":"select",
-                                                        "fieldClass": "dropdown-content col-lg-5",
-                                                        "size":1.5,
-                                                        "sort":false,
-                                                        "validate":true,
-                                                        "showMessages":false,
-                                                        "hideInitValidationError":true,
-                                                        "hideNone":true
-                                                    },
                                                     "extractionNotes": {
                                                         "type":"textarea",
-                                                        "fieldClass": "col-lg-7",
+                                                        "fieldClass": "col-lg-5",
                                                         "rows":1
                                                     }
                                                  }
