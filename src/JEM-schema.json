@@ -245,7 +245,7 @@
                                 "title":"Nucleus sucked in?",
                                 "enum":["intentionally", "not_intentionally", "no", "unknown", "NA"],
                                 "default":["unknown"],
-                                "required":false
+                                "required": true
                             },
                             "endPipetteR":{
                                 "format": "number",
