@@ -493,6 +493,51 @@
                                     "showMessages": false,
                                     "hideInitValidationError":true
                                 },
+                                "acsfProductionDate": {
+                                    "type":"date",
+                                    "fieldClass":"col-lg-2",
+                                    "picker": {
+                                        "format":"YYYY-MM-DD",
+                                        "showClose": true,
+                                        "inline": false,
+                                        "tooltips": {
+                                            today: "Go to today"
+                                        },
+                                        "useCurrent":true
+                                    },
+                                    "manualEntry":false,
+                                    "validate":true,
+                                    "showMessages": false,
+                                    "hideInitValidationError":true
+                                },
+                                "blankFillDate": {
+                                    "type":"select",
+                                    "fieldClass":"dropdown-content col-lg-2",
+                                    "helper":["Current: 2021-03-15 (Black)"],
+                                    "hideNone":false,
+                                    "noneLabel":"",
+                                    "validate":true,
+                                    "showMessages":false,
+                                    "hideInitValidationError":true,
+                                    "sort":function(first, second) {
+                                        // Sort the dates in reverse so that the newest ones will be at the top.
+                                        return second.text.localeCompare(first.text);
+                                    }
+                                },
+                                "internalFillDate": {
+                                    "type":"select",
+                                    "fieldClass":"dropdown-content col-lg-2",
+                                    "helper":[],
+                                    "hideNone":false,
+                                    "noneLabel":"",
+                                    "validate":true,
+                                    "showMessages":false,
+                                    "hideInitValidationError":true,
+                                    "sort":function(first, second) {
+                                        // Sort the dates in reverse so that the newest ones will be at the top.
+                                        return second.text.localeCompare(first.text);
+                                    }
+                                },
                                 "limsSpecName": {
                                     "type": "text",
                                     "fieldClass": "col-lg-6",
@@ -543,94 +588,34 @@
                                         }
                                     }
                                 },
-                                "acsfProductionDate": {
-                                    "type":"date",
-                                    "fieldClass":"col-lg-2",
-                                    "picker": {
-                                        "format":"YYYY-MM-DD",
-                                        "showClose": true,
-                                        "inline": false,
-                                        "tooltips": {
-                                            today: "Go to today"
-                                        },
-                                        "useCurrent":true
-                                    },
-                                    "manualEntry":false,
-                                    "validate":true,
-                                    "showMessages": false,
-                                    "hideInitValidationError":true
-                                },
-                                "blankFillDate": {
-                                    "type":"select",
-                                    "fieldClass":"dropdown-content col-lg-2",
-                                    "helper":["Current: 2021-03-15 (Black)"],
-                                    "hideNone":false,
-                                    "noneLabel":"",
-                                    "validate":true,
-                                    "showMessages":false,
-                                    "hideInitValidationError":true,
-                                    "sort":function(first, second) {
-                                        // Sort the dates in reverse so that the newest ones will be at the top.
-                                        return second.text.localeCompare(first.text);
-                                    }
-                                },
-                                "internalFillDate": {
-                                    "type":"select",
-                                    "fieldClass":"dropdown-content col-lg-2",
-                                    "helper":[],
-                                    "hideNone":false,
-                                    "noneLabel":"",
-                                    "validate":true,
-                                    "showMessages":false,
-                                    "hideInitValidationError":true,
-                                    "sort":function(first, second) {
-                                        // Sort the dates in reverse so that the newest ones will be at the top.
-                                        return second.text.localeCompare(first.text);
-                                    }
-                                },
-                                "flipped":{
-                                    "type":"radio",
-                                    "fieldClass": "col-lg-2",
+                                "virus":{
+                                    "type": "select",
+                                    "fieldClass": "dropdown-content col-lg-2",
+                                    "size": 1.5,
                                     "sort": false,
-                                    "validate":true,
-                                    "showMessages":false,
-                                    "hideInitValidationError":true,
-                                    "events":{
-                                        "ready": function(field){
-                                            var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                            var self = this;
-                                            jemdatasocket.onopen  = function() {
-                                                jemdatasocket.send(JSON.stringify(9191));
-                                            };
-
-                                            jemdatasocket.onmessage = function(msg) {
-                                                var incomingDat = JSON.parse(msg.data);
-
-                                                if ('factor' in incomingDat){
-                                                    if (incomingDat['factor'] == 'sliceFlipped'){
-                                                        if (incomingDat['value'] == 'y'){
-                                                            self.setValue("Yes")
-                                                            self.refresh();
-                                                        } else {
-                                                            self.setValue("No");
-                                                            self.refresh();
-                                                        }
-
-                                                    }
-                                                }
-                                            };
-                                        }
-                                    }
+                                    "validate": true,
+                                    "showMessages": false,
+                                    "hideInitValidationError": true,
+                                    "hideNone": false
                                 },
                                 "sliceQuality": {
                                     "type": "checkbox",
                                     "fieldClass": "col-lg-2",
-                                    "label": "Slice Quality",
+                                    "label": "Initial Slice Assessment",
                                     "sort":false,
                                     "vertical":false,
                                     "showMessages":false,
-                                    "hideInitValidationError":true
+                                    "hideInitValidationError":true,
+                                },
+                                "sliceQualityFinal": {
+                                    "type": "checkbox",
+                                    "fieldClass": "col-lg-2",
+                                    "label": "Final Slice Assessment",
+                                    "multiple": true,
+                                    "sort":false,
+                                    "vertical":false,
+                                    "showMessages":false,
+                                    "hideInitValidationError":true,
                                 },
                                 "sliceNotes": {
                                     "type":"textarea",
@@ -705,7 +690,8 @@
                                                         "fieldClass": "form-group col-lg-12",
                                                         "vertical":false,
                                                         "hideNone":true,
-                                                        "showMessages":false
+                                                        "showMessages":false,
+                                                        "helper": "1 - Unhealthy"
                                                     },
                                                     "creCell": {
                                                         "type": "radio",
@@ -714,7 +700,8 @@
                                                         "vertical":false,
                                                         "hideNone":true,
                                                         "showMessages":false,
-                                                        "hideInitValidationError":true
+                                                        "hideInitValidationError":true,
+                                                        "helper": "Use Cre+/Cre- for Cre-lines and use Postive/Negative for Enhancers"
                                                     },
                                                     "pilotName": {
                                                         "type":"select",
@@ -1197,6 +1184,16 @@
                                                         "hideInitValidationError":true,
                                                         "hideNone":true
                                                     },
+                                                    "nucleus":{
+                                                        "type":"select",
+                                                        "fieldClass": "dropdown-content col-lg-2",
+                                                        "size":1.5,
+                                                        "sort":false,
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "hideInitValidationError":true,
+                                                        "hideNone":true
+                                                    },
                                                     "endPipetteR":{
                                                         "type":"number",
                                                         "fieldClass": "form-group col-lg-2",
@@ -1226,16 +1223,6 @@
                                                                 };
                                                             }
                                                         }
-                                                    },
-                                                    "nucleus":{
-                                                        "type":"select",
-                                                        "fieldClass": "dropdown-content col-lg-2",
-                                                        "size":1.5,
-                                                        "sort":false,
-                                                        "validate":true,
-                                                        "showMessages":false,
-                                                        "hideInitValidationError":true,
-                                                        "hideNone":true
                                                     },
                                                     "fillquality":{
                                                         "type":"select",
@@ -1298,24 +1285,27 @@
                                                         }
 
                                                     },
-                                                    "extractionNotes": {
-                                                        "type":"textarea",
-                                                        "fieldClass": "col-lg-7",
-                                                        "rows":1
-                                                    },
-                                                    "extractionObservations":{
-                                                        "type":"checkbox",
-                                                        "fieldClass": "col-lg-2",
+                                                    "fillquality":{
+                                                        "type":"select",
+                                                        "fieldClass": "dropdown-content col-lg-5",
+                                                        "size":1.5,
                                                         "sort":false,
-                                                        "noneLabel":"NA",
-                                                        "removeDefaultNone":false
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "hideInitValidationError":true,
+                                                        "hideNone":true
                                                     },
                                                     "sampleObservations":{
-                                                        "type":"checkbox",
-                                                        "fieldClass":"col-lg-3",
+                                                        "type":"select",
+                                                        "fieldClass":"col-lg-2",
                                                         "sort":false,
                                                         "noneLabel":"NA",
-                                                        "removeDefaultNone":false
+                                                        "hideNone": true
+                                                    },
+                                                    "extractionNotes": {
+                                                        "type":"textarea",
+                                                        "fieldClass": "col-lg-5",
+                                                        "rows":1
                                                     }
                                                  }
                                             },
@@ -1348,7 +1338,7 @@
                                                         };
                                                     }
                                                 },
-                                                "helper": "(um)"
+                                                "helper": "(0-150 um)"
                                             },
                                             "autoRoi":{
                                                 "type":"text",
