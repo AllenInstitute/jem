@@ -453,7 +453,7 @@
                                                     "creCell": {
                                                         "type":"string",
                                                         "title":"Reporter Status",
-                                                        "enum":["Postive", "Negative", "NA"],
+                                                        "enum":["Cre+", "Cre-", "Postive", "Negative", "NA"],
                                                         "required":true
                                                     },
                                                     "cellHealth":{
@@ -466,7 +466,7 @@
                                                         "type":"string",
                                                         "title":"Pilot Name",
                                                         "default": "None",
-                                                        "enum": ["None", "Training", "Off-Pipeline Prep Pilot", "U01 Pilot", "Dravet Mouse Pilot", "Slice_Culture", "Channel_Recording", "Vortexing", "Electroporation", "Nucleated Patch - Retraction Pressure"],
+                                                        "enum": ["None", "Training", "U01 Pilot", "Dravet Mouse Pilot", "Slice_Culture", "Channel_Recording", "Vortexing", "Electroporation", "Nucleated Patch - Retraction Pressure"],
                                                         "required":true
                                                     },
                                                     "pilot_nucleated_patch_retraction_pressure":{
@@ -510,8 +510,8 @@
                                                     },
                                                     "pipetteR":{
                                                         "format":"number",
-                                                        "minimum": 0.0,
-                                                        "maximum": 10.0,
+                                                        "minimum": 2.0,
+                                                        "maximum": 8.0,
                                                         "title":"Pipette R",
                                                         "required":true
                                                     },
@@ -536,7 +536,7 @@
                                             },
                                             "failureNotes":{
                                                 "type":"string",
-                                                "enum":["Failed Gigaohm Seal", "Failed Break-in", "Cell Died", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= 100 pA)", "Other"],
+                                                "enum":["Failed Gigaohm Seal", "Failed Break-in", "Cell Died", "Pipette Issue (clog)", "Pipette Issue (crashed through tissue)", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= 100 pA)", "Other"],
                                                 "default":[],
                                                 "dependencies":"status",
                                                 "required":true
@@ -551,7 +551,7 @@
                                             "successNotes":{
                                                 "type":"string",
                                                 "enum": ["Completed Core 1", "Completed Core 2", "Difficult Gigaohm Seal (slow sealing)", "Difficult Break-in (re-sealing)", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= 100 pA)", "Other"],
-                                                "default":["Completed Core 1"],
+                                                "default":[],
                                                 "dependencies":"status",
                                                 "required":false
                                             },
@@ -573,12 +573,14 @@
                                                     "pressureApplied":{
                                                         "type":"number",
                                                         "title":"Extraction Pressure (mbar)",
-                                                        "required":true
+                                                        "required":true,
+                                                        "default": ["-"]
                                                     },
                                                     "retractionPressureApplied":{
                                                         "type":"number",
                                                         "title":"Retraction Pressure (mbar)",
-                                                        "required":true
+                                                        "required":true,
+                                                        "default": ["-"]
                                                     },
                                                     "timeExtractionStart":{
                                                         "format":"time",
@@ -916,7 +918,7 @@
                                 "sliceQuality": {
                                     "type": "checkbox",
                                     "fieldClass": "col-lg-2",
-                                    "label": "Slice Quality",
+                                    "label": "Initial Slice Assessment",
                                     "sort":false,
                                     "vertical":false,
                                     "showMessages":false,
@@ -1005,7 +1007,8 @@
                                                         "fieldClass": "form-group col-lg-12",
                                                         "vertical":false,
                                                         "hideNone":true,
-                                                        "showMessages":false
+                                                        "showMessages":false,
+                                                        "helper": "1 - Unhealthy"
                                                     },
                                                     "creCell": {
                                                         "type": "radio",
@@ -1015,7 +1018,8 @@
                                                         "sort": false, 
                                                         "hideNone":true,
                                                         "showMessages":false,
-                                                        "hideInitValidationError":true
+                                                        "hideInitValidationError":true,
+                                                        "helper": "Use Cre+/Cre- for Cre-lines and use Postive/Negative for Enhancers"
                                                     },
                                                     "pilotName": {
                                                         "type":"select",
@@ -1588,11 +1592,6 @@
                                                             }
                                                         }
 
-                                                    },
-                                                    "extractionNotes": {
-                                                        "type":"textarea",
-                                                        "fieldClass": "col-lg-10",
-                                                        "rows":1
                                                     },
                                                     "fillquality":{
                                                         "type":"select",
