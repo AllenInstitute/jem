@@ -63,7 +63,7 @@
             "enum": ["Healthy", "Unhealthy", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)", "Damage (Researcher)"],
             "default":[],
             "required":true
-                                },
+        },
         "sliceNotes":{
             "type":"string",
             "format":"string",
@@ -244,7 +244,7 @@
                                 "type":"string",
                                 "title":"Nucleus sucked in?",
                                 "enum":["intentionally", "not_intentionally", "no", "unknown", "NA"],
-                                "default":["unknown"],
+                                "default":[],
                                 "required": true
                             },
                             "endPipetteR":{
