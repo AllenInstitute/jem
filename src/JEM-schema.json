@@ -82,7 +82,7 @@
                         "properties": {
                             "creCell": {
                                 "type":"string",
-                                "title":"Cre Status",
+                                "title":"Reporter Status",
                                 "enum":["Postive", "Negative", "NA"],
                                 "required":true
                             },
