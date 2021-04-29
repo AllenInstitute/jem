@@ -46,10 +46,10 @@
             "title":"Slice ID",
             "required":true
         },
-        "virus": {
+        "virus_enhancer": {
             "type": "string",
             "title": "Virus/Enhancer",
-            "enum": ["CN1244", "CN1390", "CN1633", "CN1818", "CN1827", "CN1954", "CN1955", "CN2039", "CN2040", "CN2315", "CN2321", "EYFP+"],
+            "enum": ["CN1244", "CN1390", "CN1633", "CN1818", "CN1827", "CN1954", "CN1955", "CN2039", "CN2040", "CN2315", "CN2321"],
             "required": false
         },
         "sliceQuality":{
