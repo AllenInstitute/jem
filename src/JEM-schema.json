@@ -183,7 +183,7 @@
                         "enum": ["Completed Core 1", "Completed Core 2", "Difficult Gigaohm Seal (slow sealing)", "Difficult Break-in (re-sealing)", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= 100 pA)", "Other"],
                         "default":[],
                         "dependencies":"status",
-                        "required":false
+                        "required": true
                     },
                     "qcNotes":{
                         "type":"string",
