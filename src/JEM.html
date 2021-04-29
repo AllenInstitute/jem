@@ -1238,9 +1238,10 @@
                                                     },
                                                     "tubeID": {
                                                         "type":"text",
-                                                        "fieldClass": "col-lg-12",
+                                                        "fieldClass": "col-lg-7",
                                                         "placeholder":"ex: PAS4_210101_451_A01",
-                                                        //"helper":"(PX for development)",
+                                                        "disallowEmptySpaces":true,
+                                                        "helper":"(PC - culture & PX - pilot)",
                                                         "events":{
                                                             "ready": function(field){
                                                                 var self = this;
@@ -1287,19 +1288,9 @@
                                                         }
 
                                                     },
-                                                    "fillquality":{
-                                                        "type":"select",
-                                                        "fieldClass": "dropdown-content col-lg-5",
-                                                        "size":1.5,
-                                                        "sort":false,
-                                                        "validate":true,
-                                                        "showMessages":false,
-                                                        "hideInitValidationError":true,
-                                                        "hideNone":true
-                                                    },
                                                     "extractionNotes": {
                                                         "type":"textarea",
-                                                        "fieldClass": "col-lg-7",
+                                                        "fieldClass": "col-lg-5",
                                                         "rows":1
                                                     }
                                                  }
