@@ -469,7 +469,7 @@
                                                         "enum": ["None", "Training", "U01 Pilot", "Dravet Mouse Pilot", "Channel_Recording"],
                                                         "required":true
                                                     },
-                                                    "pilot_nucleated_patch_retraction_pressure":{
+                                                    "pilot_Test01":{
                                                         "type":"string",
                                                         "title":"Pilot Project Details",
                                                         "enum":["Standard (~80 mbar)", "Mid-Range (~65 mbar)", "Low (~50 mbar)", "Minimal (~25 mbar)"],
@@ -477,20 +477,20 @@
                                                         "dependencies":"pilotName",
                                                         "required":false
                                                     },
-                                                     "pilot_electroporation":{
+                                                     "pilot_Test04":{
                                                        "type":"string",
                                                         "title":"Pilot Project Details",
                                                         "dependencies":"pilotName",
                                                         "required":false
                                                     },
-                                                    "pilot_vortexing":{
+                                                    "pilot_TestYN":{
                                                        "type":"string",
                                                         "title":"Pilot Project Details",
                                                         "enum":["Yes", "No"],
                                                         "dependencies":"pilotName",
                                                         "required":false
                                                     },
-                                                    "pilot_channel_recording":{
+                                                    "pilot_Test05":{
                                                        "type":"array",
                                                         "title":"Pilot Project Details",
                                                         "enum":["Total", "Prepulse", "Sustained", "Inactivation"],
@@ -667,10 +667,10 @@
                             },
                             "dependencies": {
                                 //"manualRoi":["autoRoi"],
-                                "pilot_nucleated_patch_retraction_pressure":["pilotName"],
-                                "pilot_electroporation":["pilotName"],
-                                "pilot_vortexing":["pilotName"],
-                                "pilot_channel_recording": ["pilotName"],
+                                "pilot_Test01":["pilotName"],
+                                "pilot_Test04":["pilotName"],
+                                "pilot_TestYN":["pilotName"],
+                                "pilot_Test05": ["pilotName"],
                                 "failureNotes":["status"],
                                 "freeFailureNotes":["status"],
                                 "successNotes":["status"],
@@ -1036,7 +1036,7 @@
                                                             }
                                                         }
                                                     },
-                                                    "pilot_nucleated_patch_retraction_pressure": {
+                                                    "pilot_Test01": {
                                                         "type":"select",
                                                         "fieldClass": "form-group col-lg-2",
                                                         "helper":[],
@@ -1047,7 +1047,7 @@
                                                             "pilotName":"Nucleated Patch - Retraction Pressure"
                                                         }
                                                     },
-                                                    "pilot_electroporation": {
+                                                    "pilot_Test04": {
                                                         "type":"text",
                                                         "fieldClass": "form-group col-lg-2",
                                                         "helper":[],
@@ -1055,7 +1055,7 @@
                                                             "pilotName":"Electroporation"
                                                         }
                                                     },
-                                                    "pilot_vortexing": {
+                                                    "pilot_TestYN": {
                                                         "type":"select",
                                                         "fieldClass": "form-group col-lg-2",
                                                         "helper":[],
@@ -1066,7 +1066,7 @@
                                                             "pilotName":"Vortexing"
                                                         }
                                                     },
-                                                     "pilot_channel_recording": {
+                                                     "pilot_Test05": {
                                                         "type": "checkbox", 
                                                         "fieldClass": "form-group col-lg-2", 
                                                         "helper": [], 

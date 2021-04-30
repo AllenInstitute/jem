@@ -99,7 +99,7 @@
                                 "enum": ["None", "Training", "U01 Pilot", "Dravet Mouse Pilot", "Channel_Recording"],
                                 "required":true
                             },
-                            "pilot_nucleated_patch_retraction_pressure":{
+                            "pilot_Test01":{
                                 "type":"string",
                                 "title":"Pilot Details",
                                 "enum":["Standard (~80 mbar)", "Mid-Range (~65 mbar)", "Low (~50 mbar)", "Minimal (~25 mbar)"],
@@ -107,20 +107,20 @@
                                 "dependencies":"pilotName",
                                 "required":false
                             },
-                             "pilot_electroporation":{
+                             "pilot_Test04":{
                                "type":"string",
                                 "title":"Pilot Details",
                                 "dependencies":"pilotName",
                                 "required":false
                             },
-                            "pilot_vortexing":{
+                            "pilot_TestYN":{
                                "type":"string",
                                 "title":"Pilot Details",
                                 "enum":["Yes", "No"],
                                 "dependencies":"pilotName",
                                 "required":false
                             },
-                             "pilot_channel_recording":{
+                             "pilot_Test05":{
                                "type":"array",
                                 "title":"Pilot Details",
                                 "enum":["Total", "Prepulse", "Sustained", "Inactivation"],
@@ -295,10 +295,10 @@
         }
     },
     "dependencies": {
-        "pilot_nucleated_patch_retraction_pressure":["pilotName"],
-        "pilot_electroporation":["pilotName"],
-        "pilot_vortexing":["pilotName"],
-        "pilot_channel_recording": ["pilotName"],
+        "pilot_Test01":["pilotName"],
+        "pilot_Test04":["pilotName"],
+        "pilot_TestYN":["pilotName"],
+        "pilot_Test05": ["pilotName"],
         "failureNotes":["status"],
         "freeFailureNotes":["status"],
         "successNotes":["status"],
