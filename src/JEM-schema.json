@@ -159,7 +159,7 @@
                     },
                     "failureNotes":{
                         "type":"string",
-                        "enum":["Failed Gigaohm Seal", "Failed Break-in", "Cell Died", "Pipette Issue (clog)", "Pipette Issue (crashed through tissue)", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= -100 pA)", "Other"],
+                        "enum":["Failed Gigaohm Seal", "Failed Break-in", "Cell Died", "Pipette Issue (clog)", "Pipette Issue (crashed through tissue)", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= 100 pA)", "Other"],
                         "default":[],
                         "dependencies":"status",
                         "required":true
