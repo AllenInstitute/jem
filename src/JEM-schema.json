@@ -10,7 +10,7 @@
         "rigOperator": {
             "type": "string",
             "title": "Researcher",
-            "enum":["brianle", "kristenh", "rustym", "ramr", "sarav", "balreetp", "stephanies", "lisak", "jessicat", "jonathant", "briank", "cristinar", "lindsayn"],
+            "enum":["brianle", "kristenh", "rustym", "ramr", "sarav", "balreetp", "gabrielal", "stephanies", "lisak", "jessicat", "jonathant", "briank", "cristinar", "lindsayn"],
             "required":true
         },
         "rigNumber": {
@@ -22,11 +22,6 @@
         "date":{
             "format":"date",
             "title":"Slice on Rig Date/Time",
-            "required":true
-        },
-        "limsSpecName": {
-            "type": "string",
-            "title":"Slice ID",
             "required":true
         },
         "acsfProductionDate":{
@@ -46,16 +41,27 @@
             "enum":["2021-04-19", "2021-03-08", "2021-01-25"],
             "required":true
         },
-        "flipped": {
-            "type":"string",
-            "title":"Is slice flipped?",
-            "enum":["Unknown", "Yes", "No", "NA"],
+        "limsSpecName": {
+            "type": "string",
+            "title":"Slice ID",
             "required":true
+        },
+        "virus_enhancer": {
+            "type": "string",
+            "title": "Virus/Enhancer",
+            "enum": ["CN1244", "CN1390", "CN1633", "CN1818", "CN1827", "CN1954", "CN1955", "CN2039", "CN2040", "CN2315", "CN2321"],
+            "required": false
         },
         "sliceQuality":{
             "type":"string",
-            "enum": ["Healthy", "Unhealthy", "Even Thickness", "Uneven Thickness", "Damaged", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)"],
-            "default":["Healthy", "Even Thickness"],
+            "enum": ["Healthy", "Unhealthy", "Even Thickness", "Uneven Thickness", "Damage (Tissue Processing)"],
+            "default":[],
+            "required":true
+        },
+        "sliceQualityFinal":{
+            "type":"string",
+            "enum": ["Healthy", "Unhealthy", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)", "Damage (Researcher)"],
+            "default":[],
             "required":true
         },
         "sliceNotes":{
@@ -76,24 +82,24 @@
                         "properties": {
                             "creCell": {
                                 "type":"string",
-                                "title":"Cre Status",
-                                "enum":["Cre+", "Cre-", "NA"],
+                                "title":"Reporter Status",
+                                "enum":["Postive", "Negative", "NA"],
                                 "required":true
                             },
                             "cellHealth":{
                                 "type":"string",
                                 "title": "Cell Health",
-                                "enum":["1", "2", "3", "4", "5"],
+                                "enum":["1", "3", "5"],
                                 "required":true
                             },
                             "pilotName":{
                                 "type":"string",
-                                "title":"Pilot Name",
+                                "title":"Project Name",
                                 "default": "None",
-                                "enum": ["None", "Training", "U01 Pilot", "Slice_Culture", "Channel_Recording", "Vortexing", "Electroporation", "Nucleated Patch - Retraction Pressure"],
+                                "enum": ["None", "Training", "U01 Pilot", "Dravet Mouse Pilot", "Channel_Recording"],
                                 "required":true
                             },
-                            "pilot_nucleated_patch_retraction_pressure":{
+                            "pilot_Test01":{
                                 "type":"string",
                                 "title":"Pilot Details",
                                 "enum":["Standard (~80 mbar)", "Mid-Range (~65 mbar)", "Low (~50 mbar)", "Minimal (~25 mbar)"],
@@ -101,23 +107,16 @@
                                 "dependencies":"pilotName",
                                 "required":false
                             },
-                             "pilot_electroporation":{
+                             "pilot_Test04":{
                                "type":"string",
                                 "title":"Pilot Details",
                                 "dependencies":"pilotName",
                                 "required":false
                             },
-                            "pilot_vortexing":{
+                            "pilot_TestYN":{
                                "type":"string",
                                 "title":"Pilot Details",
                                 "enum":["Yes", "No"],
-                                "dependencies":"pilotName",
-                                "required":false
-                            },
-                             "pilot_channel_recording":{
-                               "type":"array",
-                                "title":"Pilot Details",
-                                "enum":["Total", "Prepulse", "Sustained", "Inactivation"],
                                 "dependencies":"pilotName",
                                 "required":false
                             }
@@ -134,8 +133,8 @@
                             },
                             "pipetteR":{
                                 "format":"number",
-                                "minimum": 0.0,
-                                "maximum": 10.0, 
+                                "minimum": 2.0,
+                                "maximum": 8.0, 
                                 "title":"Pipette R",
                                 "required":true
                             },
@@ -160,7 +159,7 @@
                     },
                     "failureNotes":{
                         "type":"string",
-                        "enum":["Failed Gigaohm Seal", "Failed Break-in", "Cell Died", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= -100 pA)", "Other"],
+                        "enum":["Failed Gigaohm Seal", "Failed Break-in", "Cell Died", "Pipette Issue (clog)", "Pipette Issue (crashed through tissue)", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= -100 pA)", "Other"],
                         "default":[],
                         "dependencies":"status",
                         "required":true
@@ -174,10 +173,10 @@
                     },
                     "successNotes":{
                         "type":"string",
-                        "enum": ["Completed Core 1", "Completed Core 2", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= -100 pA)"],
-                        "default":["Completed Core 1"],
+                        "enum": ["Completed Core 1", "Completed Core 2", "Difficult Gigaohm Seal (slow sealing)", "Difficult Break-in (re-sealing)", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= 100 pA)", "Other"],
+                        "default":[],
                         "dependencies":"status",
-                        "required":false
+                        "required": true
                     },
                     "qcNotes":{
                         "type":"string",
@@ -197,12 +196,14 @@
                             "pressureApplied":{
                                 "type":"number",
                                 "title":"Extraction Pressure (mbar)",
-                                "required":true
+                                "required":true,
+                                "default": ["-"]
                             },
                             "retractionPressureApplied":{
                                 "type":"number",
                                 "title":"Retraction Pressure (mbar)",
-                                "required":true
+                                "required":true,
+                                "default": ["-"]
                             },
                             "timeExtractionStart":{
                                 "format":"time",
@@ -232,19 +233,19 @@
                                 "default":[],
                                 "required":true
                             },
+                            "nucleus": {
+                                "type":"string",
+                                "title":"Nucleus sucked in?",
+                                "enum":["intentionally", "not_intentionally", "no", "unknown", "NA"],
+                                "default":[],
+                                "required": true
+                            },
                             "endPipetteR":{
                                 "format": "number",
                                 "minimum": 0,
                                 "maximum": 10000,
                                 "title": "Post Patch Pipette R (MOhm)",
                                 "required": true
-                            },
-                            "nucleus": {
-                                "type":"string",
-                                "title":"Nucleus sucked in?",
-                                "enum":["intentionally", "not_intentionally", "no", "unknown", "NA"],
-                                "default":["unknown"],
-                                "required":false
                             },
                             "fillquality": {
                                 "type":"string",
@@ -261,25 +262,13 @@
                             "extractionNotes": {
                                 "type": "string",
                                 "title": "Extra Extraction Notes"
-                            },
-                            "extractionObservations":{
-                                "type":"string",
-                                "title": "Cell Assessment",
-                                "enum": ["Cell Swelled", "Cell Shrunk"],
-                                "default": [],
-                                "required":false
-                            },
-                            "sampleObservations":{
-                                "type":"string",
-                                "title":"Sample Assessment",
-                                "enum":["No Bubbles", "Small Bubbles", "Medium Bubbles", "Large Bubbles", "Solution in Pipette Shank"],
-                                "default":["No Bubbles"],
-                                "required":false
                             }
                         }
                     },
                     "depth": {
                         "format":"number",
+                        "minimum": 0.0,
+                        "maximum": 350.0,
                         "title":"Cell Depth",
                         "required":true
                     },
@@ -299,15 +288,13 @@
         }
     },
     "dependencies": {
-        "pilot_nucleated_patch_retraction_pressure":["pilotName"],
-        "pilot_electroporation":["pilotName"],
-        "pilot_vortexing":["pilotName"],
-        "pilot_channel_recording": ["pilotName"],
+        "pilot_Test01":["pilotName"],
+        "pilot_Test04":["pilotName"],
+        "pilot_TestYN":["pilotName"],
         "failureNotes":["status"],
         "freeFailureNotes":["status"],
         "successNotes":["status"],
         "qcNotes":["status"],
-        "badSweeps":["status"],
         "extraction":["status"]
         }
 }
