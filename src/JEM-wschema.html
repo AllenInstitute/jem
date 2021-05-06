@@ -489,13 +489,6 @@
                                                         "enum":["Yes", "No"],
                                                         "dependencies":"pilotName",
                                                         "required":false
-                                                    },
-                                                    "pilot_Test05":{
-                                                       "type":"array",
-                                                        "title":"Pilot Project Details",
-                                                        "enum":["Total", "Prepulse", "Sustained", "Inactivation"],
-                                                        "dependencies":"pilotName",
-                                                        "required":false
                                                     }
                                                 }
                                             },
@@ -670,7 +663,6 @@
                                 "pilot_Test01":["pilotName"],
                                 "pilot_Test04":["pilotName"],
                                 "pilot_TestYN":["pilotName"],
-                                "pilot_Test05": ["pilotName"],
                                 "failureNotes":["status"],
                                 "freeFailureNotes":["status"],
                                 "successNotes":["status"],
@@ -1064,15 +1056,6 @@
                                                         "noneLabel":"",
                                                         "dependencies": {
                                                             "pilotName":"Vortexing"
-                                                        }
-                                                    },
-                                                     "pilot_Test05": {
-                                                        "type": "checkbox", 
-                                                        "fieldClass": "form-group col-lg-2", 
-                                                        "helper": [], 
-                                                        "sort": false, 
-                                                        "dependencies": {
-                                                            "pilotName": "Channel_Recording"
                                                         }
                                                     }
                                                 }
