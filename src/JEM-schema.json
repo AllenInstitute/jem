@@ -83,7 +83,7 @@
                             "creCell": {
                                 "type":"string",
                                 "title":"Reporter Status",
-                                "enum":["Postive", "Negative", "NA"],
+                                "enum":["Positive", "Negative", "NA"],
                                 "required":true
                             },
                             "cellHealth":{
@@ -197,13 +197,11 @@
                                 "type":"number",
                                 "title":"Extraction Pressure (mbar)",
                                 "required":true,
-                                "default": ["-"]
                             },
                             "retractionPressureApplied":{
                                 "type":"number",
                                 "title":"Retraction Pressure (mbar)",
                                 "required":true,
-                                "default": ["-"]
                             },
                             "timeExtractionStart":{
                                 "format":"time",
