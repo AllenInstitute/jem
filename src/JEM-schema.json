@@ -196,14 +196,12 @@
                             "pressureApplied":{
                                 "type":"number",
                                 "title":"Extraction Pressure (mbar)",
-                                "required":true,
-                                "default": ["-"]
+                                "required":true
                             },
                             "retractionPressureApplied":{
                                 "type":"number",
                                 "title":"Retraction Pressure (mbar)",
-                                "required":true,
-                                "default": ["-"]
+                                "required":true
                             },
                             "timeExtractionStart":{
                                 "format":"time",
