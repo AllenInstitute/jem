@@ -49,7 +49,7 @@
         "virus_enhancer": {
             "type": "string",
             "title": "Virus/Enhancer",
-            "enum": ["None", "CN1390", "CN1818", "CN1839", "CN2237", "CN2609", "CN2610", "CN3119"],
+            "enum": ["None", "CN1390", "CN1399", "CN1818", "CN1839", "CN2237", "CN2609", "CN2610", "CN3119"],
             "required": true
         },
         "sliceQuality":{
