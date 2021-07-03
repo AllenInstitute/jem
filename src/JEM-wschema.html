@@ -402,7 +402,7 @@
                                 "blankFillDate":{
                                     "format":"date",
                                     "title":"Blank Fill Date",
-                                    "enum":["2021-06-07", "2021-05-03", "2021-04-06", "2021-03-15", "2021-02-01", "2021-01-04"],
+                                    "enum":["2021-06-29", "2021-06-07", "2021-05-03", "2021-04-06", "2021-03-15", "2021-02-01", "2021-01-04"],
                                     "required":true
                                 },
                                 "internalFillDate":{
@@ -462,6 +462,12 @@
                                                         "enum":["1", "3", "5"],
                                                         "required":true
                                                     },
+                                                    "approach_method":{
+                                                        "type":"string",
+                                                        "title":"Approach Method",
+                                                        "enum":["Automatic", "Manual"],
+                                                        "required":true
+                                                    },                                                    
                                                     "pilotName":{
                                                         "type":"string",
                                                         "title":"Project Name",
@@ -1008,6 +1014,16 @@
                                                         "showMessages":false,
                                                         "hideInitValidationError":true,
                                                         "helper": "Use Postive/Negative for Cre-lines/Enhancers & NA for Acute Human/Non-Human Primate Tissue"
+                                                    },
+                                                    "approach_method": {
+                                                        "type": "radio",
+                                                        "fieldClass": "form-group col-lg-12",
+                                                        "size":1,
+                                                        "vertical":false,
+                                                        "sort": false, 
+                                                        "hideNone":true,
+                                                        "showMessages":false,
+                                                        "hideInitValidationError":true,
                                                     },
                                                     "pilotName": {
                                                         "type":"select",
