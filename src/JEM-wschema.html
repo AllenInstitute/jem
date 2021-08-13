@@ -475,27 +475,6 @@
                                                         "enum": ["None", "retrograde_labeling", "Lot2022 Validation Pilot", "Channel_Recording", "U01 Pilot", "Dravet Mouse Pilot", "Training"],
                                                         "required":true
                                                     },
-                                                    "pilot_Test01":{
-                                                        "type":"string",
-                                                        "title":"Pilot Project Details",
-                                                        "enum":["Standard (~80 mbar)", "Mid-Range (~65 mbar)", "Low (~50 mbar)", "Minimal (~25 mbar)"],
-                                                        "default":"",
-                                                        "dependencies":"pilotName",
-                                                        "required":false
-                                                    },
-                                                     "pilot_Test04":{
-                                                       "type":"string",
-                                                        "title":"Pilot Project Details",
-                                                        "dependencies":"pilotName",
-                                                        "required":false
-                                                    },
-                                                    "pilot_TestYN":{
-                                                       "type":"string",
-                                                        "title":"Pilot Project Details",
-                                                        "enum":["Yes", "No"],
-                                                        "dependencies":"pilotName",
-                                                        "required":false
-                                                    }
                                                 }
                                             },
                                             "recording":{
@@ -668,9 +647,6 @@
                             },
                             "dependencies": {
                                 //"manualRoi":["autoRoi"],
-                                "pilot_Test01":["pilotName"],
-                                "pilot_Test04":["pilotName"],
-                                "pilot_TestYN":["pilotName"],
                                 "failureNotes":["status"],
                                 "freeFailureNotes":["status"],
                                 "successNotes":["status"],
@@ -1045,36 +1021,6 @@
                                                                 var currentStatus = form.top().getControlByPath("pipettes["+currentIndex+"]/status").data;
                                                                 copyPilotName(currentIndex, currentPilotName, currentStatus);
                                                             }
-                                                        }
-                                                    },
-                                                    "pilot_Test01": {
-                                                        "type":"select",
-                                                        "fieldClass": "form-group col-lg-2",
-                                                        "helper":[],
-                                                        "sort":false,
-                                                        "hideNone":false,
-                                                        "noneLabel":"",
-                                                        "dependencies": {
-                                                            "pilotName":"Nucleated Patch - Retraction Pressure"
-                                                        }
-                                                    },
-                                                    "pilot_Test04": {
-                                                        "type":"text",
-                                                        "fieldClass": "form-group col-lg-2",
-                                                        "helper":[],
-                                                        "dependencies": {
-                                                            "pilotName":"Electroporation"
-                                                        }
-                                                    },
-                                                    "pilot_TestYN": {
-                                                        "type":"select",
-                                                        "fieldClass": "form-group col-lg-2",
-                                                        "helper":[],
-                                                        "sort":false,
-                                                        "hideNone":false,
-                                                        "noneLabel":"",
-                                                        "dependencies": {
-                                                            "pilotName":"Vortexing"
                                                         }
                                                     }
                                                 }
