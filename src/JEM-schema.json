@@ -104,14 +104,14 @@
                                 "title": "Injection Site (Hemisphere)",
                                 "enum": ["Bilateral", "Left", "Right"],
                                 "dependencies": "pilotName",
-                                "required": "false"
+                                "required": true
                             },
                             "project_retrograde_labeling_region": {
                                 "type": "string",
                                 "title": "Injection Site (Region)",
                                 "enum": ["CP"],
                                 "dependencies": "pilotName",
-                                "required": "false"
+                                "required": true
                             }
                         }
                     },
