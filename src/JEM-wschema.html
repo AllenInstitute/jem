@@ -369,6 +369,7 @@
                     $("#form").alpaca({
                         "schema": 
                         {
+                            // "$schema": "https://json-schema.org/draft-04/schema#",
                             "type": "object",
                             "title":"JSON Electrophysiology Metadata (JEM)",
                             "properties": {
@@ -380,13 +381,13 @@
                                 "rigOperator": {
                                     "type": "string",
                                     "title": "Researcher",
-                                    "enum":["brianle", "kristenh", "rustym", "ramr", "sarav", "balreetp", "gabrielal", "stephanies", "lisak", "jessicat", "jonathant", "briank", "cristinar", "lindsayn"],
+                                    "enum":["brianle", "kristenh", "rustym", "ramr", "sarav", "balreetp", "gabrielal", "jonathant", "briank", "cristinar", "lindsayn"],
                                     "required":true
                                 },
                                 "rigNumber": {
                                     "type":"string",
                                     "title":"Rig #",
-                                    "enum":["1", "2", "3", "4", "5", "6", "7", "8", "HCT1", "HCT2", "HCT3", "MP1", "MP2", "MP3", "MP4"],
+                                    "enum":["1", "2", "3", "4", "5", "6", "7", "8", "HCT1", "HCT2", "HCT3"],
                                     "required":true
                                 },
                                 "date":{
@@ -475,6 +476,20 @@
                                                         "enum": ["None", "retrograde_labeling", "Lot2022 Validation Pilot", "Channel_Recording", "U01 Pilot", "Dravet Mouse Pilot", "Training"],
                                                         "required":true
                                                     },
+                                                    "project_retrograde_labeling_hemisphere": {
+                                                        "type": "string",
+                                                        "title": "Injection Site (Hemisphere)",
+                                                        "enum": ["Bilateral", "Left", "Right"],
+                                                        "dependencies": "pilotName",
+                                                        "required": "false"
+                                                    },
+                                                    "project_retrograde_labeling_region": {
+                                                        "type": "string",
+                                                        "title": "Injection Site (Region)",
+                                                        "enum": ["CP"],
+                                                        "dependencies": "pilotName",
+                                                        "required": "false"
+                                                    }
                                                 }
                                             },
                                             "recording":{
@@ -645,14 +660,16 @@
                                     }
                                 }
                             },
-                            "dependencies": {
-                                //"manualRoi":["autoRoi"],
-                                "failureNotes":["status"],
-                                "freeFailureNotes":["status"],
-                                "successNotes":["status"],
-                                "qcNotes":["status"],
-                                "extraction":["status"]
-                                }
+                            // "dependencies": {
+                            //     //"manualRoi":["autoRoi"],
+                            //    "project_retrograde_labeling_hemisphere": ["pilotName"],
+                            //    "project_retrograde_labeling_region": ["pilotName"],
+                            //     "failureNotes":["status"],
+                            //     "freeFailureNotes":["status"],
+                            //     "successNotes":["status"],
+                            //     "qcNotes":["status"],
+                            //     "extraction":["status"]
+                            // }
                         },
                         "options": {
                             "fields": {
@@ -1022,6 +1039,22 @@
                                                                 copyPilotName(currentIndex, currentPilotName, currentStatus);
                                                             }
                                                         }
+                                                    },
+                                                    "project_retrograde_labeling_hemisphere": {
+                                                        "type": "select",
+                                                        "fieldClass": "form-group col-lg-2",
+                                                        "sort": false,
+                                                        "hideNone": false,
+                                                        "noneLabel": "",
+                                                        "dependencies": {"pilotName": "retrograde_labeling"}
+                                                    },
+                                                    "project_retrograde_labeling_region": {
+                                                        "type": "select",
+                                                        "fieldClass": "form-group col-lg-2",
+                                                        "sort": false,
+                                                        "hideNone": false,
+                                                        "noneLabel": "",
+                                                        "dependencies": {"pilotName": "retrograde_labeling"}
                                                     }
                                                 }
                                             },

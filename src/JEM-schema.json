@@ -10,13 +10,13 @@
         "rigOperator": {
             "type": "string",
             "title": "Researcher",
-            "enum":["brianle", "kristenh", "rustym", "ramr", "sarav", "balreetp", "gabrielal", "stephanies", "lisak", "jessicat", "jonathant", "briank", "cristinar", "lindsayn"],
+            "enum":["brianle", "kristenh", "rustym", "ramr", "sarav", "balreetp", "gabrielal", "jonathant", "briank", "cristinar", "lindsayn"],
             "required":true
         },
         "rigNumber": {
             "type":"string",
             "title":"Rig #",
-            "enum":["1", "2", "3", "4", "5", "6", "7", "8", "HCT1", "HCT2", "HCT3", "MP1", "MP2", "MP3", "MP4"],
+            "enum":["1", "2", "3", "4", "5", "6", "7", "8", "HCT1", "HCT2", "HCT3"],
             "required":true
         },
         "date":{
@@ -99,26 +99,19 @@
                                 "enum": ["None", "retrograde_labeling", "Lot2022 Validation Pilot", "Channel_Recording", "U01 Pilot", "Dravet Mouse Pilot", "Training"],
                                 "required":true
                             },
-                            "pilot_Test01":{
-                                "type":"string",
-                                "title":"Pilot Details",
-                                "enum":["Standard (~80 mbar)", "Mid-Range (~65 mbar)", "Low (~50 mbar)", "Minimal (~25 mbar)"],
-                                "default":"",
-                                "dependencies":"pilotName",
-                                "required":false
+                            "project_retrograde_labeling_hemisphere": {
+                                "type": "string",
+                                "title": "Injection Site (Hemisphere)",
+                                "enum": ["Bilateral", "Left", "Right"],
+                                "dependencies": "pilotName",
+                                "required": "false"
                             },
-                             "pilot_Test04":{
-                               "type":"string",
-                                "title":"Pilot Details",
-                                "dependencies":"pilotName",
-                                "required":false
-                            },
-                            "pilot_TestYN":{
-                               "type":"string",
-                                "title":"Pilot Details",
-                                "enum":["Yes", "No"],
-                                "dependencies":"pilotName",
-                                "required":false
+                            "project_retrograde_labeling_region": {
+                                "type": "string",
+                                "title": "Injection Site (Region)",
+                                "enum": ["CP"],
+                                "dependencies": "pilotName",
+                                "required": "false"
                             }
                         }
                     },
@@ -284,19 +277,18 @@
                         "type":"string",
                         "title": "ROI",
                         "required":true
-                     }
+                    }
                 }
             }
         }
     },
     "dependencies": {
-        "pilot_Test01":["pilotName"],
-        "pilot_Test04":["pilotName"],
-        "pilot_TestYN":["pilotName"],
+        "project_retrograde_labeling_hemisphere": ["pilotName"],
+        "project_retrograde_labeling_region": ["pilotName"],
         "failureNotes":["status"],
         "freeFailureNotes":["status"],
         "successNotes":["status"],
         "qcNotes":["status"],
         "extraction":["status"]
-        }
+    }
 }
