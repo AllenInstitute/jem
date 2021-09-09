@@ -112,6 +112,13 @@
                                 "enum": ["CP", "VISp"],
                                 "dependencies": "pilotName",
                                 "required": true
+                            },
+                            "project_retrograde_labeling_exp": {
+                                "type": "string",
+                                "title": "Experiment Site",
+                                "enum": ["Contralateral", "Ipsilateral"],
+                                "dependencies": "pilotName",
+                                "required": true
                             }
                         }
                     },
@@ -285,6 +292,7 @@
     "dependencies": {
         "project_retrograde_labeling_hemisphere": ["pilotName"],
         "project_retrograde_labeling_region": ["pilotName"],
+        "project_retrograde_labeling_exp": ["pilotName"],
         "failureNotes":["status"],
         "freeFailureNotes":["status"],
         "successNotes":["status"],

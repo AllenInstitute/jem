@@ -489,6 +489,13 @@
                                                         "enum": ["CP", "VISp"],
                                                         "dependencies": "pilotName",
                                                         "required": true
+                                                    },
+                                                    "project_retrograde_labeling_exp": {
+                                                        "type": "string",
+                                                        "title": "Experiment Site",
+                                                        "enum": ["Contralateral", "Ipsilateral"],
+                                                        "dependencies": "pilotName",
+                                                        "required": true
                                                     }
                                                 }
                                             },
@@ -661,9 +668,10 @@
                                 }
                             },
                             // "dependencies": {
-                            //     //"manualRoi":["autoRoi"],
-                            //    "project_retrograde_labeling_hemisphere": ["pilotName"],
-                            //    "project_retrograde_labeling_region": ["pilotName"],
+                            //     "manualRoi":["autoRoi"],
+                            //     "project_retrograde_labeling_hemisphere": ["pilotName"],
+                            //     "project_retrograde_labeling_region": ["pilotName"],
+                            //     "project_retrograde_labeling_exp": ["pilotName"],
                             //     "failureNotes":["status"],
                             //     "freeFailureNotes":["status"],
                             //     "successNotes":["status"],
@@ -1049,6 +1057,14 @@
                                                         "dependencies": {"pilotName": "retrograde_labeling"}
                                                     },
                                                     "project_retrograde_labeling_region": {
+                                                        "type": "select",
+                                                        "fieldClass": "form-group col-lg-2",
+                                                        "sort": true,
+                                                        "hideNone": false,
+                                                        "noneLabel": "",
+                                                        "dependencies": {"pilotName": "retrograde_labeling"}
+                                                    },
+                                                    "project_retrograde_labeling_exp": {
                                                         "type": "select",
                                                         "fieldClass": "form-group col-lg-2",
                                                         "sort": true,
