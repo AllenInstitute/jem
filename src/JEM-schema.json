@@ -96,7 +96,7 @@
                                 "type":"string",
                                 "title":"Project Name",
                                 "default": "None",
-                                "enum": ["None", "retrograde_labeling", "Lot2022 Validation Pilot", "Channel_Recording", "U01 Pilot", "Dravet Mouse Pilot", "Training"],
+                                "enum": ["None", "retrograde_labeling", "1% Biocytin Pilot", "Extended PBS Morphology Pilot", "Lot2022 Validation Pilot", "Channel_Recording", "U01 Pilot", "Dravet Mouse Pilot", "Training"],
                                 "required":true
                             },
                             "project_retrograde_labeling_hemisphere": {
