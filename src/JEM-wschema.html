@@ -403,13 +403,13 @@
                                 "blankFillDate":{
                                     "format":"date",
                                     "title":"Blank Fill Date",
-                                    "enum":["2021-08-30", "2021-08-02", "2021-06-29", "2021-06-07", "2021-05-03", "2021-04-06", "2021-03-15", "2021-02-01", "2021-01-04"],
+                                    "enum":["2021-09-27", "2021-08-30", "2021-08-02", "2021-06-29", "2021-06-07", "2021-05-03", "2021-04-06", "2021-03-15", "2021-02-01", "2021-01-04"],
                                     "required":true
                                 },
                                 "internalFillDate":{
                                     "format":"date",
                                     "title":"Internal Fill Date",
-                                    "enum":["2021-08-26", "2021-07-20", "2021-06-02", "2021-04-19", "2021-03-08", "2021-01-25"],
+                                    "enum":["2021-10-13", "2021-10-11", "2021-08-26", "2021-07-20", "2021-06-02", "2021-04-19", "2021-03-08", "2021-01-25"],
                                     "required":true
                                 },
                                 "limsSpecName": {
@@ -647,7 +647,7 @@
                                             "depth": {
                                                 "format":"number",
                                                 "minimum": 0.0,
-                                                "maximum": 350.0,
+                                                "maximum": 200.0,
                                                 "title":"Cell Depth",
                                                 "required":true
                                             },
@@ -824,7 +824,7 @@
                                 "blankFillDate": {
                                     "type":"select",
                                     "fieldClass":"dropdown-content col-lg-2",
-                                    "helper":["Current: 2021-08-30 (Blue)"],
+                                    "helper":["Current: 2021-08-30 (Blue)", "New: 2021-09-27 (Red)"],
                                     "hideNone":false,
                                     "noneLabel":"",
                                     "validate":true,
@@ -838,7 +838,7 @@
                                 "internalFillDate": {
                                     "type":"select",
                                     "fieldClass":"dropdown-content col-lg-2",
-                                    "helper": ["Current: 2021-08-26"],
+                                    "helper": ["Alexa 488: 2021-10-11", "Alexa 594: 2021-10-13"],
                                     "hideNone":false,
                                     "noneLabel":"",
                                     "validate":true,
@@ -1551,7 +1551,7 @@
                                                     "tubeID": {
                                                         "type":"text",
                                                         "fieldClass": "col-lg-7",
-                                                        "placeholder":"ex: PAS4_210101_451_A01",
+                                                        "placeholder":"Copy and paste from Patchseq_tube_assigments excel document (ex: PAS4_210101_451_A01)",
                                                         "disallowEmptySpaces":true,
                                                         "helper":"(PC - culture & PX - pilot)",
                                                         "events":{
@@ -1636,8 +1636,8 @@
                                                         };
                                                     }
                                                 },
-                                                "helper": "(0.0-350.0 um)",
-                                                "placeholder": "ex. 45.0"
+                                                "helper": "(0.0-200.0 um)",
+                                                "placeholder": "Enter depth value from WSE (ex. 45.0)"
                                             },
                                             "autoRoi":{
                                                 "type":"text",
