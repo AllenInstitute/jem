@@ -38,7 +38,7 @@
         "internalFillDate":{
             "format":"date",
             "title":"Internal Fill Date",
-            "enum":["2021-10-13", "2021-10-11", "2021-08-26", "2021-07-20", "2021-06-02", "2021-04-19", "2021-03-08", "2021-01-25"],
+            "enum":["2021-12-01", "2021-11-30", "2021-10-13", "2021-10-11", "2021-08-26", "2021-07-20", "2021-06-02", "2021-04-19", "2021-03-08", "2021-01-25"],
             "required":true
         },
         "limsSpecName": {
@@ -109,7 +109,7 @@
                             "project_retrograde_labeling_region": {
                                 "type": "string",
                                 "title": "Injection Site (Region)",
-                                "enum": ["CP", "VISp"],
+                                "enum": ["CP", "GPi", "VISp"],
                                 "dependencies": "pilotName",
                                 "required": true
                             },
