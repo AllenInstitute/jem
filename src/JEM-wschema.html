@@ -404,7 +404,8 @@
                                     "format":"date",
                                     "title":"Blank Fill Date",
                                     "enum":["2021-11-15", "2021-10-26", "2021-09-27", "2021-08-30", "2021-08-02", "2021-06-29", "2021-06-07", "2021-05-03", "2021-04-06", "2021-03-15", "2021-02-01", "2021-01-04"],
-                                    "required":true
+                                    "default": ["2021-11-15"],
+                                    "required":false
                                 },
                                 "internalFillDate":{
                                     "format":"date",
@@ -434,6 +435,13 @@
                                     "enum": ["Healthy", "Unhealthy", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)", "Damage (Researcher)"],
                                     "default":[],
                                     "required":true
+                                },
+                                "misinformation":{
+                                    "format":"date",
+                                    "title":"Misinformation",
+                                    "enum":["Yes", "No"],
+                                    "default": ["No"],
+                                    "required":false
                                 },
                                 "sliceNotes":{
                                     "type":"string",
@@ -824,7 +832,7 @@
                                 "blankFillDate": {
                                     "type":"select",
                                     "fieldClass":"dropdown-content col-lg-2",
-                                    "helper":["Current: 2021-10-26 (Black)", "New: 2021-11-15 (Red)"],
+                                    "helper":["Current: 2021-11-15 (Red)"],
                                     "hideNone":false,
                                     "noneLabel":"",
                                     "validate":true,
@@ -928,6 +936,17 @@
                                     "vertical":false,
                                     "showMessages":false,
                                     "hideInitValidationError":true,
+                                },
+                                "misinformation":{
+                                    "type": "select",
+                                    "fieldClass": "dropdown-content col-lg-2",
+                                    "size": 1.5,
+                                    "sort": false,
+                                    "validate": true,
+                                    "showMessages": false,
+                                    "hideInitValidationError": true,
+                                    "hideNone": false,
+                                    "noneLabel": ""
                                 },
                                 "sliceNotes": {
                                     "type":"textarea",
