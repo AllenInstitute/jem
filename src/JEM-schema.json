@@ -32,7 +32,7 @@
         "blankFillDate":{
             "format":"date",
             "title":"Blank Fill Date",
-            "enum":["2022-01-12", "2021-11-15"],
+            "enum":["2022-01-12"],
             "default": ["2021-11-15"],
             "required":false
         },
