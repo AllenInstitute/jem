@@ -201,40 +201,10 @@
                                 "type":"string",
                                 "readonly":true
                             },
-                            "pressureApplied":{
-                                "type":"number",
-                                "title":"Extraction Pressure (mbar)",
-                                "required":true,
-                                "minimum": 0.0,
-                                "maximum": 500.0
-                            },
-                            "retractionPressureApplied":{
-                                "type":"number",
-                                "title":"Retraction Pressure (mbar)",
-                                "required":true,
-                                "minimum": 0.0,
-                                "maximum": 500.0
-                            },
-                            "timeExtractionStart":{
-                                "format":"time",
-                                "title":"Extraction Start Time",
+                            "tubeID":{
+                                "type":"string",
+                                "title":"Patched Cell Container",
                                 "required":true
-                            },
-                            "timeExtractionEnd":{
-                                "format":"time",
-                                "title":"Extraction End Time",
-                                "required":true
-                            },
-                            "timeRetractionEnd":{
-                                "format":"time",
-                                "title":"Retraction End Time",
-                                "required":true
-                            },
-                            "timeChannelRecordingEnd":{
-                                "format":"time",
-                                "title":"Channel Rec End Time",
-                                "required":false,
-                                "dependencies":"pilotNameExtra"
                             },
                             "postPatch":{
                                 "type":"string",
@@ -251,11 +221,11 @@
                                 "required": true
                             },
                             "endPipetteR":{
-                                "format": "number",
+                                "format":"number",
                                 "minimum": 0.0,
                                 "maximum": 10000.0,
-                                "title": "Post Patch Pipette R (MOhm)",
-                                "required": true
+                                "title":"Post Patch Pipette R (MOhm)",
+                                "required":true
                             },
                             "fillquality": {
                                 "type":"string",
@@ -264,10 +234,40 @@
                                 "default":[],
                                 "required":true
                             },
-                            "tubeID":{
-                                "type":"string",
-                                "title":"Patched Cell Container",
+                            "pressureApplied":{
+                                "type":"number",
+                                "title":"Extraction Pressure (mbar)",
+                                "required":true,
+                                "minimum": 0.0,
+                                "maximum": 500.0
+                            },
+                            "timeExtractionStart":{
+                                "format":"time",
+                                "title":"Extraction Start Time",
                                 "required":true
+                            },
+                            "timeExtractionEnd":{
+                                "format":"time",
+                                "title":"Extraction End Time",
+                                "required":true
+                            },
+                            "retractionPressureApplied":{
+                                "type":"number",
+                                "title":"Retraction Pressure (mbar)",
+                                "required":true,
+                                "minimum": 0.0,
+                                "maximum": 500.0
+                            },
+                            "timeRetractionEnd":{
+                                "format":"time",
+                                "title":"Retraction End Time",
+                                "required":true
+                            },
+                            "timeChannelRecordingEnd":{
+                                "format":"time",
+                                "title":"Channel Rec End Time",
+                                "required":false,
+                                "dependencies":"pilotNameExtra"
                             },
                             "extractionNotes": {
                                 "type": "string",

@@ -578,40 +578,10 @@
                                                         "type":"string",
                                                         "readonly":true
                                                     },
-                                                    "pressureApplied":{
-                                                        "type":"number",
-                                                        "title":"Extraction Pressure (mbar)",
-                                                        "required":true,
-                                                        "minimum": 0.0,
-                                                        "maximum": 500.0
-                                                    },
-                                                    "retractionPressureApplied":{
-                                                        "type":"number",
-                                                        "title":"Retraction Pressure (mbar)",
-                                                        "required":true,
-                                                        "minimum": 0.0,
-                                                        "maximum": 500.0
-                                                    },
-                                                    "timeExtractionStart":{
-                                                        "format":"time",
-                                                        "title":"Extraction Start Time",
+                                                    "tubeID":{
+                                                        "type":"string",
+                                                        "title":"Patched Cell Container",
                                                         "required":true
-                                                    },
-                                                    "timeExtractionEnd":{
-                                                        "format":"time",
-                                                        "title":"Extraction End Time",
-                                                        "required":true
-                                                    },
-                                                    "timeRetractionEnd":{
-                                                        "format":"time",
-                                                        "title":"Retraction End Time",
-                                                        "required":true
-                                                    },
-                                                    "timeChannelRecordingEnd":{
-                                                        "format":"time",
-                                                        "title":"Channel Rec End Time",
-                                                        "required":false,
-                                                        "dependencies":"pilotNameExtra"
                                                     },
                                                     "postPatch":{
                                                         "type":"string",
@@ -641,10 +611,40 @@
                                                         "default":[],
                                                         "required":true
                                                     },
-                                                    "tubeID":{
-                                                        "type":"string",
-                                                        "title":"Patched Cell Container",
+                                                    "pressureApplied":{
+                                                        "type":"number",
+                                                        "title":"Extraction Pressure (mbar)",
+                                                        "required":true,
+                                                        "minimum": 0.0,
+                                                        "maximum": 500.0
+                                                    },
+                                                    "timeExtractionStart":{
+                                                        "format":"time",
+                                                        "title":"Extraction Start Time",
                                                         "required":true
+                                                    },
+                                                    "timeExtractionEnd":{
+                                                        "format":"time",
+                                                        "title":"Extraction End Time",
+                                                        "required":true
+                                                    },
+                                                    "retractionPressureApplied":{
+                                                        "type":"number",
+                                                        "title":"Retraction Pressure (mbar)",
+                                                        "required":true,
+                                                        "minimum": 0.0,
+                                                        "maximum": 500.0
+                                                    },
+                                                    "timeRetractionEnd":{
+                                                        "format":"time",
+                                                        "title":"Retraction End Time",
+                                                        "required":true
+                                                    },
+                                                    "timeChannelRecordingEnd":{
+                                                        "format":"time",
+                                                        "title":"Channel Rec End Time",
+                                                        "required":false,
+                                                        "dependencies":"pilotNameExtra"
                                                     },
                                                     "extractionNotes": {
                                                         "type": "string",
@@ -1308,271 +1308,11 @@
                                                         "fieldClass": "col-lg-12",
                                                         "hidden":false
                                                     },
-                                                    "pressureApplied":{
-                                                        "type":"number",
-                                                        //"helper":"(mbar)",
-                                                        "fieldClass":"col-lg-2",
-                                                        "validate":true,
-                                                        "showMessages":false,
-                                                        "placeholder":"ex. 45",
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.pressureAppliedSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'pressureApplied'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.pressureAppliedGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        }
-                                                    },
-                                                    "retractionPressureApplied":{
-                                                        "type":"number",
-                                                        //"helper":"(mbar)",
-                                                        "fieldClass": "col-lg-2",
-                                                        "validate":true,
-                                                        "showMessages":false,
-                                                        "placeholder":"ex. 45",
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.retractionPressureAppliedSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'retractionPressureApplied'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.retractionPressureAppliedGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        },
-                                                    },
-                                                    "timeExtractionStart": {
-                                                        "type":"time",
-                                                        "dateFormat":"HH:mm:ssZ",
-                                                        "picker": {
-                                                            "showClose":true,
-                                                            "showTodayButton":true,
-                                                            "collapse":true,
-                                                            "stepping":1,
-                                                            "focusOnShow":false,
-                                                            "keepOpen":false,
-                                                            "inline":false,
-                                                            "useCurrent":true
-                                                        },
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.timeExtractionStartSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'timeExtractionStart'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.timeExtractionStartGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        },
-                                                        //"helper":"(HH:mm:ss-UTC)",
-                                                        "fieldClass": "col-lg-2"
-                                                    },
-                                                    "timeExtractionEnd": {
-                                                        "type":"time",
-                                                        "dateFormat":"HH:mm:ssZ",
-                                                        "picker": {
-                                                            "showClose":true,
-                                                            "showTodayButton":true,
-                                                            "collapse":true,
-                                                            "stepping":1,
-                                                            "focusOnShow":false,
-                                                            "keepOpen":false,
-                                                            "inline":false,
-                                                            "useCurrent":true
-                                                        },
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.timeExtractionEndSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'timeExtractionEnd'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.timeExtractionEndGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        },
-                                                        //"helper": "(HH:mm:ss-UTC)",
-                                                        "fieldClass": "col-lg-2"
-                                                    },
-                                                    "timeRetractionEnd": {
-                                                        "type":"time",
-                                                        "dateFormat":"HH:mm:ssZ",
-                                                        "picker": {
-                                                            "showClose":true,
-                                                            "showTodayButton":true,
-                                                            "collapse":true,
-                                                            "stepping":1,
-                                                            "focusOnShow":false,
-                                                            "keepOpen":false,
-                                                            "inline":false,
-                                                            "useCurrent":true
-                                                        },
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.timeRetractionEndSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'timeRetractionEnd'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.timeRetractionEndGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        },
-                                                        //"helper": "(HH:mm:ss-UTC)",
-                                                        "fieldClass": "col-lg-2"
-                                                    },
-                                                    "timeChannelRecordingEnd": {
-                                                        "type":"time",
-                                                        "dateFormat":"HH:mm:ssZ",
-                                                        "picker": {
-                                                            "showClose":true,
-                                                            "showTodayButton":true,
-                                                            "collapse":true,
-                                                            "stepping":1,
-                                                            "focusOnShow":false,
-                                                            "keepOpen":false,
-                                                            "inline":false,
-                                                            "useCurrent":true
-                                                        },
-                                                        //"helper": "(HH:mm:ss-UTC)",
-                                                        "fieldClass": "col-lg-2",
-                                                        "dependencies": {
-                                                            "pilotNameExtra":"Pilot: Channel_Recording"
-                                                        }
-                                                    },    
-                                                    "postPatch":{
-                                                        "type": "select",
-                                                        "fieldClass":"dropdown-content col-lg-3",
-                                                        "size":1.5,
-                                                        "sort":false,
-                                                        "validate":true,
-                                                        "showMessages":false,
-                                                        "hideInitValidationError":true,
-                                                        "hideNone":true
-                                                    },
-                                                    "nucleus":{
-                                                        "type":"select",
-                                                        "fieldClass": "dropdown-content col-lg-2",
-                                                        "size":1.5,
-                                                        "sort":false,
-                                                        "validate":true,
-                                                        "showMessages":false,
-                                                        "hideInitValidationError":true,
-                                                        "hideNone":true
-                                                    },
-                                                    "endPipetteR":{
-                                                        "type":"number",
-                                                        "fieldClass": "form-group col-lg-2",
-                                                        //"helper": "(MOhm)",
-                                                        "placeholder": "ex. 1000",
-                                                        "validate":true,
-                                                        "showMessages":false,
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.endPipetteRSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'endPipetteR'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.endPipetteRGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        }
-                                                    },
-                                                    "fillquality":{
-                                                        "type":"select",
-                                                        "fieldClass": "dropdown-content col-lg-5",
-                                                        "size":1.5,
-                                                        "sort":false,
-                                                        "validate":true,
-                                                        "showMessages":false,
-                                                        "hideInitValidationError":true,
-                                                        "hideNone":true
-                                                    },
                                                     "tubeID": {
                                                         "type":"text",
-                                                        "fieldClass": "col-lg-7",
+                                                        "fieldClass": "col-lg-12",
                                                         "placeholder":"Copy and paste from Patchseq_tube_assigments excel document (ex: PAS4_210101_451_A01)",
                                                         "disallowEmptySpaces":true,
-                                                        "helper":"(PC - culture & PX - pilot)",
                                                         "events":{
                                                             "ready": function(field){
                                                                 var self = this;
@@ -1618,10 +1358,269 @@
                                                             }
                                                         }
 
+                                                    }, 
+                                                    "postPatch":{
+                                                        "type": "select",
+                                                        "fieldClass":"dropdown-content col-lg-3",
+                                                        "size":1.5,
+                                                        "sort":false,
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "hideInitValidationError":true,
+                                                        "hideNone":true
+                                                    },
+                                                    "nucleus":{
+                                                        "type":"select",
+                                                        "fieldClass": "dropdown-content col-lg-3",
+                                                        "size":1.5,
+                                                        "sort":false,
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "hideInitValidationError":true,
+                                                        "hideNone":true
+                                                    },
+                                                    "endPipetteR":{
+                                                        "type":"number",
+                                                        "fieldClass": "form-group col-lg-3",
+                                                        //"helper": "(MOhm)",
+                                                        "placeholder": "ex. 1000",
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.endPipetteRSetter(self);
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'endPipetteR'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.endPipetteRGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }
+                                                                    }
+                                                                };
+                                                            }
+                                                        }
+                                                    },
+                                                    "fillquality":{
+                                                        "type":"select",
+                                                        "fieldClass": "dropdown-content col-lg-3",
+                                                        "size":1.5,
+                                                        "sort":false,
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "hideInitValidationError":true,
+                                                        "hideNone":true
+                                                    },
+                                                    "pressureApplied":{
+                                                        "type":"number",
+                                                        //"helper":"(mbar)",
+                                                        "fieldClass":"col-lg-4",
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "placeholder":"ex. 45",
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.pressureAppliedSetter(self);
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'pressureApplied'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.pressureAppliedGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }
+                                                                    }
+                                                                };
+                                                            }
+                                                        }
+                                                    },
+                                                    "timeExtractionStart": {
+                                                        "type":"time",
+                                                        "dateFormat":"HH:mm:ssZ",
+                                                        "picker": {
+                                                            "showClose":true,
+                                                            "showTodayButton":true,
+                                                            "collapse":true,
+                                                            "stepping":1,
+                                                            "focusOnShow":false,
+                                                            "keepOpen":false,
+                                                            "inline":false,
+                                                            "useCurrent":true
+                                                        },
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.timeExtractionStartSetter(self);
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'timeExtractionStart'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.timeExtractionStartGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }
+                                                                    }
+                                                                };
+                                                            }
+                                                        },
+                                                        //"helper":"(HH:mm:ss-UTC)",
+                                                        "fieldClass": "col-lg-4"
+                                                    },
+                                                    "timeExtractionEnd": {
+                                                        "type":"time",
+                                                        "dateFormat":"HH:mm:ssZ",
+                                                        "picker": {
+                                                            "showClose":true,
+                                                            "showTodayButton":true,
+                                                            "collapse":true,
+                                                            "stepping":1,
+                                                            "focusOnShow":false,
+                                                            "keepOpen":false,
+                                                            "inline":false,
+                                                            "useCurrent":true
+                                                        },
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.timeExtractionEndSetter(self);
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'timeExtractionEnd'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.timeExtractionEndGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }
+                                                                    }
+                                                                };
+                                                            }
+                                                        },
+                                                        //"helper": "(HH:mm:ss-UTC)",
+                                                        "fieldClass": "col-lg-4"
+                                                    },
+                                                    "retractionPressureApplied":{
+                                                        "type":"number",
+                                                        //"helper":"(mbar)",
+                                                        "fieldClass": "col-lg-4",
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "placeholder":"ex. 45",
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.retractionPressureAppliedSetter(self);
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'retractionPressureApplied'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.retractionPressureAppliedGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }
+                                                                    }
+                                                                };
+                                                            }
+                                                        },
+                                                    },
+                                                    "timeRetractionEnd": {
+                                                        "type":"time",
+                                                        "dateFormat":"HH:mm:ssZ",
+                                                        "picker": {
+                                                            "showClose":true,
+                                                            "showTodayButton":true,
+                                                            "collapse":true,
+                                                            "stepping":1,
+                                                            "focusOnShow":false,
+                                                            "keepOpen":false,
+                                                            "inline":false,
+                                                            "useCurrent":true
+                                                        },
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.timeRetractionEndSetter(self);
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'timeRetractionEnd'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.timeRetractionEndGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }
+                                                                    }
+                                                                };
+                                                            }
+                                                        },
+                                                        //"helper": "(HH:mm:ss-UTC)",
+                                                        "fieldClass": "col-lg-4"
+                                                    },
+                                                    "timeChannelRecordingEnd": {
+                                                        "type":"time",
+                                                        "dateFormat":"HH:mm:ssZ",
+                                                        "picker": {
+                                                            "showClose":true,
+                                                            "showTodayButton":true,
+                                                            "collapse":true,
+                                                            "stepping":1,
+                                                            "focusOnShow":false,
+                                                            "keepOpen":false,
+                                                            "inline":false,
+                                                            "useCurrent":true
+                                                        },
+                                                        //"helper": "(HH:mm:ss-UTC)",
+                                                        "fieldClass": "col-lg-4",
+                                                        "dependencies": {
+                                                            "pilotNameExtra":"Pilot: Channel_Recording"
+                                                        }
                                                     },
                                                     "extractionNotes": {
                                                         "type":"textarea",
-                                                        "fieldClass": "col-lg-5",
+                                                        "fieldClass": "col-lg-12",
                                                         "rows":1
                                                     }
                                                  }
