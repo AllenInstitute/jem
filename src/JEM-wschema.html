@@ -403,7 +403,7 @@
                                 "blankFillDate":{
                                     "format":"date",
                                     "title":"Blank Fill Date",
-                                    "enum":["2022-02-14", "2022-01-12"],
+                                    "enum":["2022-03-08", "2022-02-14", "2022-01-12"],
                                     "default": ["2022-02-14"],
                                     "required":false
                                 },
@@ -481,7 +481,7 @@
                                                         "type":"string",
                                                         "title":"Project Name",
                                                         "default": "None",
-                                                        "enum": ["None", "Neonatal mice", "retrograde_labeling", "1% Biocytin Pilot", "Extended PBS Morphology Pilot", "1% Biocytin + Extended PBS Morphology Pilot", "Lot2022 Validation Pilot", "Channel_Recording", "U01 Pilot", "Dravet Mouse Pilot", "Training"],
+                                                        "enum": ["None", "Picrotoxin Validation", "Neonatal mice", "retrograde_labeling", "1% Biocytin Pilot", "Extended PBS Morphology Pilot", "1% Biocytin + Extended PBS Morphology Pilot", "Lot2022 Validation Pilot", "Channel_Recording", "U01 Pilot", "Dravet Mouse Pilot", "Training"],
                                                         "required":true
                                                     },
                                                     "project_retrograde_labeling_hemisphere": {
@@ -593,7 +593,7 @@
                                                     "nucleus": {
                                                         "type":"string",
                                                         "title":"Nucleus sucked in?",
-                                                        "enum":["intentionally", "not_intentionally", "no", "unknown", "NA"],
+                                                        "enum":["intentionally-surface", "not_intentionally-soma", "not_intentionally-retraction", "not_intentionally-surface", "no", "NA"],
                                                         "default":[],
                                                         "required": true
                                                     },
@@ -832,7 +832,7 @@
                                 "blankFillDate": {
                                     "type":"select",
                                     "fieldClass":"dropdown-content col-lg-2",
-                                    "helper":["Current: 2022-02-14 (Black)"],
+                                    "helper":["Current: 2022-02-14 (Black)", "New: 2022-03-08 (Blue)"],
                                     "hideNone":false,
                                     "noneLabel":"",
                                     "validate":true,
