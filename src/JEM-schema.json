@@ -102,9 +102,9 @@
                             },
                             "pilotName":{
                                 "type":"string",
-                                "title":"Project Name",
+                                "title":"Slice/Cell Level Projects",
                                 "default": "None",
-                                "enum": ["None", "Picrotoxin Validation", "Neonatal mice", "retrograde_labeling", "1% Biocytin Pilot", "Extended PBS Morphology Pilot", "1% Biocytin + Extended PBS Morphology Pilot", "Lot2022 Validation Pilot", "Channel_Recording", "U01 Pilot", "Dravet Mouse Pilot", "Training"],
+                                "enum": ["None", "Picrotoxin Validation", "Neonatal mice", "retrograde_labeling", "1% Biocytin Pilot", "Extended PBS Morphology Pilot", "1% Biocytin + Extended PBS Morphology Pilot", "Lot2022 Validation Pilot", "U01 Pilot", "Dravet Mouse Pilot", "Training"],
                                 "required":true
                             },
                             "project_retrograde_labeling_hemisphere": {
@@ -263,11 +263,18 @@
                                 "title":"Retraction End Time",
                                 "required":true
                             },
+                            "project_level_nucleus":{
+                                "type":"string",
+                                "title":"Nucleus Level Projects",
+                                "default": "None",
+                                "enum": ["None", "Channel_Recording"],
+                                "required":true
+                            },
                             "timeChannelRecordingEnd":{
                                 "format":"time",
-                                "title":"Channel Rec End Time",
+                                "title":"Channel Recording - Time End",
                                 "required":false,
-                                "dependencies":"pilotNameExtra"
+                                "dependencies":"project_level_nucleus"
                             },
                             "extractionNotes": {
                                 "type": "string",

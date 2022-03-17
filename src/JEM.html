@@ -1268,7 +1268,14 @@
                                                             }
                                                         },
                                                         //"helper": "(HH:mm:ss-UTC)",
-                                                        "fieldClass": "col-lg-4"
+                                                        "fieldClass": "col-lg-8"
+                                                    },
+                                                    "project_level_nucleus": {
+                                                        "type": "select",
+                                                        "fieldClass": "form-group col-lg-4",
+                                                        "sort":false,
+                                                        "hideNone":true,
+                                                        "noneLabel":"None"
                                                     },
                                                     "timeChannelRecordingEnd": {
                                                         "type":"time",
@@ -1284,10 +1291,8 @@
                                                             "useCurrent":true
                                                         },
                                                         //"helper": "(HH:mm:ss-UTC)",
-                                                        "fieldClass": "col-lg-4",
-                                                        "dependencies": {
-                                                            "pilotNameExtra":"Pilot: Channel_Recording"
-                                                        }
+                                                        "fieldClass": "col-lg-8",
+                                                        "dependencies": {"project_level_nucleus": "Channel_Recording"}
                                                     },
                                                     "extractionNotes": {
                                                         "type":"textarea",
