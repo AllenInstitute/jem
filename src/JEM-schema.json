@@ -273,7 +273,7 @@
                             "timeChannelRecordingEnd":{
                                 "format":"time",
                                 "title":"Channel Recording - Time End",
-                                "required":false,
+                                "required":true,
                                 "dependencies":"project_level_nucleus"
                             },
                             "extractionNotes": {
