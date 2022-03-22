@@ -637,7 +637,6 @@
                                                     "project_level_nucleus":{
                                                         "type":"string",
                                                         "title":"Nucleus Level Projects",
-                                                        "default": "None",
                                                         "enum": ["None", "Channel_Recording"],
                                                         "required":true
                                                     },
@@ -1594,8 +1593,8 @@
                                                         "type": "select",
                                                         "fieldClass": "form-group col-lg-4",
                                                         "sort":false,
-                                                        "hideNone":true,
-                                                        "noneLabel":"None",
+                                                        "hideNone":false,
+                                                        "noneLabel":"",
                                                         "hidden":false
                                                     },
                                                     "timeChannelRecordingEnd": {

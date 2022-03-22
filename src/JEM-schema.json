@@ -266,7 +266,6 @@
                             "project_level_nucleus":{
                                 "type":"string",
                                 "title":"Nucleus Level Projects",
-                                "default": "None",
                                 "enum": ["None", "Channel_Recording"],
                                 "required":true
                             },
