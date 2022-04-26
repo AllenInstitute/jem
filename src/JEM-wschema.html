@@ -832,7 +832,7 @@
                                 "blankFillDate": {
                                     "type":"select",
                                     "fieldClass":"dropdown-content col-lg-2",
-                                    "helper":["New: 2022-04-11 (Red)", "Current: 2022-03-08 (Blue)"],
+                                    "helper":["Current: 2022-04-11 (Red)"],
                                     "hideNone":false,
                                     "noneLabel":"",
                                     "validate":true,
@@ -1669,40 +1669,145 @@
                                                 "hideInitValidationError":true,
                                                 "tree": {
                                                     "selectors":{
-                                                         "roiSuper":{
-                                                             "schema":{
-                                                                 "type":"string"
-                                                             },
-                                                             "options":{
-                                                                 "type":"select",
-                                                                 "noneLabel": "Pick an ROI super...",
-                                                                 "sort":false
-                                                             }
-                                                         },
-                                                         "roiMajor":{
-                                                             "schema":{
-                                                                 "type":"string"
-                                                             },
-                                                             "options":{
-                                                                 "type":"select",
-                                                                 "noneLabel": "Pick an ROI major...",
-                                                                 "sort":false
-                                                             }
-                                                         },
-                                                         "roiMinor":{
-                                                             "schema":{
-                                                                 "type":"string"
-                                                             },
-                                                             "options":{
-                                                                 "type":"select",
-                                                                 "noneLabel": "Pick an ROI minor..."
-                                                             }
-                                                         }
+                                                        "roiSpecies":{"schema":{"type":"string"}, "options":{"type":"select", "noneLabel": "Pick a Species...", "sort": false}},
+                                                        "roiSuper": {"schema": {"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI super...", "sort": false}},
+                                                        "roiMajor": {"schema": {"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI major...", "sort": false}},
+                                                        "roiMinor": {"schema":{"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI minor...", "sort": false}}
                                                     },
-                                                    "order":["roiSuper", "roiMajor", "roiMinor"],
+                                                    "order":["roiSpecies", "roiSuper", "roiMajor", "roiMinor"],
                                                     "data": [{
-                                                        "value": "CBXmo", "attributes": {"roiSuper": "Cerebellum", "roiMajor": "CBX", "roiMinor": "mo"}
+                                                        //-----Human-----//
+                                                        // Human - Cortical
+                                                        "value": "CBXmo", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CBX", "roiMinor": "mo"}
                                                         }, {
+                                                        "value": "CCx1", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "CCx2", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 2"}
+                                                        }, {
+                                                        "value": "CCx3", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 3"}
+                                                        }, {
+                                                        "value": "CCx3a", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 3a"}
+                                                        }, {
+                                                        "value": "CCx3b", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 3b"}
+                                                        }, {
+                                                        "value": "CCx3c", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 3c"}
+                                                        }, {
+                                                        "value": "CCx4", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "CCx5", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "CCx6", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 6"}
+                                                        }, {
+                                                        "value": "FCx1", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "FCx2", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 2"}
+                                                        }, {
+                                                        "value": "FCx3", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 3"}
+                                                        }, {
+                                                        "value": "FCx3a", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 3a"}
+                                                        }, {
+                                                        "value": "FCx3b","attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 3b"}
+                                                        }, {
+                                                        "value": "FCx3c", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 3c"}
+                                                        }, {
+                                                        "value": "FCx4", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "FCx5", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "FCx6", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 6"}
+                                                        }, {
+                                                        "value": "ICx1", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "ICx2", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 2"}
+                                                        }, {
+                                                        "value": "ICx3", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 3"}
+                                                        }, {
+                                                        "value": "ICx3a", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 3a"}
+                                                        }, {
+                                                        "value": "ICx3b", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 3b"}
+                                                        }, {
+                                                        "value": "ICx3c", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 3c"}
+                                                        }, {
+                                                        "value": "ICx4", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "ICx5", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "ICx6", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 6"}
+                                                        }, {
+                                                        "value": "OCx1", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "OCx2", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 2"}
+                                                        }, {
+                                                        "value": "OCx3", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 3"}
+                                                        }, {
+                                                        "value": "OCx3a", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 3a"}
+                                                        }, {
+                                                        "value": "OCx3b", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 3b"}
+                                                        }, {
+                                                        "value": "OCx3c", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 3c"}
+                                                        }, {
+                                                        "value": "OCx4", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "OCx5", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "OCx6", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 6"}
+                                                        }, {
+                                                        "value": "PCx1", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "PCx2", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 2"}
+                                                        }, {
+                                                        "value": "PCx3", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 3"}
+                                                        }, {
+                                                        "value": "PCx3a", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 3a"}
+                                                        }, {
+                                                        "value": "PCx3b", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 3b"}
+                                                        }, {
+                                                        "value": "PCx3c", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 3c"}
+                                                        }, {
+                                                        "value": "PCx4", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "PCx5", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "PCx6", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 6"}
+                                                        }, {
+                                                        "value": "TCx1", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "TCx2", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 2"}
+                                                        }, {
+                                                        "value": "TCx3", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3"}
+                                                        }, {
+                                                        "value": "TCx3a", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3a"}
+                                                        }, {
+                                                        "value": "TCx3b", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3b"}
+                                                        }, {
+                                                        "value": "TCx3c", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3c"}
+                                                        }, {
+                                                        "value": "TCx4", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "TCx5", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "TCx6", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 6"}
+                                                        }, {
+                                                        // Human - Subcortical
+                                                        "value": "dLGNShell", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "dLGN", "roiMinor": "Shell"}
+                                                        }, {
+                                                        "value": "HIPbCA1", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA1"}
+                                                        }, {
+                                                        "value": "HIPbCA2", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA2"}
+                                                        }, {
+                                                        "value": "HIPbCA3", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA3"}
+                                                        }, {
+                                                        "value": "HIPbCA4", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA4"}
+                                                        }, {
+                                                        "value": "HIPbDG", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "DG"}
+                                                        }, {
+                                                        "value": "HIPbSB", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "SB"}
+                                                        }, {
+                                                        //-----Mouse-----//
+                                                        // Mouse - Cortical
+                                                        "value": "CTXspCLA", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "CTXsp", "roiMinor": "CLA"}
+                                                        }, {
+
                                                         "value": "MOp1", "attributes": {"roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 1"}
                                                         }, {
                                                         "value": "MOp2/3", "attributes": {"roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 2/3"}
@@ -1811,177 +1916,117 @@
                                                         }, {
                                                         "value": "VISp6b", "attributes": {"roiSuper": "Cortical", "roiMajor": "VISp", "roiMinor": "layer 6b"}
                                                         }, {
-                                                        "value": "CCx1", "attributes": {"roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 1"}
+                                                        // Mouse - Subcortical
+                                                        "value": "CTXspCLA", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "CTXsp", "roiMinor": "CLA"}
                                                         }, {
-                                                        "value": "CCx2", "attributes": {"roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 2"}
+                                                        "value": "dLGNCore", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "dLGN", "roiMinor": "Core"}
                                                         }, {
-                                                        "value": "CCx3", "attributes": {"roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 3"}
+                                                        "value": "dLGNMagnocellular", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "dLGN", "roiMinor": "Magnocellular"}
                                                         }, {
-                                                        "value": "CCx3a", "attributes": {"roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 3a"}
+                                                        "value": "dLGNParvocellular", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "dLGN", "roiMinor": "Parvocellular"}
                                                         }, {
-                                                        "value": "CCx3b", "attributes": {"roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 3b"}
+                                                        "value": "dLGNShell", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "dLGN", "roiMinor": "Shell"}
                                                         }, {
-                                                        "value": "CCx3c", "attributes": {"roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 3c"}
+                                                        "value": "EPILH", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "EPI", "roiMinor": "LH"}
                                                         }, {
-                                                        "value": "CCx4", "attributes": {"roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 4"}
+                                                        "value": "EPIMH", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "EPI", "roiMinor": "MH"}
                                                         }, {
-                                                        "value": "CCx5", "attributes": {"roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 5"}
+                                                        "value": "HIPCA1", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "CA1"}
                                                         }, {
-                                                        "value": "CCx6", "attributes": {"roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 6"}
+                                                        "value": "HIPCA2", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "CA2"}
                                                         }, {
-                                                        "value": "FCx1", "attributes": {"roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 1"}
+                                                        "value": "HIPCA3", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "CA3"}
                                                         }, {
-                                                        "value": "FCx2", "attributes": {"roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 2"}
+                                                        "value": "HIPDG-mo", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "DG, molecular"}
                                                         }, {
-                                                        "value": "FCx3", "attributes": {"roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 3"}
+                                                        "value": "HIPDG-sg", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "DG, granule"}
                                                         }, {
-                                                        "value": "FCx3a", "attributes": {"roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 3a"}
+                                                        "value": "HYSTN", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HY", "roiMinor": "STN"}
                                                         }, {
-                                                        "value": "FCx3b","attributes": {"roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 3b"}
+                                                        "value": "HYVMH", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HY", "roiMinor": "VMH"}
                                                         }, {
-                                                        "value": "FCx3c", "attributes": {"roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 3c"}
+                                                        "value": "MBSNc", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "MB", "roiMinor": "SNc"}
                                                         }, {
-                                                        "value": "FCx4", "attributes": {"roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 4"}
+                                                        "value": "MBSNr", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "MB", "roiMinor": "SNr"}
                                                         }, {
-                                                        "value": "FCx5", "attributes": {"roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 5"}
+                                                        "value": "MBVTA", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "MB", "roiMinor": "VTA"}
                                                         }, {
-                                                        "value": "FCx6", "attributes": {"roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 6"}
+                                                        "value": "PALGPe", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "PAL", "roiMinor": "GPe"}
                                                         }, {
-                                                        "value": "ICx1", "attributes": {"roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 1"}
+                                                        "value": "PALGPi", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "PAL", "roiMinor": "GPi"}
                                                         }, {
-                                                        "value": "ICx2", "attributes": {"roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 2"}
+                                                        "value": "STRdCP", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "STRd", "roiMinor": "CP"}
                                                         }, {
-                                                        "value": "ICx3", "attributes": {"roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 3"}
+                                                        "value": "STRdCa", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "STRd", "roiMinor": "Ca"}
                                                         }, {
-                                                        "value": "ICx3a", "attributes": {"roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 3a"}
+                                                        "value": "STRdPu", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "STRd", "roiMinor": "Pu"}
                                                         }, {
-                                                        "value": "ICx3b", "attributes": {"roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 3b"}
+                                                        "value": "STRvACB", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "STRv", "roiMinor": "ACB"}
                                                         }, {
-                                                        "value": "ICx3c", "attributes": {"roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 3c"}
+                                                        "value": "THMD", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "TH", "roiMinor": "MD"}
                                                         }, {
-                                                        "value": "ICx4", "attributes": {"roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 4"}
-                                                        }, {
-                                                        "value": "ICx5", "attributes": {"roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 5"}
-                                                        }, {
-                                                        "value": "ICx6", "attributes": {"roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 6"}
-                                                        }, {
-                                                        "value": "OCx1", "attributes": {"roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 1"}
-                                                        }, {
-                                                        "value": "OCx2", "attributes": {"roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 2"}
-                                                        }, {
-                                                        "value": "OCx3", "attributes": {"roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 3"}
-                                                        }, {
-                                                        "value": "OCx3a", "attributes": {"roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 3a"}
-                                                        }, {
-                                                        "value": "OCx3b", "attributes": {"roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 3b"}
-                                                        }, {
-                                                        "value": "OCx3c", "attributes": {"roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 3c"}
-                                                        }, {
-                                                        "value": "OCx4", "attributes": {"roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 4"}
-                                                        }, {
-                                                        "value": "OCx5", "attributes": {"roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 5"}
-                                                        }, {
-                                                        "value": "OCx6", "attributes": {"roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 6"}
-                                                        }, {
-                                                        "value": "PCx1", "attributes": {"roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 1"}
-                                                        }, {
-                                                        "value": "PCx2", "attributes": {"roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 2"}
-                                                        }, {
-                                                        "value": "PCx3", "attributes": {"roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 3"}
-                                                        }, {
-                                                        "value": "PCx3a", "attributes": {"roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 3a"}
-                                                        }, {
-                                                        "value": "PCx3b", "attributes": {"roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 3b"}
-                                                        }, {
-                                                        "value": "PCx3c", "attributes": {"roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 3c"}
-                                                        }, {
-                                                        "value": "PCx4", "attributes": {"roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 4"}
-                                                        }, {
-                                                        "value": "PCx5", "attributes": {"roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 5"}
-                                                        }, {
-                                                        "value": "PCx6", "attributes": {"roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 6"}
-                                                        }, {
-                                                        "value": "TCx1", "attributes": {"roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 1"}
-                                                        }, {
-                                                        "value": "TCx2", "attributes": {"roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 2"}
-                                                        }, {
-                                                        "value": "TCx3", "attributes": {"roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3"}
-                                                        }, {
-                                                        "value": "TCx3a", "attributes": {"roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3a"}
-                                                        }, {
-                                                        "value": "TCx3b", "attributes": {"roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3b"}
-                                                        }, {
-                                                        "value": "TCx3c", "attributes": {"roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3c"}
-                                                        }, {
-                                                        "value": "TCx4", "attributes": {"roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 4"}
-                                                        }, {
-                                                        "value": "TCx5", "attributes": {"roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 5"}
-                                                        }, {
-                                                        "value": "TCx6", "attributes": {"roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 6"}
-                                                        }, {
-                                                        "value": "CTXspCLA", "attributes": {"roiSuper": "Subcortical", "roiMajor": "CTXsp", "roiMinor": "CLA"}
-                                                        }, {
-                                                        "value": "dLGNCore", "attributes": {"roiSuper": "Subcortical", "roiMajor": "dLGN", "roiMinor": "Core"}
-                                                        }, {
-                                                        "value": "dLGNMagnocellular", "attributes": {"roiSuper": "Subcortical", "roiMajor": "dLGN", "roiMinor": "Magnocellular"}
-                                                        }, {
-                                                        "value": "dLGNParvocellular", "attributes": {"roiSuper": "Subcortical", "roiMajor": "dLGN", "roiMinor": "Parvocellular"}
-                                                        }, {
-                                                        "value": "dLGNShell", "attributes": {"roiSuper": "Subcortical", "roiMajor": "dLGN", "roiMinor": "Shell"}
-                                                        }, {
-                                                        "value": "HIPCA1", "attributes": {"roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "CA1"}
-                                                        }, {
-                                                        "value": "HIPCA2", "attributes": {"roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "CA2"}
-                                                        }, {
-                                                        "value": "HIPCA3", "attributes": {"roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "CA3"}
-                                                        }, {
-                                                        "value": "HIPDG-mo", "attributes": {"roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "DG, molecular"}
-                                                        }, {
-                                                        "value": "HIPDG-sg", "attributes": {"roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "DG, granule"}
-                                                        }, {   
-                                                        "value": "HIPbCA1", "attributes": {"roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA1"}
-                                                        }, {
-                                                        "value": "HIPbCA2", "attributes": {"roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA2"}
-                                                        }, {
-                                                        "value": "HIPbCA3", "attributes": {"roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA3"}
-                                                        }, {
-                                                        "value": "HIPbCA4", "attributes": {"roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA4"}
-                                                        }, {
-                                                        "value": "HIPbDG", "attributes": {"roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "DG"}
-                                                        }, {
-                                                        "value": "HIPbSB", "attributes": {"roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "SB"}
-                                                        }, {
-                                                        "value": "HYSTN", "attributes": {"roiSuper": "Subcortical", "roiMajor": "HY", "roiMinor": "STN"}
-                                                        }, {
-                                                        "value": "HYVMH", "attributes": {"roiSuper": "Subcortical", "roiMajor": "HY", "roiMinor": "VMH"}
-                                                        }, {
-                                                        "value": "EPILH", "attributes": {"roiSuper": "Subcortical", "roiMajor": "EPI", "roiMinor": "LH"}
-                                                        }, {
-                                                        "value": "EPIMH", "attributes": {"roiSuper": "Subcortical", "roiMajor": "EPI", "roiMinor": "MH"}
-                                                        }, {
-                                                        "value": "MBSNc", "attributes": {"roiSuper": "Subcortical", "roiMajor": "MB", "roiMinor": "SNc"}
-                                                        }, {
-                                                        "value": "MBSNr", "attributes": {"roiSuper": "Subcortical", "roiMajor": "MB", "roiMinor": "SNr"}
-                                                        }, {
-                                                        "value": "MBVTA", "attributes": {"roiSuper": "Subcortical", "roiMajor": "MB", "roiMinor": "VTA"}
-                                                        }, {
-                                                        "value": "PALGPe", "attributes": {"roiSuper": "Subcortical", "roiMajor": "PAL", "roiMinor": "GPe"}
-                                                        }, {
-                                                        "value": "PALGPi", "attributes": {"roiSuper": "Subcortical", "roiMajor": "PAL", "roiMinor": "GPi"}
-                                                        }, {
-                                                        "value": "STRdCP", "attributes": {"roiSuper": "Subcortical", "roiMajor": "STRd", "roiMinor": "CP"}
-                                                        }, {
-                                                        "value": "STRdCa", "attributes": {"roiSuper": "Subcortical", "roiMajor": "STRd", "roiMinor": "Ca"}
-                                                        }, {
-                                                        "value": "STRdPu", "attributes": {"roiSuper": "Subcortical", "roiMajor": "STRd", "roiMinor": "Pu"}
-                                                        }, {
-                                                        "value": "STRvACB", "attributes": {"roiSuper": "Subcortical", "roiMajor": "STRv", "roiMinor": "ACB"}
-                                                        }, {
-                                                        "value": "THMD", "attributes": {"roiSuper": "Subcortical", "roiMajor": "TH", "roiMinor": "MD"}
-                                                        }, {
-                                                        "value": "THPF", "attributes": {"roiSuper": "Subcortical", "roiMajor": "TH", "roiMinor": "PF"}
+                                                        "value": "THPF", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "TH", "roiMinor": "PF"}
                                                         }, {                                                            
-                                                        "value": "THVAL", "attributes": {"roiSuper": "Subcortical", "roiMajor": "TH", "roiMinor": "VAL"}
+                                                        "value": "THVAL", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "TH", "roiMinor": "VAL"}
+                                                        }, {
+                                                        //-----NHP-----//
+                                                        // NHP - Cortical
+                                                        "value": "CTXspCLA", "attributes": {"roiSpecies": "NHP", "roiSuper": "Subcortical", "roiMajor": "CTXsp", "roiMinor": "CLA"}
+                                                        }, {
+                                                        "value": "MOp1", "attributes": {"roiSpecies": "NHP", "roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "MOp2/3", "attributes": {"roiSpecies": "NHP", "roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 2/3"}
+                                                        }, {
+                                                        "value": "MOp5", "attributes": {"roiSpecies": "NHP", "roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "MOp6a", "attributes": {"roiSpecies": "NHP", "roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 6a"}
+                                                        }, {
+                                                        "value": "MOp6b", "attributes": {"roiSpecies": "NHP", "roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 6b"}
+                                                        }, {
+                                                        "value": "TCx1", "attributes": {"roiSpecies": "NHP", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "TCx2", "attributes": {"roiSpecies": "NHP", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 2"}
+                                                        }, {
+                                                        "value": "TCx3", "attributes": {"roiSpecies": "NHP", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3"}
+                                                        }, {
+                                                        "value": "TCx3a", "attributes": {"roiSpecies": "NHP", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3a"}
+                                                        }, {
+                                                        "value": "TCx3b", "attributes": {"roiSpecies": "NHP", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3b"}
+                                                        }, {
+                                                        "value": "TCx3c", "attributes": {"roiSpecies": "NHP", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3c"}
+                                                        }, {
+                                                        "value": "TCx4", "attributes": {"roiSpecies": "NHP", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "TCx5", "attributes": {"roiSpecies": "NHP", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "TCx6", "attributes": {"roiSpecies": "NHP", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 6"}
+                                                        }, {
+                                                        // NHP - Subcortical
+                                                        "value": "HIPbCA1", "attributes": {"roiSpecies": "NHP", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA1"}
+                                                        }, {
+                                                        "value": "HIPbCA2", "attributes": {"roiSpecies": "NHP", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA2"}
+                                                        }, {
+                                                        "value": "HIPbCA3", "attributes": {"roiSpecies": "NHP", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA3"}
+                                                        }, {
+                                                        "value": "HIPbCA4", "attributes": {"roiSpecies": "NHP", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA4"}
+                                                        }, {
+                                                        "value": "HIPbDG", "attributes": {"roiSpecies": "NHP", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "DG"}
+                                                        }, {
+                                                        "value": "HIPbSB", "attributes": {"roiSpecies": "NHP", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "SB"}
+                                                        }, {
+                                                        "value": "HYSTN", "attributes": {"roiSpecies": "NHP", "roiSuper": "Subcortical", "roiMajor": "HY", "roiMinor": "STN"}
+                                                        }, {
+                                                        "value": "HYVMH", "attributes": {"roiSpecies": "NHP", "roiSuper": "Subcortical", "roiMajor": "HY", "roiMinor": "VMH"}
+                                                        }, {
+                                                         "value": "PALGPe", "attributes": {"roiSpecies": "NHP", "roiSuper": "Subcortical", "roiMajor": "PAL", "roiMinor": "GPe"}
+                                                        }, {
+                                                        "value": "PALGPi", "attributes": {"roiSpecies": "NHP", "roiSuper": "Subcortical", "roiMajor": "PAL", "roiMinor": "GPi"}
+                                                        }, {
+                                                        "value": "STRdCa", "attributes": {"roiSpecies": "NHP", "roiSuper": "Subcortical", "roiMajor": "STRd", "roiMinor": "Ca"}
+                                                        }, {
+                                                        "value": "STRdPu", "attributes": {"roiSpecies": "NHP", "roiSuper": "Subcortical", "roiMajor": "STRd", "roiMinor": "Pu"}
+                                                        }, {
+                                                        "value": "STRvACB", "attributes": {"roiSpecies": "NHP", "roiSuper": "Subcortical", "roiMajor": "STRv", "roiMinor": "ACB"}
                                                         },
                                                      ],
                                                      "horizontal":true
