@@ -33,7 +33,7 @@
             "format":"date",
             "title":"Blank Fill Date",
             "enum":["2022-04-11", "2022-03-08", "2022-02-14", "2022-01-12"],
-            "default": ["2022-03-08"],
+            "default": ["2022-04-11"],
             "required":false
         },
         "internalFillDate":{
