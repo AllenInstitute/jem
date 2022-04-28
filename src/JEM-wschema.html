@@ -400,18 +400,18 @@
                                     "title":"ACSF Date",
                                     "required":true
                                 },
-                                "blankFillDate":{
-                                    "format":"date",
-                                    "title":"Blank Fill Date",
-                                    "enum":["2022-04-11", "2022-03-08", "2022-02-14", "2022-01-12"],
-                                    "default": ["2022-04-11"],
-                                    "required":false
-                                },
                                 "internalFillDate":{
                                     "format":"date",
                                     "title":"Internal Fill Date",
                                     "enum":["2022-03-31", "2022-03-30", "2022-03-29", "2022-03-28", "2022-02-16", "2022-02-15", "2022-02-14", "2022-01-11", "2022-01-10"],
                                     "required":true
+                                },
+                                "misinformation":{
+                                    "type": "string",
+                                    "title":"Misinformation",
+                                    "enum":["Yes", "No"],
+                                    "default": ["No"],
+                                    "required":false
                                 },
                                 "limsSpecName": {
                                     "type": "string",
@@ -435,13 +435,6 @@
                                     "enum": ["Healthy", "Unhealthy", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)", "Damage (Researcher)"],
                                     "default":[],
                                     "required":true
-                                },
-                                "misinformation":{
-                                    "format":"date",
-                                    "title":"Misinformation",
-                                    "enum":["Yes", "No"],
-                                    "default": ["No"],
-                                    "required":false
                                 },
                                 "sliceNotes":{
                                     "type":"string",
@@ -571,6 +564,13 @@
                                                     "pilotNameExtra": {
                                                         "type":"string",
                                                         "readonly":true
+                                                    },
+                                                    "blankFillDate":{
+                                                        "format":"date",
+                                                        "title":"Blank Fill Date",
+                                                        "enum":["2022-04-11", "2022-03-08", "2022-02-14", "2022-01-12"],
+                                                        "default": ["2022-04-11"],
+                                                        "required":false
                                                     },
                                                     "tubeID":{
                                                         "type":"string",
@@ -829,20 +829,6 @@
                                     "showMessages": false,
                                     "hideInitValidationError":true
                                 },
-                                "blankFillDate": {
-                                    "type":"select",
-                                    "fieldClass":"dropdown-content col-lg-2",
-                                    "helper":["Current: 2022-04-11 (Red)"],
-                                    "hideNone":false,
-                                    "noneLabel":"",
-                                    "validate":true,
-                                    "showMessages":false,
-                                    "hideInitValidationError":true,
-                                    "sort":function(first, second) {
-                                        // Sort the dates in reverse so that the newest ones will be at the top.
-                                        return second.text.localeCompare(first.text);
-                                    }
-                                },
                                 "internalFillDate": {
                                     "type":"select",
                                     "fieldClass":"dropdown-content col-lg-2",
@@ -856,6 +842,17 @@
                                         // Sort the dates in reverse so that the newest ones will be at the top.
                                         return second.text.localeCompare(first.text);
                                     }
+                                },
+                                "misinformation":{
+                                    "type": "select",
+                                    "fieldClass": "dropdown-content col-lg-2",
+                                    "size": 1.5,
+                                    "sort": false,
+                                    "validate": true,
+                                    "showMessages": false,
+                                    "hideInitValidationError": true,
+                                    "hideNone": false,
+                                    "noneLabel": ""
                                 },
                                 "limsSpecName": {
                                     "type": "text",
@@ -936,17 +933,6 @@
                                     "vertical":false,
                                     "showMessages":false,
                                     "hideInitValidationError":true,
-                                },
-                                "misinformation":{
-                                    "type": "select",
-                                    "fieldClass": "dropdown-content col-lg-2",
-                                    "size": 1.5,
-                                    "sort": false,
-                                    "validate": true,
-                                    "showMessages": false,
-                                    "hideInitValidationError": true,
-                                    "hideNone": false,
-                                    "noneLabel": ""
                                 },
                                 "sliceNotes": {
                                     "type":"textarea",
@@ -1298,9 +1284,24 @@
                                                         "fieldClass": "col-lg-12",
                                                         "hidden":false
                                                     },
+                                                    "blankFillDate": {
+                                                        "type":"select",
+                                                        "fieldClass":"dropdown-content col-lg-2",
+                                                        "helper":["Current: 2022-04-11 (Red)", "New:"],
+                                                        "hideNone":false,
+                                                        "noneLabel":"",
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "hideInitValidationError":true,
+                                                        "sort":function(first, second) {
+                                                            // Sort the dates in reverse so that the newest ones will be at the top.
+                                                            return second.text.localeCompare(first.text);
+                                                        }
+                                                    },
                                                     "tubeID": {
                                                         "type":"text",
-                                                        "fieldClass": "col-lg-12",
+                                                        "fieldClass": "col-lg-10",
+                                                        "helper":["PC: Human/Non-Human Primate Culture", "PX: Pilot Projects"],
                                                         "placeholder":"Copy and paste from Patchseq_tube_assigments excel document (ex: PAS4_210101_451_A01)",
                                                         "disallowEmptySpaces":true,
                                                         "events":{
@@ -2044,7 +2045,7 @@
                             "views":"bootstrap-create"
                         },
                         "data": {
-                            "formVersion": "2.1.0"
+                            "formVersion": "2.1.1"
                         }
                     });
                 });

@@ -510,20 +510,6 @@
                                     "showMessages": false,
                                     "hideInitValidationError":true
                                 },
-                                "blankFillDate": {
-                                    "type":"select",
-                                    "fieldClass":"dropdown-content col-lg-2",
-                                    "helper":["Current: 2022-04-11 (Red)"],
-                                    "hideNone":false,
-                                    "noneLabel":"",
-                                    "validate":true,
-                                    "showMessages":false,
-                                    "hideInitValidationError":true,
-                                    "sort":function(first, second) {
-                                        // Sort the dates in reverse so that the newest ones will be at the top.
-                                        return second.text.localeCompare(first.text);
-                                    }
-                                },
                                 "internalFillDate": {
                                     "type":"select",
                                     "fieldClass":"dropdown-content col-lg-2",
@@ -537,6 +523,17 @@
                                         // Sort the dates in reverse so that the newest ones will be at the top.
                                         return second.text.localeCompare(first.text);
                                     }
+                                },
+                                "misinformation":{
+                                    "type": "select",
+                                    "fieldClass": "dropdown-content col-lg-2",
+                                    "size": 1.5,
+                                    "sort": false,
+                                    "validate": true,
+                                    "showMessages": false,
+                                    "hideInitValidationError": true,
+                                    "hideNone": false,
+                                    "noneLabel": ""
                                 },
                                 "limsSpecName": {
                                     "type": "text",
@@ -617,17 +614,6 @@
                                     "vertical":false,
                                     "showMessages":false,
                                     "hideInitValidationError":true,
-                                },
-                                "misinformation":{
-                                    "type": "select",
-                                    "fieldClass": "dropdown-content col-lg-2",
-                                    "size": 1.5,
-                                    "sort": false,
-                                    "validate": true,
-                                    "showMessages": false,
-                                    "hideInitValidationError": true,
-                                    "hideNone": false,
-                                    "noneLabel": ""
                                 },
                                 "sliceNotes": {
                                     "type":"textarea",
@@ -979,9 +965,24 @@
                                                         "fieldClass": "col-lg-12",
                                                         "hidden":false
                                                     },
+                                                    "blankFillDate": {
+                                                        "type":"select",
+                                                        "fieldClass":"dropdown-content col-lg-2",
+                                                        "helper":["Current: 2022-04-11 (Red)", "New:"],
+                                                        "hideNone":false,
+                                                        "noneLabel":"",
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "hideInitValidationError":true,
+                                                        "sort":function(first, second) {
+                                                            // Sort the dates in reverse so that the newest ones will be at the top.
+                                                            return second.text.localeCompare(first.text);
+                                                        }
+                                                    },
                                                     "tubeID": {
                                                         "type":"text",
-                                                        "fieldClass": "col-lg-12",
+                                                        "fieldClass": "col-lg-10",
+                                                        "helper":["PC: Human/Non-Human Primate Culture", "PX: Pilot Projects"],
                                                         "placeholder":"Copy and paste from Patchseq_tube_assigments excel document (ex: PAS4_210101_451_A01)",
                                                         "disallowEmptySpaces":true,
                                                         "events":{
@@ -1725,7 +1726,7 @@
                             "views":"bootstrap-create"
                         },
                         "data": {
-                            "formVersion": "2.1.0"
+                            "formVersion": "2.1.1"
                         }
                     });
                 });

@@ -29,18 +29,18 @@
             "title":"ACSF Date",
             "required":true
         },
-        "blankFillDate":{
-            "format":"date",
-            "title":"Blank Fill Date",
-            "enum":["2022-04-11", "2022-03-08", "2022-02-14", "2022-01-12"],
-            "default": ["2022-04-11"],
-            "required":false
-        },
         "internalFillDate":{
             "format":"date",
             "title":"Internal Fill Date",
             "enum":["2022-03-31", "2022-03-30", "2022-03-29", "2022-03-28", "2022-02-16", "2022-02-15", "2022-02-14", "2022-01-11", "2022-01-10"],
             "required":true
+        },
+        "misinformation":{
+            "type": "string",
+            "title":"Misinformation",
+            "enum":["Yes", "No"],
+            "default": ["No"],
+            "required":false
         },
         "limsSpecName": {
             "type": "string",
@@ -64,13 +64,6 @@
             "enum": ["Healthy", "Unhealthy", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)", "Damage (Researcher)"],
             "default":[],
             "required":true
-        },
-        "misinformation":{
-            "format":"date",
-            "title":"Misinformation",
-            "enum":["Yes", "No"],
-            "default": ["No"],
-            "required":false
         },
         "sliceNotes":{
             "type":"string",
@@ -200,6 +193,13 @@
                             "pilotNameExtra": {
                                 "type":"string",
                                 "readonly":true
+                            },
+                            "blankFillDate":{
+                                "format":"date",
+                                "title":"Blank Fill Date",
+                                "enum":["2022-04-11", "2022-03-08", "2022-02-14", "2022-01-12"],
+                                "default": ["2022-04-11"],
+                                "required":false
                             },
                             "tubeID":{
                                 "type":"string",
