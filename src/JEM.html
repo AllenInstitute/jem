@@ -724,6 +724,14 @@
                                                             }
                                                         }
                                                     },
+                                                    "project_icv_injection": {
+                                                        "type": "select",
+                                                        "fieldClass": "form-group col-lg-2",
+                                                        "sort": false,
+                                                        "hideNone": false,
+                                                        "noneLabel": "",
+                                                        "dependencies": {"pilotName": "ICV Injection"}
+                                                    },
                                                     "project_retrograde_labeling_hemisphere": {
                                                         "type": "select",
                                                         "fieldClass": "form-group col-lg-2",
@@ -1726,7 +1734,7 @@
                             "views":"bootstrap-create"
                         },
                         "data": {
-                            "formVersion": "2.1.1"
+                            "formVersion": "2.1.2"
                         }
                     });
                 });

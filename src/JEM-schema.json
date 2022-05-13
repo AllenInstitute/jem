@@ -97,8 +97,15 @@
                                 "type":"string",
                                 "title":"Slice/Cell Level Projects",
                                 "default": "None",
-                                "enum": ["None", "Picrotoxin Validation", "Neonatal mice", "retrograde_labeling", "1% Biocytin Pilot", "Extended PBS Morphology Pilot", "1% Biocytin + Extended PBS Morphology Pilot", "Lot2022 Validation Pilot", "U01 Pilot", "Dravet Mouse Pilot", "Training"],
+                                "enum": ["None", "retrograde_labeling", "ICV Injection", "Morphology Clearing", "Picrotoxin Validation", "1% Biocytin + Extended PBS Morphology Pilot", "1% Biocytin Pilot", "Extended PBS Morphology Pilot", "Training", "Neonatal mice", "Lot2022 Validation Pilot", "U01 Pilot", "Dravet Mouse Pilot"],
                                 "required":true
+                            },
+                            "project_icv_injection": {
+                                "type": "string",
+                                "title": "Fluorescent ROI",
+                                "enum": ["Yes", "No"],
+                                "dependencies": "pilotName",
+                                "required": true
                             },
                             "project_retrograde_labeling_hemisphere": {
                                 "type": "string",
