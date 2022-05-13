@@ -100,7 +100,7 @@
                                 "enum": ["None", "retrograde_labeling", "ICV Injection", "Morphology Clearing", "Picrotoxin Validation", "1% Biocytin + Extended PBS Morphology Pilot", "1% Biocytin Pilot", "Extended PBS Morphology Pilot", "Training", "Neonatal mice", "Lot2022 Validation Pilot", "U01 Pilot", "Dravet Mouse Pilot"],
                                 "required":true
                             },
-                            "project_icv_injection": {
+                            "project_icv_injection_fluorescent_roi": {
                                 "type": "string",
                                 "title": "Fluorescent ROI",
                                 "enum": ["Yes", "No"],
