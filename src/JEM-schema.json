@@ -10,13 +10,13 @@
         "rigOperator": {
             "type": "string",
             "title": "Researcher",
-            "enum":["brianle", "kristenh", "rustym", "ramr", "sarav", "balreetp", "gabrielal", "kamiliamn", "jonathant", "briank", "cristinar", "lindsayn", "jessicat"],
+            "enum":["brianle", "kristenh", "rustym", "ramr", "sarav", "balreetp", "gabrielal", "kamiliamn", "jonathant", "briank", "cristinar", "lindsayn", "meanhwank", "jessicat"],
             "required":true
         },
         "rigNumber": {
             "type":"string",
             "title":"Rig #",
-            "enum":["1", "2", "3", "4", "5", "6", "7", "8", "HCT1", "HCT2", "HCT3"],
+            "enum":["1", "2", "3", "4", "5", "6", "7", "8", "HCT1", "HCT2", "HCT3", "MP4"],
             "required":true
         },
         "date":{
@@ -32,7 +32,7 @@
         "internalFillDate":{
             "format":"date",
             "title":"Internal Fill Date",
-            "enum":["2022-05-06", "2022-05-05", "2022-03-31", "2022-03-30", "2022-03-29", "2022-03-28", "2022-02-16", "2022-02-15", "2022-02-14", "2022-01-11", "2022-01-10"],
+            "enum":["2022-06-16", "2022-06-15", "2022-05-06", "2022-05-05", "2022-03-31", "2022-03-30", "2022-03-29", "2022-03-28", "2022-02-16", "2022-02-15", "2022-02-14", "2022-01-11", "2022-01-10"],
             "required":true
         },
         "misinformation":{
