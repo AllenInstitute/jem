@@ -501,26 +501,89 @@
                                                     }
                                                 }
                                             },
-                                            "recording":{
-                                                "type":"object",
-                                                "title":"Recording Info",
+                                            "experiment_in_bath": {
+                                                "type": "object",
+                                                "title": "Exp - In Bath",
                                                 "properties": {
-                                                    "timeStart": {
-                                                        "format":"time",
-                                                        "title":"Approach Start",
-                                                        "required":true
+                                                    "in_bath_time_start": {
+                                                        "type": "string",
+                                                        "format": "time",
+                                                        "title": "Time - Approach",
+                                                        "required": true
                                                     },
-                                                    "pipetteR":{
-                                                        "format":"number",
+                                                    "in_bath_resistance": {
+                                                        "type": "string",
+                                                        "format": "number",
+                                                        "title": "Resistance",
+                                                        "required": true,
                                                         "minimum": 2.0,
-                                                        "maximum": 8.0,
-                                                        "title":"Pipette R",
-                                                        "required":true
+                                                        "maximum": 8.0
+                                                    }
+                                                }
+                                            },
+                                            "experiment_cell_attached": {
+                                                "type": "object",
+                                                "title": "Exp - Cell Attached",
+                                                "properties": {
+                                                    "cell_attached_time_start": {
+                                                        "type": "string",
+                                                        "format": "time",
+                                                        "title": "Time - Seal",
+                                                        "required": true
                                                     },
-                                                    "timeWholeCellStart":{
-                                                        "format":"time",
-                                                        "title":"Whole Cell Start",
-                                                        "required":true
+                                                    "cell_attached_dimple": {
+                                                        "type": "string",
+                                                        "format": "string",
+                                                        "title": "Dimple",
+                                                        "required": true,
+                                                        "enum": ["Yes", "No"]
+                                                    }
+                                                }
+                                            },
+                                            "experiment_break_in": {
+                                                "type": "object",
+                                                "title": "Exp - Break-In",
+                                                "properties": {
+                                                    "break_in_time_start": {
+                                                        "type": "string",
+                                                        "format": "time",
+                                                        "title": "Time - Pressure",
+                                                        "required": true
+                                                    },
+                                                    "break_in_pressure_max": {
+                                                        "type": "string",
+                                                        "format": "number",
+                                                        "title": "Pressure - Max",
+                                                        "required": true,
+                                                        "minimum": 0,
+                                                        "maximum": 500
+                                                    },
+                                                    "break_in_zap_max": {
+                                                        "type": "string",
+                                                        "format": "string",
+                                                        "title": "Zap - Max",
+                                                        "required": true,
+                                                        "enum": ["25us", "50us", "100us", "200us", "500us", "1ms", "2ms", "50ms"]
+                                                    },
+                                                    "break_in_zap_use": {
+                                                        "type": "string",
+                                                        "format": "string",
+                                                        "title": "Zap - Usage",
+                                                        "required": true, 
+                                                        "enum": ["Single", "Multiple"]
+                                                    },
+                                                    "break_in_time_end": {
+                                                        "type": "string",
+                                                        "format": "time",
+                                                        "title": "Time - Break-In",
+                                                        "required": true
+                                                    },
+                                                    "break_in_reseal": {
+                                                        "type": "string",
+                                                        "format": "string",
+                                                        "title": "Resealed",
+                                                        "required": true, 
+                                                        "enum": ["Yes", "No"]
                                                     }
                                                 }
                                             },
@@ -536,26 +599,12 @@
                                                 "title":"Pipette Specimen ID",
                                                 "required":false
                                             },
-                                            "failureNotes":{
-                                                "type":"string",
-                                                "enum":["Failed Gigaohm Seal", "Failed Break-in", "Cell Died", "Pipette Issue (clog)", "Pipette Issue (crashed through tissue)", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= 100 pA)", "Other"],
-                                                "default":[],
-                                                "dependencies":"status",
-                                                "required":true
-                                            },
                                             "freeFailureNotes":{
                                                 "type":"string",
                                                 "title":"Extra Failure Notes",
                                                 "default":[],
                                                 "dependencies":"status",
                                                 "required":false
-                                            },
-                                            "successNotes":{
-                                                "type":"string",
-                                                "enum": ["Completed Core 1", "Completed Core 2", "Difficult Gigaohm Seal (slow sealing)", "Difficult Break-in (re-sealing)", "Access Resistance (>= 20 MOhms)", "Unstable Baseline", "Unstable Holding Current (>= 100 pA)", "Other"],
-                                                "default":[],
-                                                "dependencies":"status",
-                                                "required": true
                                             },
                                             "qcNotes":{
                                                 "type":"string",
@@ -1084,123 +1133,120 @@
                                                     }
                                                 }
                                             },
-                                            "recording":{
-                                                "fieldClass": "form-group col-lg-12 no-border bg-info",
+                                            "experiment_in_bath": {
+                                                "fieldClass": "form-group col-lg-2 no-border bg-info",
                                                 "fields": {
-                                                    "timeStart": {
-                                                        "fieldClass": "form-group col-lg-2",
-                                                        "type":"date",
-                                                        "dateFormat":"HH:mm:ssZ",
+                                                    "in_bath_time_start": {
+                                                        "fieldClass": "col-lg-12",
+                                                        "type": "time",
+                                                        "showMessages": false,
+                                                        "dateFormat": "HH:mm:ss",
                                                         "picker": {
-                                                            "showClose":true,
-                                                            "showTodayButton":true,
-                                                            "collapse":true,
-                                                            "stepping":1,
-                                                            "focusOnShow":false,
-                                                            "keepOpen":false,
-                                                            "inline":false,
-                                                            "useCurrent":true
-                                                        },
-                                                        "showMessages":false,
-                                                        "hideInitValidationError":true,
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.approachStartSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'timeApproachStart'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.approachStartGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        },
-                                                        "manualEntry":false,
-                                                        //"helper":"(HH:mm:ss-UTC)"
-                                                    },
-                                                    "pipetteR":{
-                                                        "type":"number",
-                                                        "fieldClass": "form-group col-lg-2",
-                                                        "helper": "(2.0-8.0 MOhms)",
-                                                        "placeholder": "ex. 4.5",
-                                                        "validate":true,
-                                                        "showMessages":false,
-                                                        "hideInitValidationError":true,
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.pipetteRSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'pipetteR'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.pipetteRGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
+                                                            "showClose": true,
+                                                            "showTodayButton": true,
+                                                            "stepping": 1,
+                                                            "inline": false,
+                                                            "useCurrent": true
                                                         }
                                                     },
-                                                    "timeWholeCellStart":{
-                                                        "type":"date",
-                                                        "fieldClass": "form-group col-lg-2",
-                                                        "dateFormat":"HH:mm:ssZ",
+                                                    "in_bath_resistance": {
+                                                        "fieldClass": "col-lg-12",
+                                                        "type": "number",
+                                                        "showMessages": false,
+                                                        "helper": "(2.0-8.0 MOhms)",
+                                                        "placeholder": "ex. 4.5"
+                                                    }
+                                                }
+                                            },
+                                            "experiment_cell_attached":{
+                                                "fieldClass": "form-group col-lg-2 no-border bg-info",
+                                                "fields": {
+                                                    "cell_attached_time_start": {
+                                                        "fieldClass": "col-lg-12",
+                                                        "type": "time",
+                                                        "showMessages": false,
+                                                        "dateFormat": "HH:mm:ss",
                                                         "picker": {
-                                                            "showClose":true,
-                                                            "showTodayButton":true,
-                                                            "collapse":true,
-                                                            "stepping":1,
-                                                            "focusOnShow":false,
-                                                            "keepOpen":false,
-                                                            "inline":false,
-                                                            "useCurrent":true,
-                                                        },
-                                                        "showMessages":false,
-                                                        "hideInitValidationError":true,
-                                                        "events":{
-                                                            "ready": function(field){
-                                                                var self = this;
-                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
-
-                                                                jemdatasocket.onopen = function(){
-                                                                    jemdatasocket.send(JSON.stringify(9191));
-                                                                    document.wholeCellStartSetter(self);
-                                                                };
-
-                                                                jemdatasocket.onmessage = function(msg){
-                                                                    var incomingDat = JSON.parse(msg.data);
-                                                                    if ('factor' in incomingDat){
-                                                                        if (incomingDat['factor'] == 'timeWholeCellStart'){
-                                                                            var pipetteIndex = incomingDat['index'];
-                                                                            var element = document.wholeCellStartGetter(pipetteIndex);
-                                                                            element.setValue(incomingDat['value']);
-                                                                            element.refresh();
-                                                                        }
-                                                                    }
-                                                                };
-                                                            }
-                                                        },
-                                                        //"helper":"(HH:mm:ss-UTC)"
+                                                            "showClose": true,
+                                                            "showTodayButton": true,
+                                                            "stepping": 1,
+                                                            "inline": false,
+                                                            "useCurrent": true
+                                                        }
+                                                    },
+                                                    "cell_attached_dimple":{
+                                                        "fieldClass": "col-lg-12",
+                                                        "type": "select",
+                                                        "showMessages": false,
+                                                        "sort": false,
+                                                        "size": 1.5,
+                                                        "hideNone": false,
+                                                        "noneLabel": ""
+                                                    }
+                                                }
+                                            },
+                                            "experiment_break_in":{
+                                                "fieldClass": "form-group col-lg-8 no-border bg-info",
+                                                "fields": {
+                                                    "break_in_time_start": {
+                                                        "fieldClass": "col-lg-3",
+                                                        "type": "time",
+                                                        "showMessages": false,
+                                                        "dateFormat": "HH:mm:ss",
+                                                        "picker": {
+                                                            "showClose": true,
+                                                            "showTodayButton": true,
+                                                            "stepping": 1,
+                                                            "inline": false,
+                                                            "useCurrent": true
+                                                        }
+                                                    },
+                                                    "break_in_pressure_max":{
+                                                        "fieldClass": "col-lg-3",
+                                                        "type": "number",
+                                                        "showMessages": false,
+                                                        "helper": "(0-500 mbar)",
+                                                        "placeholder": "ex. 30"
+                                                    },
+                                                    "break_in_zap_max":{
+                                                        "fieldClass": "col-lg-3",
+                                                        "type": "select",
+                                                        "showMessages": false,
+                                                        "sort": false,
+                                                        "size": 1.5,
+                                                        "hideNone": false,
+                                                        "noneLabel": ""
+                                                    },
+                                                    "break_in_zap_use":{
+                                                        "fieldClass": "col-lg-3",
+                                                        "type": "select",
+                                                        "showMessages": false,
+                                                        "sort": false,
+                                                        "size": 1.5,
+                                                        "hideNone": false,
+                                                        "noneLabel": ""
+                                                    },
+                                                    "break_in_time_end":{
+                                                        "fieldClass": "col-lg-9",
+                                                        "type": "time",
+                                                        "showMessages": false,
+                                                        "dateFormat": "HH:mm:ss",
+                                                        "picker": {
+                                                            "showClose": true,
+                                                            "showTodayButton": true,
+                                                            "stepping": 1,
+                                                            "inline": false,
+                                                            "useCurrent": true
+                                                        }
+                                                    },
+                                                    "break_in_reseal":{
+                                                        "fieldClass": "col-lg-3",
+                                                        "type": "select",
+                                                        "showMessages": false,
+                                                        "sort": false,
+                                                        "size": 1.5,
+                                                        "hideNone": false,
+                                                        "noneLabel": ""
                                                     }
                                                 }
                                             },
@@ -1249,17 +1295,6 @@
                                                     }
                                                 }
                                             },
-                                            "successNotes": {
-                                                "type": "checkbox",
-                                                "showMessages": false,
-                                                "hideInitValidationError":true,
-                                                "fieldClass": "col-lg-12",
-                                                "dependencies": {
-                                                    "status":["SUCCESS"]
-                                                    },
-                                                "label": "Recording Observations",
-                                                "sort":false
-                                            },
                                             "qcNotes": {
                                                 "type":"textarea",
                                                 "fieldClass": "col-lg-12",
@@ -1267,17 +1302,6 @@
                                                     "status":["SUCCESS"]
                                                 },
                                                 "rows":1
-                                            },
-                                            "failureNotes": {
-                                                "type": "checkbox",
-                                                "showMessages": false,
-                                                "hideInitValidationError":true,
-                                                "fieldClass": "col-lg-12",
-                                                "dependencies": {
-                                                    "status":["FAILURE"]
-                                                    },
-                                                "label": "Cause(s) of failure",
-                                                "sort":false
                                             },
                                             "freeFailureNotes": {
                                                 "type":"textarea",
@@ -2070,7 +2094,7 @@
                             "views":"bootstrap-create"
                         },
                         "data": {
-                            "formVersion": "2.1.2"
+                            "formVersion": "2.1.3"
                         }
                     });
                 });
