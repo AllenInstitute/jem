@@ -424,18 +424,6 @@
                                     "enum": ["None", "CN1389", "CN1390", "CN1399", "CN1457", "CN1633", "CN1663", "CN1818", "CN1839", "CN1889", "CN1954", "CN1955", "CN2237", "CN2292", "CN2355", "CN2357", "CN2360", "CN2365", "CN2421", "CN2451", "CN2569", "CN2609", "CN2610", "CN2631", "CN2674", "CN2689", "CN2787", "CN2909", "CN3038", "CN3044", "CN3055", "CN3119", "CN3445", "CN3584", "CN3738"],
                                     "required": true
                                 },
-                                "sliceQuality":{
-                                    "type":"string",
-                                    "enum": ["Healthy", "Unhealthy", "Even Thickness", "Uneven Thickness", "Damage (Tissue Processing)", "Diseased Animal"],
-                                    "default":[],
-                                    "required":true
-                                },
-                                "sliceQualityFinal":{
-                                    "type":"string",
-                                    "enum": ["Healthy", "Unhealthy", "Wave of Death (within 30 min)", "Wave of Death (after 30 min)", "Damage (Researcher)"],
-                                    "default":[],
-                                    "required":true
-                                },
                                 "sliceNotes":{
                                     "type":"string",
                                     "format":"string",
@@ -457,13 +445,7 @@
                                                         "title":"Reporter Status",
                                                         "enum":["Positive", "Negative", "NA"],
                                                         "required":true
-                                                    },
-                                                    "cellHealth":{
-                                                        "type":"string",
-                                                        "title": "Cell Health",
-                                                        "enum":["1", "3", "5"],
-                                                        "required":true
-                                                    },                                                    
+                                                    },                                       
                                                     "pilotName":{
                                                         "type":"string",
                                                         "title":"Slice/Cell Level Projects",
@@ -505,12 +487,6 @@
                                                 "type": "object",
                                                 "title": "Exp - In Bath",
                                                 "properties": {
-                                                    "in_bath_time_start": {
-                                                        "type": "string",
-                                                        "format": "time",
-                                                        "title": "Time - Approach",
-                                                        "required": true
-                                                    },
                                                     "in_bath_resistance": {
                                                         "type": "string",
                                                         "format": "number",
@@ -518,6 +494,19 @@
                                                         "required": true,
                                                         "minimum": 2.0,
                                                         "maximum": 8.0
+                                                    },
+                                                    "in_bath_clog": {
+                                                        "type": "string",
+                                                        "format": "string",
+                                                        "title": "Clog",
+                                                        "required": true,
+                                                        "enum": ["Yes", "No"]
+                                                    },
+                                                    "in_bath_time_start": {
+                                                        "type": "string",
+                                                        "format": "time",
+                                                        "title": "Time - Approach",
+                                                        "required": true
                                                     }
                                                 }
                                             },
@@ -525,18 +514,27 @@
                                                 "type": "object",
                                                 "title": "Exp - Cell Attached",
                                                 "properties": {
-                                                    "cell_attached_time_start": {
+                                                    "cell_attached_status": {
                                                         "type": "string",
-                                                        "format": "time",
-                                                        "title": "Time - Seal",
-                                                        "required": true
+                                                        "format": "string",
+                                                        "title": "In Bath - Status",
+                                                        "required": true,
+                                                        "enum": ["Success", "Failure"]
                                                     },
                                                     "cell_attached_dimple": {
                                                         "type": "string",
                                                         "format": "string",
                                                         "title": "Dimple",
                                                         "required": true,
-                                                        "enum": ["Yes", "No"]
+                                                        "enum": ["Yes", "No"],
+                                                        "dependencies": "cell_attached_status"
+                                                    },
+                                                    "cell_attached_time_start": {
+                                                        "type": "string",
+                                                        "format": "time",
+                                                        "title": "Time - Seal",
+                                                        "required": true,
+                                                        "dependencies": "cell_attached_status"
                                                     }
                                                 }
                                             },
@@ -544,11 +542,19 @@
                                                 "type": "object",
                                                 "title": "Exp - Break-In",
                                                 "properties": {
+                                                    "break_in_status": {
+                                                        "type": "string",
+                                                        "format": "string",
+                                                        "title": "Cell Attached - Status",
+                                                        "required": true,
+                                                        "enum": ["Success", "Failure"]
+                                                    },
                                                     "break_in_time_start": {
                                                         "type": "string",
                                                         "format": "time",
-                                                        "title": "Time - Pressure",
-                                                        "required": true
+                                                        "title": "Time - Break-In Method",
+                                                        "required": true,
+                                                        "dependencies": "break_in_status"
                                                     },
                                                     "break_in_pressure_max": {
                                                         "type": "string",
@@ -556,34 +562,39 @@
                                                         "title": "Pressure - Max",
                                                         "required": true,
                                                         "minimum": 0,
-                                                        "maximum": 500
+                                                        "maximum": 500,
+                                                        "dependencies": "break_in_status"
                                                     },
                                                     "break_in_zap_max": {
                                                         "type": "string",
                                                         "format": "string",
                                                         "title": "Zap - Max",
                                                         "required": true,
-                                                        "enum": ["25us", "50us", "100us", "200us", "500us", "1ms", "2ms", "50ms"]
+                                                        "enum": ["Not Applicable", "25us", "50us", "100us", "200us", "500us", "1ms", "2ms", "5ms", "10ms", "20ms", "50ms"],
+                                                        "dependencies": "break_in_status"
                                                     },
                                                     "break_in_zap_use": {
                                                         "type": "string",
                                                         "format": "string",
                                                         "title": "Zap - Usage",
                                                         "required": true, 
-                                                        "enum": ["Single", "Multiple"]
+                                                        "enum": ["Not Applicable", "Single", "Multiple"],
+                                                        "dependencies": "break_in_status"
                                                     },
                                                     "break_in_time_end": {
                                                         "type": "string",
                                                         "format": "time",
                                                         "title": "Time - Break-In",
-                                                        "required": true
+                                                        "required": true,
+                                                        "dependencies": "break_in_status"
                                                     },
                                                     "break_in_reseal": {
                                                         "type": "string",
                                                         "format": "string",
-                                                        "title": "Resealed",
+                                                        "title": "Reseal",
                                                         "required": true, 
-                                                        "enum": ["Yes", "No"]
+                                                        "enum": ["Yes", "No"],
+                                                        "dependencies": "break_in_status"
                                                     }
                                                 }
                                             },
@@ -971,25 +982,6 @@
                                     "hideNone": false,
                                     "noneLabel": ""
                                 },
-                                "sliceQuality": {
-                                    "type": "checkbox",
-                                    "fieldClass": "col-lg-2",
-                                    "label": "Initial Slice Assessment",
-                                    "sort":false,
-                                    "vertical":false,
-                                    "showMessages":false,
-                                    "hideInitValidationError":true,
-                                },
-                                "sliceQualityFinal": {
-                                    "type": "checkbox",
-                                    "fieldClass": "col-lg-2",
-                                    "label": "Final Slice Assessment",
-                                    "multiple": true,
-                                    "sort":false,
-                                    "vertical":false,
-                                    "showMessages":false,
-                                    "hideInitValidationError":true,
-                                },
                                 "sliceNotes": {
                                     "type":"textarea",
                                     "fieldClass": "col-lg-2",
@@ -1058,14 +1050,6 @@
                                             "approach": {
                                                 "fieldClass": "form-group col-lg-12 no-border bg-success",
                                                 "fields": {
-                                                    "cellHealth": {
-                                                        "type": "radio",
-                                                        "fieldClass": "form-group col-lg-12",
-                                                        "vertical":false,
-                                                        "hideNone":true,
-                                                        "showMessages":false,
-                                                        "helper": "1 - Unhealthy"
-                                                    },
                                                     "creCell": {
                                                         "type": "radio",
                                                         "fieldClass": "form-group col-lg-12",
@@ -1136,6 +1120,22 @@
                                             "experiment_in_bath": {
                                                 "fieldClass": "form-group col-lg-2 no-border bg-info",
                                                 "fields": {
+                                                    "in_bath_resistance": {
+                                                        "fieldClass": "col-lg-12",
+                                                        "type": "number",
+                                                        "showMessages": false,
+                                                        "helper": "(2.0-8.0 MOhms)",
+                                                        "placeholder": "ex. 4.5"
+                                                    },
+                                                    "in_bath_clog":{
+                                                        "fieldClass": "col-lg-12",
+                                                        "type": "select",
+                                                        "showMessages": false,
+                                                        "sort": false,
+                                                        "size": 1.5,
+                                                        "hideNone": false,
+                                                        "noneLabel": ""
+                                                    },
                                                     "in_bath_time_start": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "time",
@@ -1148,19 +1148,31 @@
                                                             "inline": false,
                                                             "useCurrent": true
                                                         }
-                                                    },
-                                                    "in_bath_resistance": {
-                                                        "fieldClass": "col-lg-12",
-                                                        "type": "number",
-                                                        "showMessages": false,
-                                                        "helper": "(2.0-8.0 MOhms)",
-                                                        "placeholder": "ex. 4.5"
                                                     }
                                                 }
                                             },
                                             "experiment_cell_attached":{
                                                 "fieldClass": "form-group col-lg-2 no-border bg-info",
                                                 "fields": {
+                                                    "cell_attached_status":{
+                                                        "fieldClass": "col-lg-12",
+                                                        "type": "select",
+                                                        "showMessages": false,
+                                                        "sort": false,
+                                                        "size": 1.5,
+                                                        "hideNone": false,
+                                                        "noneLabel": ""
+                                                    },
+                                                    "cell_attached_dimple":{
+                                                        "fieldClass": "col-lg-12",
+                                                        "type": "select",
+                                                        "showMessages": false,
+                                                        "sort": false,
+                                                        "size": 1.5,
+                                                        "hideNone": false,
+                                                        "noneLabel": "",
+                                                        "dependencies": {"cell_attached_status": ["Success"]},
+                                                    },
                                                     "cell_attached_time_start": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "time",
@@ -1172,9 +1184,15 @@
                                                             "stepping": 1,
                                                             "inline": false,
                                                             "useCurrent": true
-                                                        }
-                                                    },
-                                                    "cell_attached_dimple":{
+                                                        },
+                                                        "dependencies": {"cell_attached_status": ["Success"]},
+                                                    }
+                                                }
+                                            },
+                                            "experiment_break_in":{
+                                                "fieldClass": "form-group col-lg-8 no-border bg-info",
+                                                "fields": {
+                                                    "break_in_status":{
                                                         "fieldClass": "col-lg-12",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -1182,12 +1200,7 @@
                                                         "size": 1.5,
                                                         "hideNone": false,
                                                         "noneLabel": ""
-                                                    }
-                                                }
-                                            },
-                                            "experiment_break_in":{
-                                                "fieldClass": "form-group col-lg-8 no-border bg-info",
-                                                "fields": {
+                                                    },
                                                     "break_in_time_start": {
                                                         "fieldClass": "col-lg-3",
                                                         "type": "time",
@@ -1199,14 +1212,16 @@
                                                             "stepping": 1,
                                                             "inline": false,
                                                             "useCurrent": true
-                                                        }
+                                                        },
+                                                        "dependencies": {"break_in_status": ["Success"]},
                                                     },
                                                     "break_in_pressure_max":{
                                                         "fieldClass": "col-lg-3",
                                                         "type": "number",
                                                         "showMessages": false,
                                                         "helper": "(0-500 mbar)",
-                                                        "placeholder": "ex. 30"
+                                                        "placeholder": "ex. 30",
+                                                        "dependencies": {"break_in_status": ["Success"]},
                                                     },
                                                     "break_in_zap_max":{
                                                         "fieldClass": "col-lg-3",
@@ -1215,7 +1230,8 @@
                                                         "sort": false,
                                                         "size": 1.5,
                                                         "hideNone": false,
-                                                        "noneLabel": ""
+                                                        "noneLabel": "",
+                                                        "dependencies": {"break_in_status": ["Success"]},
                                                     },
                                                     "break_in_zap_use":{
                                                         "fieldClass": "col-lg-3",
@@ -1224,7 +1240,8 @@
                                                         "sort": false,
                                                         "size": 1.5,
                                                         "hideNone": false,
-                                                        "noneLabel": ""
+                                                        "noneLabel": "",
+                                                        "dependencies": {"break_in_status": ["Success"]},
                                                     },
                                                     "break_in_time_end":{
                                                         "fieldClass": "col-lg-9",
@@ -1237,7 +1254,8 @@
                                                             "stepping": 1,
                                                             "inline": false,
                                                             "useCurrent": true
-                                                        }
+                                                        },
+                                                        "dependencies": {"break_in_status": ["Success"]},
                                                     },
                                                     "break_in_reseal":{
                                                         "fieldClass": "col-lg-3",
@@ -1246,7 +1264,8 @@
                                                         "sort": false,
                                                         "size": 1.5,
                                                         "hideNone": false,
-                                                        "noneLabel": ""
+                                                        "noneLabel": "",
+                                                        "dependencies": {"break_in_status": ["Success"]},
                                                     }
                                                 }
                                             },

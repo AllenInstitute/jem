@@ -596,25 +596,6 @@
                                     "hideNone": false,
                                     "noneLabel": ""
                                 },
-                                "sliceQuality": {
-                                    "type": "checkbox",
-                                    "fieldClass": "col-lg-2",
-                                    "label": "Initial Slice Assessment",
-                                    "sort":false,
-                                    "vertical":false,
-                                    "showMessages":false,
-                                    "hideInitValidationError":true,
-                                },
-                                "sliceQualityFinal": {
-                                    "type": "checkbox",
-                                    "fieldClass": "col-lg-2",
-                                    "label": "Final Slice Assessment",
-                                    "multiple": true,
-                                    "sort":false,
-                                    "vertical":false,
-                                    "showMessages":false,
-                                    "hideInitValidationError":true,
-                                },
                                 "sliceNotes": {
                                     "type":"textarea",
                                     "fieldClass": "col-lg-2",
@@ -683,14 +664,6 @@
                                             "approach": {
                                                 "fieldClass": "form-group col-lg-12 no-border bg-success",
                                                 "fields": {
-                                                    "cellHealth": {
-                                                        "type": "radio",
-                                                        "fieldClass": "form-group col-lg-12",
-                                                        "vertical":false,
-                                                        "hideNone":true,
-                                                        "showMessages":false,
-                                                        "helper": "1 - Unhealthy"
-                                                    },
                                                     "creCell": {
                                                         "type": "radio",
                                                         "fieldClass": "form-group col-lg-12",
@@ -761,6 +734,22 @@
                                             "experiment_in_bath": {
                                                 "fieldClass": "form-group col-lg-2 no-border bg-info",
                                                 "fields": {
+                                                    "in_bath_resistance": {
+                                                        "fieldClass": "col-lg-12",
+                                                        "type": "number",
+                                                        "showMessages": false,
+                                                        "helper": "(2.0-8.0 MOhms)",
+                                                        "placeholder": "ex. 4.5"
+                                                    },
+                                                    "in_bath_clog":{
+                                                        "fieldClass": "col-lg-12",
+                                                        "type": "select",
+                                                        "showMessages": false,
+                                                        "sort": false,
+                                                        "size": 1.5,
+                                                        "hideNone": false,
+                                                        "noneLabel": ""
+                                                    },
                                                     "in_bath_time_start": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "time",
@@ -773,19 +762,31 @@
                                                             "inline": false,
                                                             "useCurrent": true
                                                         }
-                                                    },
-                                                    "in_bath_resistance": {
-                                                        "fieldClass": "col-lg-12",
-                                                        "type": "number",
-                                                        "showMessages": false,
-                                                        "helper": "(2.0-8.0 MOhms)",
-                                                        "placeholder": "ex. 4.5"
                                                     }
                                                 }
                                             },
                                             "experiment_cell_attached":{
                                                 "fieldClass": "form-group col-lg-2 no-border bg-info",
                                                 "fields": {
+                                                    "cell_attached_status":{
+                                                        "fieldClass": "col-lg-12",
+                                                        "type": "select",
+                                                        "showMessages": false,
+                                                        "sort": false,
+                                                        "size": 1.5,
+                                                        "hideNone": false,
+                                                        "noneLabel": ""
+                                                    },
+                                                    "cell_attached_dimple":{
+                                                        "fieldClass": "col-lg-12",
+                                                        "type": "select",
+                                                        "showMessages": false,
+                                                        "sort": false,
+                                                        "size": 1.5,
+                                                        "hideNone": false,
+                                                        "noneLabel": "",
+                                                        "dependencies": {"cell_attached_status": ["Success"]},
+                                                    },
                                                     "cell_attached_time_start": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "time",
@@ -797,9 +798,15 @@
                                                             "stepping": 1,
                                                             "inline": false,
                                                             "useCurrent": true
-                                                        }
-                                                    },
-                                                    "cell_attached_dimple":{
+                                                        },
+                                                        "dependencies": {"cell_attached_status": ["Success"]},
+                                                    }
+                                                }
+                                            },
+                                            "experiment_break_in":{
+                                                "fieldClass": "form-group col-lg-8 no-border bg-info",
+                                                "fields": {
+                                                    "break_in_status":{
                                                         "fieldClass": "col-lg-12",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -807,12 +814,7 @@
                                                         "size": 1.5,
                                                         "hideNone": false,
                                                         "noneLabel": ""
-                                                    }
-                                                }
-                                            },
-                                            "experiment_break_in":{
-                                                "fieldClass": "form-group col-lg-8 no-border bg-info",
-                                                "fields": {
+                                                    },
                                                     "break_in_time_start": {
                                                         "fieldClass": "col-lg-3",
                                                         "type": "time",
@@ -824,14 +826,16 @@
                                                             "stepping": 1,
                                                             "inline": false,
                                                             "useCurrent": true
-                                                        }
+                                                        },
+                                                        "dependencies": {"break_in_status": ["Success"]},
                                                     },
                                                     "break_in_pressure_max":{
                                                         "fieldClass": "col-lg-3",
                                                         "type": "number",
                                                         "showMessages": false,
                                                         "helper": "(0-500 mbar)",
-                                                        "placeholder": "ex. 30"
+                                                        "placeholder": "ex. 30",
+                                                        "dependencies": {"break_in_status": ["Success"]},
                                                     },
                                                     "break_in_zap_max":{
                                                         "fieldClass": "col-lg-3",
@@ -840,7 +844,8 @@
                                                         "sort": false,
                                                         "size": 1.5,
                                                         "hideNone": false,
-                                                        "noneLabel": ""
+                                                        "noneLabel": "",
+                                                        "dependencies": {"break_in_status": ["Success"]},
                                                     },
                                                     "break_in_zap_use":{
                                                         "fieldClass": "col-lg-3",
@@ -849,7 +854,8 @@
                                                         "sort": false,
                                                         "size": 1.5,
                                                         "hideNone": false,
-                                                        "noneLabel": ""
+                                                        "noneLabel": "",
+                                                        "dependencies": {"break_in_status": ["Success"]},
                                                     },
                                                     "break_in_time_end":{
                                                         "fieldClass": "col-lg-9",
@@ -862,7 +868,8 @@
                                                             "stepping": 1,
                                                             "inline": false,
                                                             "useCurrent": true
-                                                        }
+                                                        },
+                                                        "dependencies": {"break_in_status": ["Success"]},
                                                     },
                                                     "break_in_reseal":{
                                                         "fieldClass": "col-lg-3",
@@ -871,7 +878,8 @@
                                                         "sort": false,
                                                         "size": 1.5,
                                                         "hideNone": false,
-                                                        "noneLabel": ""
+                                                        "noneLabel": "",
+                                                        "dependencies": {"break_in_status": ["Success"]},
                                                     }
                                                 }
                                             },
