@@ -505,7 +505,7 @@
                                                     "in_bath_time_start": {
                                                         "type": "string",
                                                         "format": "time",
-                                                        "title": "Time - Approach",
+                                                        "title": "Time - Cell Approach",
                                                         "required": true
                                                     }
                                                 }
@@ -517,7 +517,7 @@
                                                     "cell_attached_status": {
                                                         "type": "string",
                                                         "format": "string",
-                                                        "title": "In Bath - Status",
+                                                        "title": "Cell Attached - Status",
                                                         "required": true,
                                                         "enum": ["Success", "Failure"]
                                                     },
@@ -532,7 +532,7 @@
                                                     "cell_attached_time_start": {
                                                         "type": "string",
                                                         "format": "time",
-                                                        "title": "Time - Seal",
+                                                        "title": "Time - Gigaohm Seal",
                                                         "required": true,
                                                         "dependencies": "cell_attached_status"
                                                     }
@@ -545,14 +545,14 @@
                                                     "break_in_status": {
                                                         "type": "string",
                                                         "format": "string",
-                                                        "title": "Cell Attached - Status",
+                                                        "title": "Break-In - Status",
                                                         "required": true,
                                                         "enum": ["Success", "Failure"]
                                                     },
                                                     "break_in_time_start": {
                                                         "type": "string",
                                                         "format": "time",
-                                                        "title": "Time - Break-In Method",
+                                                        "title": "Time - Start Break-In Method",
                                                         "required": true,
                                                         "dependencies": "break_in_status"
                                                     },
@@ -584,7 +584,7 @@
                                                     "break_in_time_end": {
                                                         "type": "string",
                                                         "format": "time",
-                                                        "title": "Time - Break-In",
+                                                        "title": "Time - Cell Break-In",
                                                         "required": true,
                                                         "dependencies": "break_in_status"
                                                     },
