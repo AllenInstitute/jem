@@ -1,0 +1,92 @@
+{
+    "type": "object",
+    "title":"JSON Electrophysiology Metadata (JEM) - HCT",
+    "properties": {
+        "formVersion": {
+            "type":"string",
+            "title":"Version",
+            "readonly":true
+        },
+        "rigOperator": {
+            "type": "string",
+            "title": "Researcher",
+            "enum":["jonathant", "briank", "cristinar", "meanhwank", "scotts"],
+            "required":true
+        },
+        "rigNumber": {
+            "type":"string",
+            "title":"Rig #",
+            "enum":["HCT1", "HCT2", "HCT3", "HCT4", "MP4"],
+            "required":true
+        },
+        "internalFillDate":{
+            "format":"date",
+            "title":"Internal Fill Date",
+            "enum":["2022-06-16", "2022-06-15", "2022-05-06", "2022-05-05", "2022-03-31", "2022-03-30", "2022-03-29", "2022-03-28", "2022-02-16", "2022-02-15", "2022-02-14", "2022-01-11", "2022-01-10"],
+            "default":["2022-06-16"],
+            "required": false
+        },
+        "date":{
+            "format":"date",
+            "title":"Slice on Rig Date/Time",
+            "required":true
+        },
+        "limsSpecName": {
+            "type": "string",
+            "title":"Slice ID",
+            "required":true
+        },
+        "pipettes":{
+            "type":"array",
+            "items":{
+                "title":"Patch-Seq Pipette",
+                "type":"object",
+                "properties":{
+                    "status":{
+                        "type":"string",
+                        "title":"Was recording successful?",
+                        "enum":["SUCCESS", "FAILURE"],
+                        "default": ["SUCCESS"],
+                        "required":true
+                    },
+                    "pipetteSpecName": {
+                        "type": "string",
+                        "title":"Pipette Specimen ID",
+                        "required":false
+                    },
+                    "extraction":{
+                        "type":"object",
+                        "title":"Extraction Info",
+                        "dependencies":"status",
+                        "properties":{
+                            "blankFillDate":{
+                                "format":"date",
+                                "title":"Blank Fill Date",
+                                "enum":["2022-07-05", "2022-06-06", "2022-05-09", "2022-04-11", "2022-03-08", "2022-02-14", "2022-01-12"],
+                                "default": ["2022-07-05"],
+                                "required":false
+                            },
+                            "tubeID":{
+                                "type":"string",
+                                "title":"Patched Cell Container",
+                                "required":true
+                            },
+                            "postPatch":{
+                                "type":"string",
+                                "title":"Post Patch State",
+                                "enum":["nucleus_present", "nucleus_absent", "entire_cell", "unknown"],
+                                "default":[],
+                                "required":true
+                            }
+                        }
+                    },
+                    "manualRoi":{
+                        "type":"string",
+                        "title": "ROI",
+                        "required":true
+                    }
+                }
+            }
+        }
+    }
+}

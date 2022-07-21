@@ -1,0 +1,1370 @@
+<html>
+        <head>
+
+            <!-- jquery -->
+            <script
+              src="https://code.jquery.com/jquery-3.2.1.min.js"
+              integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+              crossorigin="anonymous"></script>
+
+            <!-- jquery ui -->
+            <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+            <!-- bootstrap -->
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+            <!-- Optional theme -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+            <!-- handlebars -->
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+
+            <!-- alpaca -->
+            <link type="text/css" href="https://code.cloudcms.com/alpaca/1.5.23/bootstrap/alpaca.min.css" rel="stylesheet"/>
+            <script type="text/javascript" src="https://code.cloudcms.com/alpaca/1.5.23/bootstrap/alpaca.min.js"></script>
+
+            <!-- fileSaver -->
+            <script type="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
+            <script type="https://cdnjs.cloudflare.com/ajax/libs/blob-util/1.3.0/blob-util.min.js"></script>
+
+            <!-- datetimepicker -->
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"/>
+
+
+
+            <!-- Disable potential reset of form with button press -->
+            <script type="text/javascript">
+            function stopRKey(evt) {
+                var evt = (evt) ? evt : ((event) ? event : null);
+                var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+                    if ((evt.keyCode == 13) && (node.type=="text"))  {return false;}
+            }
+            document.onkeypress = stopRKey;
+            </script>
+            
+            <style>
+                .menu-container {
+                    position: fixed;
+                    top: 5px;
+                    right: 10px;
+                    z-index: 1;
+                    height: 50px;
+                }
+                .menu-container button {
+                    margin: 0px 5px 0px 5px;
+                    width: 150px;
+                    height: 50px;
+                }
+                
+                /* Hide the load file input and reset buttons that we access programmatically */
+                input[type=file], button[type=reset] {
+                    display: none;
+                }
+                
+                .invisible {
+                    display: none;
+                }
+                
+                #saveJsonButton {
+                    float: left;
+                }
+                
+                #loadJsonButton {
+                    float: right;
+                }
+            </style>
+
+        </head>
+        <body>
+            <form>
+                <div class="menu-container">
+                    <button id="saveJsonButton" class="btn-lg btn-success" type="button" onclick="saveJsonClick()">
+                        <div id="saveJsonText">Save JSON</div>
+                        <div id="saveJsonLoading" class="invisible">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="8" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="16" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                            </svg>
+                        </div>
+                    </button>
+                    <button id="loadJsonButton" class="btn-lg btn-info" type="button" onclick="loadJsonClick()">
+                        <div id="loadJsonText">Load JSON</div>
+                        <div id="loadJsonLoading" class="invisible">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                                <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="8" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="16" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+                                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                  <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                </rect>
+                            </svg>
+                        </div>
+                    </button>
+                    <input id="loadJsonInputHidden" type="file" accept=".json" onchange="loadJsonFile(event)"/>
+                </div>
+            </form>
+            <div id="form"></div>
+            <script src = "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js" async = ""></script>
+            <script type="text/javascript">
+                // Called when the user clicks the "Load JSON" button.
+                // We hide the unattractive default file input type and access it programmatically.
+                function loadJsonClick() {
+                    $("#loadJsonInputHidden").click();
+                }
+                
+                // Called when the user selects a file to load.
+                function loadJsonFile(selectFileEvent) {
+                    var button = selectFileEvent.target;
+                    if (button && button.files && button.files.length > 0) {
+                        var file = button.files[0];
+                        var fileName = file.name;
+                        var reader = new FileReader();
+                        reader.onload = function(loadFinishEvent) {
+                            var jsonData = JSON.parse(loadFinishEvent.target.result);
+                            var formElement = $("#form");
+                            var form = formElement.alpaca("get");
+                            
+                            setLoadButtonState(true);
+                            
+                            // Blank out the form, try to load the data, and if it's invalid, blank it again.
+                            resetForm(function() {
+                                // Alpaca does not provide a callback for when it finishes filling in/creating fields.
+                                // So we check every 1.0 seconds to see if there's been more elements added to the form.
+                                var childCount = 0;
+                                form.setValue(jsonData);
+                                
+                                var childChecker = setInterval(function() {
+                                    var newCount = formElement.find("*").length;
+                                    
+                                    if (childCount != newCount) {
+                                        childCount = newCount;
+                                    } else {
+                                        clearInterval(childChecker);
+                                        
+                                        form.top().refreshValidationState(true, function() {
+                                            if (!form.isValid(true)) {
+                                                var invalidFieldInfo = findInvalidFields();
+                                                if (invalidFieldInfo.fieldNames) {
+                                                    alert(fileName + " is not a valid Json file.\n"
+                                                            + "The following fields are invalid:\n"
+                                                            + "-----\n"
+                                                            + invalidFieldInfo.fieldNames.join("\n"));
+                                                }
+                                                
+                                                if (invalidFieldInfo.focusInput) {
+                                                    invalidFieldInfo.focusInput.focus();
+                                                }
+                                            }
+                                            
+                                            setLoadButtonState(false);
+                                        });
+                                    }
+                                }, 1000);
+                            });
+                        }
+                        
+                        reader.readAsText(file);
+                    }
+                }
+                
+                // Called when user clicks the "Save JSON" button.
+                function saveJsonClick() {
+                    var form = $("#form").alpaca('get');
+                    
+                    setSaveButtonState(true);
+                    
+                    form.top().refreshValidationState(true, function() {
+                        if (form.isValid(true)) {
+                            var val = form.getValue();
+                            var myjson = JSON.stringify(val, null, "  ");
+                            var blob = new Blob([myjson], {type: "application/json"});
+                            if (window.saveAs) {
+                                specFileName = val.limsSpecName + ".PS.json";
+                                window.saveAs(blob, specFileName);
+                                alert("Successfully saved " + specFileName + "\n" 
+                                        + "Metadata Values: " + myjson);
+                            }else{
+                                alert("The saveAs feature is not supported by your browser.");
+                            }
+                        } else {
+                            var invalidFieldInfo = findInvalidFields();
+                            if (invalidFieldInfo.fieldNames) {
+                                alert("Cannot save form.\n"
+                                        + "The following fields are invalid:\n"
+                                        + "-----\n"
+                                        + invalidFieldInfo.fieldNames.join("\n"));
+                            }
+                            
+                            if (invalidFieldInfo.focusInput) {
+                                invalidFieldInfo.focusInput.focus();
+                            }
+                        }
+                        
+                        setSaveButtonState(false);
+                    });
+                }
+                
+                // Collect all lowest-level invalid elements, return their labels and the first input (for focus)
+                // Returns an object like {"fieldNames": [...], "focusElement": domObj}
+                function findInvalidFields() {                    
+                    var allInvalidNames = [];
+                    var focusElement = null;
+                    var allInvalidElements = $(".alpaca-invalid");
+                    allInvalidElements.each(function(index, invalidElement) {
+                        if (!$(invalidElement).find(".alpaca-invalid").length) {
+                            allInvalidNames.push($(invalidElement).find("label").eq(0).text());
+                            
+                            if (!focusElement) {
+                                focusElement = $(invalidElement).find(":input").eq(0);
+                            }
+                        }
+                        
+                        return true;
+                    });
+                    
+                    return {"fieldNames": allInvalidNames, "focusInput": focusElement};
+                }
+                
+                // Help Alpaca reset the form more cleanly.
+                function resetForm(finishCallback) {
+                    var form = $("#form").alpaca("get");
+                    
+                    // Empty the pipette array.
+                    var pipettes = form.top().getControlByPath("pipettes");
+                    var pipettesRemaining = pipettes.getSize();
+                    removePipettes(pipettes, pipettesRemaining, function() {
+                        // Reset the rest of the data.
+                        $("button[type='reset']").click();
+                        if (finishCallback) {
+                            finishCallback();
+                        }
+                    });
+                }
+                
+
+                // A function that goes through all pipette array elements, and sets sets the pipette specimen name incrementally if there is a valid patch seq container available (ie the pipette attempt resulted in a successful experiment)
+                function setALLPipetteSpecimenNames(activeContainer, activePipetteIndex) {
+                    var containerRegex = /^(P[A-Z0-9]S4_([0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))_[0-9]{3}_A01)|(NA)$/;
+                    var form = $("#form").alpaca("get");
+                    var sliceSpecimen = form.top().getControlByPath("limsSpecName").data;
+
+                    var pipettes = form.top().getControlByPath("pipettes");
+                    var pipettesRemaining = pipettes.getSize();
+                    var arrayIndex = 0
+
+                    while (pipettesRemaining > 0) {
+                        if (arrayIndex == activePipetteIndex) {
+                            var container = activeContainer;
+                        } else {
+                            var container = form.top().getControlByPath("pipettes["+arrayIndex+"]/extraction/tubeID").data;
+                        }
+
+                        var pipNameField = form.top().getControlByPath("pipettes["+arrayIndex+"]/pipetteSpecName");
+                        if (containerRegex.test(container)) {
+                            if (typeof tubeIndex !== 'undefined') {
+                                // tubeIndex has been defined
+                                tubeIndex++;
+                            } else {
+                                var tubeIndex = 0;
+                            }
+                            var pipName = document.pipetteSpecNamer(sliceSpecimen, tubeIndex);
+                        } else {
+                            var pipName = null
+                        }
+
+                        pipNameField.setValue(pipName);
+                        arrayIndex++;
+                        pipettesRemaining--;
+                    }
+                }
+                
+                // A function that gets the pilot name from the approach into the extraction. (This is a workaround as I couldn't figure out how to do a nested dependency within the array in Alpaca.)
+                function copyPilotName(activePipetteIndex, activePilotName, activeStatus) {
+                    var form = $("#form").alpaca("get");
+                    if (activeStatus !== null) {
+                        if (activeStatus == ["SUCCESS"]) {
+                            var dupPilotNameField = form.top().getControlByPath("pipettes["+activePipetteIndex+"]/extraction/pilotNameExtra");
+                            dupPilotNameField.setValue("Pilot: " + activePilotName);
+                        }
+                    }
+                }
+
+                // A function that uses recursive callbacks to remove pipettes one at a time.
+                function removePipettes(pipettes, pipettesRemaining, finishCallback) {
+                    if (pipettesRemaining > 0) {
+                        pipettes.handleActionBarRemoveItemClick(0, function() {
+                            removePipettes(pipettes, pipettesRemaining - 1, finishCallback);
+                        });
+                    } else if (finishCallback) {
+                        finishCallback();
+                    }
+                }
+                
+                // Finds a text field inside the given alpaca field and makes it read-only.
+                // Use by calling makeTextFieldReadOnly(this) in a field's "ready" function.
+                function makeTextFieldReadOnly(alpacaField) {
+                    var textField = $(alpacaField.field).find("[type='text']");
+                    if (textField && textField.length) {
+                        textField.prop("readonly", "readonly");
+                    }
+                }
+                
+                // Sets the "Save JSON" button into and out of its "loading mode"
+                function setSaveButtonState(isLoading) {
+                    setButtonState("#saveJsonButton", "#loadJsonButton", "#saveJsonText", "#saveJsonLoading", "btn-success", isLoading);
+                }
+                
+                // Sets the "Load JSON" button into and out of its "loading mode"
+                function setLoadButtonState(isLoading) {
+                    setButtonState("#loadJsonButton", "#saveJsonButton", "#loadJsonText", "#loadJsonLoading", "btn-info", isLoading);
+                }
+                
+                // Helper function for set****ButonState functions.
+                function setButtonState(buttonId, otherButtonId, buttonTextId, buttonLoadingId, successClass, isLoading) {
+                    if (isLoading) {
+                        $(buttonId).attr("disabled", "disabled").removeClass(successClass).addClass("btn-warning");
+                        $(otherButtonId).attr("disabled", "disabled");
+                        $(buttonTextId).addClass("invisible");
+                        $(buttonLoadingId).removeClass("invisible");
+                    } else {
+                        $(buttonId).removeAttr("disabled").removeClass("btn-warning").addClass(successClass);
+                        $(otherButtonId).removeAttr("disabled");
+                        $(buttonTextId).removeClass("invisible");
+                        $(buttonLoadingId).addClass("invisible");
+                    }
+                }
+                
+                $(document).ready(function() {
+                    $("#form").alpaca({
+                        "schemaSource": "https://alleninstitute.github.io/jem/src/JEM-schema-hct.json",
+                        "options": {
+                            "fields": {
+                                "formVersion": {
+                                    "type":"text",
+                                    "readonly":true,
+                                    "fieldClass": "col-lg-1",
+                                    "data":"/jem-data/jemVersion.json",
+                                    "view":"bootstrap-display",
+                                    "type":"hidden"
+                                },
+                                "rigOperator" : {
+                                    "type": "select",
+                                    "fieldClass": "dropdown-content col-lg-2",
+                                    "helper": [],
+                                    "hideNone":false,
+                                    "noneLabel":'',
+                                    "validate":true,
+                                    "showMessages":false,
+                                    "hideInitValidationError":true,
+                                    "events":{
+                                        "ready": function(field){
+                                            var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                            var self = this;
+                                            jemdatasocket.onopen  = function() {
+                                                jemdatasocket.send(JSON.stringify(9191));
+                                            };
+
+                                            jemdatasocket.onmessage = function(msg) {
+                                                var incomingDat = JSON.parse(msg.data);
+
+                                                if ('factor' in incomingDat){
+                                                    if (incomingDat['factor'] == 'rigOperator'){
+                                                        self.setValue(incomingDat['value']);
+                                                        self.refresh();
+                                                    }
+                                                }
+                                            };
+                                        },
+                                        "validator": function(callback) {
+                                            var value = this.getValue();
+                                            if (value == null) {
+                                                callback({
+                                                    "status":false,
+                                                    "message": "Please Enter Researcher Name"
+                                                });
+                                            } else {
+                                                callback({
+                                                    "status":true
+                                                });
+                                            }
+                                        },
+                                    }
+                                },
+                                "rigNumber": {
+                                    "type": "select",
+                                    "fieldClass":"dropdown-content col-lg-2",
+                                    "helper":[],
+                                    "hideNone":false,
+                                    "noneLabel":'',
+                                    "validate":true,
+                                    "showMessages":false,
+                                    "hideInitValidationError":true,
+                                    "events":{
+                                        "ready": function(field){
+                                            var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                            var self = this;
+                                            jemdatasocket.onopen  = function() {
+                                                jemdatasocket.send(JSON.stringify(9191));
+                                            };
+
+                                            jemdatasocket.onmessage = function(msg) {
+                                                var incomingDat = JSON.parse(msg.data);
+
+                                                if ('factor' in incomingDat){
+                                                    if (incomingDat['factor'] == 'rigNumber'){
+                                                        self.setValue(incomingDat['value']);
+                                                        self.refresh();
+                                                    }
+                                                }
+                                            };
+                                        }
+                                    }
+                                },
+                                "internalFillDate": {
+                                    "type":"select",
+                                    "fieldClass":"dropdown-content col-lg-2",
+                                    "hideNone":false,
+                                    "noneLabel":"",
+                                    "validate":true,
+                                    "showMessages":false,
+                                    "hideInitValidationError":true,
+                                    "sort":function(first, second) {
+                                        // Sort the dates in reverse so that the newest ones will be at the top.
+                                        return second.text.localeCompare(first.text);
+                                    }
+                                },
+                                "date": {
+                                    "type":"date",
+                                    "fieldClass": "col-lg-2",
+                                    "picker": {
+                                        "format":"YYYY-MM-DDTHH:mm:ssZ",
+                                        "stepping":1,
+                                        "showTodayButton": true,
+                                        "showClose":true,
+                                        "inline": false,
+                                        "tooltips": {
+                                            today: 'Go to today'
+                                        },
+                                        "useCurrent":true
+                                    },
+                                    "events":{
+                                        "ready": function(field){
+                                            var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                            var self = this;
+                                            jemdatasocket.onopen  = function() {
+                                                jemdatasocket.send(JSON.stringify(9191));
+                                            };
+
+                                            jemdatasocket.onmessage = function(msg) {
+                                                var incomingDat = JSON.parse(msg.data);
+
+                                                if ('factor' in incomingDat){
+                                                    if (incomingDat['factor'] == 'onRigTimeStamp'){
+                                                        self.setValue(incomingDat['value']);
+                                                        self.refresh();
+                                                    }
+                                                }
+                                            };
+                                        }
+                                    },
+                                    "manualEntry":false,
+                                    "validate":true,
+                                    "showMessages": false,
+                                    "hideInitValidationError":true
+                                },
+                                "limsSpecName": {
+                                    "type": "text",
+                                    "fieldClass": "col-lg-4",
+                                    "helper":[],
+                                    "placeholder":"ex: Slc32a1-IRES-Cre;Ai14-259605.09.02",
+                                    "validate":true,
+                                    "showMessages": true,
+                                    "hideInitValidationError":true,
+                                    //"disallowEmptySpaces":true,
+                                    "events":{
+                                        "ready": function(field){
+                                            var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                            var self = this;
+                                            jemdatasocket.onopen  = function() {
+                                                jemdatasocket.send(JSON.stringify(9191));
+                                            };
+
+                                            jemdatasocket.onmessage = function(msg) {
+                                                var incomingDat = JSON.parse(msg.data);
+
+                                                if ('factor' in incomingDat){
+                                                    if (incomingDat['factor'] == 'limsSpecName'){
+                                                        self.setValue(incomingDat['value']);
+                                                        self.refresh();
+                                                    }
+                                                }
+                                            };
+                                        },
+                                        "change": function() {
+                                            window.specName = this.getValue(),
+                                            // Update Pipette Specimen Names
+                                            setALLPipetteSpecimenNames();
+                                        }
+                                    },
+                                    "validator": function(callback) {
+                                        var value = this.getValue();
+                                        var chars = value.split(' ');
+                                        if (chars.length > 1) {
+                                            callback({
+                                                "status":false,
+                                                "message": "Space(s) found in Slice ID"
+                                            });
+                                        } else {
+                                            callback({
+                                                "status":true
+                                            });
+                                        }
+                                    }
+                                },
+                                "pipettes": {
+                                    "fieldClass": "form-group col-lg-12 no-border",
+                                    "toolbar": {
+                                        "showLabels":true,
+                                        "actions": [{
+                                            "label": "Add A Patch-Seq Pipette",
+                                            "action":"add",
+                                            "click": function(e){
+                                                this.handleToolBarAddItemClick();
+                                            }
+                                        }]
+                                    },
+                                    "toolbarStyle": "button",
+                                    "toolbarSticky": true,
+                                    "hideToolbarWithChildren":true,
+                                    "actionbar": {
+                                        "showLabels":true,
+                                        "actions": [{
+                                            "label": "Add Another Patch-Seq Pipette",
+                                            "action": "add",
+                                            "click": function(key, action, itemIndex) {
+                                                //Only add pipettes at the end of the array
+                                                var form = $("#form").alpaca("get");
+                                                var pipettes = form.top().getControlByPath("pipettes");
+                                                var arrayEndIndex = pipettes.getSize() - 1;
+                                                this.handleActionBarAddItemClick(arrayEndIndex);
+                                            }
+                                        },
+                                        {
+                                            "label": "Remove Above Patch-Seq Pipette",
+                                            "action": "remove",
+                                            "click": function(key, action, itemIndex) {
+
+                                                var currentPipetteIndexPlusOne = itemIndex + 1;
+                                                var msg = "Are you sure you want to delete pipette #" + currentPipetteIndexPlusOne + "?";
+
+                                                if(confirm(msg))
+                                                    this.handleActionBarRemoveItemClick(itemIndex);
+                                                    // Update Pipette Specimen Names
+                                                    setALLPipetteSpecimenNames()
+                                                }
+                                        },
+                                        {
+                                            "action":"up",
+                                            "enabled":false
+                                        },
+                                        {
+                                            "action":"down",
+                                            "enabled":false
+                                        }]
+                                    },
+                                    "actionbarStyle":"bottom",
+                                    "animate":true,
+                                    "collapsible":true,
+                                    "lazyLoading":true,
+                                    "showMessages":true,
+                                    "focus":"pipettes",
+                                    "items": {
+                                        "fields": {
+                                            "status": {
+                                                "type":"radio",
+                                                "fieldClass": "col-lg-12 bg-primary",
+                                                "vertical":false,
+                                                "hideNone":true,
+                                                "helper": [],
+                                                "events":{
+                                                    "ready": function() {
+                                                        // Echo Pilot Name
+                                                        var str = this.name;
+                                                        var currentStatus = this.getValue();
+                                                        var pipetteNumRegex = /\d+/g;
+                                                        var currentIndexStr = str.match(pipetteNumRegex);
+                                                        var currentIndex = parseInt(currentIndexStr);
+                                                        var currentPilotName = form.top().getControlByPath("pipettes["+currentIndex+"]/approach/pilotName").data;
+                                                        copyPilotName(currentIndex, currentPilotName, currentStatus);
+                                                    },
+                                                    "focus": function() {
+                                                        // Echo Pilot Name
+                                                        var str = this.name;
+                                                        var currentStatus = this.getValue();
+                                                        var pipetteNumRegex = /\d+/g;
+                                                        var currentIndexStr = str.match(pipetteNumRegex);
+                                                        var currentIndex = parseInt(currentIndexStr);
+                                                        var form = $("#form").alpaca("get");
+                                                        var currentPilotName = form.top().getControlByPath("pipettes["+currentIndex+"]/approach/pilotName").data;
+                                                        copyPilotName(currentIndex, currentPilotName, currentStatus);
+                                                    },
+                                                }
+                                            },
+                                            "pipetteSpecName": {
+                                                "type": "text",
+                                                "readonly":true,
+                                                "fieldClass": "form-group col-lg-12 no-border",
+                                                "helper":[],
+                                                "showMessages": false,
+                                                "hideInitValidationError":true,
+                                                "disallowEmptySpaces":true,
+                                                "events":{
+                                                    "ready": function(field){
+                                                        var self = this;
+                                                        var form = $("#form").alpaca("get");
+                                                    }
+                                                }
+                                            },
+                                            "extraction": {
+                                                "fieldClass": "form-group col-lg-12 no-border bg-danger",
+                                                "dependencies": {"status":["SUCCESS"]},
+                                                "fields": {
+                                                    "blankFillDate": {
+                                                        "type":"select",
+                                                        "fieldClass":"dropdown-content col-lg-2",
+                                                        "helper":["Current: 2022-07-05 (Black)"],
+                                                        "hideNone":false,
+                                                        "noneLabel":"",
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "hideInitValidationError":true,
+                                                        "sort":function(first, second) {
+                                                            // Sort the dates in reverse so that the newest ones will be at the top.
+                                                            return second.text.localeCompare(first.text);
+                                                        }
+                                                    },
+                                                    "tubeID": {
+                                                        "type":"text",
+                                                        "fieldClass": "col-lg-7",
+                                                        "helper":["PC: Human/Non-Human Primate Culture"],
+                                                        "placeholder":"Copy and paste from Patchseq_tube_assigments excel document (ex: PAS4_210101_451_A01)",
+                                                        "disallowEmptySpaces":true,
+                                                        "events":{
+                                                            "ready": function(field){
+                                                                var self = this;
+                                                                var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                                                                jemdatasocket.onopen = function(){
+                                                                    jemdatasocket.send(JSON.stringify(9191));
+                                                                    document.tubeIDSetter(self);
+                                                                };
+
+                                                                jemdatasocket.onmessage = function(msg){
+                                                                    var incomingDat = JSON.parse(msg.data);
+                                                                    if ('factor' in incomingDat){
+                                                                        if (incomingDat['factor'] == 'tubeID'){
+                                                                            var pipetteIndex = incomingDat['index'];
+                                                                            var element = document.tubeIDGetter(pipetteIndex);
+                                                                            element.setValue(incomingDat['value']);
+                                                                            element.refresh();
+                                                                        }
+                                                                    }
+                                                                };
+                                                            },
+                                                            "change": function(field){
+                                                                var container = this.getValue();
+                                                                var str = this.name;
+                                                                var pipetteNumRegex = /\d+/g;
+                                                                var currentIndexStr = str.match(pipetteNumRegex);
+                                                                var currentIndex = parseInt(currentIndexStr);
+
+                                                                // Update Pipette Specimen Names
+                                                                setALLPipetteSpecimenNames(container, currentIndex);
+                                                            }
+                                                        },
+                                                        "validator": function(callback) {
+                                                            var value = this.getValue();
+                                                            var containerRegex = /^(P[A-Z0-9]S4_([0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))_[0-9]{3}_A01)|(NA)$/;
+                                                            if (containerRegex.test(value)) {
+                                                                callback({"status": true});
+                                                            } else {
+                                                                callback({
+                                                                    "status": false,
+                                                                    "message": "Enter valid container (ex. PAS4_210101_451_A01) or NA"});
+                                                            }
+                                                        }
+
+                                                    }, 
+                                                    "postPatch":{
+                                                        "type": "select",
+                                                        "fieldClass":"dropdown-content col-lg-3",
+                                                        "size":1.5,
+                                                        "sort":false,
+                                                        "validate":true,
+                                                        "showMessages":false,
+                                                        "hideInitValidationError":true,
+                                                        "hideNone":true
+                                                    }
+                                                }
+                                            },
+                                            "manualRoi":{
+                                                "type":"optiontree",
+                                                "fieldClass":"form-group col-lg-6",
+                                                "hideInitValidationError":true,
+                                                "tree": {
+                                                    "selectors":{
+                                                        "roiSpecies":{"schema":{"type":"string"}, "options":{"type":"select", "noneLabel": "Pick a Species...", "sort": true}},
+                                                        "roiSuper": {"schema": {"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI super...", "sort": true}},
+                                                        "roiMajor": {"schema": {"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI major...", "sort": false}},
+                                                        "roiMinor": {"schema":{"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI minor...", "sort": true}}
+                                                    },
+                                                    "order":["roiSpecies", "roiSuper", "roiMajor", "roiMinor"],
+                                                    "data": [{
+                                                        //-----Human-----//
+                                                        // Human - Cortical
+                                                        "value": "CBXmo", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CBX", "roiMinor": "mo"}
+                                                        }, {
+                                                        "value": "CCx1", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "CCx2", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 2"}
+                                                        }, {
+                                                        "value": "CCx3", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 3"}
+                                                        }, {
+                                                        "value": "CCx3a", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 3a"}
+                                                        }, {
+                                                        "value": "CCx3b", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 3b"}
+                                                        }, {
+                                                        "value": "CCx3c", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 3c"}
+                                                        }, {
+                                                        "value": "CCx4", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "CCx5", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "CCx6", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "CCx", "roiMinor": "layer 6"}
+                                                        }, {
+                                                        "value": "FCx1", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "FCx2", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 2"}
+                                                        }, {
+                                                        "value": "FCx3", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 3"}
+                                                        }, {
+                                                        "value": "FCx3a", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 3a"}
+                                                        }, {
+                                                        "value": "FCx3b","attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 3b"}
+                                                        }, {
+                                                        "value": "FCx3c", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 3c"}
+                                                        }, {
+                                                        "value": "FCx4", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "FCx5", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "FCx6", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "FCx", "roiMinor": "layer 6"}
+                                                        }, {
+                                                        "value": "ICx1", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "ICx2", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 2"}
+                                                        }, {
+                                                        "value": "ICx3", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 3"}
+                                                        }, {
+                                                        "value": "ICx3a", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 3a"}
+                                                        }, {
+                                                        "value": "ICx3b", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 3b"}
+                                                        }, {
+                                                        "value": "ICx3c", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 3c"}
+                                                        }, {
+                                                        "value": "ICx4", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "ICx5", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "ICx6", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "ICx", "roiMinor": "layer 6"}
+                                                        }, {
+                                                        "value": "OCx1", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "OCx2", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 2"}
+                                                        }, {
+                                                        "value": "OCx3", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 3"}
+                                                        }, {
+                                                        "value": "OCx3a", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 3a"}
+                                                        }, {
+                                                        "value": "OCx3b", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 3b"}
+                                                        }, {
+                                                        "value": "OCx3c", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 3c"}
+                                                        }, {
+                                                        "value": "OCx4", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "OCx5", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "OCx6", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "OCx", "roiMinor": "layer 6"}
+                                                        }, {
+                                                        "value": "PCx1", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "PCx2", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 2"}
+                                                        }, {
+                                                        "value": "PCx3", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 3"}
+                                                        }, {
+                                                        "value": "PCx3a", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 3a"}
+                                                        }, {
+                                                        "value": "PCx3b", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 3b"}
+                                                        }, {
+                                                        "value": "PCx3c", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 3c"}
+                                                        }, {
+                                                        "value": "PCx4", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "PCx5", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "PCx6", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "PCx", "roiMinor": "layer 6"}
+                                                        }, {
+                                                        "value": "TCx1", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "TCx2", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 2"}
+                                                        }, {
+                                                        "value": "TCx3", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3"}
+                                                        }, {
+                                                        "value": "TCx3a", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3a"}
+                                                        }, {
+                                                        "value": "TCx3b", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3b"}
+                                                        }, {
+                                                        "value": "TCx3c", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3c"}
+                                                        }, {
+                                                        "value": "TCx4", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "TCx5", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "TCx6", "attributes": {"roiSpecies": "Human", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 6"}
+                                                        }, {
+                                                        // Human - Subcortical
+                                                        "value": "dLGNShell", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "dLGN", "roiMinor": "Shell"}
+                                                        }, {
+                                                        "value": "HIPbCA1", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA1"}
+                                                        }, {
+                                                        "value": "HIPbCA2", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA2"}
+                                                        }, {
+                                                        "value": "HIPbCA3", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA3"}
+                                                        }, {
+                                                        "value": "HIPbCA4", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA4"}
+                                                        }, {
+                                                        "value": "HIPbDG", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "DG"}
+                                                        }, {
+                                                        "value": "HIPbSB", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "SB"}
+                                                        }, {
+                                                        //-----Mouse-----//
+                                                        // Mouse - Cortical
+                                                        "value": "CTXspCLA", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "CTXsp", "roiMinor": "CLA"}
+                                                        }, {
+                                                        "value": "MOp1", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "MOp2/3", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 2/3"}
+                                                        }, {
+                                                        "value": "MOp5", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "MOp6a", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 6a"}
+                                                        }, {
+                                                        "value": "MOp6b", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 6b"}
+                                                        }, {
+                                                        "value": "MOs1", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "MOs", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "MOs2/3", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "MOs", "roiMinor": "layer 2/3"}
+                                                        }, {
+                                                        "value": "MOs5", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "MOs", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "MOs6a", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "MOs", "roiMinor": "layer 6a"}
+                                                        }, {
+                                                        "value": "MOs6b", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "MOs", "roiMinor": "layer 6b"}
+                                                        }, {
+                                                        "value": "ORB1", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "ORB", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "ORB2/3", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "ORB", "roiMinor": "layer 2/3"}
+                                                        }, {
+                                                        "value": "ORB5", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "ORB", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "ORB6a", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "ORB", "roiMinor": "layer 6a"}
+                                                        }, {
+                                                        "value": "ORB6b", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "ORB", "roiMinor": "layer 6b"}
+                                                        }, {
+                                                        "value": "PL1", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "PL", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "PL2/3", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "PL", "roiMinor": "layer 2/3"}
+                                                        }, {
+                                                        "value": "PL5", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "PL", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "PL6a", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "PL", "roiMinor": "layer 6a"}
+                                                        }, {
+                                                        "value": "PL6b", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "PL", "roiMinor": "layer 6b"}
+                                                        }, {
+                                                        "value": "RSPagl1", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "RSPagl", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "RSPagl2/3", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "RSPagl", "roiMinor": "layer 2/3"}
+                                                        }, {
+                                                        "value": "RSPagl5", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "RSPagl", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "RSPagl6a", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "RSPagl", "roiMinor": "layer 6a"}
+                                                        }, {
+                                                        "value": "RSPagl6b", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "RSPagl", "roiMinor": "layer 6b"}
+                                                        }, {
+                                                        "value": "RSPd1", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "RSPd", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "RSPd2/3", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "RSPd", "roiMinor": "layer 2/3"}
+                                                        }, {
+                                                        "value": "RSPd5", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "RSPd", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "RSPd6a", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "RSPd", "roiMinor": "layer 6a"}
+                                                        }, {
+                                                        "value": "RSPd6b", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "RSPd", "roiMinor": "layer 6b"}
+                                                        }, {
+                                                        "value": "RSPv1", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "RSPv", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "RSPv2/3", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "RSPv", "roiMinor": "layer 2/3"}
+                                                        }, {
+                                                        "value": "RSPv5", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "RSPv", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "RSPv6a", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "RSPv", "roiMinor": "layer 6a"}
+                                                        }, {
+                                                        "value": "RSPv6b", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "RSPv", "roiMinor": "layer 6b"}
+                                                        }, {
+                                                        "value": "SSp1", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "SSp", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "SSp2/3", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "SSp", "roiMinor": "layer 2/3"}
+                                                        }, {
+                                                        "value": "SSp4", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "SSp", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "SSp5", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "SSp", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "SSp6a", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "SSp", "roiMinor": "layer 6a"}
+                                                        }, {
+                                                        "value": "SSp6b", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "SSp", "roiMinor": "layer 6b"}
+                                                        }, {
+                                                        "value": "TEa1", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "TEa", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "TEa2/3", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "TEa", "roiMinor": "layer 2/3"}
+                                                        }, {
+                                                        "value": "TEa4", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "TEa", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "TEa5", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "TEa", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "TEa6a", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "TEa", "roiMinor": "layer 6a"}
+                                                        }, {
+                                                        "value": "TEa6b", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "TEa", "roiMinor": "layer 6b"}
+                                                        }, {
+                                                        "value": "VISam1", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "VISam", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "VISam2/3", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "VISam", "roiMinor": "layer 2/3"}
+                                                        }, {
+                                                        "value": "VISam4", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "VISam", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "VISam5", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "VISam", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "VISam6a", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "VISam", "roiMinor": "layer 6a"}
+                                                        }, {
+                                                        "value": "VISam6b", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "VISam", "roiMinor": "layer 6b"}
+                                                        }, {
+                                                        "value": "VISp1", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "VISp", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "VISp2/3", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "VISp", "roiMinor": "layer 2/3"}
+                                                        }, {
+                                                        "value": "VISp4", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "VISp", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "VISp5", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "VISp", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "VISp6a", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "VISp", "roiMinor": "layer 6a"}
+                                                        }, {
+                                                        "value": "VISp6b", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Cortical", "roiMajor": "VISp", "roiMinor": "layer 6b"}
+                                                        }, {
+                                                        // Mouse - Subcortical
+                                                        "value": "CTXspCLA", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "CTXsp", "roiMinor": "CLA"}
+                                                        }, {
+                                                        "value": "dLGNCore", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "dLGN", "roiMinor": "Core"}
+                                                        }, {
+                                                        "value": "dLGNMagnocellular", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "dLGN", "roiMinor": "Magnocellular"}
+                                                        }, {
+                                                        "value": "dLGNParvocellular", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "dLGN", "roiMinor": "Parvocellular"}
+                                                        }, {
+                                                        "value": "dLGNShell", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "dLGN", "roiMinor": "Shell"}
+                                                        }, {
+                                                        "value": "EPILH", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "EPI", "roiMinor": "LH"}
+                                                        }, {
+                                                        "value": "EPIMH", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "EPI", "roiMinor": "MH"}
+                                                        }, {
+                                                        "value": "HIPCA1", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "CA1"}
+                                                        }, {
+                                                        "value": "HIPCA2", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "CA2"}
+                                                        }, {
+                                                        "value": "HIPCA3", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "CA3"}
+                                                        }, {
+                                                        "value": "HIPDG-mo", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "DG, molecular"}
+                                                        }, {
+                                                        "value": "HIPDG-sg", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "DG, granule"}
+                                                        }, {
+                                                        "value": "HYSTN", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HY", "roiMinor": "STN"}
+                                                        }, {
+                                                        "value": "HYVMH", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HY", "roiMinor": "VMH"}
+                                                        }, {
+                                                        "value": "MBSNc", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "MB", "roiMinor": "SNc"}
+                                                        }, {
+                                                        "value": "MBSNr", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "MB", "roiMinor": "SNr"}
+                                                        }, {
+                                                        "value": "MBVTA", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "MB", "roiMinor": "VTA"}
+                                                        }, {
+                                                        "value": "PALGPe", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "PAL", "roiMinor": "GPe"}
+                                                        }, {
+                                                        "value": "PALGPi", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "PAL", "roiMinor": "GPi"}
+                                                        }, {
+                                                        "value": "STRdCP", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "STRd", "roiMinor": "CP"}
+                                                        }, {
+                                                        "value": "STRvACB", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "STRv", "roiMinor": "ACB"}
+                                                        }, {
+                                                        "value": "THMD", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "TH", "roiMinor": "MD"}
+                                                        }, {
+                                                        "value": "THPF", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "TH", "roiMinor": "PF"}
+                                                        }, {                                                            
+                                                        "value": "THVAL", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "TH", "roiMinor": "VAL"}
+                                                        }, {
+                                                        //-----Non-Human Primate-----//
+                                                        // Non-Human Primate - Cortical
+                                                        "value": "CTXspCLA", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "CTXsp", "roiMinor": "CLA"}
+                                                        }, {
+                                                        "value": "MOp1", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "MOp2/3", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 2/3"}
+                                                        }, {
+                                                        "value": "MOp5", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "MOp6a", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 6a"}
+                                                        }, {
+                                                        "value": "MOp6b", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "MOp", "roiMinor": "layer 6b"}
+                                                        }, {
+                                                        "value": "TCx1", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "TCx2", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 2"}
+                                                        }, {
+                                                        "value": "TCx3", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3"}
+                                                        }, {
+                                                        "value": "TCx3a", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3a"}
+                                                        }, {
+                                                        "value": "TCx3b", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3b"}
+                                                        }, {
+                                                        "value": "TCx3c", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 3c"}
+                                                        }, {
+                                                        "value": "TCx4", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "TCx5", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 5"}
+                                                        }, {
+                                                        "value": "TCx6", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "TCx", "roiMinor": "layer 6"}
+                                                        }, {
+                                                        "value": "VISp1", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "VISp", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "VISp2/3", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "VISp", "roiMinor": "layer 2/3"}
+                                                        }, {
+                                                        "value": "VISp4", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "VISp", "roiMinor": "layer 4"}
+                                                        }, {
+                                                        "value": "VISp4a", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "VISp", "roiMinor": "layer 4a"}
+                                                        }, {
+                                                        "value": "VISp4b", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "VISp", "roiMinor": "layer 4b"}
+                                                        }, {
+                                                        "value": "VISp4c", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "VISp", "roiMinor": "layer 4c"}
+                                                        }, {
+                                                        "value": "VISp5/6", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "VISp", "roiMinor": "layer 5/6"}
+                                                        }, {
+                                                        // Non-Human Primate - Subcortical
+                                                        "value": "HIPbCA1", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA1"}
+                                                        }, {
+                                                        "value": "HIPbCA2", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA2"}
+                                                        }, {
+                                                        "value": "HIPbCA3", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA3"}
+                                                        }, {
+                                                        "value": "HIPbCA4", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA4"}
+                                                        }, {
+                                                        "value": "HIPbDG", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "DG"}
+                                                        }, {
+                                                        "value": "HIPbSB", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "SB"}
+                                                        }, {
+                                                        "value": "HYSTN", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HY", "roiMinor": "STN"}
+                                                        }, {
+                                                        "value": "HYVMH", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HY", "roiMinor": "VMH"}
+                                                        }, {
+                                                         "value": "PALGPe", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "PAL", "roiMinor": "GPe"}
+                                                        }, {
+                                                        "value": "PALGPi", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "PAL", "roiMinor": "GPi"}
+                                                        }, {
+                                                        "value": "STRdCa", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "STRd", "roiMinor": "Ca"}
+                                                        }, {
+                                                        "value": "STRdPu", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "STRd", "roiMinor": "Pu"}
+                                                        }, {
+                                                        "value": "STRvACB", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "STRv", "roiMinor": "ACB"}
+                                                        },
+                                                     ],
+                                                     "horizontal":true
+                                                },
+                                                "events": {
+                                                    "ready" : function(field) {
+                                                        makeTextFieldReadOnly(this);                                                        
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "form":{
+                                "buttons":{
+                                    "reset":{}
+                                }
+                            },
+                            "views":"bootstrap-create"
+                        },
+                        "data": {
+                            "formVersion": "2.1.3"
+                        }
+                    });
+                });
+            </script>
+<!--             <div class="col-md-12" id="wsedata" >
+                <h3 id='wseConn' align="left">WSE Connectivity</h3>
+                <h6 id='updateTS' align="left"></h6>
+                <h6 id='updateData' align="left"></h6>
+            </div> -->
+            <script type="text/JavaScript">
+            "use strict";
+                $(document).ready(function(){
+
+                    window.wseState = false;
+                    console.log("Opening General Jemdatasocket");
+                    var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
+
+                    var self = this;
+                    jemdatasocket.onopen  = function() {
+                        jemdatasocket.send(JSON.stringify(9191));
+                        window.wseState = true;
+                    };
+
+                    jemdatasocket.onmessage = function(msg) {
+                        var incomingDat = JSON.parse(msg.data);
+
+                        if ('ts' in incomingDat){
+                            var updateTimeStamp = incomingDat['ts']
+                            document.getElementById('updateTS').innerHTML = updateTimeStamp;
+                        }
+
+                        if (('factor' in incomingDat) && ('value' in incomingDat)) {
+                            var factorString = incomingDat['factor'];
+                            var valueString = incomingDat['value'];
+                            var jemUpdateTimeString = "> WSE->> JEM update Factor:" + factorString + " Value:" + valueString
+                            document.getElementById('updateData').innerHTML = jemUpdateTimeString;
+                        }
+                    };
+                });
+            </script>
+            <script type="text/javascript">
+                "use strict";
+                $(document).ready(function () {
+                    this.indexSetter = indexSetter;
+                    this.indexGetter = indexGetter;
+                    this.pipetteRSetter = pipetteRSetter;
+                    this.pipetteRGetter = pipetteRGetter;
+                    this.endPipetteRSetter = endPipetteRSetter;
+                    this.endPipetteRGetter = endPipetteRGetter;
+                    this.wholeCellStartSetter = wholeCellStartSetter;
+                    this.wholeCellStartGetter = wholeCellStartGetter;
+                    this.pressureAppliedSetter = pressureAppliedSetter;
+                    this.pressureAppliedGetter = pressureAppliedGetter;
+                    this.retractionPressureAppliedSetter = retractionPressureAppliedSetter;
+                    this.retractionPressureAppliedGetter = retractionPressureAppliedGetter;
+                    this.approachStartSetter = approachStartSetter;
+                    this.approachStartGetter = approachStartGetter;
+                    this.timeExtractionStartSetter = timeExtractionStartSetter;
+                    this.timeExtractionStartGetter = timeExtractionStartGetter;
+                    this.timeExtractionEndSetter = timeExtractionEndSetter;
+                    this.timeExtractionEndGetter = timeExtractionEndGetter;
+                    this.timeRetractionEndSetter = timeRetractionEndSetter;
+                    this.timeRetractionEndGetter = timeRetractionEndGetter;
+                    this.pipetteSpecNameGetter = pipetteSpecNameGetter;
+                    this.pipetteSpecNameSetter = pipetteSpecNameSetter;
+                    this.tubeIDSetter = tubeIDSetter;
+                    this.tubeIDGetter = tubeIDGetter;
+                    this.cellDepthSetter = cellDepthSetter;
+                    this.cellDepthGetter = cellDepthGetter;
+                    this.pipetteSpecNamer = pipetteSpecNamer;
+
+                    var pipetteRList = [];
+                    var endPipetteRList = [];
+                    var wholeCellStartList = [];
+                    var approachStartList = [];
+                    var timeExtractionStartList = [];
+                    var timeExtractionEndList = [];
+                    var timeRetractionEndList = [];
+                    var pressureAppliedList = [];
+                    var retractionPressureAppliedList = [];
+                    var pipetteSpecNameList = [];
+                    var tubeIDList = [];
+                    var cellDepthList = [];
+
+                    var pipetteindex = 0;
+
+                    function indexSetter(){
+                        pipetteindex = pipetteindex + 1;
+                    }
+
+                    function indexGetter(){
+                        return pipetteindex;
+                    }
+
+                    function pipetteRSetter(incomingElement){
+                        pipetteRList[pipetteindex] = incomingElement;
+                    }
+
+                    function pipetteRGetter(getterindex){
+                        console.log('getting pipette R element at pipetteIndex:' + getterindex);
+                        return pipetteRList[getterindex]
+                    }
+
+                    function endPipetteRSetter(incomingElement){
+                        endPipetteRList[pipetteindex] = incomingElement;
+                    }
+
+                    function endPipetteRGetter(getterindex){
+                        console.log('getting end pipette R element at pipetteIndex:' + getterindex);
+                        return endPipetteRList[getterindex]
+                    }
+
+                    function wholeCellStartSetter(incomingElement){
+                        wholeCellStartList[pipetteindex] = incomingElement;
+                    }
+
+                    function wholeCellStartGetter(getterindex){
+                        console.log('getting whole cell start time element at pipetteIndex:' + getterindex);
+                        return wholeCellStartList[getterindex]
+                    }
+
+                    function approachStartSetter(incomingElement){
+                        approachStartList[pipetteindex] = incomingElement;
+                    }
+
+                    function approachStartGetter(getterindex){
+                        console.log('getting approach start time element at pipetteIndex:' + getterindex);
+                        return approachStartList[getterindex]
+                    }
+
+                    function timeExtractionStartSetter(incomingElement){
+                        timeExtractionStartList[pipetteindex] = incomingElement;
+                    }
+
+                    function timeExtractionStartGetter(getterindex){
+                        console.log('getting time extraction start time element at pipetteIndex:' + getterindex);
+                        return timeExtractionStartList[getterindex]
+                    }
+
+                    function timeExtractionEndSetter(incomingElement){
+                        timeExtractionEndList[pipetteindex] = incomingElement;
+                    }
+
+                    function timeExtractionEndGetter(getterindex){
+                        console.log('getting time extraction end time element at pipetteIndex:' + getterindex);
+                        return timeExtractionEndList[getterindex]
+                    }
+
+                    function timeRetractionEndSetter(incomingElement){
+                        timeRetractionEndList[pipetteindex] = incomingElement;
+                    }
+
+                    function timeRetractionEndGetter(getterindex){
+                        console.log('getting time retraction end time element at pipetteIndex:' + getterindex);
+                        return timeRetractionEndList[getterindex]
+                    }
+
+                    function pressureAppliedSetter(incomingElement){
+                        pressureAppliedList[pipetteindex] = incomingElement;
+                    }
+
+                    function pressureAppliedGetter(getterindex){
+                        console.log('getting pressure applied element at pipetteIndex:' + getterindex);
+                        return pressureAppliedList[getterindex]
+                    }
+
+                    function retractionPressureAppliedSetter(incomingElement){
+                        retractionPressureAppliedList[pipetteindex] = incomingElement;
+                    }
+
+                    function retractionPressureAppliedGetter(getterindex){
+                        console.log('getting retraction pressure applied element at pipetteIndex:' + getterindex);
+                        return retractionPressureAppliedList[getterindex]
+                    }
+
+                    function pipetteSpecNameSetter(incomingElement){
+                        pipetteSpecNameList[pipetteindex] = incomingElement;
+                    }
+
+                    function pipetteSpecNameGetter(getterindex){
+                        console.log('getting pipetteSpecName element at pipetteIndex:' + getterindex);
+                        return pipetteSpecNameList[getterindex]
+                    }
+
+                    function tubeIDSetter(incomingElement){
+                        tubeIDList[pipetteindex] = incomingElement;
+                    }
+
+                    function tubeIDGetter(getterindex){
+                        console.log('getting tube ID element at pipetteIndex:' + getterindex);
+                        return tubeIDList[getterindex]
+                    }
+
+                    function cellDepthSetter(incomingElement){
+                        cellDepthList[pipetteindex] = incomingElement;
+                    }
+
+                    function cellDepthGetter(getterindex){
+                        console.log('getting cell Depth element at pipetteIndex:' + getterindex);
+                        return cellDepthList[getterindex]
+                    }
+
+                    function pipetteSpecNamer(sliceSpecimen, pipetteIndex){
+
+                        var sliceSpecimenNoWhitespace = sliceSpecimen.replace(/\s+/g, '');
+                        var pipetteNumber = pipetteIndex + 1;
+                        var pipetteName;
+                        if (pipetteNumber < 10){
+                            pipetteName = sliceSpecimenNoWhitespace + '.0' + pipetteNumber
+                        } else {
+                            pipetteName = sliceSpecimenNoWhitespace + '.' + pipetteNumber
+                        }
+                        //console.log('naming pipette specimen ' + pipetteName)
+                        return pipetteName
+                    }
+
+                });
+            </script>
+        </body>
+    </html>
