@@ -80,6 +80,12 @@
                             }
                         }
                     },
+                    "autoRoi":{
+                        "type":"string",
+                        "title": "ROI (Pinning Tool)",
+                        "required":false,
+                        "default":"None"
+                    },
                     "manualRoi":{
                         "type":"string",
                         "title": "ROI",

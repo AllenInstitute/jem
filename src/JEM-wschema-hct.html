@@ -451,6 +451,12 @@
                                                     }
                                                 }
                                             },
+                                            "autoRoi":{
+                                                "type":"string",
+                                                "title": "ROI (Pinning Tool)",
+                                                "required":false,
+                                                "default":"None"
+                                            },
                                             "manualRoi":{
                                                 "type":"string",
                                                 "title": "ROI",
@@ -834,6 +840,13 @@
                                                         "hideNone":true
                                                     }
                                                 }
+                                            },
+                                            "autoRoi":{
+                                                "type":"text",
+                                                "fieldClass":"form-group col-lg-3",
+                                                "showMessages":false,
+                                                "hideInitValidationError":true,
+                                                "hidden":true
                                             },
                                             "manualRoi":{
                                                 "type":"optiontree",
