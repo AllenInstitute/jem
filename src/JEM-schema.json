@@ -238,7 +238,7 @@
                                 "format": "string",
                                 "title": "Break-In - Failure Options",
                                 "required": true,
-                                "enum": ["Death-cell membrane", "Hardware-error", "Seal-access resistance (>=20 mohm)", "Seal-unstable baseline", "Software-error"],
+                                "enum": ["Death-cell membrane", "Hardware-error", "Seal-access resistance (>=20 mohm)", "Seal-unstable baseline", "Software-error", "Status-cell attached failure"],
                                 "dependencies": "break_in_status"
                             }
                         }
