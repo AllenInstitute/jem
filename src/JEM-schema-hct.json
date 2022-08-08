@@ -16,7 +16,7 @@
         "rigNumber": {
             "type":"string",
             "title":"Rig #",
-            "enum":["HCT1", "HCT2", "HCT3", "HCT4", "MP4"],
+            "enum":["HCT1", "HCT2", "HCT3", "HCT4", "MP4", "HCTUW"],
             "required":true
         },
         "internalFillDate":{
