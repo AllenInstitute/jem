@@ -565,9 +565,44 @@
                                     "showMessages":false,
                                     "hideInitValidationError":true
                                 },
+                                "prep_type": {
+                                    "type": "select",
+                                    "fieldClass": "dropdown-content col-lg-2",
+                                    "size": 1.5,
+                                    "sort": true,
+                                    "validate": true,
+                                    "showMessages": false,
+                                    "hideInitValidationError": true,
+                                    "hideNone": false,
+                                    "noneLabel": "",
+                                },
+                                "virus_enhancer": {
+                                    "type": "select",
+                                    "fieldClass": "dropdown-content col-lg-2",
+                                    "size": 1.5,
+                                    "sort": true,
+                                    "validate": true,
+                                    "showMessages": false,
+                                    "hideInitValidationError": true,
+                                    "hideNone": false,
+                                    "noneLabel": "",
+                                    "dependencies": {"prep_type": "Culture"}
+                                },
+                                "days_in_culture": {
+                                    "type": "select",
+                                    "fieldClass": "dropdown-content col-lg-2",
+                                    "size": 1.5,
+                                    "sort": true,
+                                    "validate": true,
+                                    "showMessages": false,
+                                    "hideInitValidationError": true,
+                                    "hideNone": false,
+                                    "noneLabel": "",
+                                    "dependencies": {"prep_type": "Culture"}
+                                },
                                 "sliceNotes": {
                                     "type":"textarea",
-                                    "fieldClass": "col-md-4",
+                                    "fieldClass": "col-md-12",
                                     "rows":2,
                                     "allowOptionalEmpty":true
                                 },
@@ -1311,7 +1346,7 @@
                             "views":"bootstrap-create"
                         },
                         "data": {
-                            "formVersion": "2.0.8",
+                            "formVersion": "2.0.9",
                             "rigNumber": "NA",
                             "acsfProductionDate":"2017-10-01", 
                             "flipped": "NA",
