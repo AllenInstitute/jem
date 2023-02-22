@@ -10,7 +10,7 @@
         "rigOperator": {
             "type": "string",
             "title": "Researcher",
-            "enum":["ayoub", "attilao", "christina", "djai", "huibm", "martintoth", "nataliag", "rene", "sarahh", "zpeterfi", "wenh", "visitor"],
+            "enum":["ayoub", "attilao", "christina", "djai", "huibm", "martintoth", "nataliag", "rene", "sarahh", "zpeterfi", "wenh", "visitor", "andrewh"],
             "required":true
         },
         "rigNumber": {
