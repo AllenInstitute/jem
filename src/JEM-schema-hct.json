@@ -10,13 +10,13 @@
         "rigOperator": {
             "type": "string",
             "title": "Researcher",
-            "enum":["jonathant", "briank", "cristinar", "meanhwank", "scotts", "nikd", "sarav"],
+            "enum":["jonathant", "briank", "cristinar", "meanhwank", "scotts", "nikd", "sarav", "alejandrob"],
             "required":true
         },
         "rigNumber": {
             "type":"string",
             "title":"Rig #",
-            "enum":["HCT1", "HCT2", "HCT3", "HCT4", "HCT5", "MP4", "HCTUW"],
+            "enum":["HCT1", "HCT2", "HCT3", "HCT4", "HCT5", "MP4", "HCTUW", "HCTUW2"],
             "required":true
         },
         "internalFillDate":{
