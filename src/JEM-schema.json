@@ -32,7 +32,7 @@
         "internalFillDate":{
             "format":"date",
             "title":"Internal Fill Date",
-            "enum":["2023-03-06", "2023-01-31"],
+            "enum":["2023-04-20", "2023-03-06", "2023-01-31"],
             "required":true
         },
         "misinformation":{
@@ -286,7 +286,7 @@
                             "blankFillDate":{
                                 "format":"date",
                                 "title":"Blank Fill Date",
-                                "enum":["2023-03-24","2023-02-24", "2022-12-06"],
+                                "enum":["2023-04-20", "2023-03-24","2023-02-24"],
                                 "default": [],
                                 "required": true
                             },
