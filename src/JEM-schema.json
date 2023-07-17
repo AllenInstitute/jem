@@ -127,7 +127,7 @@
                                 "format": "number",
                                 "title": "Resistance",
                                 "required": true,
-                                "minimum": 2.0,
+                                "minimum": 0.0,
                                 "maximum": 8.0
                             },
                             "in_bath_clog": {
