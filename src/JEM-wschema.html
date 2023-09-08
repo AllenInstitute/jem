@@ -424,6 +424,12 @@
                                     "enum": ["CN4609", "CN2724", "AiP1307", "None", "CN1389", "CN1390", "CN1399", "CN1457", "CN1633", "CN1663", "CN1818", "CN1839", "CN1889", "CN1954", "CN1955", "CN2237", "CN2292", "CN2355", "CN2357", "CN2360", "CN2365", "CN2374", "CN2379", "CN2421", "CN2451", "CN2569", "CN2609", "CN2610", "CN2631", "CN2674", "CN2689", "CN2787", "CN2909", "CN3038", "CN3044", "CN3055", "CN3119", "CN3445", "CN3583", "CN3584", "CN3738", "CN2858", "CN2446", "CN2447", "CN3596", "CN3563", "CN3311", "CN2723", "CN1870", "CN1366", "CN2693", "CN2368", "CN2602", "CN3556"],
                                     "required": true
                                 },
+                                "slice_level_project": {
+                                    "type": "string",
+                                    "title": "Slice Level Project",
+                                    "enum": ["PGA", "Thalamus-U19", "HMBA-UM1", "Mouse Connects-UM1"],
+                                    "required": true
+                                },
                                 "sliceNotes":{
                                     "type":"string",
                                     "format":"string",
@@ -454,7 +460,7 @@
                                                     },                                       
                                                     "pilotName":{
                                                         "type":"string",
-                                                        "title":"Slice/Cell Level Projects",
+                                                        "title":"Cell Level Projects",
                                                         "default": "None",
                                                         "enum": ["None","LAS Validation", "MOR Pilot", "retrograde_labeling", "ICV Injection", "Morphology", "Morphology Clearing", "Picrotoxin Validation", "1% Biocytin + Extended PBS Morphology Pilot", "1% Biocytin Pilot", "Extended PBS Morphology Pilot", "Training", "Neonatal mice", "Lot2022 Validation Pilot", "U01 Pilot", "Dravet Mouse Pilot"],
                                                         "required":true
@@ -982,6 +988,17 @@
                                     }
                                 },
                                 "virus_enhancer":{
+                                    "type": "select",
+                                    "fieldClass": "dropdown-content col-lg-2",
+                                    "size": 1.5,
+                                    "sort": true,
+                                    "validate": true,
+                                    "showMessages": false,
+                                    "hideInitValidationError": true,
+                                    "hideNone": false,
+                                    "noneLabel": ""
+                                },
+                                "slice_level_project":{
                                     "type": "select",
                                     "fieldClass": "dropdown-content col-lg-2",
                                     "size": 1.5,
