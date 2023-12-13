@@ -612,6 +612,64 @@
                                     "rows":5,
                                     "allowOptionalEmpty":true
                                 },
+                                "slice_quality": {
+                                    "fieldClass": "form-group col-lg-12 no-border bg-warning",
+                                    "fields": {
+                                        "timeSliceEval": {
+                                            "type": "time",
+                                            "fieldClass": "col-lg-2",
+                                            "showMessages": false,
+                                            "dateFormat": "HH:mm:ss",
+                                            "picker": {
+                                                "showClose": true,
+                                                "showTodayButton": true,
+                                                "stepping": 1,
+                                                "inline": false,
+                                                "useCurrent": true
+                                            }
+                                        },
+                                        "sliceHealth": {
+                                            "type": "radio",
+                                            "fieldClass": "form-group col-lg-2",
+                                            "size": 1,
+                                            "vertical": false,
+                                            "sort": true,
+                                            "hideNone": true,
+                                            "showMessages": false,
+                                            "hideInitValidationError": true,
+                                            "helper": ["1 - Bad (>66% dead cells)", "3 - OK (34-66% dead cells)", "5 - Good (<33% dead cells)"]
+                                        },
+                                        "sliceObservations": {
+                                            "type": "checkbox",
+                                            "fieldClass": "form-group col-lg-2",
+                                            "options": [
+                                            {
+                                                "label": "Crinkled cells",
+                                                "value": "crinkled_cells"
+                                            },
+                                            {
+                                                "label": "Blown-up cells",
+                                                "value": "blown_up_cells"
+                                            },
+                                            {
+                                                "label": "Slice damage",
+                                                "value": "slice_damage"
+                                            },
+                                            {
+                                                "label": "Slice damage to ROI",
+                                                "value": "slice_damage_to_roi"
+                                            }
+                                            ],
+                                            "formField": true
+                                        },
+                                        "sliceComments": {
+                                            "type":"textarea",
+                                            "fieldClass": "col-lg-2",
+                                            "rows":2,
+                                            "allowOptionalEmpty":true
+                                        }
+                                    }
+                                },
                                 "pipettes": {
                                     "fieldClass": "form-group col-lg-12 no-border",
                                     "toolbar": {

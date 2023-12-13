@@ -65,6 +65,35 @@
             "title":"Extra Slice Notes",
             "required":false
         },
+        "slice_quality": {
+            "type": "object",
+            "title":"Slice Quality 40-60 microns deep at 30 minutes",
+            "properties":{
+                "timeSliceEval":{
+                    "format":"time",
+                    "title":"Time of Slice Evaluation",
+                    "required":true
+                },
+                "sliceHealth":{
+                    "type": "string",
+                    "title": "Slice Health Rating",
+                    "enum": ["1", "3", "5"],
+                    "required": true
+                },
+                "sliceObservations":{
+                    "type":"string",
+                    "title":"Slice Observations",
+                    "enum":["Crinkled cells", "Blown-up cells", "Slice damage", "Slice damage to ROI"],
+                    "required":false
+                },
+                "sliceComments":{
+                    "type":"string",
+                    "format":"string",
+                    "title":"Comments",
+                    "required":false
+                }
+            }
+        },
         "pipettes":{
             "type":"array",
             "items":{
