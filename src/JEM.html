@@ -387,7 +387,7 @@
                                     "validate":true,
                                     "showMessages":false,
                                     "hideInitValidationError":true,
-                                    "events":{
+                                    "events": {
                                         "ready": function(field){
                                             var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
 
@@ -431,7 +431,7 @@
                                     "validate":true,
                                     "showMessages":false,
                                     "hideInitValidationError":true,
-                                    "events":{
+                                    "events": {
                                         "ready": function(field){
                                             var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
 
@@ -467,7 +467,7 @@
                                         },
                                         "useCurrent":true
                                     },
-                                    "events":{
+                                    "events": {
                                         "ready": function(field){
                                             var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
 
@@ -523,7 +523,7 @@
                                         return second.text.localeCompare(first.text);
                                     }
                                 },
-                                "misinformation":{
+                                "misinformation": {
                                     "type": "select",
                                     "fieldClass": "dropdown-content col-lg-2",
                                     "size": 1.5,
@@ -543,7 +543,7 @@
                                     "showMessages": true,
                                     "hideInitValidationError":true,
                                     //"disallowEmptySpaces":true,
-                                    "events":{
+                                    "events": {
                                         "ready": function(field){
                                             var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
 
@@ -584,7 +584,7 @@
                                         }
                                     }
                                 },
-                                "virus_enhancer":{
+                                "virus_enhancer": {
                                     "type": "select",
                                     "fieldClass": "dropdown-content col-lg-2",
                                     "size": 1.5,
@@ -595,7 +595,7 @@
                                     "hideNone": false,
                                     "noneLabel": ""
                                 },
-                                "dic":{
+                                "dic": {
                                     "type": "select",
                                     "fieldClass": "dropdown-content col-lg-2",
                                     "size": 1.5,
@@ -606,7 +606,7 @@
                                     "hideNone": false,
                                     "noneLabel": ""
                                 },
-                                "slice_level_project":{
+                                "slice_level_project": {
                                     "type": "select",
                                     "fieldClass": "dropdown-content col-lg-2",
                                     "size": 1.5,
@@ -757,13 +757,24 @@
                                                     "creCell": {
                                                         "type": "radio",
                                                         "fieldClass": "form-group col-lg-12",
-                                                        "size":1,
+                                                        "size": 1,
                                                         "vertical":false,
                                                         "sort": false,
                                                         "hideNone":true,
                                                         "showMessages":false,
                                                         "hideInitValidationError":true,
                                                         "helper": ["Postive/Negative for Cre-lines/Enhancers", "NA for Acute Human/Non-Human Primate Tissue"]
+                                                    },
+                                                    "virusCell": {
+                                                        "type": "select",
+                                                        "fieldClass": "dropdown-content col-lg-2",
+                                                        "size": 1,
+                                                        "sort": true,
+                                                        "validate": true,
+                                                        "showMessages": false,
+                                                        "hideInitValidationError": true,
+                                                        "hideNone": false,
+                                                        "noneLabel": ""
                                                     },
                                                     "pilotName": {
                                                         "type":"select",
@@ -773,7 +784,7 @@
                                                         "hideNone":true,
                                                         "noneLabel":"None",
                                                         "hidden":false,
-                                                        "events":{
+                                                        "events": {
                                                             "change": function() {
                                                                 // Echo Pilot Name
                                                                 var str = this.name;
@@ -831,7 +842,7 @@
                                                         "helper": "(0.0-8.0 MOhms)",
                                                         "placeholder": "ex. 4.5"
                                                     },
-                                                    "in_bath_clog":{
+                                                    "in_bath_clog": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -855,10 +866,10 @@
                                                     }
                                                 }
                                             },
-                                            "experiment_cell_attached":{
+                                            "experiment_cell_attached": {
                                                 "fieldClass": "form-group col-lg-2 no-border bg-info",
                                                 "fields": {
-                                                    "cell_attached_status":{
+                                                    "cell_attached_status": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -867,7 +878,7 @@
                                                         "hideNone": false,
                                                         "noneLabel": ""
                                                     },
-                                                    "cell_attached_dimple":{
+                                                    "cell_attached_dimple": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -891,7 +902,7 @@
                                                         },
                                                         "dependencies": {"cell_attached_status": ["Success"]}
                                                     },
-                                                    "cell_attached_status_failure":{
+                                                    "cell_attached_status_failure": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -903,10 +914,10 @@
                                                     }
                                                 }
                                             },
-                                            "experiment_break_in":{
+                                            "experiment_break_in": {
                                                 "fieldClass": "form-group col-lg-8 no-border bg-info",
                                                 "fields": {
-                                                    "break_in_status":{
+                                                    "break_in_status": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -929,7 +940,7 @@
                                                         },
                                                         "dependencies": {"break_in_status": ["Success"]}
                                                     },
-                                                    "break_in_pressure_max":{
+                                                    "break_in_pressure_max": {
                                                         "fieldClass": "col-lg-3",
                                                         "type": "number",
                                                         "showMessages": false,
@@ -937,7 +948,7 @@
                                                         "placeholder": "ex. 30",
                                                         "dependencies": {"break_in_status": ["Success"]}
                                                     },
-                                                    "break_in_zap_max":{
+                                                    "break_in_zap_max": {
                                                         "fieldClass": "col-lg-3",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -947,7 +958,7 @@
                                                         "noneLabel": "",
                                                         "dependencies": {"break_in_status": ["Success"]}
                                                     },
-                                                    "break_in_zap_use":{
+                                                    "break_in_zap_use": {
                                                         "fieldClass": "col-lg-3",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -957,7 +968,7 @@
                                                         "noneLabel": "",
                                                         "dependencies": {"break_in_status": ["Success"]}
                                                     },
-                                                    "break_in_time_end":{
+                                                    "break_in_time_end": {
                                                         "fieldClass": "col-lg-9",
                                                         "type": "time",
                                                         "showMessages": false,
@@ -971,7 +982,7 @@
                                                         },
                                                         "dependencies": {"break_in_status": ["Success"]}
                                                     },
-                                                    "break_in_reseal":{
+                                                    "break_in_reseal": {
                                                         "fieldClass": "col-lg-3",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -981,7 +992,7 @@
                                                         "noneLabel": "",
                                                         "dependencies": {"break_in_status": ["Success"]}
                                                     },
-                                                    "break_in_status_failure":{
+                                                    "break_in_status_failure": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -999,7 +1010,7 @@
                                                 "vertical":false,
                                                 "hideNone":true,
                                                 "helper": [],
-                                                "events":{
+                                                "events": {
                                                     "ready": function() {
                                                         // Echo Pilot Name
                                                         var str = this.name;
@@ -1031,7 +1042,7 @@
                                                 "showMessages": false,
                                                 "hideInitValidationError":true,
                                                 "disallowEmptySpaces":true,
-                                                "events":{
+                                                "events": {
                                                     "ready": function(field){
                                                         var self = this;
                                                         var form = $("#form").alpaca("get");
@@ -1085,7 +1096,7 @@
                                                         "helper":["PC: Human/Non-Human Primate Culture", "PX: Pilot Projects"],
                                                         "placeholder":"Copy and paste from Patchseq_tube_assigments excel document (ex: PAS4_210101_451_A01)",
                                                         "disallowEmptySpaces":true,
-                                                        "events":{
+                                                        "events": {
                                                             "ready": function(field){
                                                                 var self = this;
                                                                 var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1131,7 +1142,7 @@
                                                         }
 
                                                     }, 
-                                                    "postPatch":{
+                                                    "postPatch": {
                                                         "type": "select",
                                                         "fieldClass":"dropdown-content col-lg-3",
                                                         "size":1.5,
@@ -1141,7 +1152,7 @@
                                                         "hideInitValidationError":true,
                                                         "hideNone":true
                                                     },
-                                                    "nucleus":{
+                                                    "nucleus": {
                                                         "type":"select",
                                                         "fieldClass": "dropdown-content col-lg-3",
                                                         "size":1.5,
@@ -1151,14 +1162,14 @@
                                                         "hideInitValidationError":true,
                                                         "hideNone":true
                                                     },
-                                                    "endPipetteR":{
+                                                    "endPipetteR": {
                                                         "type":"number",
                                                         "fieldClass": "form-group col-lg-3",
                                                         //"helper": "(MOhm)",
                                                         "placeholder": "ex. 1000",
                                                         "validate":true,
                                                         "showMessages":false,
-                                                        "events":{
+                                                        "events": {
                                                             "ready": function(field){
                                                                 var self = this;
                                                                 var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1182,7 +1193,7 @@
                                                             }
                                                         }
                                                     },
-                                                    "fillquality":{
+                                                    "fillquality": {
                                                         "type":"select",
                                                         "fieldClass": "dropdown-content col-lg-3",
                                                         "size":1.5,
@@ -1192,14 +1203,14 @@
                                                         "hideInitValidationError":true,
                                                         "hideNone":true
                                                     },
-                                                    "pressureApplied":{
+                                                    "pressureApplied": {
                                                         "type":"number",
                                                         //"helper":"(mbar)",
                                                         "fieldClass":"col-lg-4",
                                                         "validate":true,
                                                         "showMessages":false,
                                                         "placeholder":"ex. 45",
-                                                        "events":{
+                                                        "events": {
                                                             "ready": function(field){
                                                                 var self = this;
                                                                 var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1236,7 +1247,7 @@
                                                             "inline":false,
                                                             "useCurrent":true
                                                         },
-                                                        "events":{
+                                                        "events": {
                                                             "ready": function(field){
                                                                 var self = this;
                                                                 var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1275,7 +1286,7 @@
                                                             "inline":false,
                                                             "useCurrent":true
                                                         },
-                                                        "events":{
+                                                        "events": {
                                                             "ready": function(field){
                                                                 var self = this;
                                                                 var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1301,14 +1312,14 @@
                                                         //"helper": "(HH:mm:ss-UTC)",
                                                         "fieldClass": "col-lg-4"
                                                     },
-                                                    "retractionPressureApplied":{
+                                                    "retractionPressureApplied": {
                                                         "type":"number",
                                                         //"helper":"(mbar)",
                                                         "fieldClass": "col-lg-4",
                                                         "validate":true,
                                                         "showMessages":false,
                                                         "placeholder":"ex. 45",
-                                                        "events":{
+                                                        "events": {
                                                             "ready": function(field){
                                                                 var self = this;
                                                                 var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1345,7 +1356,7 @@
                                                             "inline":false,
                                                             "useCurrent":true
                                                         },
-                                                        "events":{
+                                                        "events": {
                                                             "ready": function(field){
                                                                 var self = this;
                                                                 var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1409,7 +1420,7 @@
                                                 "validate":true,
                                                 "showMessages":true,
                                                 "hideInitValidationError":true,
-                                                "events":{
+                                                "events": {
                                                     "ready": function(field){
                                                         var self = this;
                                                         var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1435,14 +1446,14 @@
                                                 "helper": "(0.0-200.0 um)",
                                                 "placeholder": "Enter depth value from WSE (ex. 45.0)"
                                             },
-                                            "autoRoi":{
+                                            "autoRoi": {
                                                 "type":"text",
                                                 "fieldClass":"form-group col-lg-3",
                                                 "showMessages":false,
                                                 "hideInitValidationError":true,
                                                 "hidden":true
                                             },
-                                            "manualRoi":{
+                                            "manualRoi": {
                                                 "type":"optiontree",
                                                 "fieldClass":"form-group col-lg-6",
                                                 //"dependencies": {
@@ -1450,11 +1461,11 @@
                                                 //},
                                                 "hideInitValidationError":true,
                                                 "tree": {
-                                                    "selectors":{
-                                                        "roiSpecies":{"schema":{"type":"string"}, "options":{"type":"select", "noneLabel": "Pick a Species...", "sort": true}},
+                                                    "selectors": {
+                                                        "roiSpecies": {"schema": {"type":"string"}, "options": {"type":"select", "noneLabel": "Pick a Species...", "sort": true}},
                                                         "roiSuper": {"schema": {"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI super...", "sort": true}},
                                                         "roiMajor": {"schema": {"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI major...", "sort": false}},
-                                                        "roiMinor": {"schema":{"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI minor...", "sort": true}}
+                                                        "roiMinor": {"schema": {"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI minor...", "sort": true}}
                                                     },
                                                     "order":["roiSpecies", "roiSuper", "roiMajor", "roiMinor"],
                                                     "data": [{
@@ -1885,9 +1896,9 @@
                                     }
                                 }
                             },
-                            "form":{
-                                "buttons":{
-                                    "reset":{}
+                            "form": {
+                                "buttons": {
+                                    "reset": {}
                                 }
                             },
                             "views":"bootstrap-create"

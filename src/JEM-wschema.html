@@ -390,23 +390,23 @@
                                     "enum":["1", "2", "3", "4", "5", "6", "7", "8"],
                                     "required":true
                                 },
-                                "date":{
+                                "date": {
                                     "format":"date",
                                     "title":"Slice on Rig Date/Time",
                                     "required":true
                                 },
-                                "acsfProductionDate":{
+                                "acsfProductionDate": {
                                     "format":"date",
                                     "title":"ACSF Date",
                                     "required":true
                                 },
-                                "internalFillDate":{
+                                "internalFillDate": {
                                     "format":"date",
                                     "title":"Internal Fill Date",
                                     "enum":["2023-10-20", "2023-07-19", "2023-06-07", "2023-04-20", "2023-03-06", "2023-01-31"],
                                     "required":true
                                 },
-                                "misinformation":{
+                                "misinformation": {
                                     "type": "string",
                                     "title":"Misinformation",
                                     "enum":["Yes", "No"],
@@ -436,7 +436,7 @@
                                     "enum": ["PGA", "Thalamus-U19", "HMBA-UM1", "Mouse Connects-UM1", "LC/DR - R01"],
                                     "required": true
                                 },
-                                "sliceNotes":{
+                                "sliceNotes": {
                                     "type":"string",
                                     "format":"string",
                                     "title":"Extra Slice Notes",
@@ -445,25 +445,25 @@
                                 "slice_quality": {
                                     "type": "object",
                                     "title":"Slice Quality 40-60 microns deep at 30 minutes",
-                                    "properties":{
-                                    	"timeSliceEval":{
+                                    "properties": {
+                                    	"timeSliceEval": {
                                             "format":"time",
                                             "title":"Time of Slice Evaluation",
                                             "required":true
                                         },
-                                        "sliceHealth":{
+                                        "sliceHealth": {
                                             "type": "string",
                                             "title": "Slice Health Rating",
                                             "enum": ["1", "3", "5"],
                                             "required": true
                                         },
-                                        "sliceObservations":{
+                                        "sliceObservations": {
                                             "type":"string",
                                             "title":"Slice Observations",
                                             "enum":["Crinkled cells", "Blown-up cells", "Slice damage", "Slice damage to ROI"],
                                             "required":false
                                         },
-                                        "sliceComments":{
+                                        "sliceComments": {
                         					"type":"string",
                         					"format":"string",
                         					"title":"Comments",
@@ -471,17 +471,17 @@
                         				}
                                     }
                                 },
-                                "pipettes":{
+                                "pipettes": {
                                     "type":"array",
-                                    "items":{
+                                    "items": {
                                         "title":"Patch-Seq Pipette",
                                         "type":"object",
-                                        "properties":{
+                                        "properties": {
                                             "approach": {
                                                 "type":"object",
                                                 "title": "Approach Info",
                                                 "properties": {
-                                                    "cellHealth":{
+                                                    "cellHealth": {
                                                         "type": "string",
                                                         "title": "Cell Health (Based on Visual Observation until Break-In)",
                                                         "enum": ["1", "3", "5"],
@@ -492,8 +492,14 @@
                                                         "title":"Reporter Status",
                                                         "enum":["Positive", "Negative", "NA"],
                                                         "required":true
-                                                    },                                       
-                                                    "pilotName":{
+                                                    },
+                                                    "virusCell": {
+                                                        "type":"string",
+                                                        "title":"Virus/Enhancer",
+                                                        "enum":["CN3863", "CTB-488", "CTB-594", "AiP1287", "AiP1288", "CN2320", "CN4609", "CN2724", "AiP1307", "None", "CN1389", "CN1390", "CN1399", "CN1457", "CN1633", "CN1663", "CN1818", "CN1839", "CN1889", "CN1954", "CN1955", "CN2237", "CN2292", "CN2355", "CN2357", "CN2360", "CN2365", "CN2374", "CN2379", "CN2421", "CN2451", "CN2569", "CN2609", "CN2610", "CN2631", "CN2674", "CN2689", "CN2787", "CN2909", "CN3038", "CN3044", "CN3055", "CN3119", "CN3445", "CN3583", "CN3584", "CN3738", "CN2858", "CN2446", "CN2447", "CN3596", "CN3563", "CN3311", "CN2723", "CN1870", "CN1366", "CN2693", "CN2368", "CN2602", "CN3556"],
+                                                        "required":false
+                                                    },
+                                                    "pilotName": {
                                                         "type":"string",
                                                         "title":"Cell Level Projects",
                                                         "default": "None",
@@ -661,7 +667,7 @@
                                                     }
                                                 }
                                             },
-                                            "status":{
+                                            "status": {
                                                 "type":"string",
                                                 "title":"Was recording successful?",
                                                 "enum":["SUCCESS", "FAILURE"],
@@ -673,41 +679,41 @@
                                                 "title":"Pipette Specimen ID",
                                                 "required":false
                                             },
-                                            "freeFailureNotes":{
+                                            "freeFailureNotes": {
                                                 "type":"string",
                                                 "title":"Extra Failure Notes",
                                                 "default":[],
                                                 "dependencies":"status",
                                                 "required":false
                                             },
-                                            "qcNotes":{
+                                            "qcNotes": {
                                                 "type":"string",
                                                 "title":"QC Notes",
                                                 "dependencies":"status",
                                                 "required":false
                                             },
-                                            "extraction":{
+                                            "extraction": {
                                                 "type":"object",
                                                 "title":"Extraction Info",
                                                 "dependencies":"status",
-                                                "properties":{
+                                                "properties": {
                                                     "pilotNameExtra": {
                                                         "type":"string",
                                                         "readonly":true
                                                     },
-                                                    "blankFillDate":{
+                                                    "blankFillDate": {
                                                         "format":"date",
                                                         "title":"Blank Fill Date",
                                                         "enum":["2023-11-02", "2023-10-06", "2023-08-31", "2023-07-27", "2023-07-14", "2023-06-08", "2023-05-18", "2023-04-20", "2023-03-24", "2023-02-24"],
                                                         "default": [],
                                                         "required": true
                                                     },
-                                                    "tubeID":{
+                                                    "tubeID": {
                                                         "type":"string",
                                                         "title":"Patched Cell Container",
                                                         "required":true
                                                     },
-                                                    "postPatch":{
+                                                    "postPatch": {
                                                         "type":"string",
                                                         "title":"Post Patch State",
                                                         "enum":["nucleus_present", "nucleus_absent", "entire_cell", "unknown"],
@@ -721,7 +727,7 @@
                                                         "default":[],
                                                         "required": true
                                                     },
-                                                    "endPipetteR":{
+                                                    "endPipetteR": {
                                                         "format":"number",
                                                         "minimum": 0.0,
                                                         "maximum": 10000.0,
@@ -735,42 +741,42 @@
                                                         "default":[],
                                                         "required":true
                                                     },
-                                                    "pressureApplied":{
+                                                    "pressureApplied": {
                                                         "type":"number",
                                                         "title":"Extraction Pressure (mbar)",
                                                         "required":true,
                                                         "minimum": 0.0,
                                                         "maximum": 500.0
                                                     },
-                                                    "timeExtractionStart":{
+                                                    "timeExtractionStart": {
                                                         "format":"time",
                                                         "title":"Extraction Start Time",
                                                         "required":true
                                                     },
-                                                    "timeExtractionEnd":{
+                                                    "timeExtractionEnd": {
                                                         "format":"time",
                                                         "title":"Extraction End Time",
                                                         "required":true
                                                     },
-                                                    "retractionPressureApplied":{
+                                                    "retractionPressureApplied": {
                                                         "type":"number",
                                                         "title":"Retraction Pressure (mbar)",
                                                         "required":true,
                                                         "minimum": 0.0,
                                                         "maximum": 500.0
                                                     },
-                                                    "timeRetractionEnd":{
+                                                    "timeRetractionEnd": {
                                                         "format":"time",
                                                         "title":"Retraction End Time",
                                                         "required":true
                                                     },
-                                                    "project_level_nucleus":{
+                                                    "project_level_nucleus": {
                                                         "type":"string",
                                                         "title":"Nucleus Level Projects",
                                                         "enum": ["None", "Channel_Recording", "Nucleus Absent"],
                                                         "required":true
                                                     },
-                                                    "timeChannelRecordingEnd":{
+                                                    "timeChannelRecordingEnd": {
                                                         "format":"time",
                                                         "title":"Channel Recording - Time End",
                                                         "required":true,
@@ -789,13 +795,13 @@
                                                 "title":"Cell Depth",
                                                 "required":true
                                             },
-                                            "autoRoi":{
+                                            "autoRoi": {
                                                 "type":"string",
                                                 "title": "ROI (Pinning Tool)",
                                                 "required":false,
                                                 "default":"None"
                                             },
-                                            "manualRoi":{
+                                            "manualRoi": {
                                                 "type":"string",
                                                 "title": "ROI",
                                                 "required":true
@@ -825,7 +831,7 @@
                                     "validate":true,
                                     "showMessages":false,
                                     "hideInitValidationError":true,
-                                    "events":{
+                                    "events": {
                                         "ready": function(field){
                                             var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
 
@@ -869,7 +875,7 @@
                                     "validate":true,
                                     "showMessages":false,
                                     "hideInitValidationError":true,
-                                    "events":{
+                                    "events": {
                                         "ready": function(field){
                                             var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
 
@@ -905,7 +911,7 @@
                                         },
                                         "useCurrent":true
                                     },
-                                    "events":{
+                                    "events": {
                                         "ready": function(field){
                                             var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
 
@@ -961,7 +967,7 @@
                                         return second.text.localeCompare(first.text);
                                     }
                                 },
-                                "misinformation":{
+                                "misinformation": {
                                     "type": "select",
                                     "fieldClass": "dropdown-content col-lg-2",
                                     "size": 1.5,
@@ -981,7 +987,7 @@
                                     "showMessages": true,
                                     "hideInitValidationError":true,
                                     //"disallowEmptySpaces":true,
-                                    "events":{
+                                    "events": {
                                         "ready": function(field){
                                             var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
 
@@ -1022,7 +1028,7 @@
                                         }
                                     }
                                 },
-                                "virus_enhancer":{
+                                "virus_enhancer": {
                                     "type": "select",
                                     "fieldClass": "dropdown-content col-lg-2",
                                     "size": 1.5,
@@ -1033,7 +1039,7 @@
                                     "hideNone": false,
                                     "noneLabel": ""
                                 },
-                                "dic":{
+                                "dic": {
                                     "type": "select",
                                     "fieldClass": "dropdown-content col-lg-2",
                                     "size": 1.5,
@@ -1044,7 +1050,7 @@
                                     "hideNone": false,
                                     "noneLabel": ""
                                 },
-                                "slice_level_project":{
+                                "slice_level_project": {
                                     "type": "select",
                                     "fieldClass": "dropdown-content col-lg-2",
                                     "size": 1.5,
@@ -1195,13 +1201,24 @@
                                                     "creCell": {
                                                         "type": "radio",
                                                         "fieldClass": "form-group col-lg-12",
-                                                        "size":1,
+                                                        "size": 1,
                                                         "vertical":false,
                                                         "sort": false, 
                                                         "hideNone":true,
                                                         "showMessages":false,
                                                         "hideInitValidationError":true,
                                                         "helper": ["Postive/Negative for Cre-lines/Enhancers", "NA for Acute Human/Non-Human Primate Tissue"]
+                                                    },
+                                                    "virusCell": {
+                                                        "type": "select",
+                                                        "fieldClass": "dropdown-content col-lg-2",
+                                                        "size": 1,
+                                                        "sort": true,
+                                                        "validate": true,
+                                                        "showMessages": false,
+                                                        "hideInitValidationError": true,
+                                                        "hideNone": false,
+                                                        "noneLabel": ""
                                                     },
                                                     "pilotName": {
                                                         "type":"select",
@@ -1211,7 +1228,7 @@
                                                         "hideNone":true,
                                                         "noneLabel":"None",
                                                         "hidden":false,
-                                                        "events":{
+                                                        "events": {
                                                             "change": function() {
                                                                 // Echo Pilot Name
                                                                 var str = this.name;
@@ -1269,7 +1286,7 @@
                                                         "helper": "(0.0-8.0 MOhms)",
                                                         "placeholder": "ex. 4.5"
                                                     },
-                                                    "in_bath_clog":{
+                                                    "in_bath_clog": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -1293,10 +1310,10 @@
                                                     }
                                                 }
                                             },
-                                            "experiment_cell_attached":{
+                                            "experiment_cell_attached": {
                                                 "fieldClass": "form-group col-lg-2 no-border bg-info",
                                                 "fields": {
-                                                    "cell_attached_status":{
+                                                    "cell_attached_status": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -1305,7 +1322,7 @@
                                                         "hideNone": false,
                                                         "noneLabel": ""
                                                     },
-                                                    "cell_attached_dimple":{
+                                                    "cell_attached_dimple": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -1329,7 +1346,7 @@
                                                         },
                                                         "dependencies": {"cell_attached_status": ["Success"]}
                                                     },
-                                                    "cell_attached_status_failure":{
+                                                    "cell_attached_status_failure": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -1341,10 +1358,10 @@
                                                     }
                                                 }
                                             },
-                                            "experiment_break_in":{
+                                            "experiment_break_in": {
                                                 "fieldClass": "form-group col-lg-8 no-border bg-info",
                                                 "fields": {
-                                                    "break_in_status":{
+                                                    "break_in_status": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -1367,7 +1384,7 @@
                                                         },
                                                         "dependencies": {"break_in_status": ["Success"]}
                                                     },
-                                                    "break_in_pressure_max":{
+                                                    "break_in_pressure_max": {
                                                         "fieldClass": "col-lg-3",
                                                         "type": "number",
                                                         "showMessages": false,
@@ -1375,7 +1392,7 @@
                                                         "placeholder": "ex. 30",
                                                         "dependencies": {"break_in_status": ["Success"]}
                                                     },
-                                                    "break_in_zap_max":{
+                                                    "break_in_zap_max": {
                                                         "fieldClass": "col-lg-3",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -1385,7 +1402,7 @@
                                                         "noneLabel": "",
                                                         "dependencies": {"break_in_status": ["Success"]}
                                                     },
-                                                    "break_in_zap_use":{
+                                                    "break_in_zap_use": {
                                                         "fieldClass": "col-lg-3",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -1395,7 +1412,7 @@
                                                         "noneLabel": "",
                                                         "dependencies": {"break_in_status": ["Success"]}
                                                     },
-                                                    "break_in_time_end":{
+                                                    "break_in_time_end": {
                                                         "fieldClass": "col-lg-9",
                                                         "type": "time",
                                                         "showMessages": false,
@@ -1409,7 +1426,7 @@
                                                         },
                                                         "dependencies": {"break_in_status": ["Success"]}
                                                     },
-                                                    "break_in_reseal":{
+                                                    "break_in_reseal": {
                                                         "fieldClass": "col-lg-3",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -1419,7 +1436,7 @@
                                                         "noneLabel": "",
                                                         "dependencies": {"break_in_status": ["Success"]}
                                                     },
-                                                    "break_in_status_failure":{
+                                                    "break_in_status_failure": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "select",
                                                         "showMessages": false,
@@ -1437,7 +1454,7 @@
                                                 "vertical":false,
                                                 "hideNone":true,
                                                 "helper": [],
-                                                "events":{
+                                                "events": {
                                                     "ready": function() {
                                                         // Echo Pilot Name
                                                         var str = this.name;
@@ -1469,7 +1486,7 @@
                                                 "showMessages": false,
                                                 "hideInitValidationError":true,
                                                 "disallowEmptySpaces":true,
-                                                "events":{
+                                                "events": {
                                                     "ready": function(field){
                                                         var self = this;
                                                         var form = $("#form").alpaca("get");
@@ -1523,7 +1540,7 @@
                                                         "helper":["PC: Human/Non-Human Primate Culture", "PX: Pilot Projects"],
                                                         "placeholder":"Copy and paste from Patchseq_tube_assigments excel document (ex: PAS4_210101_451_A01)",
                                                         "disallowEmptySpaces":true,
-                                                        "events":{
+                                                        "events": {
                                                             "ready": function(field){
                                                                 var self = this;
                                                                 var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1569,7 +1586,7 @@
                                                         }
 
                                                     }, 
-                                                    "postPatch":{
+                                                    "postPatch": {
                                                         "type": "select",
                                                         "fieldClass":"dropdown-content col-lg-3",
                                                         "size":1.5,
@@ -1579,7 +1596,7 @@
                                                         "hideInitValidationError":true,
                                                         "hideNone":true
                                                     },
-                                                    "nucleus":{
+                                                    "nucleus": {
                                                         "type":"select",
                                                         "fieldClass": "dropdown-content col-lg-3",
                                                         "size":1.5,
@@ -1589,14 +1606,14 @@
                                                         "hideInitValidationError":true,
                                                         "hideNone":true
                                                     },
-                                                    "endPipetteR":{
+                                                    "endPipetteR": {
                                                         "type":"number",
                                                         "fieldClass": "form-group col-lg-3",
                                                         //"helper": "(MOhm)",
                                                         "placeholder": "ex. 1000",
                                                         "validate":true,
                                                         "showMessages":false,
-                                                        "events":{
+                                                        "events": {
                                                             "ready": function(field){
                                                                 var self = this;
                                                                 var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1620,7 +1637,7 @@
                                                             }
                                                         }
                                                     },
-                                                    "fillquality":{
+                                                    "fillquality": {
                                                         "type":"select",
                                                         "fieldClass": "dropdown-content col-lg-3",
                                                         "size":1.5,
@@ -1630,14 +1647,14 @@
                                                         "hideInitValidationError":true,
                                                         "hideNone":true
                                                     },
-                                                    "pressureApplied":{
+                                                    "pressureApplied": {
                                                         "type":"number",
                                                         //"helper":"(mbar)",
                                                         "fieldClass":"col-lg-4",
                                                         "validate":true,
                                                         "showMessages":false,
                                                         "placeholder":"ex. 45",
-                                                        "events":{
+                                                        "events": {
                                                             "ready": function(field){
                                                                 var self = this;
                                                                 var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1674,7 +1691,7 @@
                                                             "inline":false,
                                                             "useCurrent":true
                                                         },
-                                                        "events":{
+                                                        "events": {
                                                             "ready": function(field){
                                                                 var self = this;
                                                                 var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1713,7 +1730,7 @@
                                                             "inline":false,
                                                             "useCurrent":true
                                                         },
-                                                        "events":{
+                                                        "events": {
                                                             "ready": function(field){
                                                                 var self = this;
                                                                 var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1739,14 +1756,14 @@
                                                         //"helper": "(HH:mm:ss-UTC)",
                                                         "fieldClass": "col-lg-4"
                                                     },
-                                                    "retractionPressureApplied":{
+                                                    "retractionPressureApplied": {
                                                         "type":"number",
                                                         //"helper":"(mbar)",
                                                         "fieldClass": "col-lg-4",
                                                         "validate":true,
                                                         "showMessages":false,
                                                         "placeholder":"ex. 45",
-                                                        "events":{
+                                                        "events": {
                                                             "ready": function(field){
                                                                 var self = this;
                                                                 var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1783,7 +1800,7 @@
                                                             "inline":false,
                                                             "useCurrent":true
                                                         },
-                                                        "events":{
+                                                        "events": {
                                                             "ready": function(field){
                                                                 var self = this;
                                                                 var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1847,7 +1864,7 @@
                                                 "validate":true,
                                                 "showMessages":true,
                                                 "hideInitValidationError":true,
-                                                "events":{
+                                                "events": {
                                                     "ready": function(field){
                                                         var self = this;
                                                         var jemdatasocket = new WebSocket("ws://localhost:8888/jem");
@@ -1873,14 +1890,14 @@
                                                 "helper": "(0.0-200.0 um)",
                                                 "placeholder": "Enter depth value from WSE (ex. 45.0)"
                                             },
-                                            "autoRoi":{
+                                            "autoRoi": {
                                                 "type":"text",
                                                 "fieldClass":"form-group col-lg-3",
                                                 "showMessages":false,
                                                 "hideInitValidationError":true,
                                                 "hidden":true
                                             },
-                                            "manualRoi":{
+                                            "manualRoi": {
                                                 "type":"optiontree",
                                                 "fieldClass":"form-group col-lg-9",
                                                 //"dependencies": {
@@ -1888,11 +1905,11 @@
                                                 //},
                                                 "hideInitValidationError":true,
                                                 "tree": {
-                                                    "selectors":{
-                                                        "roiSpecies":{"schema":{"type":"string"}, "options":{"type":"select", "noneLabel": "Pick a Species...", "sort": true}},
+                                                    "selectors": {
+                                                        "roiSpecies": {"schema": {"type":"string"}, "options": {"type":"select", "noneLabel": "Pick a Species...", "sort": true}},
                                                         "roiSuper": {"schema": {"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI super...", "sort": true}},
                                                         "roiMajor": {"schema": {"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI major...", "sort": false}},
-                                                        "roiMinor": {"schema":{"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI minor...", "sort": true}}
+                                                        "roiMinor": {"schema": {"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI minor...", "sort": true}}
                                                     },
                                                     "order":["roiSpecies", "roiSuper", "roiMajor", "roiMinor"],
                                                     "data": [{
@@ -2323,9 +2340,9 @@
                                     }
                                 }
                             },
-                            "form":{
-                                "buttons":{
-                                    "reset":{}
+                            "form": {
+                                "buttons": {
+                                    "reset": {}
                                 }
                             },
                             "views":"bootstrap-create"
