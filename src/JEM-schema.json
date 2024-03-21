@@ -196,27 +196,25 @@
                         "type": "object",
                         "title": "Exp - Cell Attached",
                         "properties": {
-                            "cell_attached_status": {
+                            "seal_time_start": {
                                 "type": "string",
-                                "format": "string",
-                                "title": "Cell Attached - Status",
-                                "required": true,
-                                "enum": ["Success", "Failure"]
+                                "format": "time",
+                                "title": "Time - Seal Start",
+                                "required": true
                             },
                             "cell_attached_dimple": {
                                 "type": "string",
                                 "format": "string",
                                 "title": "Dimple",
                                 "required": true,
-                                "enum": ["Yes", "No"],
-                                "dependencies": "cell_attached_status"
+                                "enum": ["Yes", "No"]
                             },
-                            "cell_attached_time_start": {
+                            "cell_attached_status": {
                                 "type": "string",
-                                "format": "time",
-                                "title": "Time - Gigaohm Seal",
+                                "format": "string",
+                                "title": "Cell Attached - Status",
                                 "required": true,
-                                "dependencies": "cell_attached_status"
+                                "enum": ["Success", "Failure"]
                             },
                             "cell_attached_status_failure": {
                                 "type": "string",

@@ -869,26 +869,7 @@
                                             "experiment_cell_attached": {
                                                 "fieldClass": "form-group col-lg-2 no-border bg-info",
                                                 "fields": {
-                                                    "cell_attached_status": {
-                                                        "fieldClass": "col-lg-12",
-                                                        "type": "select",
-                                                        "showMessages": false,
-                                                        "sort": false,
-                                                        "size": 1.5,
-                                                        "hideNone": false,
-                                                        "noneLabel": ""
-                                                    },
-                                                    "cell_attached_dimple": {
-                                                        "fieldClass": "col-lg-12",
-                                                        "type": "select",
-                                                        "showMessages": false,
-                                                        "sort": false,
-                                                        "size": 1.5,
-                                                        "hideNone": false,
-                                                        "noneLabel": "",
-                                                        "dependencies": {"cell_attached_status": ["Success"]}
-                                                    },
-                                                    "cell_attached_time_start": {
+                                                    "seal_time_start": {
                                                         "fieldClass": "col-lg-12",
                                                         "type": "time",
                                                         "showMessages": false,
@@ -900,7 +881,25 @@
                                                             "inline": false,
                                                             "useCurrent": true
                                                         },
+                                                    },
+                                                    "cell_attached_dimple": {
+                                                        "fieldClass": "col-lg-12",
+                                                        "type": "select",
+                                                        "showMessages": false,
+                                                        "sort": false,
+                                                        "size": 1.5,
+                                                        "hideNone": false,
+                                                        "noneLabel": "",
                                                         "dependencies": {"cell_attached_status": ["Success"]}
+                                                    },
+                                                    "cell_attached_status": {
+                                                        "fieldClass": "col-lg-12",
+                                                        "type": "select",
+                                                        "showMessages": false,
+                                                        "sort": false,
+                                                        "size": 1.5,
+                                                        "hideNone": false,
+                                                        "noneLabel": ""
                                                     },
                                                     "cell_attached_status_failure": {
                                                         "fieldClass": "col-lg-12",
