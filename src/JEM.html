@@ -1463,7 +1463,7 @@
                                                     "selectors": {
                                                         "roiSpecies": {"schema": {"type":"string"}, "options": {"type":"select", "noneLabel": "Pick a Species...", "sort": true}},
                                                         "roiSuper": {"schema": {"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI super...", "sort": true}},
-                                                        "roiMajor": {"schema": {"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI major...", "sort": false}},
+                                                        "roiMajor": {"schema": {"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI major...", "sort": true}},
                                                         "roiMinor": {"schema": {"type": "string"}, "options": {"type": "select", "noneLabel": "Pick an ROI minor...", "sort": true}}
                                                     },
                                                     "order":["roiSpecies", "roiSuper", "roiMajor", "roiMinor"],
@@ -1583,17 +1583,17 @@
                                                         // Human - Subcortical
                                                         "value": "dLGNShell", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "dLGN", "roiMinor": "Shell"}
                                                         }, {
-                                                        "value": "HIPbCA1", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA1"}
+                                                        "value": "HIPbCA1", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb", "roiMinor": "CA1"}
                                                         }, {
-                                                        "value": "HIPbCA2", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA2"}
+                                                        "value": "HIPbCA2", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb", "roiMinor": "CA2"}
                                                         }, {
-                                                        "value": "HIPbCA3", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA3"}
+                                                        "value": "HIPbCA3", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb", "roiMinor": "CA3"}
                                                         }, {
-                                                        "value": "HIPbCA4", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA4"}
+                                                        "value": "HIPbCA4", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb", "roiMinor": "CA4"}
                                                         }, {
-                                                        "value": "HIPbDG", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "DG"}
+                                                        "value": "HIPbDG", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb", "roiMinor": "DG"}
                                                         }, {
-                                                        "value": "HIPbSB", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "SB"}
+                                                        "value": "HIPbSB", "attributes": {"roiSpecies": "Human", "roiSuper": "Subcortical", "roiMajor": "HIPb", "roiMinor": "SB"}
                                                         }, {
                                                         //-----Mouse-----//
                                                         // Mouse - Cortical
@@ -1742,15 +1742,39 @@
                                                         }, {
                                                         "value": "EPIMH", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "EPI", "roiMinor": "MH"}
                                                         }, {
-                                                        "value": "HIPCA1", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "CA1"}
+                                                        "value": "HIPCA1", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "CA1"}
                                                         }, {
-                                                        "value": "HIPCA2", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "CA2"}
+                                                        "value": "HIPCA2", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "CA2"}
                                                         }, {
-                                                        "value": "HIPCA3", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "CA3"}
+                                                        "value": "HIPCA3", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "CA3"}
                                                         }, {
-                                                        "value": "HIPDG-mo", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "DG, molecular"}
+                                                        "value": "HIPCA1slm", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "CA1, stratum lacunosum-moleculare"}
                                                         }, {
-                                                        "value": "HIPDG-sg", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP (Mouse)", "roiMinor": "DG, granule"}
+                                                        "value": "HIPCA2slm", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "CA2, stratum lacunosum-moleculare"}
+                                                        }, {
+                                                        "value": "HIPCA3slm", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "CA3, stratum lacunosum-moleculare"}
+                                                        }, {
+                                                        "value": "HIPCA1so", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "CA1, stratum oriens"}
+                                                        }, {
+                                                        "value": "HIPCA2so", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "CA2, stratum oriens"}
+                                                        }, {
+                                                        "value": "HIPCA3so", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "CA3, stratum oriens"}
+                                                        }, {
+                                                        "value": "HIPCA1sp", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "CA1, pyramidal layer"}
+                                                        }, {
+                                                        "value": "HIPCA2sp", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "CA2, pyramidal layer"}
+                                                        }, {
+                                                        "value": "HIPCA3sp", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "CA3, pyramidal layer"}
+                                                        }, {
+                                                        "value": "HIPCA1sr", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "CA1, stratum radiatum"}
+                                                        }, {
+                                                        "value": "HIPCA2sr", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "CA2, stratum radiatum"}
+                                                        }, {
+                                                        "value": "HIPCA3sr", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "CA3, stratum radiatum"}
+                                                        }, {
+                                                        "value": "HIPDG-mo", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "DG, molecular"}
+                                                        }, {
+                                                        "value": "HIPDG-sg", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HIP", "roiMinor": "DG, granule"}
                                                         }, {
                                                         "value": "HYSTN", "attributes": {"roiSpecies": "Mouse", "roiSuper": "Subcortical", "roiMajor": "HY", "roiMinor": "STN"}
                                                         }, {
@@ -1860,25 +1884,31 @@
                                                         "value": "PFCx6", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Cortical", "roiMajor": "PFCx", "roiMinor": "layer 6"}
                                                         },{
                                                         // Non-Human Primate - Subcortical
-                                                        "value": "HIPbCA1", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA1"}
+                                                        "value": "HIPbCA1", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb", "roiMinor": "CA1"}
                                                         }, {
-                                                        "value": "HIPbCA2", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA2"}
+                                                        "value": "HIPbCA2", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb", "roiMinor": "CA2"}
                                                         }, {
-                                                        "value": "HIPbCA3", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA3"}
+                                                        "value": "HIPbCA3", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb", "roiMinor": "CA3"}
                                                         }, {
-                                                        "value": "HIPbCA4", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "CA4"}
+                                                        "value": "HIPbCA4", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb", "roiMinor": "CA4"}
                                                         }, {
-                                                        "value": "HIPbDG", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "DG"}
+                                                        "value": "HIPbDG", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb", "roiMinor": "DG"}
                                                         }, {
-                                                        "value": "HIPbSB", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb (Human)", "roiMinor": "SB"}
+                                                        "value": "HIPbSB", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HIPb", "roiMinor": "SB"}
                                                         }, {
                                                         "value": "HYSTN", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HY", "roiMinor": "STN"}
                                                         }, {
                                                         "value": "HYVMH", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "HY", "roiMinor": "VMH"}
                                                         }, {
-                                                         "value": "PALGPe", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "PAL", "roiMinor": "GPe"}
+                                                        "value": "PALGPe", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "PAL", "roiMinor": "GPe"}
                                                         }, {
                                                         "value": "PALGPi", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "PAL", "roiMinor": "GPi"}
+                                                        }, {
+                                                        "value": "OT1", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "OT", "roiMinor": "layer 1"}
+                                                        }, {
+                                                        "value": "OT2", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "OT", "roiMinor": "layer 2"}
+                                                        }, {
+                                                        "value": "OT3", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "OT", "roiMinor": "layer 3"}
                                                         }, {
                                                         "value": "STRdCa", "attributes": {"roiSpecies": "Non-Human Primate", "roiSuper": "Subcortical", "roiMajor": "STRd", "roiMinor": "Ca"}
                                                         }, {
