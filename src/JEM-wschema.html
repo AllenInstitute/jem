@@ -502,7 +502,6 @@
                                                     "pilotName": {
                                                         "type":"string",
                                                         "title":"Cell Level Projects",
-                                                        "default": "None",
                                                         "enum": ["None","LAS Validation", "MOR Pilot", "retrograde_labeling", "ICV Injection", "Morphology", "Morphology Clearing", "Picrotoxin Validation", "1% Biocytin + Extended PBS Morphology Pilot", "1% Biocytin Pilot", "Extended PBS Morphology Pilot", "Training", "Neonatal mice", "Lot2022 Validation Pilot", "U01 Pilot", "Dravet Mouse Pilot", "PatchLink", "ACSF no blockers"],
                                                         "required":true
                                                     },
@@ -1223,9 +1222,12 @@
                                                         "fieldClass": "form-group col-lg-3",
                                                         "helper": [],
                                                         "sort": true,
-                                                        "hideNone":true,
-                                                        "noneLabel":"None",
-                                                        "hidden":false,
+                                                        "validate": true,
+                                                        "showMessages": false,
+                                                        "hideInitValidationError": true,
+                                                        "hideNone": false,
+                                                        "noneLabel": "",
+                                                        "hidden": false,
                                                         "events": {
                                                             "change": function() {
                                                                 // Echo Pilot Name
