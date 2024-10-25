@@ -151,7 +151,7 @@
                             "project_retrograde_labeling_region": {
                                 "type": "string",
                                 "title": "Injection Site (Region)",
-                                "enum": ["AI", "CP", "GPi","GPe", "SNr", "VAL", "VISal", "VISl", "VISp", "VISpm", "PL", "PL+MOs", "ORB", "Crus I", "C5"],
+                                "enum": ["AI", "CP", "GPi","GPe", "SNr", "VAL", "VISal", "VISl", "VISp", "VISpm", "PL", "PL+MOs", "ORB", "Crus I", "C5", "TH", "TEa"],
                                 "dependencies": "pilotName",
                                 "required": true
                             },
