@@ -318,6 +318,12 @@
                         "dependencies":"status",
                         "required":false
                     },
+                    "HypCellType":{
+                        "type":"string",
+                        "title":"Hypothesized Cell Type",
+                        "dependencies":"status",
+                        "required":false
+                    },
                     "extraction":{
                         "type":"object",
                         "title":"Extraction Info",

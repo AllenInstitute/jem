@@ -689,6 +689,12 @@
                                                 "dependencies":"status",
                                                 "required":false
                                             },
+                                            "hypCellType": {
+                                                "type":"string",
+                                                "title":"Hypothesized Cell Type",
+                                                "dependencies":"status",
+                                                "required":false
+                                            },
                                             "extraction": {
                                                 "type":"object",
                                                 "title":"Extraction Info",
@@ -1494,6 +1500,14 @@
                                                 }
                                             },
                                             "qcNotes": {
+                                                "type":"textarea",
+                                                "fieldClass": "col-lg-12",
+                                                "dependencies": {
+                                                    "status":["SUCCESS"]
+                                                },
+                                                "rows":1
+                                            },
+                                            "hypCellType": {
                                                 "type":"textarea",
                                                 "fieldClass": "col-lg-12",
                                                 "dependencies": {
