@@ -305,13 +305,6 @@
                         "title":"Pipette Specimen ID",
                         "required":false
                     },
-                    "freeFailureNotes":{
-                        "type":"string",
-                        "title":"Extra Failure Notes",
-                        "default":[],
-                        "dependencies":"status",
-                        "required":false
-                    },
                     "qcNotes":{
                         "type":"string",
                         "title":"QC Notes",
@@ -321,6 +314,13 @@
                     "HypCellType":{
                         "type":"string",
                         "title":"Hypothesized Cell Type",
+                        "dependencies":"status",
+                        "required":false
+                    },
+                    "freeFailureNotes":{
+                        "type":"string",
+                        "title":"Extra Failure Notes",
+                        "default":[],
                         "dependencies":"status",
                         "required":false
                     },
