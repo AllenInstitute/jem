@@ -151,7 +151,7 @@
                             "project_retrograde_labeling_region": {
                                 "type": "string",
                                 "title": "Injection Site (Region)",
-                                "enum": ["AI", "CP", "GPi","GPe", "SNr", "VAL", "VISal", "VISl", "VISp", "VISpm", "PL", "PL+MOs", "ORB", "Crus I", "C5", "TH", "TEa"],
+                                "enum": ["AI", "CP", "GPi","GPe", "HPF", "SNr", "VAL", "VISal", "VISl", "VISp", "VISpm", "PL", "PL+MOs", "ORB", "Crus I", "C5", "TH", "TEa"],
                                 "dependencies": "pilotName",
                                 "required": true
                             },
@@ -220,7 +220,7 @@
                                 "format": "string",
                                 "title": "Cell Attached - Failure Options",
                                 "required": true,
-                                "enum": ["Death-cell membrane", "Hardware-error", "Seal-resistance (<1 gohm)", "Software-error"],
+                                "enum": ["Death-cell membrane", "Clog", "Hardware-error", "Seal-resistance (<1 gohm)", "Software-error"],
                                 "dependencies": "cell_attached_status"
                             }
                         }
