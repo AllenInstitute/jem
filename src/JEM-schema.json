@@ -134,6 +134,13 @@
                                 "enum": ["None", "retrograde_labeling", "LICONN Pilot", "ICV Injection", "PatchLink", "Training", "Morphology", "Morphology Clearing", "1% Biocytin Pilot", "Extended PBS Morphology Pilot", "1% Biocytin + Extended PBS Morphology Pilot", "Lot2022 Validation Pilot", "Picrotoxin Validation", "LAS Validation", "ACSF no blockers", "Neonatal mice", "U01 Pilot", "Dravet Mouse Pilot", "MOR Pilot"],
                                 "required":true
                             },
+                            "project_patch_link": {
+                                "type": "string",
+                                "title": "Cleaned",
+                                "enum": ["NA", "0", "1", "2", "3", "4"],
+                                "dependencies": "pilotName",
+                                "required": true
+                            },
                             "project_icv_injection_fluorescent_roi": {
                                 "type": "string",
                                 "title": "Fluorescent ROI",
@@ -405,7 +412,7 @@
                             "project_level_nucleus":{
                                 "type":"string",
                                 "title":"Nucleus Level Projects",
-                                "enum": ["None", "Channel_Recording", "Nucleus Absent"],
+                                "enum": ["None", "Channel_Recording", "Nucleus Absent", "Empty", "Nucleic Content"],
                                 "required":true
                             },
                             "timeChannelRecordingEnd":{
