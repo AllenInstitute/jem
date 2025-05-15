@@ -62,7 +62,7 @@
         "slice_level_project": {
             "type": "string",
             "title": "Slice Level Project",
-            "enum": ["PGA", "Thalamus-U19", "HMBA-UM1", "Mouse Connects-UM1", "LC/DR - R01", "PatchLink", "LICONN Pilot", "D1R KO Pilot"],
+            "enum": ["PGA", "Thalamus-U19", "HMBA-UM1", "Mouse Connects-UM1", "LC/DR - R01", "PatchLink", "LICONN Pilot", "D1R KO Pilot", "Dravet-mutant", "Dravet-WT"],
             "required": true
         },
         "sliceNotes":{
@@ -131,7 +131,7 @@
                             "pilotName":{
                                 "type":"string",
                                 "title":"Slice/Cell Level Projects",
-                                "enum": ["None", "retrograde_labeling", "LICONN Pilot", "ICV Injection", "PatchLink", "Training", "Morphology", "Morphology Clearing", "1% Biocytin Pilot", "Extended PBS Morphology Pilot", "1% Biocytin + Extended PBS Morphology Pilot", "Lot2022 Validation Pilot", "Picrotoxin Validation", "LAS Validation", "ACSF no blockers", "Neonatal mice", "U01 Pilot", "D1R KO Pilot", "MOR Pilot"],
+                                "enum": ["None", "retrograde_labeling", "LICONN Pilot", "ICV Injection", "PatchLink", "Training", "Morphology", "Morphology Clearing", "1% Biocytin Pilot", "Extended PBS Morphology Pilot", "1% Biocytin + Extended PBS Morphology Pilot", "Lot2022 Validation Pilot", "Picrotoxin Validation", "LAS Validation", "ACSF no blockers", "Neonatal mice", "U01 Pilot", "D1R KO Pilot", "MOR Pilot", "Dravet-mutant", "Dravet-WT"],
                                 "required":true
                             },
                             "project_patch_link": {
@@ -343,7 +343,7 @@
                             "blankFillDate":{
                                 "format":"date",
                                 "title":"Blank Fill Date",
-                                "enum":["2025-02-06", "2025-01-09", "2024-11-07", "2024-10-22", "2024-09-11", "2024-07-18", "2024-06-20", "2024-05-22", "2024-05-01", "2024-04-25", "2024-03-27", "2024-02-22", "2024-01-04"],
+                                "enum":["2025-04-03", "2025-02-06", "2025-01-09", "2024-11-07", "2024-10-22", "2024-09-11", "2024-07-18", "2024-06-20", "2024-05-22", "2024-05-01", "2024-04-25", "2024-03-27", "2024-02-22", "2024-01-04"],
                                 "default": [],
                                 "required": true
                             },
