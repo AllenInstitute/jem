@@ -32,7 +32,7 @@
         "internalFillDate":{
             "format":"string",
             "title":"Internal Fill Date",
-            "enum":["IS_250429_Alexa_488", "IS_250430_Alexa_594", "IS_250313_Alexa_488", "IS_250313_Alexa_594", "IS_250319_Alexa_488", "IS_250318_Alexa_594", "IS_250302_Alexa_488", "IS_250303_Alexa_594", "IS_250204_Alexa_488", "IS_250203_Alexa_594", "IS_250107_Alexa_488", "IS_250106_Alexa_594", "IS_241029_Alexa_488", "IS_241028_Alexa_594", "2024-09-17", "2024-07-19", "2024-06-07", "2024-04-23", "2024-03-08", "2024-01-22"],
+            "enum":["IS_250616_Alexa_488", "IS_250617_Alexa_594", "IS_250429_Alexa_488", "IS_250430_Alexa_594", "IS_250313_Alexa_488", "IS_250313_Alexa_594", "IS_250319_Alexa_488", "IS_250318_Alexa_594", "IS_250302_Alexa_488", "IS_250303_Alexa_594", "IS_250204_Alexa_488", "IS_250203_Alexa_594", "IS_250107_Alexa_488", "IS_250106_Alexa_594", "IS_241029_Alexa_488", "IS_241028_Alexa_594", "2024-09-17", "2024-07-19", "2024-06-07", "2024-04-23", "2024-03-08", "2024-01-22"],
             "required":true
         },
         "misinformation":{
@@ -50,7 +50,7 @@
         "virus_enhancer": {
             "type": "string",
             "title": "Virus/Enhancer",
-            "enum": ["AAVretro-DIO-FlpO", "Unknown/unexpected", "None", "AiP11244", "AiP11390", "AiP11633", "AiP11839", "CN1839", "AiP11954", "AiP12017", "AiP12320", "AiP12451", "AiP12787", "AiP1307", "AiP13345", "AiP13470", "AiP13596", "AiP15324", "AiP15659", "AiP12674", "CN2674", "AiP13192", "CN3192", "AiP13863", "CN3863", "AiP13445", "CN3445", "CN4496", "CN4609", "AiP15050", "AiP15694", "CN1889", "AiP1848", "AiP15751", "AiP14402", "AiP20247", "Dual Labeling", "AiP12292", "AiP12569"],
+            "enum": ["AAVretro-DIO-FlpO", "Unknown/unexpected", "None", "AiP11244", "AiP11390", "AiP11633", "AiP11839", "CN1839", "AiP11954", "AiP12017", "AiP12320", "AiP12451", "AiP12787", "AiP1307", "AiP13345", "AiP13470", "AiP13596", "AiP15324", "AiP15659", "AiP12674", "CN2674", "AiP13192", "CN3192", "AiP13863", "CN3863", "AiP13445", "CN3445", "CN4496", "CN4609", "AiP15050", "AiP15694", "CN1889", "AiP1848", "AiP15751", "AiP14402", "AiP20247", "Dual Labeling", "AiP12292", "AiP12569", "AiP11366", "AiP15863"],
             "required": true
         },
         "dic": {
@@ -125,7 +125,7 @@
                             "virusCell": {
                                 "type":"string",
                                 "title":"Virus/Enhancer",
-                                "enum":["AAVretro-DIO-FlpO", "Unknown/unexpected", "None", "AiP11244", "AiP11390", "AiP11633", "AiP11839", "CN1839", "AiP11954", "AiP12017", "AiP12320", "AiP12451", "AiP12787", "AiP1307", "AiP13345", "AiP13470", "AiP13596", "AiP15324", "AiP15659", "AiP12674", "CN2674", "AiP13192", "CN3192", "AiP13863", "CN3863", "AiP13445", "CN3445", "CN4496", "CN4609", "AiP15050", "AiP15694", "CN1889", "AiP1848", "AiP15751", "AiP14402", "AiP20247", "AiP32284", "AiP32318", "Gcamp", "Rcamp", "AiP12292", "AiP12569"],
+                                "enum":["AAVretro-DIO-FlpO", "Unknown/unexpected", "None", "AiP11244", "AiP11390", "AiP11633", "AiP11839", "CN1839", "AiP11954", "AiP12017", "AiP12320", "AiP12451", "AiP12787", "AiP1307", "AiP13345", "AiP13470", "AiP13596", "AiP15324", "AiP15659", "AiP12674", "CN2674", "AiP13192", "CN3192", "AiP13863", "CN3863", "AiP13445", "CN3445", "CN4496", "CN4609", "AiP15050", "AiP15694", "CN1889", "AiP1848", "AiP15751", "AiP14402", "AiP20247", "AiP32284", "AiP32318", "Gcamp", "Rcamp", "AiP12292", "AiP12569", "AiP11366", "AiP15863"],
                                 "required":true
                             },
                             "pilotName":{
@@ -343,7 +343,7 @@
                             "blankFillDate":{
                                 "format":"date",
                                 "title":"Blank Fill Date",
-                                "enum":["2025-04-03", "2025-02-06", "2025-01-09", "2024-11-07", "2024-10-22", "2024-09-11", "2024-07-18", "2024-06-20", "2024-05-22", "2024-05-01", "2024-04-25", "2024-03-27", "2024-02-22", "2024-01-04"],
+                                "enum":["2025-05-02", "2025-04-03", "2025-02-06", "2025-01-09", "2024-11-07", "2024-10-22", "2024-09-11", "2024-07-18", "2024-06-20", "2024-05-22", "2024-05-01", "2024-04-25", "2024-03-27", "2024-02-22", "2024-01-04"],
                                 "default": [],
                                 "required": true
                             },
