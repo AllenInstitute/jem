@@ -400,12 +400,6 @@
                                     "title":"ACSF Date",
                                     "required":true
                                 },
-                                "acsfType": {
-                                    "format":"string",
-                                    "title":"ACSF Type",
-                                    "enum":["Regular A", "Regular B", "Regular A/B", "No Blockers"],
-                                    "required":true
-                                },
                                 "internalFillDate": {
                                     "format":"string",
                                     "title":"Internal Fill Date",
@@ -427,7 +421,7 @@
                                 "virus_enhancer": {
                                     "type": "string",
                                     "title": "Virus/Enhancer",
-                                    "enum": ["AAVretro-DIO-FlpO", "Unknown/unexpected", "None", "AiP11244", "AiP11390", "AiP11633", "AiP11839", "CN1839", "AiP11954", "AiP12017", "AiP12320", "AiP12451", "AiP12787", "AiP1307", "AiP13345", "AiP13470", "AiP13596", "AiP15324", "AiP15659", "AiP12674", "CN2674", "AiP13192", "CN3192", "AiP13863", "CN3863", "AiP13445", "CN3445", "CN4496", "CN4609", "AiP15050", "AiP15694", "CN1889", "AiP1848", "AiP15751", "AiP14402", "AiP20247", "Dual Labeling", "AiP12292", "AiP12569", "AiP11366", "AiP15863", "AiP15223", "AiP15218", "AiP15229"],
+                                    "enum": ["AAVretro-DIO-FlpO", "Unknown/unexpected", "None", "AiP11244", "AiP11390", "AiP11633", "AiP11839", "CN1839", "AiP11954", "AiP12017", "AiP12320", "AiP12451", "AiP12787", "AiP1307", "AiP13345", "AiP13470", "AiP13596", "AiP15324", "AiP15659", "AiP12674", "CN2674", "AiP13192", "CN3192", "AiP13863", "CN3863", "AiP13445", "CN3445", "CN4496", "CN4609", "AiP15050", "AiP15694", "CN1889", "AiP1848", "AiP15751", "AiP14402", "AiP20247", "Dual Labeling", "AiP12292", "AiP12569", "AiP11366", "AiP15863", "AiP15223", "AiP15218", "AiP15229", "CN190"],
                                     "required": true
                                 },
                                 "dic": {
@@ -503,13 +497,13 @@
                                                     "virusCell": {
                                                         "type":"string",
                                                         "title":"Virus/Enhancer",
-                                                        "enum":["AAVretro-DIO-FlpO", "Unknown/unexpected", "None", "AiP11244", "AiP11390", "AiP11633", "AiP11839", "CN1839", "AiP11954", "AiP12017", "AiP12320", "AiP12451", "AiP12787",  "AiP1307", "AiP13345", "AiP13470", "AiP13596", "AiP15324", "AiP15659", "AiP12674", "CN2674", "AiP13192", "CN3192", "AiP13863", "CN3863", "AiP13445", "CN3445", "CN4496", "CN4609", "AiP15050", "AiP15694", "CN1889", "AiP1848", "AiP15751", "AiP14402", "AiP20247", "AiP32284", "AiP32318", "Gcamp", "Rcamp", "AiP12292", "AiP12569", "AiP11366", "AiP15863", "AiP15223", "AiP15218", "AiP15229"],
+                                                        "enum":["AAVretro-DIO-FlpO", "Unknown/unexpected", "None", "AiP11244", "AiP11390", "AiP11633", "AiP11839", "CN1839", "AiP11954", "AiP12017", "AiP12320", "AiP12451", "AiP12787",  "AiP1307", "AiP13345", "AiP13470", "AiP13596", "AiP15324", "AiP15659", "AiP12674", "CN2674", "AiP13192", "CN3192", "AiP13863", "CN3863", "AiP13445", "CN3445", "CN4496", "CN4609", "AiP15050", "AiP15694", "CN1889", "AiP1848", "AiP15751", "AiP14402", "AiP20247", "AiP32284", "AiP32318", "Gcamp", "Rcamp", "AiP12292", "AiP12569", "AiP11366", "AiP15863", "AiP15223", "AiP15218", "AiP15229", "CN190"],
                                                         "required":true
                                                     },
                                                     "pilotName": {
                                                         "type":"string",
                                                         "title":"Cell Level Projects",
-                                                        "enum": ["None", "retrograde_labeling", "LICONN Pilot", "ICV Injection", "PatchLink", "Training", "Morphology", "Morphology Clearing", "1% Biocytin Pilot", "Extended PBS Morphology Pilot", "1% Biocytin + Extended PBS Morphology Pilot", "Lot2022 Validation Pilot", "Picrotoxin Validation", "LAS Validation", "Neonatal mice", "U01 Pilot", "D1R KO Pilot", "MOR Pilot", "Dravet-mutant", "Dravet-WT", "Dravet-overexpression", "Dravet-rescue"],
+                                                        "enum": ["None", "retrograde_labeling", "LICONN Pilot", "ICV Injection", "PatchLink", "Training", "Morphology", "Morphology Clearing", "1% Biocytin Pilot", "Extended PBS Morphology Pilot", "1% Biocytin + Extended PBS Morphology Pilot", "Lot2022 Validation Pilot", "Picrotoxin Validation", "LAS Validation", "ACSF no blockers", "Neonatal mice", "U01 Pilot", "D1R KO Pilot", "MOR Pilot", "Dravet-mutant", "Dravet-WT", "Dravet-overexpression", "Dravet-rescue"],
                                                         "required":true
                                                     },
                                                     "project_patch_link": {
@@ -545,12 +539,6 @@
                                                         "title": "Experiment Site",
                                                         "enum": ["Contralateral", "Ipsilateral", "NA"],
                                                         "dependencies": "pilotName",
-                                                        "required": true
-                                                    },
-                                                    "stimulusSet": {
-                                                        "type": "string",
-                                                        "title": "Stimulus Set",
-                                                        "enum": ["X", "Y", "X & Y", "Z"],
                                                         "required": true
                                                     }
                                                 }
@@ -977,17 +965,6 @@
                                     "showMessages": false,
                                     "hideInitValidationError":true
                                 },
-                                "acsfType": {
-                                    "type": "select",
-                                    "fieldClass": "dropdown-content col-lg-2",
-                                    "size": 1.5,
-                                    "sort": true,
-                                    "validate": true,
-                                    "showMessages": false,
-                                    "hideInitValidationError": true,
-                                    "hideNone": false,
-                                    "noneLabel": ""
-                                },
                                 "internalFillDate": {
                                     "type":"select",
                                     "fieldClass":"dropdown-content col-lg-2",
@@ -1318,17 +1295,6 @@
                                                         "hideNone": false,
                                                         "noneLabel": "",
                                                         "dependencies": {"pilotName": "retrograde_labeling"}
-                                                    },
-                                                    "stimulusSet": {
-                                                        "type": "radio",
-                                                        "fieldClass": "form-group col-lg-12",
-                                                        "size": 1,
-                                                        "vertical": false,
-                                                        "sort": true,
-                                                        "hideNone": true,
-                                                        "showMessages": false,
-                                                        "hideInitValidationError": true,
-                                                        "helper": ["X - Regular QC Metrics", "Y - Relaxed QC metrics", "Z - No QC metrics"]
                                                     }
                                                 }
                                             },
