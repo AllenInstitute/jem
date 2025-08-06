@@ -546,12 +546,6 @@
                                                         "enum": ["Contralateral", "Ipsilateral", "NA"],
                                                         "dependencies": "pilotName",
                                                         "required": true
-                                                    },
-                                                    "stimulusSet": {
-                                                        "type": "string",
-                                                        "title": "Stimulus Set",
-                                                        "enum": ["X", "Y", "X & Y", "Z"],
-                                                        "required": true
                                                     }
                                                 }
                                             },
@@ -695,6 +689,13 @@
                                                 "type": "string",
                                                 "title":"Pipette Specimen ID",
                                                 "required":false
+                                            },
+                                            "stimulusSet":{
+                                                "type":"string",
+                                                "title":"Stimulus Set",
+                                                "enum": ["X", "Y", "Z"],
+                                                "dependencies": "status",
+                                                "required": true
                                             },
                                             "freeFailureNotes": {
                                                 "type":"string",
@@ -847,7 +848,7 @@
                                 },
                                 "rigOperator" : {
                                     "type": "select",
-                                    "fieldClass": "dropdown-content col-lg-2",
+                                    "fieldClass": "dropdown-content col-lg-1",
                                     "helper": [],
                                     "hideNone":false,
                                     "noneLabel":'',
@@ -891,7 +892,7 @@
                                 },
                                 "rigNumber": {
                                     "type": "select",
-                                    "fieldClass":"dropdown-content col-lg-2",
+                                    "fieldClass":"dropdown-content col-lg-1",
                                     "helper":[],
                                     "hideNone":false,
                                     "noneLabel":'',
@@ -1318,17 +1319,6 @@
                                                         "hideNone": false,
                                                         "noneLabel": "",
                                                         "dependencies": {"pilotName": "retrograde_labeling"}
-                                                    },
-                                                    "stimulusSet": {
-                                                        "type": "radio",
-                                                        "fieldClass": "form-group col-lg-12",
-                                                        "size": 1,
-                                                        "vertical": false,
-                                                        "sort": true,
-                                                        "hideNone": true,
-                                                        "showMessages": false,
-                                                        "hideInitValidationError": true,
-                                                        "helper": ["X - Standard QC Metrics", "Y - Relaxed QC Metrics", "Z - No QC Metrics"]
                                                     }
                                                 }
                                             },
@@ -1549,9 +1539,23 @@
                                                     }
                                                 }
                                             },
+                                            "stimulusSet":{
+                                                "type":"radio",
+                                                "fieldClass": "form-group col-lg-12",
+                                                "size": 1,
+                                                "vertical": false,
+                                                "sort": true,
+                                                "hideNone": true,
+                                                "showMessages": false,
+                                                "hideInitValidationError": true,
+                                                "helper": ["X - Standard QC Metrics", "Y - Relaxed QC Metrics", "Z - No QC Metrics"],
+                                                "dependencies": {
+                                                    "status":["SUCCESS"]
+                                                }
+                                            },
                                             "qcNotes": {
                                                 "type":"textarea",
-                                                "fieldClass": "col-lg-12",
+                                                "fieldClass": "col-lg-2",
                                                 "dependencies": {
                                                     "status":["SUCCESS"]
                                                 },
@@ -1559,7 +1563,7 @@
                                             },
                                             "hypCellType": {
                                                 "type":"textarea",
-                                                "fieldClass": "col-lg-12",
+                                                "fieldClass": "col-lg-2",
                                                 "dependencies": {
                                                     "status":["SUCCESS"]
                                                 },
