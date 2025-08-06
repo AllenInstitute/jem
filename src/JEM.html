@@ -1070,6 +1070,18 @@
                                                     }
                                                 }
                                             },
+                                            "stimulusSet":{
+                                                "type":"radio",
+                                                "fieldClass": "form-group col-lg-12",
+                                                "size": 1,
+                                                "vertical": false,
+                                                "sort": true,
+                                                "hideNone": true,
+                                                "showMessages": false,
+                                                "hideInitValidationError": true,
+                                                "helper": ["X - Standard QC Metrics", "Y - Relaxed QC Metrics", "Z - No QC Metrics"],
+                                                "dependencies": {"status":["SUCCESS"]}
+                                            },
                                             "qcNotes": {
                                                 "type":"textarea",
                                                 "fieldClass": "col-lg-2",
