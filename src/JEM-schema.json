@@ -174,12 +174,6 @@
                                 "enum": ["Contralateral", "Ipsilateral", "NA"],
                                 "dependencies": "pilotName",
                                 "required": true
-                            },
-                            "stimulusSet":{
-                                "type": "string",
-                                "title": "Stimulus Set",
-                                "enum": ["X", "Y", "X & Y", "Z"],
-                                "required": true
                             }
                         }
                     },
@@ -330,7 +324,7 @@
                         "dependencies":"status",
                         "required":false
                     },
-                    "HypCellType":{
+                    "hypCellType":{
                         "type":"string",
                         "title":"Hypothesized Cell Type",
                         "dependencies":"status",
