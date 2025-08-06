@@ -318,13 +318,6 @@
                         "title":"Pipette Specimen ID",
                         "required":false
                     },
-                    "stimulusSet":{
-                        "type":"string",
-                        "title":"Stimulus Set",
-                        "eum": ["X", "Y", "Z"],
-                        "dependencies": "status",
-                        "required": true,
-                    },
                     "qcNotes":{
                         "type":"string",
                         "title":"QC Notes",
