@@ -434,6 +434,17 @@
                                 "required":true,
                                 "dependencies":"project_level_nucleus"
                             },
+                            "autoExtract":{
+                                "type":"string",
+                                "title":"Automated Extraction",
+                                "required": true
+                            },
+                            "autoNucProfile": {
+                                "type":"string",
+                                "title":"Automated Extraction Profile",
+                                "enum": ["Default", "Pediatric"],
+                                "required":true
+                            },
                             "extractionNotes": {
                                 "type": "string",
                                 "title": "Extra Extraction Notes"
