@@ -437,6 +437,7 @@
                             "autoExtract":{
                                 "type":"string",
                                 "title":"Automated Extraction",
+                                "enum": ["Yes", "No"],
                                 "required": true
                             },
                             "autoNucProfile": {
