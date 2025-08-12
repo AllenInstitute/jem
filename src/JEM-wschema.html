@@ -816,6 +816,7 @@
                                                         "type":"string",
                                                         "title":"Automated Extraction Profile",
                                                         "enum": ["Default", "Pediatric"],
+                                                        "dependencies":"autoExtract",
                                                         "required":true
                                                     },
                                                     "extractionNotes": {
@@ -1947,7 +1948,8 @@
                                                         "sort": true,
                                                         "hideNone":false,
                                                         "noneLabel":"",
-                                                        "hidden":false
+                                                        "hidden":false,
+                                                        "dependencies": {"autoExtract": ["Yes"]}
                                                     },
                                                     "extractionNotes": {
                                                         "type":"textarea",

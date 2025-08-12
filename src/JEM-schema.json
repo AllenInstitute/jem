@@ -444,6 +444,7 @@
                                 "type":"string",
                                 "title":"Automated Extraction Profile",
                                 "enum": ["Default", "Pediatric"],
+                                "dependencies":"autoExtract",
                                 "required":true
                             },
                             "extractionNotes": {
