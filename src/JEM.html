@@ -1455,7 +1455,7 @@
                                                         "fieldClass": "form-group col-lg-12",
                                                         "size": 1,
                                                         "vertical": false,
-                                                        "sort": true,
+                                                        "sort": false,
                                                         "hideNone": true,
                                                         "showMessages": false,
                                                         "hideInitValidationError": true
@@ -1468,6 +1468,23 @@
                                                         "noneLabel":"",
                                                         "hidden":false,
                                                         "dependencies": {"autoExtract": ["Yes"]}
+                                                    },
+                                                    "autoExtractSuccess":{
+                                                        "type":"radio",
+                                                        "fieldClass":"form-group col-lg-12",
+                                                        "size": 1, 
+                                                        "vertical": false,
+                                                        "sort": false,
+                                                        "hideNone": true,
+                                                        "showMessages": false,
+                                                        "hideInitValidationError": true,
+                                                        "dependencies":{"autoExtract":["Yes"]}
+                                                    },
+                                                    "autoExtractionNotes":{
+                                                        "type":"textarea",
+                                                        "fieldClass":"col-lg-2",
+                                                        "rows":1,
+                                                        "dependencies":{"autoExtract":["Yes"]}
                                                     },
                                                     "extractionNotes": {
                                                         "type":"textarea",

@@ -440,12 +440,24 @@
                                 "enum": ["Yes", "No"],
                                 "required": true
                             },
-                            "autoNucProfile": {
+                            "autoNucProfile":{
                                 "type":"string",
                                 "title":"Automated Extraction Profile",
                                 "enum": ["Default", "Pediatric"],
                                 "dependencies":"autoExtract",
                                 "required":true
+                            },
+                            "autoExtractSuccess":{
+                                "type":"string",
+                                "title":"Sucess",
+                                "enum":["Yes", "No"],
+                                "dependencies":"autoExtract",
+                                "required":true
+                            },
+                            "autoExtractNotes":{
+                                "type":"string",
+                                "title":"Automated Extraction Notes",
+                                "dependencies":"autoExtract"
                             },
                             "extractionNotes": {
                                 "type": "string",
