@@ -450,7 +450,7 @@
                             "autoExtractSuccess":{
                                 "type":"string",
                                 "title":"Sucess",
-                                "enum":["Yes", "No"],
+                                "enum":["Yes", "No", "No - Technical Failure"],
                                 "dependencies":"autoExtract",
                                 "required":true
                             },
