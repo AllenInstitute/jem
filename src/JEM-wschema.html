@@ -512,13 +512,6 @@
                                                         "enum": ["None", "retrograde_labeling", "LICONN Pilot", "ICV Injection", "PatchLink", "Training", "Morphology", "Morphology Clearing", "1% Biocytin Pilot", "Extended PBS Morphology Pilot", "1% Biocytin + Extended PBS Morphology Pilot", "Lot2022 Validation Pilot", "Picrotoxin Validation", "LAS Validation", "Neonatal mice", "U01 Pilot", "D1R KO Pilot", "MOR Pilot", "Dravet-mutant", "Dravet-WT", "Dravet-overexpression", "Dravet-rescue"],
                                                         "required":true
                                                     },
-                                                    "project_patch_link": {
-                                                        "type": "string",
-                                                        "title": "Cleaned",
-                                                        "enum": ["NA", "0", "1", "2", "3", "4"],
-                                                        "dependencies": "pilotName",
-                                                        "required": true
-                                                    },
                                                     "project_icv_injection_fluorescent_roi": {
                                                         "type": "string",
                                                         "title": "Fluorescent ROI",
@@ -545,6 +538,19 @@
                                                         "title": "Experiment Site",
                                                         "enum": ["Contralateral", "Ipsilateral", "NA"],
                                                         "dependencies": "pilotName",
+                                                        "required": true
+                                                    },
+                                                    "automation": {
+                                                        "type": "string",
+                                                        "title": "Automation",
+                                                        "enum": ["Yes", "No"],
+                                                        "required": true
+                                                    },
+                                                    "pipette_cleaned": {
+                                                        "type": "string",
+                                                        "title": "Pipette Cleaned",
+                                                        "enum": ["NA", "0", "1", "2", "3", "4"],
+                                                        "dependencies": "automation",
                                                         "required": true
                                                     }
                                                 }
@@ -1305,14 +1311,6 @@
                                                             }
                                                         }
                                                     },
-                                                    "project_patch_link": {
-                                                        "type": "select",
-                                                        "fieldClass": "form-group col-lg-2",
-                                                        "sort": false,
-                                                        "hideNone": false,
-                                                        "noneLabel": "",
-                                                        "dependencies": {"pilotName": "PatchLink"}
-                                                    },
                                                     "project_icv_injection_fluorescent_roi": {
                                                         "type": "select",
                                                         "fieldClass": "form-group col-lg-2",
@@ -1344,6 +1342,21 @@
                                                         "hideNone": false,
                                                         "noneLabel": "",
                                                         "dependencies": {"pilotName": "retrograde_labeling"}
+                                                    },
+                                                    "automation": {
+                                                        "type": "select",
+                                                        "fieldClass": "form-group col-lg-2",
+                                                        "sort": false,
+                                                        "hideNone": false,
+                                                        "noneLabel": ""
+                                                    },
+                                                    "pipette_cleaned": {
+                                                        "type": "select",
+                                                        "fieldClass": "form-group col-lg-2",
+                                                        "sort": false,
+                                                        "hideNone": false,
+                                                        "noneLabel": "",
+                                                        "dependencies": {"automation": "Yes"}
                                                     }
                                                 }
                                             },

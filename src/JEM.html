@@ -812,14 +812,6 @@
                                                             }
                                                         }
                                                     },
-                                                    "project_patch_link": {
-                                                        "type": "select",
-                                                        "fieldClass": "form-group col-lg-2",
-                                                        "sort": false,
-                                                        "hideNone": false,
-                                                        "noneLabel": "",
-                                                        "dependencies": {"pilotName": "PatchLink"}
-                                                    },
                                                     "project_icv_injection_fluorescent_roi": {
                                                         "type": "select",
                                                         "fieldClass": "form-group col-lg-2",
@@ -851,6 +843,21 @@
                                                         "hideNone": false,
                                                         "noneLabel": "",
                                                         "dependencies": {"pilotName": "retrograde_labeling"}
+                                                    },
+                                                    "automation": {
+                                                        "type": "select",
+                                                        "fieldClass": "form-group col-lg-2",
+                                                        "sort": false,
+                                                        "hideNone": false,
+                                                        "noneLabel": ""
+                                                    },
+                                                    "pipette_cleaned": {
+                                                        "type": "select",
+                                                        "fieldClass": "form-group col-lg-2",
+                                                        "sort": false,
+                                                        "hideNone": false,
+                                                        "noneLabel": "",
+                                                        "dependencies": {"automation": "Yes"}
                                                     }
                                                 }
                                             },
