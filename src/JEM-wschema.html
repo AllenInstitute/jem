@@ -812,34 +812,70 @@
                                                         "required":true,
                                                         "dependencies":"project_level_nucleus"
                                                     },
-                                                    "autoExtract":{
-                                                        "type":"string",
-                                                        "title":"Automated Extraction",
+                                                    "visualConfirmation": {
+                                                        "type": "string",
+                                                        "title": "Visual Confirmation of Nucleus During Extraction?",
                                                         "enum": ["Yes", "No"],
                                                         "required": true
-                                                    },
-                                                    "autoNucProfile":{
-                                                        "type":"string",
-                                                        "title":"Automated Extraction Profile",
-                                                        "enum": ["Default", "Pediatric"],
-                                                        "dependencies":"autoExtract",
-                                                        "required":true
-                                                    },
-                                                    "autoExtractSuccess":{
-                                                        "type":"string",
-                                                        "title":"Success",
-                                                        "enum": ["Yes", "No", "No - Technical Failure"],
-                                                        "dependencies":"autoExtract",
-                                                        "required": true
-                                                    },
-                                                    "autoExtractNotes":{
-                                                        "type": "string",
-                                                        "title": "Automated Extraction Notes",
-                                                        "dependencies":"autoExtract"
                                                     },
                                                     "extractionNotes": {
                                                         "type": "string",
                                                         "title": "Extra Extraction Notes"
+                                                    },
+                                                    "experiment_auto_extract":{
+                                                        "type":"object",
+                                                        "title":"Automated Extraction",
+                                                        "properties": {
+                                                            "autoExtract":{
+                                                                "type":"string",
+                                                                "title":"Automated Extraction",
+                                                                "enum": ["Yes", "No"],
+                                                                "required": true
+                                                            },
+                                                            "autoNucProfile":{
+                                                                "type":"string",
+                                                                "title":"Auto Extract Profile",
+                                                                "enum": ["Default", "Pediatric"],
+                                                                "dependencies":"autoExtract",
+                                                                "required":true
+                                                            },
+                                                            "autoExtractStatus":{
+                                                                "type":"string",
+                                                                "title":"Auto Extract - Status",
+                                                                "enum": ["Success", "Failure", "Technical Failure"],
+                                                                "dependencies":"autoExtract",
+                                                                "required": true
+                                                            },
+                                                            "autoExtractFailure": {
+                                                                "type": "string",
+                                                                "format": "string",
+                                                                "title": "Auto Extract - Failure Options",
+                                                                "required": true,
+                                                                "enum": ["Automation", "General", "Other"],
+                                                                "dependencies": "autoExtractStatus"
+                                                            },
+                                                            "autoExtractTechFailure": {
+                                                                "type": "string", 
+                                                                "format": "string",
+                                                                "title": "Auto Extract - Failure",
+                                                                "required": true, 
+                                                                "enum": ["Auto pressure too low", "Auto pressure too high", "Nuzzle Failure", "Premature Extraction", "Timeout Error"],
+                                                                "dependencies": "autoExtractFailure"
+                                                            },
+                                                            "autoExtractGenFailure": {
+                                                                "type": "string", 
+                                                                "format": "string",
+                                                                "title": "General Extract - Failure",
+                                                                "required": true, 
+                                                                "enum": ["Lost GOhm", "Membrane Stretch", "Nucleus detached inside cell", "Nucleus detached outsied cell", "Pipette detacehd from membrane", "Outside-Out Patch", "Out of Plane"],
+                                                                "dependencies": "autoExtractFailure"
+                                                            },
+                                                            "autoExtractNotes":{
+                                                                "type": "string",
+                                                                "title": "Automated Extraction Notes",
+                                                                "dependencies":"autoExtract"
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             },
@@ -1957,46 +1993,87 @@
                                                         "fieldClass": "col-lg-8",
                                                         "dependencies": {"project_level_nucleus": "Channel_Recording"}
                                                     },
-                                                    "autoExtract":{
-                                                        "type": "radio",
-                                                        "fieldClass": "form-group col-lg-12",
-                                                        "size": 1,
-                                                        "vertical": false,
-                                                        "sort": false,
-                                                        "hideNone": true,
-                                                        "showMessages": false,
-                                                        "hideInitValidationError": true
-                                                    },
-                                                    "autoNucProfile":{
+                                                    "visualConfirmation": {
                                                         "type": "select",
-                                                        "fieldClass": "form-group col-lg-2",
-                                                        "sort": true,
-                                                        "hideNone":false,
-                                                        "noneLabel":"",
-                                                        "hidden":false,
-                                                        "dependencies": {"autoExtract": ["Yes"]}
-                                                    },
-                                                    "autoExtractSuccess":{
-                                                        "type": "radio",
-                                                        "fieldClass": "form-group col-lg-12",
-                                                        "size": 1,
-                                                        "vertical": false,
-                                                        "sort": false,
-                                                        "hideNone": true,
-                                                        "showMessages": false,
-                                                        "hideInitValidationError": true,
-                                                        "dependencies": {"autoExtract": ["Yes"]}
-                                                    },
-                                                    "autoExtractNotes":{
-                                                        "type":"textarea",
-                                                        "fieldClass": "col-lg-2",
-                                                        "rows":1,
-                                                        "dependencies": {"autoExtract": ["Yes"]}
-                                                    },
+                                                        "fieldClass": "form-group col-lg-4",
+                                                        "sort": true, 
+                                                        "hideNone": false,
+                                                        "noneLabel": "",
+                                                        "hidden": false
+                                                    },    
                                                     "extractionNotes": {
                                                         "type":"textarea",
                                                         "fieldClass": "col-lg-12",
                                                         "rows":1
+                                                    },
+                                                    "experiment_auto_extract":{
+                                                        "fieldClass": "form-group col-lg-12 no border big-info",
+                                                        "fields": {
+                                                            "autoExtract":{
+                                                                "type": "radio",
+                                                                "fieldClass": "form-group col-lg-12",
+                                                                "size": 1,
+                                                                "vertical": false,
+                                                                "sort": false,
+                                                                "hideNone": true,
+                                                                "showMessages": false,
+                                                                "hideInitValidationError": true
+                                                            },
+                                                            "autoNucProfile":{
+                                                                "type": "select",
+                                                                "fieldClass": "form-group col-lg-2",
+                                                                "sort": true,
+                                                                "hideNone":false,
+                                                                "noneLabel":"",
+                                                                "hidden":false,
+                                                                "dependencies": {"autoExtract": ["Yes"]}
+                                                            },
+                                                            "autoExtractStatus":{
+                                                                "type": "select",
+                                                                "fieldClass": "form-group col-lg-2",
+                                                                "hideNone": false,
+                                                                "noneLabel": "",
+                                                                "hidden": false,
+                                                                "sort": true,
+                                                                "dependencies": {"autoExtract": ["Yes"]}
+                                                            },
+                                                            "autoExtractFailure": {
+                                                                "fieldClass": "col-lg-2",
+                                                                "type": "select",
+                                                                "showMessages": false,
+                                                                "sort": false,
+                                                                "size": 1.5,
+                                                                "hideNone": false,
+                                                                "noneLabel": "",
+                                                                "dependencies": {"autoExtractStatus": ["Failure", "Technical Failure"]}
+                                                            },
+                                                            "autoExtractTechFailure": {
+                                                                "fieldClass": "col-lg-2",
+                                                                "type": "select",
+                                                                "showMessages": false,
+                                                                "sort": true,
+                                                                "size": 1.5,
+                                                                "hideNone": false,
+                                                                "noneLabel": "",
+                                                                "dependencies": {"autoExtractFailure": ["Automation"]}
+                                                            },
+                                                            "autoExtractGenFailure": {
+                                                                "fieldClass": "col-lg-2",
+                                                                "type": "select",
+                                                                "showMessages": false,
+                                                                "sort": true,
+                                                                "size": 1.5,
+                                                                "hideNone": false,
+                                                                "noneLabel": "",
+                                                                "dependencies": {"autoExtractFailure": ["General"]}
+                                                            },
+                                                            "autoExtractNotes":{
+                                                                "type":"textarea",
+                                                                "fieldClass": "col-lg-4",
+                                                                "rows":1,
+                                                                "dependencies": {"autoExtract": ["Yes"]}
+                                                            }
+                                                        }
                                                     }
                                                  }
                                             },
