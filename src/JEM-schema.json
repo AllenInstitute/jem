@@ -450,7 +450,7 @@
                                 "type": "string",
                                 "title": "Extra Extraction Notes"
                             },
-                            "experiment_auto_extract":{
+                            "nucleus_auto_extract":{
                                 "type":"object",
                                 "title":"Automated Extraction",
                                 "properties": {
