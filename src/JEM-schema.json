@@ -450,60 +450,54 @@
                                 "type": "string",
                                 "title": "Extra Extraction Notes"
                             },
-                            "nucleus_auto_extract":{
-                                "type":"object",
+                            "autoExtract":{
+                                "type":"string",
                                 "title":"Automated Extraction",
-                                "properties": {
-                                    "autoExtract":{
-                                        "type":"string",
-                                        "title":"Automated Extraction",
-                                        "enum": ["Yes", "No"],
-                                        "required": true
-                                    },
-                                    "autoNucProfile":{
-                                        "type":"string",
-                                        "title":"Auto Extract Profile",
-                                        "enum": ["Default", "Pediatric"],
-                                        "dependencies":"autoExtract",
-                                        "required":true
-                                    },
-                                    "autoExtractStatus":{
-                                        "type":"string",
-                                        "title":"Auto Extract - Status",
-                                        "enum": ["Success", "Failure", "Technical Failure"],
-                                        "dependencies":"autoExtract",
-                                        "required": true
-                                    },
-                                    "autoExtractFailure": {
-                                        "type": "string",
-                                        "format": "string",
-                                        "title": "Auto Extract - Failure Options",
-                                        "required": true,
-                                        "enum": ["Automation", "General", "Other"],
-                                        "dependencies": "autoExtractStatus"
-                                    },
-                                    "autoExtractTechFailure": {
-                                        "type": "string", 
-                                        "format": "string",
-                                        "title": "Auto Extract - Failure",
-                                        "required": true, 
-                                        "enum": ["Auto pressure too low", "Auto pressure too high", "Nuzzle Failure", "Premature Extraction", "Timeout Error", "Torn Beyond Repair"],
-                                        "dependencies": "autoExtractFailure"
-                                    },
-                                    "autoExtractGenFailure": {
-                                        "type": "string", 
-                                        "format": "string",
-                                        "title": "General Extract - Failure",
-                                        "required": true, 
-                                        "enum": ["Lost GOhm", "Membrane Stretch", "Nucleus detached inside cell", "Nucleus detached outside cell", "Pipette detached from membrane", "Outside-Out Patch", "Out of Plane"],
-                                        "dependencies": "autoExtractFailure"
-                                    },
-                                    "autoExtractNotes":{
-                                        "type": "string",
-                                        "title": "Automated Extraction Notes",
-                                        "dependencies":"autoExtract"
-                                    }
-                                }
+                                "enum": ["Yes", "No"],
+                                "required": true
+                            },
+                            "autoNucProfile":{
+                                "type":"string",
+                                "title":"Auto Extract Profile",
+                                "enum": ["Default", "Pediatric"],
+                                "dependencies":"autoExtract",
+                                "required":true
+                            },
+                            "autoExtractStatus":{
+                                "type":"string",
+                                "title":"Auto Extract - Status",
+                                "enum": ["Success", "Failure", "Technical Failure"],
+                                "dependencies":"autoExtract",
+                                "required": true
+                            },
+                            "autoExtractFailure": {
+                                "type": "string",
+                                "format": "string",
+                                "title": "Auto Extract - Failure Options",
+                                "required": true,
+                                "enum": ["Automation", "General", "Other"],
+                                "dependencies": "autoExtractStatus"
+                            },
+                            "autoExtractTechFailure": {
+                                "type": "string", 
+                                "format": "string",
+                                "title": "Auto Extract - Failure",
+                                "required": true, 
+                                "enum": ["Auto pressure too low", "Auto pressure too high", "Nuzzle Failure", "Premature Extraction", "Timeout Error", "Torn Beyond Repair"],
+                                "dependencies": "autoExtractFailure"
+                            },
+                            "autoExtractGenFailure": {
+                                "type": "string", 
+                                "format": "string",
+                                "title": "General Extract - Failure",
+                                "required": true, 
+                                "enum": ["Lost GOhm", "Membrane Stretch", "Nucleus detached inside cell", "Nucleus detached outside cell", "Pipette detached from membrane", "Outside-Out Patch", "Out of Plane"],
+                                "dependencies": "autoExtractFailure"
+                            },
+                            "autoExtractNotes":{
+                                "type": "string",
+                                "title": "Automated Extraction Notes",
+                                "dependencies":"autoExtract"
                             }
                         }
                     },

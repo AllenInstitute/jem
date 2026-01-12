@@ -1470,76 +1470,71 @@
                                                         "fieldClass": "col-lg-12",
                                                         "rows":1
                                                     },
-                                                    "nucleus_auto_extract":{
-                                                        "fieldClass": "form-group col-lg-12 no border big-info",
-                                                        "fields": {
-                                                            "autoExtract":{
-                                                                "type": "radio",
-                                                                "fieldClass": "form-group col-lg-12",
-                                                                "size": 1,
-                                                                "vertical": false,
-                                                                "sort": false,
-                                                                "hideNone": true,
-                                                                "showMessages": false,
-                                                                "hideInitValidationError": true
-                                                            },
-                                                            "autoNucProfile":{
-                                                                "type": "select",
-                                                                "fieldClass": "form-group col-lg-2",
-                                                                "sort": true,
-                                                                "hideNone":false,
-                                                                "noneLabel":"",
-                                                                "hidden":false,
-                                                                "dependencies": {"autoExtract": ["Yes"]}
-                                                            },
-                                                            "autoExtractStatus":{
-                                                                "type": "select",
-                                                                "fieldClass": "form-group col-lg-2",
-                                                                "hideNone": false,
-                                                                "noneLabel": "",
-                                                                "hidden": false,
-                                                                "sort": true,
-                                                                "dependencies": {"autoExtract": ["Yes"]}
-                                                            },
-                                                            "autoExtractFailure": {
-                                                                "fieldClass": "col-lg-2",
-                                                                "type": "select",
-                                                                "showMessages": false,
-                                                                "sort": false,
-                                                                "size": 1.5,
-                                                                "hideNone": false,
-                                                                "noneLabel": "",
-                                                                "dependencies": {"autoExtractStatus": ["Failure", "Technical Failure"]}
-                                                            },
-                                                            "autoExtractTechFailure": {
-                                                                "fieldClass": "col-lg-2",
-                                                                "type": "select",
-                                                                "showMessages": false,
-                                                                "sort": true,
-                                                                "size": 1.5,
-                                                                "hideNone": false,
-                                                                "noneLabel": "",
-                                                                "dependencies": {"autoExtractFailure": ["Automation"]}
-                                                            },
-                                                            "autoExtractGenFailure": {
-                                                                "fieldClass": "col-lg-2",
-                                                                "type": "select",
-                                                                "showMessages": false,
-                                                                "sort": true,
-                                                                "size": 1.5,
-                                                                "hideNone": false,
-                                                                "noneLabel": "",
-                                                                "dependencies": {"autoExtractFailure": ["General"]}
-                                                            },
-                                                            "autoExtractNotes":{
-                                                                "type":"textarea",
-                                                                "fieldClass": "col-lg-4",
-                                                                "rows":1,
-                                                                "dependencies": {"autoExtract": ["Yes"]}
-                                                            }
-                                                        }
+                                                    "autoExtract":{
+                                                        "type": "radio",
+                                                        "fieldClass": "form-group col-lg-12",
+                                                        "size": 1,
+                                                        "vertical": false,
+                                                        "sort": false,
+                                                        "hideNone": true,
+                                                        "showMessages": false,
+                                                        "hideInitValidationError": true
+                                                    },
+                                                    "autoNucProfile":{
+                                                        "type": "select",
+                                                        "fieldClass": "form-group col-lg-2",
+                                                        "sort": true,
+                                                        "hideNone":false,
+                                                        "noneLabel":"",
+                                                        "hidden":false,
+                                                        "dependencies": {"autoExtract": ["Yes"]}
+                                                    },
+                                                    "autoExtractStatus":{
+                                                        "type": "select",
+                                                        "fieldClass": "form-group col-lg-2",
+                                                        "hideNone": false,
+                                                        "noneLabel": "",
+                                                        "hidden": false,
+                                                        "sort": true,
+                                                        "dependencies": {"autoExtract": ["Yes"]}
+                                                    },
+                                                    "autoExtractFailure": {
+                                                        "fieldClass": "col-lg-2",
+                                                        "type": "select",
+                                                        "showMessages": false,
+                                                        "sort": false,
+                                                        "size": 1.5,
+                                                        "hideNone": false,
+                                                        "noneLabel": "",
+                                                        "dependencies": {"autoExtractStatus": ["Failure", "Technical Failure"]}
+                                                    },
+                                                    "autoExtractTechFailure": {
+                                                        "fieldClass": "col-lg-2",
+                                                        "type": "select",
+                                                        "showMessages": false,
+                                                        "sort": true,
+                                                        "size": 1.5,
+                                                        "hideNone": false,
+                                                        "noneLabel": "",
+                                                        "dependencies": {"autoExtractFailure": ["Automation"]}
+                                                    },
+                                                    "autoExtractGenFailure": {
+                                                        "fieldClass": "col-lg-2",
+                                                        "type": "select",
+                                                        "showMessages": false,
+                                                        "sort": true,
+                                                        "size": 1.5,
+                                                        "hideNone": false,
+                                                        "noneLabel": "",
+                                                        "dependencies": {"autoExtractFailure": ["General"]}
+                                                    },
+                                                    "autoExtractNotes":{
+                                                        "type":"textarea",
+                                                        "fieldClass": "col-lg-4",
+                                                        "rows":1,
+                                                        "dependencies": {"autoExtract": ["Yes"]}
                                                     }
-                                                 }
+                                                }
                                             },
                                             "depth": {
                                                 "type":"number",
