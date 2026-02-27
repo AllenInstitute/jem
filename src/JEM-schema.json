@@ -180,6 +180,13 @@
                                 "enum": ["NA", "0", "1", "2", "3", "4"],
                                 "dependencies": "automation",
                                 "required": true
+                            },
+                            "pipette_recycled": {
+                                "type": "string",
+                                "title": "Recycled Pipette",
+                                "enum": ["0", "1", "2", "3", "4"],
+                                "dependencies": "automation",
+                                "required": true
                             }
                         }
                     },
@@ -442,8 +449,8 @@
                             },
                             "project_level_nucleus":{
                                 "type":"string",
-                                "title":"Nucleus Level Projects",
-                                "enum": ["None", "Channel_Recording", "Nucleus Present", "Empty"],
+                                "title":"Tube Level Projects",
+                                "enum": ["None","Channel_Recording","Empty","Auto Deposit","Sonication Check","Clean Check"],
                                 "required":true
                             },
                             "timeChannelRecordingEnd":{
@@ -510,6 +517,27 @@
                                 "type": "string",
                                 "title": "Automated Extraction Notes",
                                 "dependencies":"autoExtract"
+                            },
+                            "autoNucDeposit":{
+                                "type":"string",
+                                "title":"Automated Nucleus Deposit",
+                                "enum": ["Yes", "No"],
+                                "required": true
+                            },
+                            "autoNucDepositStatus":{
+                                "type":"string",
+                                "title":"Auto Nucleus Deposit - Status",
+                                "enum": ["Success", "Failure"],
+                                "dependencies":"autoNucDeposit",
+                                "required": true
+                            },
+                            "autoNucDepositFailure": {
+                                "type": "string",
+                                "format": "string",
+                                "title": "Auto Nucleus Deposit - Failure Options",
+                                "required": true,
+                                "enum": ["Unknown"],
+                                "dependencies": "autoNucDepositStatus"
                             }
                         }
                     },
