@@ -181,6 +181,13 @@
                                 "dependencies": "automation",
                                 "required": true
                             },
+                            "previous_profile": {
+                                "type": "string",
+                                "title": "Previous Auto Profile",
+                                "enum": ["Default", "Pediatric"],
+                                "dependencies": "pipette_cleaned",
+                                "required": true
+                            },
                             "pipette_recycled": {
                                 "type": "string",
                                 "title": "Recycled Pipette",
