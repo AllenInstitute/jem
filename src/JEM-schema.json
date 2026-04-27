@@ -184,7 +184,7 @@
                             "previous_profile": {
                                 "type": "string",
                                 "title": "Previous Auto Profile",
-                                "enum": ["Default", "Pediatric"],
+                                "enum": ["Default", "Pediatric", "Nucleus Collect V1"],
                                 "dependencies": "pipette_cleaned",
                                 "required": true
                             },
@@ -485,7 +485,7 @@
                             "autoNucProfile":{
                                 "type":"string",
                                 "title":"Auto Extract Profile",
-                                "enum": ["Default", "Pediatric"],
+                                "enum": ["Default", "Pediatric", "Nucleus Collect V1"],
                                 "dependencies":"autoExtract",
                                 "required":true
                             },
