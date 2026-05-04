@@ -92,10 +92,16 @@
                     "enum": ["1", "3", "5"],
                     "required": true
                 },
-                "sliceObservations":{
+                "sliceHealthObservations":{
                     "type":"string",
                     "title":"Slice Observations",
                     "enum":["Crinkled cells", "Blown-up cells", "Slice damage", "Slice damage to ROI"],
+                    "required":false
+                },
+                "sliceObservations": {
+                    "type":"string",
+                    "title":"Slice Observations",
+                    "enum":["Thin slice", "Thick slice", "Slice damage", "Degrading", "Bacteria layer", "Tiny slice"],
                     "required":false
                 },
                 "sliceComments":{

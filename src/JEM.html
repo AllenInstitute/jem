@@ -661,7 +661,7 @@
                                             "hideInitValidationError": true,
                                             "helper": ["1 - Bad (>66% dead cells)", "3 - OK (34-66% dead cells)", "5 - Good (<33% dead cells)"]
                                         },
-                                        "sliceObservations": {
+                                        "sliceHealthObservations": {
                                             "type": "checkbox",
                                             "fieldClass": "form-group col-lg-2",
                                             "options": [
@@ -680,6 +680,37 @@
                                             {
                                                 "label": "Slice damage to ROI",
                                                 "value": "slice_damage_to_roi"
+                                            }
+                                            ],
+                                            "formField": true
+                                        },
+                                        "sliceObservations": {
+                                            "type": "checkbox",
+                                            "fieldClass": "form-group col-lg-2",
+                                            "options": [
+                                            {
+                                                "label": "Thin slice",
+                                                "value": "thin_slice"
+                                            },
+                                            {
+                                                "label": "Thick slice",
+                                                "value": "thick_slice"
+                                            },
+                                            {
+                                                "label": "Slice damage",
+                                                "value": "slice_damage"
+                                            },
+                                            {
+                                                "label": "Degrading",
+                                                "value": "degrading"
+                                            },
+                                            { 
+                                                "label": "Bacteria layer",
+                                                "value": "bacteria_layer"
+                                            },
+                                            {   
+                                                "label": "Tiny slice",
+                                                "value": "tiny_slice"
                                             }
                                             ],
                                             "formField": true
