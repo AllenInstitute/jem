@@ -313,7 +313,7 @@
                 function copyPilotName(activePipetteIndex, activePilotName, activeStatus) {
                     var form = $("#form").alpaca("get");
                     if (activeStatus !== null) {
-                        if (activeStatus == ["SUCCESS"]) {
+                        if (activeStatus == ["Success"]) {
                             var dupPilotNameField = form.top().getControlByPath("pipettes["+activePipetteIndex+"]/extraction/pilotNameExtra");
                             dupPilotNameField.setValue("Pilot: " + activePilotName);
                         }
@@ -662,7 +662,7 @@
                                             },
                                             "extraction": {
                                                 "fieldClass": "form-group col-lg-12 no-border bg-danger",
-                                                "dependencies": {"status":["SUCCESS"]},
+                                                "dependencies": {"status":["Success"]},
                                                 "fields": {
                                                     "blankFillDate": {
                                                         "type":"select",

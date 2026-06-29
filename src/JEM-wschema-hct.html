@@ -313,7 +313,7 @@
                 function copyPilotName(activePipetteIndex, activePilotName, activeStatus) {
                     var form = $("#form").alpaca("get");
                     if (activeStatus !== null) {
-                        if (activeStatus == ["SUCCESS"]) {
+                        if (activeStatus == ["Success"]) {
                             var dupPilotNameField = form.top().getControlByPath("pipettes["+activePipetteIndex+"]/extraction/pilotNameExtra");
                             dupPilotNameField.setValue("Pilot: " + activePilotName);
                         }
@@ -381,7 +381,7 @@
                                 "rigOperator": {
                                     "type": "string",
                                     "title": "Researcher",
-                                    "enum":["sammyl","jonathant", "briank", "cristinar", "meanhwank", "scotts", "nikd", "sarav", "alejandrob"],
+                                    "enum":["sammyl","jonathant", "briank", "cristinar", "scotts", "nikd", "alejandrob"],
                                     "required":true
                                 },
                                 "rigNumber": {
@@ -415,8 +415,8 @@
                                             "status":{
                                                 "type":"string",
                                                 "title":"Was recording successful?",
-                                                "enum":["SUCCESS", "FAILURE"],
-                                                "default": ["SUCCESS"],
+                                                "enum":["Success", "Failure"],
+                                                "default": ["Success"],
                                                 "required":true
                                             },
                                             "pipetteSpecName": {
@@ -760,7 +760,7 @@
                                             },
                                             "extraction": {
                                                 "fieldClass": "form-group col-lg-12 no-border bg-danger",
-                                                "dependencies": {"status":["SUCCESS"]},
+                                                "dependencies": {"status":["Success"]},
                                                 "fields": {
                                                     "blankFillDate": {
                                                         "type":"select",
