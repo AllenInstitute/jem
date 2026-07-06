@@ -313,7 +313,7 @@
                 function copyPilotName(activePipetteIndex, activePilotName, activeStatus) {
                     var form = $("#form").alpaca("get");
                     if (activeStatus !== null) {
-                        if (activeStatus == ["Success"]) {
+                        if (activeStatus == ["SUCCESS"]) {
                             var dupPilotNameField = form.top().getControlByPath("pipettes["+activePipetteIndex+"]/extraction/pilotNameExtra");
                             dupPilotNameField.setValue("Pilot: " + activePilotName);
                         }
