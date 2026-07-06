@@ -347,7 +347,7 @@
                     "status":{
                         "type":"string",
                         "title":"Was recording successful?",
-                        "enum":["Success", "Failure"],
+                        "enum":["SUCCESS", "FAILURE"],
                         "default":[],
                         "required":true
                     },
