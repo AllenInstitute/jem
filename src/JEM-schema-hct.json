@@ -30,10 +30,29 @@
             "title":"Slice on Rig Date/Time",
             "required":true
         },
+        "sliceNotes":{
+            "type":"string",
+            "format":"string",
+            "title":"Slice Notes",
+            "required":false
+        },
         "limsSpecName": {
             "type": "string",
             "title":"Slice ID",
             "required":true
+        },
+        "vitrified": {
+            "type":"string",
+            "title":"Vitrified",
+            "enum":["Yes", "No"],
+            "required":true
+        },
+        "vitProtocol":{
+            "type":"string",
+            "format":"string",
+            "title":"Vit Protocol",
+            "required":false,
+            "dependencies": "vitrified"
         },
         "pipettes":{
             "type":"array",

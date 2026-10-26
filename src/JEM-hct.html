@@ -506,6 +506,12 @@
                                     "showMessages": false,
                                     "hideInitValidationError":true
                                 },
+                                "sliceNotes": {
+                                    "type":"textarea",
+                                    "fieldClass": "col-lg-2",
+                                    "rows":1,
+                                    "allowOptionalEmpty":true
+                                },
                                 "limsSpecName": {
                                     "type": "text",
                                     "fieldClass": "col-lg-4",
@@ -555,6 +561,23 @@
                                             });
                                         }
                                     }
+                                },
+                                "vitrified": {
+                                    "type":"select",
+                                    "fieldClass": "dropdown-content col-lg-2",
+                                    "size": 1.5,
+                                    "sort": true,
+                                    "validate": true,
+                                    "showMessages": false,
+                                    "hideInitValidationError": true,
+                                    "hideNone": false,
+                                    "noneLabel": "" 
+                                },
+                                "vitProtocol":{
+                                    "type": "textarea",
+                                    "fieldClass": "col-lg-2",
+                                    "rows":1,
+                                    "dependencies": {"vitrified": "Yes"}
                                 },
                                 "pipettes": {
                                     "fieldClass": "form-group col-lg-12 no-border",
